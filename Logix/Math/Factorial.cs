@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BaseX;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,14 +13,13 @@ namespace FrooxEngine.LogiX.Math
     public sealed class Factorial : LogixOperator<int>
     {
         public readonly Input<int> input;
-        public readonly Output<int> output;
 
         public override int Content
         {
             get
             {
                 int fact = 1;
-                for (var i = 1; i <= input.EvaluateRaw(); i++)
+                for (var i = 1; i <= MathX.Clamp(input.EvaluateRaw(), 0, 16); i++)
                 {
                     fact *= i;
                 }

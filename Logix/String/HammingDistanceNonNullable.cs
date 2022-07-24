@@ -1,16 +1,16 @@
-﻿using FrooxEngine.LogiX;
+using FrooxEngine.LogiX;
 using System;
 
 namespace FrooxEngine.Logix.String
 {
     [Category("LogiX/String")]
-    [NodeName("Hamming Distance")]
-    public class HammingDistance : LogixOperator<int?>
+    [NodeName("Hamming Distance NonNullable")]
+    public class HammingDistanceNonNullable : LogixOperator<int>
     {
         public readonly Input<string> String1;
         public readonly Input<string> String2;
         
-        public override int? Content
+        public override int Content
         {
             get
             {
@@ -19,7 +19,7 @@ namespace FrooxEngine.Logix.String
                 var length1 = string1?.Length;
                 var length2 = string2?.Length;
                 if (string1 is null || string2 is null || length1 != length2)
-                    return null;
+                    return -1;
                 var count = 0;
                 for (var i = 0; i < length1; i++)
                     if (string1[i] != string2[i]) count++;

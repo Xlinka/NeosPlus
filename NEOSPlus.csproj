@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logix\Math\EulersTotientFunction.cs" />
+    <Compile Include="Logix\Math\Factorial.cs" />
     <Compile Include="Logix\Math\Matrix\GaussianElimination_double2x2.cs" />
     <Compile Include="Logix\Math\Matrix\GaussianElimination_double3x3.cs" />
     <Compile Include="Logix\Math\Matrix\GaussianElimination_double4x4.cs" />

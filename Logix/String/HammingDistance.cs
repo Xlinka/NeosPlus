@@ -1,19 +1,29 @@
 ﻿using FrooxEngine.LogiX;
+using System;
 
 namespace FrooxEngine.Logix.String
 {
     [Category("LogiX/String")]
     [NodeName("Hamming Distance")]
-    public class HammingDistance : LogixOperator<int>
+    public class HammingDistance : LogixOperator<int?>
     {
         public readonly Input<string> str1;
         public readonly Input<string> str2;
-        public readonly Output<int> distance;
         
-        public override int Content
+        public override int? Content
         {
             get
             {
+                if (str1.EvaluateRaw() is null || str2.EvaluateRaw() is null)
+                {
+                    return null;
+                }
+
+                if (str1.EvaluateRaw().Length != str2.EvaluateRaw().Length)
+                {
+                    return null;
+                }
+
                 int i = 0, count = 0;
                 while (i < str1.EvaluateRaw().Length)
                 {

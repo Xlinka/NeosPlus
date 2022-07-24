@@ -2,8 +2,10 @@
 using System.Linq;
 using BaseX;
 using FrooxEngine.UIX;
+using NEOSPlus;
+
 //Credit to FroZen https://github.com/Neos-Metaverse/NeosPublic/issues/3703
-//Adds Primative Sort Node
+//Adds Sort Node
 namespace FrooxEngine.LogiX.Math
 {
     [NodeName("Sort")]
@@ -30,20 +32,9 @@ namespace FrooxEngine.LogiX.Math
             if (Backward.EvaluateRaw()) inputs.Reverse();
             for (var i = 0; i < ValueOutputs.Count; i++) ValueOutputs[i].Value = inputs[i];
         }
-        protected override void OnGenerateVisual(Slot root)
-        {
-            var uIBuilder = GenerateUI(root);
-            uIBuilder.Panel();
-            uIBuilder.HorizontalFooter(32f, out var footer, out var _);
-            var uIBuilder2 = new UIBuilder(footer);
-            uIBuilder2.HorizontalLayout(4f);
-            LocaleString text = "+";
-            var tint = color.White;
-            uIBuilder2.Button(in text, in tint, Add);
-            text = "-";
-            tint = color.White;
-            uIBuilder2.Button(in text, in tint, Remove);
-        }
+        protected override void OnGenerateVisual(Slot root) => 
+            GenerateUI(root).GenerateListButtons(Add, Remove);
+
         [SyncMethod]
         private void Add(IButton button, ButtonEventData eventData)
         {

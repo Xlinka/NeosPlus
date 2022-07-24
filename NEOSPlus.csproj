@@ -58,6 +58,7 @@
     <Compile Include="Logix\Math\SortNode.cs" />
     <Compile Include="NodeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Materials\TestMaterial.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Materials\" />

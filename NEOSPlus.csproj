@@ -30,12 +30,19 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <NeosPath>$(MSBuildThisFileDirectory)NeosVR</NeosPath>
+    <NeosPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\NeosVR\')">C:\Program Files (x86)\Steam\steamapps\common\NeosVR\</NeosPath>
+    <NeosPath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/NeosVR/')">$(HOME)/.steam/steam/steamapps/common/NeosVR/</NeosPath>
+    <NeosPath Condition="Exists('/mnt/LocalDisk/SteamLibrary/steamapps/common/NeosVR/')">/mnt/LocalDisk/SteamLibrary/steamapps/common/NeosVR/</NeosPath>
+    <NeosPath Condition="Exists('C:\Neos\app\')">C:\Neos\app\</NeosPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BaseX">
-      <HintPath>C:\Neos\app\Neos_Data\Managed\BaseX.dll</HintPath>
+      <HintPath>$(NeosPath)Neos_Data/Managed/BaseX.dll</HintPath>
     </Reference>
     <Reference Include="FrooxEngine">
-      <HintPath>C:\Neos\app\Neos_Data\Managed\FrooxEngine.dll</HintPath>
+      <HintPath>$(NeosPath)Neos_Data/Managed/FrooxEngine.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,8 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logix\ZeroOneI.cs" />
-    <Compile Include="Logix\SortNode.cs" />
+    <Compile Include="Logix\Operators\ZeroOneI.cs" />
+    <Compile Include="Logix\Math\SortNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

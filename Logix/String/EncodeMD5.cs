@@ -1,19 +1,21 @@
 using System;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace FrooxEngine.LogiX.String
 {
     [Category("LogiX/String")]
-    [NodeName("Encode Base64")]
-    public class EncodeBase64 : LogixOperator<string>
+    [NodeName("Encode MD5")]
+    public class EncodeMD5 : LogixOperator<string>
     {
+        private static MD5CryptoServiceProvider _md5 = new MD5CryptoServiceProvider();
         public readonly Input<string> Input;
         public override string Content
         {
             get
             {
                 var input = Input.EvaluateRaw();
-                return input == null ? null : Convert.ToBase64String(Encoding.UTF8.GetBytes(Input.EvaluateRaw()));
+                return input == null ? null : BitConverter.ToString(_md5.ComputeHash(Encoding.UTF8.GetBytes(input))).Replace("-","");
             }
         }
         protected override void NotifyOutputsOfChange() => ((IOutputElement) this).NotifyChange();

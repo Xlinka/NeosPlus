@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\MeshColliderManagementTools.cs" />
     <Compile Include="Logix\Math\EulersTotientFunction.cs" />
     <Compile Include="Logix\Math\Factorial.cs" />
     <Compile Include="Logix\Math\Matrix\GaussianElimination_double2x2.cs" />

@@ -59,6 +59,7 @@
     <Compile Include="Logix\String\DecodeBase64.cs" />
     <Compile Include="Logix\String\EncodeBase64.cs" />
     <Compile Include="Logix\String\EncodeMD5.cs" />
+    <Compile Include="Logix\String\EncodeSha256.cs" />
     <Compile Include="NodeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

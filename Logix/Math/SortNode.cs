@@ -4,7 +4,7 @@ using BaseX;
 using FrooxEngine.UIX;
 //Credit to FroZen https://github.com/Neos-Metaverse/NeosPublic/issues/3703
 //Adds Primative Sort Node
-namespace FrooxEngine.LogiX.Operators
+namespace FrooxEngine.LogiX.Math
 {
     [NodeName("Sort")]
     [Category("LogiX/Math")]

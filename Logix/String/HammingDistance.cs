@@ -7,28 +7,28 @@ namespace FrooxEngine.Logix.String
     [NodeName("Hamming Distance")]
     public class HammingDistance : LogixOperator<int?>
     {
-        public readonly Input<string> str1;
-        public readonly Input<string> str2;
+        public readonly Input<string> String1;
+        public readonly Input<string> String2;
         
         public override int? Content
         {
             get
             {
-                if (str1.EvaluateRaw() is null || str2.EvaluateRaw() is null)
+                if (String1.EvaluateRaw() is null || String2.EvaluateRaw() is null)
                 {
                     return null;
                 }
 
-                if (str1.EvaluateRaw().Length != str2.EvaluateRaw().Length)
+                if (String1.EvaluateRaw().Length != String2.EvaluateRaw().Length)
                 {
                     return null;
                 }
 
                 int i = 0, count = 0;
-                while (i < str1.EvaluateRaw().Length)
+                while (i < String1.EvaluateRaw().Length)
                 {
                     // Is it more efficient to cache an evaluated copy of the string, rather than index it every time? 
-                    if (str1.EvaluateRaw()[i] != str2.EvaluateRaw()[i])
+                    if (String1.EvaluateRaw()[i] != String2.EvaluateRaw()[i])
                     {
                         count++;
                     }

@@ -58,6 +58,8 @@
     <Compile Include="Logix\Math\SortNode.cs" />
     <Compile Include="NodeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="String\DecodeBase64.cs" />
+    <Compile Include="String\EncodeBase64.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Materials\" />

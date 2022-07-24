@@ -30,7 +30,6 @@ public class TestMaterial : SingleShaderMaterialProvider
 		
 	}
 	protected override void UpdateMaterial(Material material)
-    	protected override void UpdateMaterial(Material material)
 	{
 		material.UpdateFloat(_Scale, Scale);
 		material.UpdateFloat3(_Offset, Offset);

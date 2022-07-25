@@ -1,28 +1,21 @@
 ﻿using BaseX;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FrooxEngine.LogiX.Math
 {
     [NodeName("Factorial")]
-    [Category(new string[] { "LogiX/Operators" })]
+    [Category("LogiX/Operators")]
 
-    public sealed class Factorial : LogixOperator<int>
+    public class Factorial : LogixOperator<int>
     {
-        public readonly Input<int> input;
+        public readonly Input<int> Input;
 
         public override int Content
         {
             get
             {
-                int fact = 1;
-                for (var i = 1; i <= MathX.Clamp(input.EvaluateRaw(), 0, 16); i++)
-                {
-                    fact *= i;
-                }
+                var fact = 1;
+                var loop = MathX.Clamp(Input.EvaluateRaw(), 0, 16);
+                for (var i = 1; i <= loop; i++) fact *= i;
                 return fact;
             }
         }

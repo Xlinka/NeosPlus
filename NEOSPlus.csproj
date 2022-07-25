@@ -41,7 +41,6 @@
     <Reference Include="BaseX">
       <HintPath>$(NeosPath)Neos_Data/Managed/BaseX.dll</HintPath>
     </Reference>
-    <Reference Include="CloudX.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="FrooxEngine">
       <HintPath>$(NeosPath)Neos_Data/Managed/FrooxEngine.dll</HintPath>
     </Reference>
@@ -71,7 +70,7 @@
     <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float3x3.cs" />
     <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float4x4.cs" />
     <Compile Include="Logix\Math\Matrix\MatrixClass.cs" />
-    <Compile Include="Logix\Network\OpenSea.cs" />
+    <Compile Include="Logix\NodeExtensions.cs" />
     <Compile Include="Logix\Operators\ZeroOneI.cs" />
     <Compile Include="Logix\Math\SortNode.cs" />
     <Compile Include="Logix\String\DecodeBase64.cs" />
@@ -79,13 +78,12 @@
     <Compile Include="Logix\String\EncodeMD5.cs" />
     <Compile Include="Logix\String\EncodeSha256.cs" />
     <Compile Include="Logix\String\HammingDistance.cs" />
-    <Compile Include="NodeExtensions.cs" />
+    <Compile Include="Logix\String\HammingDistanceNonNullable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Materials\TestMaterial.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)\$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\NeosVR\Libraries"</PostBuildEvent>
-  </PropertyGroup>
 </Project>

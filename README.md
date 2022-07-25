@@ -1,6 +1,6 @@
 # NeosPlus
 NeosVR Plugin Extra Logix nodes and features, the goal behind this plugin is to add features long requested on the offical github,
-or testing features to see if they are plausable inside neos.
+or for testing features to see if they are plausable inside neos.
 
 Nodes Added so Far
 - Logix/Math/Matrix/GaussianElimination

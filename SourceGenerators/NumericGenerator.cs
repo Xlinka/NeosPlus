@@ -66,8 +66,8 @@ namespace FrooxEngine.LogiX.Operators
     [NodeName(""*2"")]
     public class DoubleInput_{name} : LogixOperator<{type}>
     {{
-        public new readonly Input<{type}> Input;
-        public override {type} Content => ({type})(Input.EvaluateRaw() * 2);
+        public readonly Input<{type}> A;
+        public override {type} Content => ({type})(A.EvaluateRaw() * 2);
     }}
     {hidden}
     [Category(""LogiX/Operators"")]
@@ -75,8 +75,8 @@ namespace FrooxEngine.LogiX.Operators
     [NodeName(""÷2"")]
     public class HalfInput_{name} : LogixOperator<{type}>
     {{
-        public new readonly Input<{type}> Input;
-        public override {type} Content => ({type})(Input.EvaluateRaw() / 2);
+        public readonly Input<{type}> A;
+        public override {type} Content => ({type})(A.EvaluateRaw() / 2);
     }}
 }}
 ";

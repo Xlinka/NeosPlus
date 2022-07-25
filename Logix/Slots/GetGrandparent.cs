@@ -26,7 +26,7 @@ namespace FrooxEngine.Logix.Slots
 
                 Slot gp = Instance.EvaluateRaw();
 
-                // We can also return all parent using GetAllParents/EnumerateParents
+                // We can also return all parents using GetAllParents/EnumerateParents
                 for (int i = 0; i < Grandparent.EvaluateRaw(); i++)
                 {
                     if (gp.Parent != null)

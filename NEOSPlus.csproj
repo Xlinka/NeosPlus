@@ -41,6 +41,7 @@
     <Reference Include="BaseX">
       <HintPath>$(NeosPath)Neos_Data/Managed/BaseX.dll</HintPath>
     </Reference>
+    <Reference Include="CloudX.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="FrooxEngine">
       <HintPath>$(NeosPath)Neos_Data/Managed/FrooxEngine.dll</HintPath>
     </Reference>
@@ -70,6 +71,7 @@
     <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float3x3.cs" />
     <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float4x4.cs" />
     <Compile Include="Logix\Math\Matrix\MatrixClass.cs" />
+    <Compile Include="Logix\Network\OpenSea.cs" />
     <Compile Include="Logix\Operators\ZeroOneI.cs" />
     <Compile Include="Logix\Math\SortNode.cs" />
     <Compile Include="Logix\String\DecodeBase64.cs" />

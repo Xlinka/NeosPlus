@@ -41,7 +41,6 @@
     <Reference Include="BaseX">
       <HintPath>$(NeosPath)Neos_Data/Managed/BaseX.dll</HintPath>
     </Reference>
-    <Reference Include="CloudX.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="FrooxEngine">
       <HintPath>$(NeosPath)Neos_Data/Managed/FrooxEngine.dll</HintPath>
     </Reference>

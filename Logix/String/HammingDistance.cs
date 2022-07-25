@@ -1,7 +1,7 @@
 ﻿using FrooxEngine.LogiX;
 using System;
 
-namespace FrooxEngine.Logix.String
+namespace FrooxEngine.LogiX.String
 {
     [Category("LogiX/String")]
     [NodeName("Hamming Distance")]

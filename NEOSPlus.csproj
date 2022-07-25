@@ -31,6 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)Generated</CompilerGeneratedFilesOutputPath>
     <NeosPath>$(MSBuildThisFileDirectory)NeosVR</NeosPath>
     <NeosPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\NeosVR\')">C:\Program Files (x86)\Steam\steamapps\common\NeosVR\</NeosPath>
     <NeosPath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/NeosVR/')">$(HOME)/.steam/steam/steamapps/common/NeosVR/</NeosPath>
@@ -70,6 +72,7 @@
     <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float3x3.cs" />
     <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float4x4.cs" />
     <Compile Include="Logix\Math\Matrix\MatrixClass.cs" />
+    <Compile Include="Logix\NodeExtensions.cs" />
     <Compile Include="Logix\Operators\ZeroOneI.cs" />
     <Compile Include="Logix\Math\SortNode.cs" />
     <Compile Include="Logix\String\DecodeBase64.cs" />
@@ -78,10 +81,11 @@
     <Compile Include="Logix\String\EncodeSha256.cs" />
     <Compile Include="Logix\String\HammingDistance.cs" />
     <Compile Include="Logix\String\HammingDistanceNonNullable.cs" />
-    <Compile Include="NodeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Materials\TestMaterial.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

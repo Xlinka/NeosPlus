@@ -74,6 +74,7 @@
     <Compile Include="Logix\Operators\ZeroOneI.cs" />
     <Compile Include="Logix\Math\SortNode.cs" />
     <Compile Include="Logix\Slots\GetGrandparent.cs" />
+    <Compile Include="Logix\String\CountSubstring.cs" />
     <Compile Include="Logix\String\DecodeBase64.cs" />
     <Compile Include="Logix\String\EncodeBase64.cs" />
     <Compile Include="Logix\String\EncodeMD5.cs" />

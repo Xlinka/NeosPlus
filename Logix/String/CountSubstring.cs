@@ -19,10 +19,11 @@ namespace FrooxEngine.Logix.String
         {
             get
             {
-                if (String.EvaluateRaw() is null || Pattern.EvaluateRaw() is null)
+                var str = String.EvaluateRaw();
+                var pattern = Pattern.EvaluateRaw();
+                if (str is null || pattern is null || str == "" || pattern == "")
                     return 0;
-                else
-                    return Regex.Matches(String.EvaluateRaw(), Pattern.EvaluateRaw()).Count; // Simple but slow, might want to replace this
+                return (str.Length - str.Replace(pattern, "").Length) / pattern.Length;
             }
         }
         protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();

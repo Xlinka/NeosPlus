@@ -19,27 +19,17 @@ namespace FrooxEngine.Logix.Slots
         {
             get
             {
-                if (Instance.EvaluateRaw() == null || Grandparent.EvaluateRaw() < 0)
-                {
+                var instance = Instance.EvaluateRaw();
+                var grandparent = Grandparent.EvaluateRaw();
+                if (instance == null || grandparent < 0)
                     return null;
-                }
-
-                Slot gp = Instance.EvaluateRaw();
-
-                // We can also return all parents using GetAllParents/EnumerateParents
-                for (int i = 0; i < Grandparent.EvaluateRaw(); i++)
+                for (var i = 0; i < grandparent; i++)
                 {
-                    if (gp.Parent != null)
-                    {
-                        gp = gp.Parent;
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    if (instance.Parent != null)
+                        instance = instance.Parent;
+                    else return null;
                 }
-
-                return gp;
+                return instance;
             }
         }
 

@@ -21,9 +21,8 @@ namespace FrooxEngine.LogiX.String
             {
                 var str = String.EvaluateRaw();
                 var pattern = Pattern.EvaluateRaw();
-                if (str is null || pattern is null || str == "" || pattern == "")
-                    return 0;
-                return (str.Length - str.Replace(pattern, "").Length) / pattern.Length;
+                return str is null || pattern is null || str == "" || pattern == "" ? 0 : 
+                    (str.Length - str.Replace(pattern, "").Length) / pattern.Length;
             }
         }
         protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();

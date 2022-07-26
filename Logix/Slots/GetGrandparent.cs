@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrooxEngine.Logix.Slots
+namespace FrooxEngine.LogiX.Slots
 {
     [Category("LogiX/Slots")]
     [NodeName("Get Grandparent")]

@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace FrooxEngine.Logix.String
+namespace FrooxEngine.LogiX.String
 {
     [Category("LogiX/String")]
     [NodeName("Count Substring")]

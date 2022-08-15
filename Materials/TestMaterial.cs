@@ -16,14 +16,8 @@ public class TestMaterial : SingleShaderMaterialProvider
 	private static MaterialProperty _Offset = new MaterialProperty("_Offset");
 	public override PropertyState PropertyInitializationState
 	{
-		get
-		{
-			return _propertyInitializationState;
-		}
-		protected set
-		{
-			_propertyInitializationState = value;
-		}
+		get => _propertyInitializationState;
+		protected set => _propertyInitializationState = value;
 	}
 	protected override void UpdateKeywords(ShaderKeywords keywords)
 	{
@@ -33,14 +27,9 @@ public class TestMaterial : SingleShaderMaterialProvider
 	{
 		material.UpdateFloat(_Scale, Scale);
 		material.UpdateFloat3(_Offset, Offset);
-		if (RenderQueue.GetWasChangedAndClear())
-		{
-			int renderQueue = RenderQueue.Value;
-			if ((int)RenderQueue == -1)
-			{
-				renderQueue = 2600;
-			}
-			material.SetRenderQueue(renderQueue);
-		}
+		if (!RenderQueue.GetWasChangedAndClear()) return;
+		var renderQueue = RenderQueue.Value;
+		if ((int)RenderQueue == -1) renderQueue = 2600;
+		material.SetRenderQueue(renderQueue);
 	}
 }

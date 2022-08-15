@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace FrooxEngine.Logix.String
+namespace FrooxEngine.LogiX.String
 {
     [Category("LogiX/String")]
     [NodeName("Count Substring")]
@@ -19,10 +19,10 @@ namespace FrooxEngine.Logix.String
         {
             get
             {
-                if (String.EvaluateRaw() is null || Pattern.EvaluateRaw() is null)
-                    return 0;
-                else
-                    return Regex.Matches(String.EvaluateRaw(), Pattern.EvaluateRaw()).Count; // Simple but slow, might want to replace this
+                var str = String.EvaluateRaw();
+                var pattern = Pattern.EvaluateRaw();
+                return str is null || pattern is null || str == "" || pattern == "" ? 0 : 
+                    (str.Length - str.Replace(pattern, "").Length) / pattern.Length;
             }
         }
         protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();

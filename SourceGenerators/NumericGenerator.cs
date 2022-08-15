@@ -56,30 +56,30 @@ namespace SourceGenerators
                 var name = type.First().ToString().ToUpper() + type.Substring(1);;
                 var hidden = type != "float" ? "[HiddenNode]" : "";
                 var gen = $@"//generated
-using BaseX;
+                using BaseX;
 
-namespace FrooxEngine.LogiX.Operators
-{{
-    {hidden}
-    [Category(""LogiX/Operators"")]
-    [NodeOverload(""DoubleInput"")]
-    [NodeName(""*2"")]
-    public class DoubleInput_{name} : LogixOperator<{type}>
-    {{
-        public readonly Input<{type}> A;
-        public override {type} Content => ({type})(A.EvaluateRaw() * 2);
-    }}
-    {hidden}
-    [Category(""LogiX/Operators"")]
-    [NodeOverload(""HalfInput"")]
-    [NodeName(""÷2"")]
-    public class HalfInput_{name} : LogixOperator<{type}>
-    {{
-        public readonly Input<{type}> A;
-        public override {type} Content => ({type})(A.EvaluateRaw() / 2);
-    }}
-}}
-";
+                namespace FrooxEngine.LogiX.Operators
+                {{
+                    {hidden}
+                    [Category(""LogiX/Operators"")]
+                    [NodeOverload(""DoubleInput"")]
+                    [NodeName(""*2"")]
+                    public class DoubleInput_{name} : LogixOperator<{type}>
+                    {{
+                        public readonly Input<{type}> A;
+                        public override {type} Content => ({type})(A.EvaluateRaw() * 2);
+                    }}
+                    {hidden}
+                    [Category(""LogiX/Operators"")]
+                    [NodeOverload(""HalfInput"")]
+                    [NodeName(""÷2"")]
+                    public class HalfInput_{name} : LogixOperator<{type}>
+                    {{
+                        public readonly Input<{type}> A;
+                        public override {type} Content => ({type})(A.EvaluateRaw() / 2);
+                    }}
+                }}
+                ";
                 context.AddSource($"{name}.g.cs", gen);
             }
         }

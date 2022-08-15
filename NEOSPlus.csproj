@@ -58,11 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\MeshColliderManagementTools.cs" />
+    <Compile Include="Logix\Json\AddObject.cs" />
     <Compile Include="Logix\Json\GetFromTag.cs" />
     <Compile Include="Logix\Json\GetNestedObject.cs" />
     <Compile Include="Logix\Json\ParseJSONString.cs" />
     <Compile Include="Logix\Json\QuickGetFromTag.cs" />
     <Compile Include="Logix\Json\QuickGetNestedObject.cs" />
+    <Compile Include="Logix\Json\ToJSONString.cs" />
     <Compile Include="Logix\Math\EulersTotientFunction.cs" />
     <Compile Include="Logix\Math\Factorial.cs" />
     <Compile Include="Logix\Math\Matrix\GaussianElimination_double2x2.cs" />

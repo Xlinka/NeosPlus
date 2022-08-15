@@ -80,7 +80,7 @@ namespace FrooxEngine.LogiX.Operators
     }}
 }}
 ";
-                context.AddSource($"{name}.g.cs", gen);
+                context.AddSource($"Numerics_{name}.g.cs", gen);
             }
         }
     }

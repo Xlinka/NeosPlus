@@ -37,6 +37,6 @@ Nodes Added so Far
 - Logix\Collections\ArrayRefVariable
 - Logix\Collections\ArrayValueVariable
 - Logix\Collections\LocalArrayValueVariable
-- Logix\BetterActions\->
+- Logix\BetterActions\ ->
 - Logix\BetterActions\WriteRef
 - Logix\BetterActions\WriteRefLatch

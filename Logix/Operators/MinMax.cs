@@ -1,11 +1,11 @@
-﻿
-using BaseX;
+﻿using BaseX;
 using NEOSPlus;
 using System.Linq;
 
 namespace FrooxEngine.LogiX.Math
 {
     // node for https://github.com/Neos-Metaverse/NeosPublic/issues/3702    
+    // needs different typings... Frozen help...
     [NodeName("Min/Max")]
     [Category("LogiX/Math")]
     [NodeDefaultType(typeof(Sort<float>))]
@@ -34,7 +34,6 @@ namespace FrooxEngine.LogiX.Math
             var inputs = ValueInputs.Select(t => t.EvaluateRaw()).ToArray();
 
             min = ValueInputs[0].EvaluateRaw(0f);
-            // Min
             for (int i = 0; i < ValueInputs.Count; i++)
             {
                 float input = ValueInputs[i].EvaluateRaw(0f);

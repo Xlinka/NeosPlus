@@ -16,4 +16,27 @@ Nodes Added so Far
 - Logix/String/Encode Sha256
 - Logix/String/Hamming Distance
 - Logix/String/Hamming DistanceNonNullable
-
+- Logix\Json\GetFromTag
+- Logix\Json\GetNestedObject
+- Logix\Json\ParseJSONString
+- Logix\Json\QuickGetFromTag
+- Logix\Json\QuickGetNestedObject
+- Logix\Collections\Array\ArrayAdd
+- Logix\Collections\Array\ArrayAppend
+- Logix\Collections\Array\ArrayClear
+- Logix\Collections\Array\ArrayCount
+- Logix\Collections\Array\ArrayForeach
+- Logix\Collections\Array\ArrayIndexOf
+- Logix\Collections\Array\ArrayInsert
+- Logix\Collections\Array\ArrayRead
+- Logix\Collections\Array\ArrayLength
+- Logix\Collections\Array\ArrayRemove
+- Logix\Collections\Array\ArrayRemoveAt
+- Logix\Collections\Array\ArraySet
+- Logix\Collections\Array\ArrayXAdd
+- Logix\Collections\ArrayRefVariable
+- Logix\Collections\ArrayValueVariable
+- Logix\Collections\LocalArrayValueVariable
+- Logix\BetterActions\->
+- Logix\BetterActions\WriteRef
+- Logix\BetterActions\WriteRefLatch

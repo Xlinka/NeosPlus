@@ -55,6 +55,44 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\MeshColliderManagementTools.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayAdd.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayAppend.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayClear.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayCount.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayForeach.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayIndexOf.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayInsert.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayRead.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayRefVariable.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayRemove.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayRemoveAt.cs" />
+    <Compile Include="Logix\Collections\Array\ArraySet.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayValueVariable.cs" />
+    <Compile Include="Logix\Collections\Array\ArrayXAdd.cs" />
+    <Compile Include="Logix\Collections\Array\LocalArrayValueVariable.cs" />
+    <Compile Include="Logix\Collections\Collectionsobjs.cs" />
+    <Compile Include="Logix\Collections\Delegates\ArrayDel.cs" />
+    <Compile Include="Logix\Collections\ICollectionsObj.cs" />
+    <Compile Include="Logix\Collections\Objs\ArrayX.cs" />
+    <Compile Include="Logix\Collections\Objs\ArrayXEditor.cs" />
+    <Compile Include="Logix\Collections\Objs\RefArrayX.cs" />
+    <Compile Include="Logix\Collections\Objs\ValueArrayX.cs" />
+    <Compile Include="Logix\Collections\Utils\AddCommpoent.cs" />
+    <Compile Include="Logix\Collections\Utils\AddCommpoentByType.cs" />
+    <Compile Include="Logix\Collections\Utils\BetterReferenceTarget.cs" />
+    <Compile Include="Logix\Collections\Utils\BetterWriteReferenceNode.cs" />
+    <Compile Include="Logix\Collections\Utils\BetterWriteRefLatch.cs" />
+    <Compile Include="Logix\Collections\Utils\DuplicateComponent.cs" />
+    <Compile Include="Logix\Collections\Utils\DynamicInterface.cs" />
+    <Compile Include="Logix\Collections\Utils\GetChildRecursiveSlots.cs" />
+    <Compile Include="Logix\Collections\Utils\GetChildSlots.cs" />
+    <Compile Include="Logix\Collections\Utils\GetComponent.cs" />
+    <Compile Include="Logix\Collections\Utils\GetComponentInChildren.cs" />
+    <Compile Include="Logix\Collections\Utils\GetComponents.cs" />
+    <Compile Include="Logix\Collections\Utils\GetComponentsInChildren.cs" />
+    <Compile Include="Logix\Collections\Utils\GetUsers.cs" />
+    <Compile Include="Logix\Collections\Utils\ObjectCast.cs" />
+    <Compile Include="Logix\Collections\Utils\RemoveCommpoent.cs" />
     <Compile Include="Logix\Math\EulersTotientFunction.cs" />
     <Compile Include="Logix\Math\Factorial.cs" />
     <Compile Include="Logix\Math\Matrix\GaussianElimination_double2x2.cs" />
@@ -70,6 +108,7 @@
     <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float3x3.cs" />
     <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float4x4.cs" />
     <Compile Include="Logix\Math\Matrix\MatrixClass.cs" />
+    <Compile Include="Logix\NodeExtensions.cs" />
     <Compile Include="Logix\Operators\ZeroOneI.cs" />
     <Compile Include="Logix\Math\SortNode.cs" />
     <Compile Include="Logix\String\DecodeBase64.cs" />
@@ -84,5 +123,9 @@
   <ItemGroup>
     <ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetDir)\$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\NeosVR\Libraries"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

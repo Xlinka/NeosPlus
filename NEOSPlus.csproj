@@ -44,6 +44,9 @@
     <Reference Include="FrooxEngine">
       <HintPath>$(NeosPath)Neos_Data/Managed/FrooxEngine.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(NeosPath)Neos_Data/Managed/Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,6 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\MeshColliderManagementTools.cs" />
+    <Compile Include="Logix\Json\GetFromTag.cs" />
+    <Compile Include="Logix\Json\GetNestedObject.cs" />
+    <Compile Include="Logix\Json\ParseJSONString.cs" />
+    <Compile Include="Logix\Json\QuickGetFromTag.cs" />
+    <Compile Include="Logix\Json\QuickGetNestedObject.cs" />
     <Compile Include="Logix\Collections\Array\ArrayAdd.cs" />
     <Compile Include="Logix\Collections\Array\ArrayAppend.cs" />
     <Compile Include="Logix\Collections\Array\ArrayClear.cs" />

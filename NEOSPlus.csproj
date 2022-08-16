@@ -74,7 +74,6 @@
     <Compile Include="Logix\Json\JSONGetArrayItem.cs" />
     <Compile Include="Logix\Json\ParseJSONStringArray.cs" />
     <Compile Include="Logix\Math\Random\RandomDouble.cs" />
-    <Compile Include="Logix\Slots\CloudSpawnFromString.cs" />
     <Compile Include="Logix\Slots\CreateEmptySlot.cs" />
     <Compile Include="Logix\Json\AddObject.cs" />
     <Compile Include="Logix\Json\GetFromTag.cs" />

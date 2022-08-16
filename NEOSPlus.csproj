@@ -43,7 +43,7 @@
     </Reference>
     <Reference Include="CodeX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Neos\app\Neos_Data\Managed\CodeX.dll</HintPath>
+      <HintPath>$(NeosPath)Neos_Data/Managed/CodeX.dll</HintPath>
     </Reference>
     <Reference Include="FrooxEngine">
       <HintPath>$(NeosPath)Neos_Data/Managed/FrooxEngine.dll</HintPath>
@@ -73,7 +73,6 @@
     <Compile Include="Logix\Json\JSONCountChildren.cs" />
     <Compile Include="Logix\Json\JSONGetArrayItem.cs" />
     <Compile Include="Logix\Json\ParseJSONStringArray.cs" />
-    <Compile Include="Logix\Math\Random\RandomLong.cs" />
     <Compile Include="Logix\Math\Random\RandomDouble.cs" />
     <Compile Include="Logix\Slots\CloudSpawnFromString.cs" />
     <Compile Include="Logix\Slots\CreateEmptySlot.cs" />

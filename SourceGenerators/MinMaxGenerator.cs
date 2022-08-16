@@ -42,7 +42,7 @@ namespace SourceGenerators
             foreach (var type in types)
             {
                 var name = type.First().ToString().ToUpper() + type.Substring(1);;
-                //var hidden = type != "float" ? "[HiddenNode]" : "";
+                var hidden = type != "float" ? "[HiddenNode]" : "";
                 var gen = $@"//generated
                 using BaseX;
                 using NEOSPlus;
@@ -50,7 +50,7 @@ namespace SourceGenerators
 
                 namespace FrooxEngine.LogiX.Math
                 {{
-                    
+                    {hidden}
                     [Category(""LogiX/Math"")]
                     [NodeOverload(""MinMax"")]
                     [NodeName(""MinMax"")]
@@ -61,7 +61,8 @@ namespace SourceGenerators
                         public readonly Output<{type}> Max;
 
                         protected override void OnAttach()
-                        {{base.OnAttach();
+                        {{
+                            base.OnAttach();
                             for (var i = 0; i < 2; i++)
                             {{
                                 ValueInputs.Add();

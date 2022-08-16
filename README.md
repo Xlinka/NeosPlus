@@ -11,7 +11,6 @@ NeosVR Plugin Extra Logix nodes and features, the goal behind this plugin is to 
 - Logix/Math/Matrix/GaussJordanElimination
 - Logix/Math/MinMax
 - Logix/Math/RandomDouble
-- Logix/Math/RandomLong
 - Logix/Math/Sort
 - Logix/Operators/EulersTotientFunction
 - Logix/Operators/Factorial

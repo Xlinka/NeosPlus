@@ -1,6 +1,6 @@
 ﻿using FrooxEngine.LogiX;
 
-namespace FrooxEngine.Logix.Slots
+namespace FrooxEngine.LogiX.Slots
 {
     [Category("LogiX/Slots")]
     [NodeName("Create Empty Slot")]

@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\MeshColliderManagementTools.cs" />
+    <Compile Include="Logix\Slots\CreateEmptySlot.cs" />
     <Compile Include="Logix\Json\AddObject.cs" />
     <Compile Include="Logix\Json\GetFromTag.cs" />
     <Compile Include="Logix\Json\GetNestedObject.cs" />
@@ -87,7 +88,7 @@
     <Compile Include="Logix\String\EncodeBase64.cs" />
     <Compile Include="Logix\String\EncodeMD5.cs" />
     <Compile Include="Logix\String\EncodeSha256.cs" />
-    <Compile Include="Logix\String\HammingDistance.cs" /> 
+    <Compile Include="Logix\String\HammingDistance.cs" />
     <Compile Include="Logix\String\HammingDistanceNonNullable.cs" />
     <Compile Include="Logix\Slots\GetGrandparent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

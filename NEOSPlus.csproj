@@ -41,9 +41,8 @@
     <Reference Include="BaseX">
       <HintPath>$(NeosPath)Neos_Data/Managed/BaseX.dll</HintPath>
     </Reference>
-    <Reference Include="CodeX, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>$(NeosPath)Neos_Data/Managed/CodeX.dll</HintPath>
+    <Reference Include="CodeX"> 
+      <HintPath>$(NeosPath)Neos_Data/Managed/CodeX.dll</HintPath> 
     </Reference>
     <Reference Include="FrooxEngine">
       <HintPath>$(NeosPath)Neos_Data/Managed/FrooxEngine.dll</HintPath>
@@ -108,10 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,12 +12,19 @@ namespace FrooxEngine.Logix.Math
         public readonly Input<double> Min;
         public readonly Input<double> Max;
         public readonly Output<double> Value;
+        public Random rand = new Random();
 
         protected override void OnEvaluate()
         {
-            var rand = new Random();
             var min = Min.EvaluateRaw();
             var max = Max.EvaluateRaw();
+            if (min > max)
+            {
+                var num1 = max;
+                var num2 = min;
+                min = num1;
+                max = num2;
+            }
             Value.Value = min + rand.NextDouble() * (max - min);
         }
     }

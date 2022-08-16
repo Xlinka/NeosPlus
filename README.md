@@ -16,7 +16,7 @@ NeosVR Plugin Extra Logix nodes and features, the goal behind this plugin is to 
 - Logix/Operators/EulersTotientFunction
 - Logix/Operators/Factorial
 - Logix/Operators/ZeroOneI
-- Logix/Slots/Create EmptySlot
+- Logix/Slots/CreateEmptySlot
 - Logix/Slots/Get Grandparent
 - Logix/String/Decode Base64
 - Logix/String/Encode Base64

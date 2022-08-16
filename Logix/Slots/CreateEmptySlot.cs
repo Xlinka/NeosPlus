@@ -18,17 +18,12 @@ namespace FrooxEngine.Logix.Slots
         public void Create()
         {
             var parent = Parent.EvaluateRaw();
-            var name = Name.EvaluateRaw();
-            name = name == null ? "EmptySlot" : name;
-
+            var name = Name.EvaluateRaw() ?? "EmptySlot";
             var newSlot = parent == null ? base.Slot.Parent.AddSlot(name) : parent.AddSlot(name);
-            
             newSlot.Tag = Tag.EvaluateRaw();
             newSlot.ActiveSelf = Active.EvaluateRaw();
             newSlot.PersistentSelf = Persistent.EvaluateRaw();
-
             Slot.Value = newSlot;
-
             OnDone.Trigger();
         }
     }

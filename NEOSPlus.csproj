@@ -58,6 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\MeshColliderManagementTools.cs" />
+    <Compile Include="Logix\Json\GetArrayFromTag.cs" />
+    <Compile Include="Logix\Json\JSONCountArrayChildren.cs" />
+    <Compile Include="Logix\Json\JSONCountChildren.cs" />
+    <Compile Include="Logix\Json\JSONGetArrayItem.cs" />
+    <Compile Include="Logix\Json\ParseJSONStringArray.cs" />
     <Compile Include="Logix\Slots\CreateEmptySlot.cs" />
     <Compile Include="Logix\Json\AddObject.cs" />
     <Compile Include="Logix\Json\GetFromTag.cs" />

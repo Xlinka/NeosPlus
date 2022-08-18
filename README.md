@@ -1,5 +1,6 @@
 # NeosPlus
-NeosVR Plugin Extra Logix nodes and features, the goal behind this plugin is to add features requested by the users of neos.
+NeosPlus is a NeosVR plugin that adds extra Logix nodes and features. The goal behind it is to add features that were requested by the users of Neos.  
+The following features already exist:
 
 # Nodes
 - Logix/Json/GetFromTag

@@ -11,16 +11,12 @@ namespace FrooxEngine.LogiX.Playback
 		{
 			get
 			{
-				IPlayable target = Playable.EvaluateRaw();
-				bool flag = target != null && target.IsPlaying;
-				bool flag2 = MathX.Approximately((target != null) ? target.NormalizedPosition : 0f, 0f, 9.403955E-38f);
+				var target = Playable.EvaluateRaw();
+				var flag = target != null && target.IsPlaying;
+				var flag2 = MathX.Approximately(target?.NormalizedPosition ?? 0f, 0f);
 				return !flag && flag2;
 			}
 		}
-
-		protected override void NotifyOutputsOfChange()
-		{
-			((IOutputElement)this).NotifyChange();
-		}
+		protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();
 	}
 }

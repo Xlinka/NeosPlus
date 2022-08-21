@@ -63,7 +63,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\MeshColliderManagementTools.cs" />
+    <Compile Include="Components\Wizards\MeshColliderManagementTools.cs" />
+    <Compile Include="Components\Audio\FFT\FFTSource.cs" />
     <Compile Include="Logix\Json\JsonAppendToArray.cs" />
     <Compile Include="Logix\Json\JsonCountArrayChildren.cs" />
     <Compile Include="Logix\Json\JsonCountObjectChildren.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Logix\Playback\IsStopped.cs"/>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Materials\TestMaterial.cs" />
+  
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />

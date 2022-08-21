@@ -4,6 +4,7 @@ namespace FrooxEngine.LogiX.Json
 {
     [NodeName("Parse Array From String")]
     [Category("LogiX/Json")]
+    [OldTypeSpecialization("FrooxEngine.LogiX.Json.ParseJSONStringArray")]
     public class JsonParseStringArray : LogixOperator<JArray>
     {
         public readonly Input<string> Input;

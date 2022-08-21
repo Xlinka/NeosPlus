@@ -9,6 +9,7 @@ namespace FrooxEngine.LogiX.Json
     [GenericTypes(typeof(byte), typeof(sbyte), typeof(short), typeof(ushort), typeof(int), typeof(uint), typeof(long),
         typeof(ulong), typeof(float), typeof(double), typeof(string), typeof(Uri), typeof(JToken), typeof(JObject),
         typeof(JArray))]
+    [OldTypeSpecialization("FrooxEngine.LogiX.Json.JSONGetArrayItem", typeof(JObject))]
     public class JsonGetFromArray<T> : LogixOperator<T>
     {
         public readonly Input<JArray> Input;

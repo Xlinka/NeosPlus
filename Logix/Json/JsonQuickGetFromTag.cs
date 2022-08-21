@@ -9,6 +9,8 @@ namespace FrooxEngine.LogiX.Json
     [GenericTypes(typeof(byte), typeof(sbyte), typeof(short), typeof(ushort), typeof(int), typeof(uint), typeof(long),
         typeof(ulong), typeof(float), typeof(double), typeof(string), typeof(Uri), typeof(JToken), typeof(JObject),
         typeof(JArray))]
+    [OldTypeSpecialization("FrooxEngine.LogiX.Json.QuickGetNestedObject", typeof(JObject))]
+    [OldTypeSpecialization("FrooxEngine.LogiX.Json.QuickGetFromTag", typeof(string))]
     public class JsonQuickGetFromTag<T> : LogixOperator<T>
     {
         public readonly Input<string> Input;

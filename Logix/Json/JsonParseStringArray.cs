@@ -2,12 +2,13 @@ using Newtonsoft.Json.Linq;
 
 namespace FrooxEngine.LogiX.Json
 {
-    [NodeName("Parse From String")]
+    [NodeName("Parse Array From String")]
     [Category("LogiX/Json")]
-    public class ParseJSONString : LogixOperator<JObject>
+    [OldTypeName("FrooxEngine.LogiX.Json.ParseJSONStringArray")]
+    public class JsonParseStringArray : LogixOperator<JArray>
     {
         public readonly Input<string> Input;
-        public override JObject Content
+        public override JArray Content
         {
             get
             {
@@ -15,7 +16,7 @@ namespace FrooxEngine.LogiX.Json
                 if (string.IsNullOrEmpty(input)) return null;
                 try
                 {
-                    var output = JObject.Parse(input);
+                    var output = JArray.Parse(input);
                     return output;
                 }
                 catch

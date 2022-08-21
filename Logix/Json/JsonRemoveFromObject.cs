@@ -1,10 +1,12 @@
+using System;
+using BaseX;
 using Newtonsoft.Json.Linq;
 
 namespace FrooxEngine.LogiX.Json
 {
-    [NodeName("Get Nested Object")]
+    [NodeName("Remove From Object")]
     [Category("LogiX/Json")]
-    public class GetNestedObject : LogixOperator<JObject>
+    public class JsonRemoveFromObject : LogixOperator<JObject>
     {
         public readonly Input<JObject> Input;
         public readonly Input<string> Tag;
@@ -13,16 +15,12 @@ namespace FrooxEngine.LogiX.Json
             get
             {
                 var input = Input.EvaluateRaw();
+                if (input == null) return null;
                 var tag = Tag.EvaluateRaw();
-                if (input == null || string.IsNullOrEmpty(tag)) return null;
-                try
-                {
-                    return (JObject) input[tag];
-                }
-                catch
-                {
-                    return null;
-                }
+                if (string.IsNullOrEmpty(tag)) return input;
+                var in2 = (JObject)input.DeepClone();
+                in2.Remove(tag);
+                return in2;
             }
         }
     }

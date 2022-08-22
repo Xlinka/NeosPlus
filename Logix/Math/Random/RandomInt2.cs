@@ -1,0 +1,29 @@
+﻿using BaseX;
+using FrooxEngine.LogiX;
+
+namespace FrooxEngine.Logix.Math
+{
+    [Category("LogiX/Math/Random")]
+    [NodeName("Random Int2")]
+    public class RandomInt2 : LogixNode
+    {
+        public readonly Input<int2> Min;
+        public readonly Input<int2> Max;
+        public readonly Output<int2> Value;
+
+        protected override void OnEvaluate()
+        {
+            Output<int2> value = Value;
+            int2 min = Min.EvaluateRaw(int2.Zero);
+            int2 max = Max.EvaluateRaw(int2.One);
+            value.Value = new int2(RandomX.Range(min.x, max.x), 
+                                   RandomX.Range(min.y, max.y));
+        }
+        
+        protected override void OnCommonUpdate()
+        {
+            base.OnCommonUpdate();
+            MarkChangeDirty();
+        }
+    }
+}

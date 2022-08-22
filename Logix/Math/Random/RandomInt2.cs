@@ -13,10 +13,9 @@ namespace FrooxEngine.Logix.Math
 
         protected override void OnEvaluate()
         {
-            Output<int2> value = Value;
-            int2 min = Min.EvaluateRaw(int2.Zero);
-            int2 max = Max.EvaluateRaw(int2.One);
-            value.Value = new int2(RandomX.Range(min.x, max.x), 
+            var min = Min.EvaluateRaw(int2.Zero);
+            var max = Max.EvaluateRaw(int2.One);
+            Value.Value = new int2(RandomX.Range(min.x, max.x), 
                                    RandomX.Range(min.y, max.y));
         }
         

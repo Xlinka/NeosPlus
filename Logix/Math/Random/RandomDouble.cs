@@ -24,7 +24,6 @@ namespace FrooxEngine.Logix.Math
             }
             Value.Value = min + RandomX.Double * (max - min);
         }
-
         protected override void OnCommonUpdate()
         {
             base.OnCommonUpdate();

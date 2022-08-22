@@ -13,9 +13,9 @@ namespace FrooxEngine.LogiX.Math
 
         protected override void OnEvaluate()
         {
-            int start = MathX.Clamp(StartOfAlphabet.EvaluateRaw(0), 0, 26);
-            int end = MathX.Clamp(EndOfAlphabet.EvaluateRaw(26), start, 26);
-            bool flag = UseUppercase.EvaluateRaw(false);
+            var start = MathX.Clamp(StartOfAlphabet.EvaluateRaw(), 0, 26);
+            var end = MathX.Clamp(EndOfAlphabet.EvaluateRaw(26), start, 26);
+            var flag = UseUppercase.EvaluateRaw();
             Value.Value = flag ?
                 RandomX.UPPERCASE_ALPHABET[RandomX.Range(start, end)] :
                 RandomX.LOWERCASE_ALPHABET[RandomX.Range(start, end)];

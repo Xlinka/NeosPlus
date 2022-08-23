@@ -76,6 +76,8 @@
     <Compile Include="Logix\Json\JsonRemoveFromArray.cs" />
     <Compile Include="Logix\Json\JsonRemoveFromObject.cs" />
     <Compile Include="Logix\Locomotion\IsUserInNoClip.cs" />
+    <Compile Include="Logix\Math\Constants\EpsilonDouble.cs" />
+    <Compile Include="Logix\Math\Constants\EpsilonFloat.cs" />
     <Compile Include="Logix\Math\Random\RandomBool2.cs" />
     <Compile Include="Logix\Math\Random\RandomBool3.cs" />
     <Compile Include="Logix\Math\Random\RandomBool4.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="Logix\Math\Random\RandomInt2.cs" />
     <Compile Include="Logix\Math\Random\RandomInt3.cs" />
     <Compile Include="Logix\Math\Random\RandomInt4.cs" />
+    <Compile Include="Logix\Physics\IsPointInConvexHull.cs" />
     <Compile Include="Logix\Slots\CreateEmptySlot.cs" />
     <Compile Include="Logix\Json\JsonAddToObject.cs" />
     <Compile Include="Logix\Json\JsonGetFromObject.cs" />

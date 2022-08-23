@@ -11,6 +11,7 @@ namespace FrooxEngine.LogiX.Json
         typeof(JArray))]
     [OldTypeSpecialization("FrooxEngine.LogiX.Json.GetFromTag", typeof(string))]
     [OldTypeSpecialization("FrooxEngine.LogiX.Json.GetArrayFromTag", typeof(JArray))]
+    [OldTypeName("FrooxEngine.LogiX.Json.JsonGetFromTag")]
     public class JsonGetFromObject<T> : LogixOperator<T>
     {
         public readonly Input<JObject> Input;

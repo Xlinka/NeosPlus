@@ -11,6 +11,7 @@ namespace FrooxEngine.LogiX.Json
         typeof(JArray))]
     [OldTypeSpecialization("FrooxEngine.LogiX.Json.QuickGetNestedObject", typeof(JObject))]
     [OldTypeSpecialization("FrooxEngine.LogiX.Json.QuickGetFromTag", typeof(string))]
+    [OldTypeName("FrooxEngine.LogiX.Json.JsonQuickGetFromTag")]
     public class JsonQuickGetFromObject<T> : LogixOperator<T>
     {
         public readonly Input<string> Input;

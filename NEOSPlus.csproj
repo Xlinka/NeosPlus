@@ -87,7 +87,6 @@
     <Compile Include="Logix\Math\Random\RandomInt2.cs" />
     <Compile Include="Logix\Math\Random\RandomInt3.cs" />
     <Compile Include="Logix\Math\Random\RandomInt4.cs" />
-    <Compile Include="Logix\Physics\IsPointInConvexHull.cs" />
     <Compile Include="Logix\Slots\CreateEmptySlot.cs" />
     <Compile Include="Logix\Json\JsonAddToObject.cs" />
     <Compile Include="Logix\Json\JsonGetFromObject.cs" />
@@ -120,14 +119,20 @@
     <Compile Include="Logix\String\HammingDistance.cs" />
     <Compile Include="Logix\String\HammingDistanceNonNullable.cs" />
     <Compile Include="Logix\Slots\GetGrandparent.cs" />
+    <Compile Include="Logix\Users\GetIsUserScaling.cs" />
     <Compile Include="Logix\Users\IsUserInSeatedMode.cs" />
     <Compile Include="Logix\Playback\IsPaused.cs" />
     <Compile Include="Logix\Playback\IsStopped.cs" />
+    <Compile Include="Logix\Users\SetIsUserScaling.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Materials\TestMaterial.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Components\Rendering\" />
+    <Folder Include="Logix\Physics\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

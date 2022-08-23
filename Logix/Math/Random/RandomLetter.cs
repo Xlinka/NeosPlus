@@ -15,8 +15,7 @@ namespace FrooxEngine.LogiX.Math
         {
             var start = MathX.Clamp(StartOfAlphabet.EvaluateRaw(), 0, 26);
             var end = MathX.Clamp(EndOfAlphabet.EvaluateRaw(26), start, 26);
-            var flag = UseUppercase.EvaluateRaw();
-            Value.Value = flag ?
+            Value.Value = UseUppercase.EvaluateRaw() ?
                 RandomX.UPPERCASE_ALPHABET[RandomX.Range(start, end)] :
                 RandomX.LOWERCASE_ALPHABET[RandomX.Range(start, end)];
         }

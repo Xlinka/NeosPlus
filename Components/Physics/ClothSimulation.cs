@@ -1,11 +1,15 @@
 ﻿using BaseX;
-using UnityNeos;
+using FrooxEngine.LogiX;
+using FrooxEngine.UIX;
 
 namespace FrooxEngine
 {
-    [Category(new string[] { "Rendering" })]
-    public class Cloth : ImplementableComponent, IWorker, IWorldElement
+    [Category(new string[] { "Physics/Cloth" })]
+    public class Cloth : MeshRenderer
     {
+        [HideInInspector]
+        public readonly Sync<bool> ShouldReset;
+        public readonly Sync<bool> ClothEnabled;
         public readonly Sync<float> StretchingStiffness;
         public readonly Sync<float> BendingStiffness;
         public readonly Sync<bool> UseTethers;
@@ -19,24 +23,23 @@ namespace FrooxEngine
         public readonly Sync<float> UseVirtualParticles;
         public readonly Sync<float> SolverFrequency;
         public readonly Sync<float> SleepThreshold;
-        public readonly Sync<AssetRef<Mesh>> Mesh;
 
-        // public readonly SyncList<float> CapsuleColliders;
-        // public readonly SyncList<float> SphereColliders;
-        // public readonly SyncList<float> VirtualParticleWeights;
+        public readonly SyncList<ClothSpherePair> ClothSpherePairColliders;
+        public readonly SyncRefList<ClothCapsuleCollider> ClothCapsuleColliders;
+        public readonly SyncFieldList<float3> VirtualParticleWeights;
 
-        protected override void OnAwake()
+        protected override void OnAttach()
         {
-            base.OnAwake();
-            var grid = Slot.AttachComponent<GridMesh>();
-            var render = Slot.AttachComponent<SkinnedMeshRenderer>();
-            // render.Mesh.Asset = Mesh.Value.Asset;
-            var mat = Slot.AttachComponent<PBS_Metallic>();
-            render.Mesh.Target = grid;
-            render.Materials.Add(mat);
-            grid.Size.Value = new float2(10, 10);
+            base.OnAttach();
 
-            Slot.WorldTransformChanged += Slot_WorldTransformChanged;
+            var canidateMeshRender = Slot.GetComponent<MeshRenderer>();
+            var grid = Slot.AttachComponent<GridMesh>();
+            grid.Size.Value = new float2(10, 10);
+            Mesh.Target = grid;
+            var mat = Slot.AttachComponent<PBS_DualSidedMetallic>();
+            Materials.Add(mat);
+
+            ClothEnabled.Value = true;
             StretchingStiffness.Value = 1f;
             BendingStiffness.Value = 0f;
             UseTethers.Value = true;
@@ -52,15 +55,28 @@ namespace FrooxEngine
             SleepThreshold.Value = 0.1f;
         }
 
-        protected override void OnDispose()
+        public override void BuildInspectorUI(UIBuilder ui)
         {
-            Slot.WorldTransformChanged -= Slot_WorldTransformChanged;
-            base.OnDispose();
+            base.BuildInspectorUI(ui);
+            ui.Button("Reset Cloth Simulation".AsLocaleKey(), Reset);
         }
 
-        private void Slot_WorldTransformChanged(Slot slot)
+        [ImpulseTarget]
+        public void Reset()
         {
-            MarkChangeDirty();
+            ShouldReset.Value = true;
+        }
+
+        [SyncMethod]
+        public void Reset(IButton button, ButtonEventData eventData)
+        {
+            Reset();
+        }
+
+        public class ClothSpherePair : SyncObject
+        {
+            public readonly SyncRef<ClothSphereCollider> a;
+            public readonly SyncRef<ClothSphereCollider> b;
         }
     }
 }

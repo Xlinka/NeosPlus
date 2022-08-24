@@ -31,14 +31,6 @@ namespace FrooxEngine
         protected override void OnAttach()
         {
             base.OnAttach();
-
-            var canidateMeshRender = Slot.GetComponent<MeshRenderer>();
-            var grid = Slot.AttachComponent<GridMesh>();
-            grid.Size.Value = new float2(10, 10);
-            Mesh.Target = grid;
-            var mat = Slot.AttachComponent<PBS_DualSidedMetallic>();
-            Materials.Add(mat);
-
             ClothEnabled.Value = true;
             StretchingStiffness.Value = 1f;
             BendingStiffness.Value = 0f;

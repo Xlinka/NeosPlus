@@ -14,4 +14,10 @@ namespace FrooxEngine.LogiX.Json
     {
         public override JArray Content => new JArray();
     }
+    [NodeName("Null Value")]
+    [Category("LogiX/Json")]
+    public class JsonNullValue : LogixOperator<JToken>
+    {
+        public override JToken Content => JValue.CreateNull();
+    }
 }

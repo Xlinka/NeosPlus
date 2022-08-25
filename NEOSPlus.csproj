@@ -115,12 +115,21 @@
     <Compile Include="Logix\Json\JsonParseStringArray.cs" />
     <Compile Include="Logix\Json\JsonRemoveFromArray.cs" />
     <Compile Include="Logix\Json\JsonRemoveFromObject.cs" />
+    <Compile Include="Logix\Locomotion\IsUserInNoClip.cs" />
+    <Compile Include="Logix\Math\Random\RandomBool2.cs" />
+    <Compile Include="Logix\Math\Random\RandomBool3.cs" />
+    <Compile Include="Logix\Math\Random\RandomBool4.cs" />
+    <Compile Include="Logix\Math\Random\RandomCharacter.cs" />
+    <Compile Include="Logix\Math\Random\RandomLetter.cs" />
     <Compile Include="Logix\Math\Random\RandomDouble.cs" />
+    <Compile Include="Logix\Math\Random\RandomInt2.cs" />
+    <Compile Include="Logix\Math\Random\RandomInt3.cs" />
+    <Compile Include="Logix\Math\Random\RandomInt4.cs" />
     <Compile Include="Logix\Slots\CreateEmptySlot.cs" />
     <Compile Include="Logix\Json\JsonAddToObject.cs" />
-    <Compile Include="Logix\Json\JsonGetFromTag.cs" />
+    <Compile Include="Logix\Json\JsonGetFromObject.cs" />
     <Compile Include="Logix\Json\JsonParseString.cs" />
-    <Compile Include="Logix\Json\JsonQuickGetFromTag.cs" />
+    <Compile Include="Logix\Json\JsonQuickGetFromObject.cs" />
     <Compile Include="Logix\Json\JsonToString.cs" />
     <Compile Include="Logix\Math\EulersTotientFunction.cs" />
     <Compile Include="Logix\Math\Factorial.cs" />
@@ -158,7 +167,4 @@
     <ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)\$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\NeosVR\Libraries"</PostBuildEvent>
-  </PropertyGroup>
 </Project>

@@ -9,8 +9,7 @@ namespace FrooxEngine
     {
         private UnityEngine.Cloth UnityCloth { get; set; }
         private ClothSphereColliderPair[] colliderPairs = Array.Empty<ClothSphereColliderPair>();
-
-        // To blame?
+        
         protected override bool UseMeshFilter => false;
 
         protected override void OnAttachRenderer()

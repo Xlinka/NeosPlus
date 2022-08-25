@@ -1,6 +1,4 @@
-﻿using FrooxEngine;
-
-namespace NEOSPlus.Components.Physics
+﻿namespace FrooxEngine
 {
     public class ClothSphereConnector : UnityBetterComponentConnector<ClothSphereCollider, UnityEngine.SphereCollider>
     {

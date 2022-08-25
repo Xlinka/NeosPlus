@@ -1,7 +1,4 @@
-﻿using BaseX;
-using NEOSPlus.Components.Physics;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using UnityEngine;
 using UnityNeos;
@@ -13,6 +10,7 @@ namespace FrooxEngine
         private UnityEngine.Cloth UnityCloth { get; set; }
         private ClothSphereColliderPair[] colliderPairs = Array.Empty<ClothSphereColliderPair>();
 
+        // To blame?
         protected override bool UseMeshFilter => false;
 
         protected override void OnAttachRenderer()
@@ -42,7 +40,7 @@ namespace FrooxEngine
             base.ApplyChanges();
             if (flag && Owner.Mesh.Asset != null)
             {
-                AssignMesh(MeshRenderer, Owner.Mesh.Asset.GetUnity());
+                AssignMesh(MeshRenderer, Owner.Mesh.Asset.GetUnity());  
             }
             if (UnityCloth is null)
                 return;
@@ -84,13 +82,13 @@ namespace FrooxEngine
             if (Owner.WorldAccelerationScale.WasChanged) UnityCloth.worldAccelerationScale = Owner.WorldAccelerationScale;
             
             if (Owner.SleepThreshold.WasChanged) UnityCloth.sleepThreshold = Owner.SleepThreshold;
-            
+
             if (Owner.UseContinuousCollision.WasChanged) UnityCloth.enableContinuousCollision = Owner.UseContinuousCollision;
             
             if (Owner.UseVirtualParticles.WasChanged) UnityCloth.useVirtualParticles = Owner.UseVirtualParticles;
             
             if (Owner.SolverFrequency.WasChanged) UnityCloth.clothSolverFrequency = Owner.SolverFrequency;
-
+                        
             bool reload = false;
             if (colliderPairs.Length != Owner.ClothSpherePairColliders.Count)
             {
@@ -100,25 +98,36 @@ namespace FrooxEngine
             for (int i = 0; i < colliderPairs.Length; i++)
             {
                 var pair = Owner.ClothSpherePairColliders[i];
-                if (pair.a.WasChanged)
+                if (pair.FirstCollider.WasChanged)
                 {
                     reload = true;
-                    colliderPairs[i].first = ((ClothSphereConnector)(pair.a.Target?.Connector)).unityComponent;
+                    colliderPairs[i].first = ((ClothSphereConnector)(pair.FirstCollider.Target?.Connector)).unityComponent;
                 }
-                if (pair.b.WasChanged)
+                if (pair.SecondCollider.WasChanged)
                 {
                     reload = true;
-                    colliderPairs[i].second = ((ClothSphereConnector)(pair.b.Target?.Connector)).unityComponent;
+                    colliderPairs[i].second = ((ClothSphereConnector)(pair.SecondCollider.Target?.Connector)).unityComponent;
                 }
             }
+
             if (reload)
             {
                 UnityCloth.sphereColliders = colliderPairs;
             }
 
-            UnityCloth.capsuleColliders = Owner.ClothCapsuleColliders.Select(x => ((ClothCapsuleConnector)(x.Connector)).unityComponent).ToArray();
+            UnityCloth.capsuleColliders = Owner.ClothCapsuleColliders.Select(x => ((ClothCapsuleConnector)x.Connector).unityComponent).ToArray();
+
+            UnityCloth.coefficients = Owner.Coefficients.Select(ncs => ToClothSkinningCoefficient(ncs.x, ncs.y)).ToArray();
 
             UnityCloth.SetVirtualParticleWeights(Owner.VirtualParticleWeights.Select(x => x.ToUnity()).ToList());
+        }
+
+        private ClothSkinningCoefficient ToClothSkinningCoefficient(float x, float y)
+        {
+            var ClothSkinningCoefficient = new ClothSkinningCoefficient();
+            ClothSkinningCoefficient.maxDistance = x;
+            ClothSkinningCoefficient.collisionSphereDistance = y;
+            return ClothSkinningCoefficient;
         }
     }
 }

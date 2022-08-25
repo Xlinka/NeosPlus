@@ -27,6 +27,7 @@ namespace FrooxEngine
         public readonly SyncList<ClothSpherePair> ClothSpherePairColliders;
         public readonly SyncRefList<ClothCapsuleCollider> ClothCapsuleColliders;
         public readonly SyncFieldList<float3> VirtualParticleWeights;
+        public readonly SyncFieldList<float2> Coefficients;
 
         protected override void OnAttach()
         {
@@ -67,8 +68,8 @@ namespace FrooxEngine
 
         public class ClothSpherePair : SyncObject
         {
-            public readonly SyncRef<ClothSphereCollider> a;
-            public readonly SyncRef<ClothSphereCollider> b;
+            public readonly SyncRef<ClothSphereCollider> FirstCollider;
+            public readonly SyncRef<ClothSphereCollider> SecondCollider;
         }
     }
 }

@@ -10,7 +10,7 @@ using FrooxEngine.UIX;
 /// 
 namespace FrooxEngine
 {
-    [Category(new string[] { "LogiX/Mesh" })]
+    [Category(new string[] { "LogiX/Mesh/Operations" })]
     public class AppendMesh : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;

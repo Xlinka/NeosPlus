@@ -1,7 +1,5 @@
 ﻿using BaseX;
 using FrooxEngine.LogiX;
-using CodeX;
-using System;
 
 namespace FrooxEngine.Logix.Math
 {
@@ -12,7 +10,6 @@ namespace FrooxEngine.Logix.Math
         public readonly Input<double> Min;
         public readonly Input<double> Max;
         public readonly Output<double> Value;
-        public Random rand = new Random();
 
         protected override void OnEvaluate()
         {
@@ -25,7 +22,12 @@ namespace FrooxEngine.Logix.Math
                 min = num1;
                 max = num2;
             }
-            Value.Value = min + rand.NextDouble() * (max - min);
+            Value.Value = min + RandomX.Double * (max - min);
+        }
+        protected override void OnCommonUpdate()
+        {
+            base.OnCommonUpdate();
+            MarkChangeDirty();
         }
     }
 }

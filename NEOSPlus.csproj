@@ -110,8 +110,6 @@
     <Compile Include="Logix\NodeExtensions.cs" />
     <Compile Include="Logix\Operators\ZeroOneI.cs" />
     <Compile Include="Logix\Math\SortNode.cs" />
-    <Compile Include="Logix\Slots\FindAllChildrenWithTag.cs" />
-    <Compile Include="Logix\Slots\FindAllParentsWithTag.cs" />
     <Compile Include="Logix\String\CountSubstring.cs" />
     <Compile Include="Logix\String\DecodeBase64.cs" />
     <Compile Include="Logix\String\EncodeBase64.cs" />

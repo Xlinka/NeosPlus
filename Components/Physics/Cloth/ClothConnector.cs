@@ -89,23 +89,21 @@ namespace FrooxEngine
             if (Owner.SolverFrequency.WasChanged) UnityCloth.clothSolverFrequency = Owner.SolverFrequency;
                         
             bool reload = false;
-            if (colliderPairs.Length != Owner.ClothSpherePairColliders.Count)
+            if (colliderPairs.Length != Owner.ClothColliders.Count)
             {
-                Array.Resize(ref colliderPairs, Owner.ClothSpherePairColliders.Count);
+                Array.Resize(ref colliderPairs, Owner.ClothColliders.Count);
                 reload = true;
             }
+
             for (int i = 0; i < colliderPairs.Length; i++)
             {
-                var pair = Owner.ClothSpherePairColliders[i];
-                if (pair.FirstCollider.WasChanged)
+                var Collider = Owner.ClothColliders[i];
+                if (Owner.ClothColliders.WasChanged)
                 {
                     reload = true;
-                    colliderPairs[i].first = ((ClothSphereConnector)(pair.FirstCollider.Target?.Connector)).unityComponent;
-                }
-                if (pair.SecondCollider.WasChanged)
-                {
-                    reload = true;
-                    colliderPairs[i].second = ((ClothSphereConnector)(pair.SecondCollider.Target?.Connector)).unityComponent;
+                    var unityColider = ((ClothSphereConnector)Collider.Connector).unityComponent;
+                    colliderPairs[i].first = unityColider;
+                    colliderPairs[i].second = unityColider;
                 }
             }
 
@@ -114,7 +112,7 @@ namespace FrooxEngine
                 UnityCloth.sphereColliders = colliderPairs;
             }
 
-            UnityCloth.capsuleColliders = Owner.ClothCapsuleColliders.Select(x => ((ClothCapsuleConnector)x.Connector).unityComponent).ToArray();
+            UnityCloth.capsuleColliders = Owner.ClothColliders.Select(x => ((ClothCapsuleConnector)x.Connector).unityComponent).ToArray();
 
             UnityCloth.coefficients = Owner.Coefficients.Select(ncs => ToClothSkinningCoefficient(ncs.x, ncs.y)).ToArray();
 

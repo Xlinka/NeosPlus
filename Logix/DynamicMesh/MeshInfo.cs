@@ -26,7 +26,10 @@ namespace FrooxEngine
             SubmeshCount.Value = mesh.Mesh.SubmeshCount;
             BoneCount.Value = mesh.Mesh.BoneCount;
         }
-
-       
+        protected override void OnCommonUpdate()
+        {
+            base.OnCommonUpdate();
+            MarkChangeDirty();
+        }
     }
 }

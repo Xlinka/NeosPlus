@@ -3,14 +3,6 @@ using FrooxEngine.LogiX;
 using FrooxEngine.UIX;
 using System;
 
-/*
- * [____CURSOR PARKING LOT_______]
- * [                             ]
- * [_____________________________]
- *  EDIT: this was important when we were in live share
- * 	Users present at one point: dfg, eia485
- */
-
 namespace FrooxEngine
 {
     [Category(new string[] { "Physics/Cloth" })]

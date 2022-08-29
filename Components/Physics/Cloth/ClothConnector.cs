@@ -8,6 +8,7 @@ namespace FrooxEngine
     public class ClothConnector : MeshRendererConnectorBase<Cloth, UnityEngine.SkinnedMeshRenderer>
     {
         private UnityEngine.Cloth UnityCloth { get; set; }
+        private ClothSkinningCoefficient[] coefficients = Array.Empty<ClothSkinningCoefficient>();
         private ClothSphereColliderPair[] colliderPairs = Array.Empty<ClothSphereColliderPair>();
         
         protected override bool UseMeshFilter => false;
@@ -17,7 +18,6 @@ namespace FrooxEngine
             base.OnAttachRenderer();
             UnityCloth = MeshRenderer.gameObject.AddComponent<UnityEngine.Cloth>();        
         }
-
         public override void ApplyChanges()
         {
             bool flag = false;
@@ -87,23 +87,25 @@ namespace FrooxEngine
             if (Owner.UseVirtualParticles.WasChanged) UnityCloth.useVirtualParticles = Owner.UseVirtualParticles;
             
             if (Owner.SolverFrequency.WasChanged) UnityCloth.clothSolverFrequency = Owner.SolverFrequency;
-                        
+            
+            var spheres = Owner.ClothColliders.Where(s => s is ClothSphereCollider).ToArray();
+
             bool reload = false;
-            if (colliderPairs.Length != Owner.ClothColliders.Count)
+            if (colliderPairs.Length != spheres.Length)
             {
-                Array.Resize(ref colliderPairs, Owner.ClothColliders.Count);
+                Array.Resize(ref colliderPairs, spheres.Length);
                 reload = true;
             }
 
             for (int i = 0; i < colliderPairs.Length; i++)
             {
-                var Collider = Owner.ClothColliders[i];
+                var Collider = spheres[i];
                 if (Owner.ClothColliders.WasChanged)
                 {
                     reload = true;
-                    var unityColider = ((ClothSphereConnector)Collider.Connector).unityComponent;
-                    colliderPairs[i].first = unityColider;
-                    colliderPairs[i].second = unityColider;
+                    var unityCollider = ((ClothSphereConnector)Collider.Connector).unityComponent;
+                    colliderPairs[i].first = unityCollider;
+                    colliderPairs[i].second = unityCollider;
                 }
             }
 
@@ -112,19 +114,40 @@ namespace FrooxEngine
                 UnityCloth.sphereColliders = colliderPairs;
             }
 
-            UnityCloth.capsuleColliders = Owner.ClothColliders.Select(x => ((ClothCapsuleConnector)x.Connector).unityComponent).ToArray();
+            UnityCloth.capsuleColliders = Owner.ClothColliders
+                .Where(x => x.Connector is ClothCapsuleConnector)
+                .Select(x => ((ClothCapsuleConnector)x.Connector).unityComponent)
+                .ToArray();
 
-            UnityCloth.coefficients = Owner.Coefficients.Select(ncs => ToClothSkinningCoefficient(ncs.x, ncs.y)).ToArray();
-
-            UnityCloth.SetVirtualParticleWeights(Owner.VirtualParticleWeights.Select(x => x.ToUnity()).ToList());
+            CreateClothSkinningCoefficients();
         }
 
-        private ClothSkinningCoefficient ToClothSkinningCoefficient(float x, float y)
+        private void CreateClothSkinningCoefficients()
         {
-            var ClothSkinningCoefficient = new ClothSkinningCoefficient();
-            ClothSkinningCoefficient.maxDistance = x;
-            ClothSkinningCoefficient.collisionSphereDistance = y;
-            return ClothSkinningCoefficient;
+            if (Owner.PinningCoefficients.Count == 0)
+            {
+                UnityCloth.coefficients = Array.Empty<ClothSkinningCoefficient>();
+                return;
+            }
+            
+            if (coefficients.Length != Owner.PinningCoefficients.Count)
+            {
+                Array.Resize(ref coefficients, MeshRenderer.sharedMesh.vertexCount);
+            }
+
+            for (int i = 0; i < coefficients.Length; i++)
+            {
+                coefficients[i].maxDistance = float.MaxValue;
+                coefficients[i].collisionSphereDistance = 0f;
+            }
+
+            foreach (var elem in Owner.PinningCoefficients)
+            {
+                coefficients[elem.VertexIndex.Value].maxDistance = elem.MaxDistance;
+                coefficients[elem.VertexIndex.Value].collisionSphereDistance = elem.CollisionSphereDistance;
+            }
+
+            UnityCloth.coefficients = coefficients;
         }
     }
 }

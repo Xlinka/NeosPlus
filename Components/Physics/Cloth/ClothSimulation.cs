@@ -1,20 +1,17 @@
 ﻿using BaseX;
 using FrooxEngine.LogiX;
 using FrooxEngine.UIX;
-using System;
 
 namespace FrooxEngine
 {
     [Category(new string[] { "Physics/Cloth" })]
-    public class Cloth : MeshRenderer // Need to extend MeshRenderer to avoid unity attaching its own.
+    public class Cloth : MeshRenderer // Need to extend MeshRenderer to avoid Unity attaching its own
     {
         [HideInInspector] // Needed to sync the reset across all users
-        public readonly Sync<bool> ShouldReset; 
-        public readonly Sync<bool> AddCollidersOnSpawn;
-        public readonly Sync<bool> RemoveCollidersOnDestroy;
+        public readonly Sync<bool> ShouldReset;
 
-        // Need to seperate the cloth enabled state from the mesh rendering
-        public readonly Sync<bool> ClothEnabled; 
+        // Needed to seperate the cloth enabled state from the mesh rendering
+        public readonly Sync<bool> ClothEnabled;
 
         // Unity's default cloth component properties
         public readonly Sync<float> StretchingStiffness;
@@ -32,8 +29,7 @@ namespace FrooxEngine
         public readonly Sync<float> SleepThreshold;
 
         public readonly SyncRefList<ClothCollider> ClothColliders;
-        public readonly SyncFieldList<float3> VirtualParticleWeights;
-        public readonly SyncFieldList<float2> Coefficients;
+        public readonly SyncList<ClothCoefficent> PinningCoefficients;
 
         protected override void OnAttach()
         {
@@ -52,9 +48,6 @@ namespace FrooxEngine
             UseVirtualParticles.Value = 1f;
             SolverFrequency.Value = 120f;
             SleepThreshold.Value = 0.1f;
-
-            AddCollidersOnSpawn.Value = true;
-            RemoveCollidersOnDestroy.Value = true;
         }
 
         protected override void OnStart()
@@ -62,40 +55,33 @@ namespace FrooxEngine
             base.OnStart();
             if (World.IsAuthority)
             {
-                foreach (var slot in World.RootSlot.GetAllChildren()) OnSlotAdded(slot);
-                ShouldReset.Value = false;
-                // World.SlotAdded += OnSlotAdded;
-
                 ClothColliders.ElementsAdded += (a, b, c) => ClothColliders.CleanList();
                 ClothColliders.ElementsRemoved += (a, b, c) => ClothColliders.CleanList();
                 ClothColliders.Changed += (a) => ClothColliders.CleanList();
             }
         }
 
-        private void OnSlotAdded(Slot slot) 
-        {
-            if (AddCollidersOnSpawn.Value)
-            {
-                var sphere = slot.GetComponent<ClothSphereCollider>();
-                if (sphere != null)
-                    ClothColliders.AddUnique(sphere);
-
-                var capsule = slot.GetComponent<ClothCapsuleCollider>();
-                if (capsule != null)
-                    ClothColliders.AddUnique(capsule);
-            }
-        }
-
         public override void BuildInspectorUI(UIBuilder ui)
         {
             base.BuildInspectorUI(ui);
+            ui.Button("Add all colliders in world".AsLocaleKey()).SetUpActionTrigger(SetupWorldColliders);
             ui.Button("Add all user colliders".AsLocaleKey()).SetUpActionTrigger(SetupUserColliders);
-            ui.Button("Remove all user colliders".AsLocaleKey()).SetUpActionTrigger(RemoveUserColliders);
-            ui.Button("Remove all VirtualParticleWeights".AsLocaleKey()).SetUpActionTrigger(ClearVirtualParticleWeights);
-            ui.Button("Remove all ClothSpherePairColliders".AsLocaleKey()).SetUpActionTrigger(ClearClothSpherePairColliders);
-            ui.Button("Remove all ClothCapsuleColliders".AsLocaleKey()).SetUpActionTrigger(ClearClothCapsuleColliders);
-            ui.Button("Remove all Coefficients".AsLocaleKey()).SetUpActionTrigger(ClearCoefficients);
+            ui.Button("Remove all colliders".AsLocaleKey()).SetUpActionTrigger(ClearColliders);
+            ui.Button("Remove all pinning coefficients".AsLocaleKey()).SetUpActionTrigger(ClearCoefficients);
             ui.Button("Reset cloth simulation".AsLocaleKey()).SetUpActionTrigger(Reset);
+        }
+
+        [ImpulseTarget]
+        public void SetupWorldColliders()
+        {
+            foreach (var slot in Engine.Current.WorldManager.FocusedWorld.RootSlot.GetAllChildren())
+            {
+                foreach (var sphere in slot.GetComponentsInChildren<ClothSphereCollider>())
+                    ClothColliders.AddUnique(sphere);
+
+                foreach (var capsule in slot.GetComponentsInChildren<ClothCapsuleCollider>())
+                    ClothColliders.AddUnique(capsule);
+            }
         }
 
         [ImpulseTarget]
@@ -108,14 +94,11 @@ namespace FrooxEngine
 
                 foreach (var capsule in user.Root.Slot.GetComponentsInChildren<ClothCapsuleCollider>())
                     ClothColliders.AddUnique(capsule);
-            }   
+            }
         }
-        
-        [ImpulseTarget] public void RemoveUserColliders() => ClothColliders.Clear();
-        [ImpulseTarget] public void ClearVirtualParticleWeights() => VirtualParticleWeights.Clear();
-        [ImpulseTarget] public void ClearClothSpherePairColliders() => ClothColliders.Clear();
-        [ImpulseTarget] public void ClearClothCapsuleColliders() => ClothColliders.Clear();
-        [ImpulseTarget] public void ClearCoefficients() => Coefficients.Clear();
+
+        [ImpulseTarget] public void ClearColliders() => ClothColliders.Clear();
+        [ImpulseTarget] public void ClearCoefficients() => PinningCoefficients.Clear();
         [ImpulseTarget] public void Reset() => ShouldReset.Value = true;
     }
 }

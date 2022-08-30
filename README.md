@@ -70,14 +70,9 @@ Features that have been added so far:
 
 ## Components
 - Physics/Cloth/ClothCapsuleCollider
-- Physics/Cloth/ClothCapsuleConnector
-- Physics/Cloth/ClothCoefficent
 - Physics/Cloth/ClothCollider
-- Physics/Cloth/ClothConnector
-- Physics/Cloth/ClothSimulation
 - Physics/Cloth/ClothSphereCollider
 - Physics/Cloth/ClothSphereConnect
-- Physics/Cloth/UnityBetterComponentConnector
 - Add-ons/Wizards/MeshColliderManagementTools
 - Utility/GrabberSimulator
 

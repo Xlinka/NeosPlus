@@ -10,9 +10,9 @@ When you next start Neos, Neos Plus should also be loaded and work.
 
 ## Features that have been added so far
 ## Nodes
-# Avatar
+Avatar
 - Logix/Avatar/NearestUser
-# Json
+Json
 - Logix/Json/JsonAddToObject
 - Logix/Json/JsonAppendToArray
 - Logix/Json/JsonCountArrayChildren
@@ -28,9 +28,9 @@ When you next start Neos, Neos Plus should also be loaded and work.
 - Logix/Json/JsonRemoveFromArray
 - Logix/Json/JsonRemoveFromObject
 - Logix/Json/JsonToString
-# Locomotion
+Locomotion
 - Logix/Locomotion/IsUserInNoclip
-# Math Matrix
+Math Matrix
 - Logix/Math/Matrix/GaussianElimination_double2x2
 - Logix/Math/Matrix/GaussianElimination_double3x3
 - Logix/Math/Matrix/GaussianElimination_double4x4
@@ -44,7 +44,7 @@ When you next start Neos, Neos Plus should also be loaded and work.
 - Logix/Math/Matrix/GaussJordanElimination_float3x3
 - Logix/Math/Matrix/GaussJordanElimination_float4x4
 - Logix/Math/Matrix/MatrixClass
-# Math Random
+Math Random
 - Logix/Math/Random/RandomBool2
 - Logix/Math/Random/RandomBool3
 - Logix/Math/Random/RandomBool4
@@ -54,21 +54,21 @@ When you next start Neos, Neos Plus should also be loaded and work.
 - Logix/Math/Random/RandomInt3
 - Logix/Math/Random/RandomInt4
 - Logix/Math/Random/RandomLetter
-# Math
+Math
 - Logix/Math/EulersToientFunction
 - Logix/Math/Factorial
 - Logix/Math/SortNode
 - Logix/Math/MinMax
-# Operators
+Operators
 - Logix/Operators/ZeroOneI
 - Logix/Operators/DoubleInput
-# Playback
+Playback
 - Logix/Playback/IsPaused
 - Logix/Playback/IsStopped
-# Slots
+Slots
 - Logix/Slots/CreateEmptySlot
 - Logix/Slots/GetGrandparent
-# String
+String
 - Logix/String/CountSubstring
 - Logix/String/DecodeBase64
 - Logix/String/EncodeBase64
@@ -76,11 +76,11 @@ When you next start Neos, Neos Plus should also be loaded and work.
 - Logix/String/EncodeSha256
 - Logix/String/HammingDistance
 - Logix/String/HammingDistanceNonNullable
-# Users
+Users
 - Logix/Users/IsUserInSeatedMode
 
 ## Components
-# Wizards
+Wizards
 - Add-ons/Wizards/MeshColliderManagementTools
 
 ## Materials

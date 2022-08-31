@@ -10,10 +10,12 @@ namespace FrooxEngine.LogiX.Collections
 {
     [NodeName("Read Collection")]
     [Category("LogiX/Collections")]
-    public class CollectionsRead<T> : LogixOperator<T>
+    [NodeDefaultType(typeof(CollectionsRead<dummy, IEnumerable<dummy>>))]
+    public class CollectionsRead<T, TU> : LogixOperator<T> where TU : IEnumerable<T>
     {
-        public readonly Input<IEnumerable<T>> Input;
+        public readonly Input<TU> Input;
         public readonly Input<int> Index;
+        protected override string Label => $"Read {typeof(TU).GetNiceName()}";
         public override T Content
         {
             get
@@ -33,7 +35,7 @@ namespace FrooxEngine.LogiX.Collections
             var enumerableGeneric =
                 interfaces.FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>))
                     ?.GetGenericArguments()[0];
-            return typeof(CollectionsRead<>).MakeGenericType(enumerableGeneric);
+            return typeof(CollectionsRead<,>).MakeGenericType(enumerableGeneric, input);
         }
     }
 }

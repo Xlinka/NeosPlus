@@ -1,6 +1,8 @@
 ﻿using BaseX;
 using FrooxEngine.LogiX;
 using FrooxEngine.UIX;
+using System;
+using System.Linq;
 
 namespace FrooxEngine
 {
@@ -28,9 +30,10 @@ namespace FrooxEngine
         public readonly Sync<float> SolverFrequency;
         public readonly Sync<float> SleepThreshold;
 
+        public readonly SyncRefList<Slot> ColliderCanidateRoots;
         public readonly SyncRefList<ClothCollider> ClothColliders;
         public readonly SyncList<ClothCoefficent> PinningCoefficients;
-
+        
         protected override void OnAttach()
         {
             base.OnAttach();
@@ -58,14 +61,27 @@ namespace FrooxEngine
                 ClothColliders.ElementsAdded += (a, b, c) => ClothColliders.CleanList();
                 ClothColliders.ElementsRemoved += (a, b, c) => ClothColliders.CleanList();
                 ClothColliders.Changed += (a) => ClothColliders.CleanList();
+                PinningCoefficients.ElementsAdded += IncreaseCoefficientCount;
             }
+        }
+
+        private void IncreaseCoefficientCount(SyncElementList<ClothCoefficent> list, int startIndex, int count)
+        {
+            int counter = 0;
+            var arr = list.Elements.ToArray();
+            for (int i = startIndex; i < startIndex + count; i++)
+            {
+                arr[i].VertexIndex.Value = (ulong)(startIndex + counter);
+                counter += 1;
+            }       
         }
 
         public override void BuildInspectorUI(UIBuilder ui)
         {
             base.BuildInspectorUI(ui);
             ui.Button("Add all colliders in world".AsLocaleKey()).SetUpActionTrigger(SetupWorldColliders);
-            ui.Button("Add all user colliders".AsLocaleKey()).SetUpActionTrigger(SetupUserColliders);
+            ui.Button("Add all colliders on users".AsLocaleKey()).SetUpActionTrigger(SetupUserColliders);
+            ui.Button("Add all colliders under the canidate slots".AsLocaleKey()).SetUpActionTrigger(SetupSlotColliders);
             ui.Button("Remove all colliders".AsLocaleKey()).SetUpActionTrigger(ClearColliders);
             ui.Button("Remove all pinning coefficients".AsLocaleKey()).SetUpActionTrigger(ClearCoefficients);
             ui.Button("Reset cloth simulation".AsLocaleKey()).SetUpActionTrigger(Reset);
@@ -76,11 +92,8 @@ namespace FrooxEngine
         {
             foreach (var slot in Engine.Current.WorldManager.FocusedWorld.RootSlot.GetAllChildren())
             {
-                foreach (var sphere in slot.GetComponentsInChildren<ClothSphereCollider>())
-                    ClothColliders.AddUnique(sphere);
-
-                foreach (var capsule in slot.GetComponentsInChildren<ClothCapsuleCollider>())
-                    ClothColliders.AddUnique(capsule);
+                foreach (var col in slot.GetComponentsInChildren<ClothCollider>())
+                    ClothColliders.AddUnique(col);
             }
         }
 
@@ -89,16 +102,20 @@ namespace FrooxEngine
         {
             foreach (var user in Engine.Current.WorldManager.FocusedWorld.AllUsers)
             {
-                foreach (var sphere in user.Root.Slot.GetComponentsInChildren<ClothSphereCollider>())
-                    ClothColliders.AddUnique(sphere);
-
-                foreach (var capsule in user.Root.Slot.GetComponentsInChildren<ClothCapsuleCollider>())
-                    ClothColliders.AddUnique(capsule);
+                foreach (var col in user.Root.Slot.GetComponentsInChildren<ClothCollider>())
+                    ClothColliders.AddUnique(col);
             }
         }
 
-        [ImpulseTarget] public void ClearColliders() => ClothColliders.Clear();
+        [ImpulseTarget]
+        public void SetupSlotColliders()
+        {
+            foreach (var col in ColliderCanidateRoots.Where(x => x != null))
+                ClothColliders.AddRangeUnique(col.GetComponentsInChildren<ClothCollider>());
+        }
+        
         [ImpulseTarget] public void ClearCoefficients() => PinningCoefficients.Clear();
+        [ImpulseTarget] public void ClearColliders() => ClothColliders.Clear();
         [ImpulseTarget] public void Reset() => ShouldReset.Value = true;
     }
 }

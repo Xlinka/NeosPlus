@@ -92,7 +92,7 @@
       <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityNeos">
-      <HintPath>$(NeosPath)Neos_Data/UnityNeos.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\NeosVR\Neos_Data\Managed\UnityNeos.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

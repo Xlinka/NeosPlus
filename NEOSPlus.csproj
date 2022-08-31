@@ -92,7 +92,7 @@
       <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityNeos">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\NeosVR\Neos_Data\Managed\UnityNeos.dll</HintPath>
+      <HintPath>$(NeosPath)Neos_Data/Managed/UnityNeos.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -105,8 +105,10 @@
     <Compile Include="Components\Physics\Cloth\ClothSimulation.cs" />
     <Compile Include="Components\Physics\Cloth\ClothSphereCollider.cs" />
     <Compile Include="Components\Physics\Cloth\ClothSphereConnector.cs" />
+    <Compile Include="Components\Utility\GrabberSimulator.cs" />
     <Compile Include="Components\Wizards\MeshColliderManagementTools.cs" />
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />
+    <Compile Include="Logix\Avatar\NearestUser.cs" />
     <Compile Include="Logix\Json\JsonAppendToArray.cs" />
     <Compile Include="Logix\Json\JsonCountArrayChildren.cs" />
     <Compile Include="Logix\Json\JsonCountObjectChildren.cs" />

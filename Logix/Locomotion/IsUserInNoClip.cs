@@ -1,6 +1,6 @@
 ﻿using FrooxEngine.LogiX;
 
-namespace FrooxEngine.Logix.Locomotion
+namespace FrooxEngine.LogiX.Locomotion
 {
     [NodeName("Is User in NoClip")]
     [Category(new string[] { "LogiX/Locomotion" })]

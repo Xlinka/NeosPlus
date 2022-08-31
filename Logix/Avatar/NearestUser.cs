@@ -1,7 +1,7 @@
 ﻿using BaseX;
 using FrooxEngine.LogiX;
 
-namespace FrooxEngine.Logix.Avatar
+namespace FrooxEngine.LogiX.Avatar
 {
     [NodeName("Nearest User")]
     [Category("LogiX/Avatar")]

@@ -109,6 +109,16 @@
     <Compile Include="Components\Wizards\MeshColliderManagementTools.cs" />
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />
     <Compile Include="Logix\Avatar\NearestUser.cs" />
+    <Compile Include="Logix\Components\ComponentRegister.cs" />
+    <Compile Include="Logix\Components\FieldRegister.cs" />
+    <Compile Include="Logix\Components\AttachComponent.cs" />
+    <Compile Include="Logix\Components\GetFieldFromComponent.cs" />
+    <Compile Include="Logix\Components\GetFieldFromSlot.cs" />
+    <Compile Include="Logix\Components\ReadFieldFromComponent.cs" />
+    <Compile Include="Logix\Components\ReadFieldFromSlot.cs" />
+    <Compile Include="Logix\Components\RemoveComponent.cs" />
+    <Compile Include="Logix\Components\WriteFieldFromComponent.cs" />
+    <Compile Include="Logix\Components\WriteFieldFromSlot.cs" />
     <Compile Include="Logix\Json\JsonAppendToArray.cs" />
     <Compile Include="Logix\Json\JsonCountArrayChildren.cs" />
     <Compile Include="Logix\Json\JsonCountObjectChildren.cs" />

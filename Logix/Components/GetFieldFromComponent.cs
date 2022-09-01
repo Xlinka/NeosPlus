@@ -7,10 +7,10 @@ using BaseX;
 
 namespace FrooxEngine.LogiX.Components
 {
-    [NodeName("Get Field")]
+    [NodeName("Get Field from Component")]
     [Category("LogiX/Components")]
-    [GenericTypes(GenericTypes.Group.NeosPrimitives, typeof(RefID))]
-    public class GetField<T> : LogixOperator<IValue<T>>
+    [GenericTypes(GenericTypes.Group.NeosPrimitivesAndEnums, typeof(RefID))]
+    public class GetFieldFromComponent<T> : LogixOperator<IValue<T>>
     {
         public readonly Input<Component> Component;
         public readonly Input<string> FieldName;

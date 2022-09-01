@@ -8,14 +8,14 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine.LogiX.Collections
 {
-    [NodeName("Read Collection")]
+    [NodeName("Read From Collection")]
     [Category("LogiX/Collections")]
     [NodeDefaultType(typeof(CollectionsRead<dummy, IEnumerable<dummy>>))]
     public class CollectionsRead<T, TU> : LogixOperator<T> where TU : IEnumerable<T>
     {
         public readonly Input<TU> Input;
         public readonly Input<int> Index;
-        protected override string Label => $"Read {typeof(TU).GetNiceName()}";
+        protected override string Label => $"Read From {typeof(TU).GetNiceName()}";
         public override T Content
         {
             get
@@ -31,9 +31,8 @@ namespace FrooxEngine.LogiX.Collections
         protected override Type FindOverload(NodeTypes connectingTypes)
         {
             var input = connectingTypes.inputs["Input"];
-            var interfaces = input.GetInterfaces();
             var enumerableGeneric =
-                interfaces.FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+                input.GetInterfaces().FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>))
                     ?.GetGenericArguments()[0];
             return typeof(CollectionsRead<,>).MakeGenericType(enumerableGeneric, input);
         }

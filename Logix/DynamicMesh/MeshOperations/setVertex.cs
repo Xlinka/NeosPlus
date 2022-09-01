@@ -10,7 +10,6 @@ namespace FrooxEngine
     {
         public readonly Input<DynamicMesh> DynamicMesh;
         public readonly Input<int> Index;
-        public readonly Input<int> Submesh;
         public readonly Input<float3> Vertex;
 
         public readonly Impulse OK;
@@ -20,7 +19,6 @@ namespace FrooxEngine
         {
             var mesh = DynamicMesh.Evaluate();
             var index = Index.Evaluate();
-            var sub = Submesh.Evaluate();
             var vert = Vertex.Evaluate();
             if (mesh?.Mesh == null && index > mesh.Mesh.VertexCount)
             {

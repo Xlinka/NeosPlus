@@ -31,7 +31,7 @@ namespace FrooxEngine.LogiX.Operators
 
         protected override void OnEvaluate()
         {
-            var tri = Triangle.EvaluateRaw();
+            var tri = Triangle.Evaluate();
             Point0Pos.Value = tri.Vertex0.Position;
             Point1Pos.Value = tri.Vertex1.Position;
             Point2Pos.Value = tri.Vertex2.Position;

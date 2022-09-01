@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BaseX;
+using FrooxEngine;
 
 namespace FrooxEngine.LogiX.Components
 {
@@ -14,11 +15,20 @@ namespace FrooxEngine.LogiX.Components
         public readonly Input<Slot> Slot;
         public readonly Input<string> ComponentName;
 
+        public static readonly List<Type> BlacklistedTypes = new List<Type>()
+        {
+            typeof(FinalIK.VRIK),
+            typeof(FinalIK.VRIKAvatar)
+        };
+
         public override Component Content
         {
             get
             {
-                return Slot.EvaluateRaw().GetComponent(ComponentName.EvaluateRaw());
+                Component component = Slot.EvaluateRaw().GetComponent(ComponentName.EvaluateRaw());
+                if (BlacklistedTypes.Contains(component.GetType()))
+                    return null;
+                return component;
             }
         }
     }

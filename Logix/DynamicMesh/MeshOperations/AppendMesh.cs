@@ -19,6 +19,7 @@ namespace FrooxEngine
         public readonly Input<floatQ> Rotation;
         public readonly Input<float3> Scale;
         public readonly Input<bool> Submesh;
+        public readonly Input<int> SubmeshIndex;
 
         public readonly Impulse OK;
         public readonly Impulse Failed;
@@ -31,6 +32,7 @@ namespace FrooxEngine
             var rot = Rotation.Evaluate();
             var scl = Scale.Evaluate(float3.One);
             var sub = Submesh.Evaluate(true);
+            var mi = SubmeshIndex.Evaluate();
             if (mesh?.Mesh == null || appendmesh?.Asset == null)
             {
                 Failed.Trigger();
@@ -38,7 +40,9 @@ namespace FrooxEngine
 
             }
             var matrix = float4x4.Transform(pos, rot, scl);
-            mesh.Mesh.Append(appendmesh.Asset.Data, sub, matrix);
+            if(sub) mesh.Mesh.Append(appendmesh.Asset.Data, sub, matrix);
+            else mesh.Mesh.Append(appendmesh.Asset.Data, sub, matrix, idk => mi);
+            
             OK.Trigger();
         }
     }

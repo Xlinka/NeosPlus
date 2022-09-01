@@ -20,7 +20,6 @@ namespace FrooxEngine
         {
             base.OnAttach();
             Mesh.Target  = Slot.AttachComponent<DynamicMesh>();
-
         }
         protected override void OnGenerateVisual(Slot root)
         {

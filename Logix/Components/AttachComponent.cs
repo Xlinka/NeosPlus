@@ -12,6 +12,12 @@ namespace FrooxEngine.LogiX.Components
     [Category("LogiX/Components")]
     public class AttachComponent : LogixNode
     {
+        public static readonly List<Type> BlacklistedTypes = new List<Type>() // Replace with permissions config
+        {
+            typeof(FinalIK.VRIK),
+            typeof(FinalIK.VRIKAvatar)
+        };
+
         public readonly Input<Slot> Slot;
         public readonly Input<string> ComponentName;
 
@@ -22,16 +28,28 @@ namespace FrooxEngine.LogiX.Components
         [ImpulseTarget]
         public void Attach()
         {
-			Slot slot = Slot.Evaluate();
-			if (slot != null)
-			{
-                slot.AttachComponent(ComponentName.EvaluateRaw());
-                OnDone.Trigger();
-			}
-			else
-			{
-				OnFail.Trigger();
-			}
+            Slot slot = Slot.Evaluate();
+            if (slot == null)
+                return null;
+            Slot search = slot;
+            string compName = ComponentName.EvaluateRaw();
+            while (!search.IsRootSlot)
+            {
+                if (search.GetComponent("FrooxEngine.SlotProtection") != null)
+                {
+                    OnFail.Trigger();
+                    return;
+                }
+                search = search.Parent;
+            }
+            Component component = slot.GetComponent(compName);
+            if (BlacklistedTypes.Contains(component.GetType()))
+            {
+                OnFail.Trigger();
+                return;
+            }
+            slot.AttachComponent(compName);
+            OnDone.Trigger();
 		}
     }
 }

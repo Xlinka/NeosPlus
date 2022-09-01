@@ -12,6 +12,12 @@ namespace FrooxEngine.LogiX.Components
     [Category("LogiX/Components")]
     public class DestroyComponent : LogixNode
     {
+        public static readonly List<Type> BlacklistedTypes = new List<Type>() // Replace with permissions config
+        {
+            typeof(FinalIK.VRIK),
+            typeof(FinalIK.VRIKAvatar)
+        };
+
         public readonly Input<Slot> Slot;
         public readonly Input<string> ComponentName;
 
@@ -23,17 +29,27 @@ namespace FrooxEngine.LogiX.Components
         public void Remove()
         {
             Slot slot = Slot.Evaluate();
-            if (slot != null)
+            if (slot == null)
+                return;
+            Slot search = slot;
+            string compName = ComponentName.EvaluateRaw();
+            while (!search.IsRootSlot)
             {
-                string name = ComponentName.EvaluateRaw();
-                Component component = slot.GetComponent(name);
-                slot.RemoveComponent(component);
-                OnDone.Trigger();
+                if (search.GetComponent("FrooxEngine.SlotProtection") != null)
+                {
+                    OnFail.Trigger();
+                    return;
+                }
+                search = search.Parent;
             }
-            else
+            Component component = slot.GetComponent(compName);
+            if (BlacklistedTypes.Contains(component.GetType()))
             {
                 OnFail.Trigger();
+                return;
             }
+            slot.RemoveComponent(component);
+            OnDone.Trigger();
         }
     }
 }

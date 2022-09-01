@@ -8,9 +8,9 @@ using FrooxEngine;
 
 namespace FrooxEngine.LogiX.Components
 {
-    [NodeName("Get Component")]
+    [NodeName("Is Authorized")]
     [Category("LogiX/Components")]
-    public class GetComponent : LogixOperator<Component>
+    public class IsAuthorized : LogixOperator<bool>
     {
         public readonly Input<Slot> Slot;
         public readonly Input<string> ComponentName;
@@ -21,25 +21,24 @@ namespace FrooxEngine.LogiX.Components
             typeof(FinalIK.VRIKAvatar)
         };
 
-        public override Component Content
+        public override bool Content
         {
             get
             {
                 Slot slot = Slot.Evaluate();
                 if (slot == null)
-                    return null;
-                Slot search = slot;
+                    return false;
                 string compName = ComponentName.EvaluateRaw();
-                while (!search.IsRootSlot)
+                while (!slot.IsRootSlot)
                 {
-                    if (search.GetComponent("FrooxEngine.SlotProtection") != null)
-                        return null;
-                    search = search.Parent;
+                    if (slot.GetComponent("FrooxEngine.SlotProtection") != null)
+                        return false;
+                    slot = slot.Parent;
                 }
-                Component component = slot.GetComponent(compName);
+                Component component = Slot.Evaluate().GetComponent(compName);
                 if (BlacklistedTypes.Contains(component.GetType()))
-                    return null;
-                return component;
+                    return false;
+                return true;
             }
         }
     }

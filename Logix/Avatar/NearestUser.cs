@@ -20,29 +20,22 @@ namespace FrooxEngine.LogiX.Avatar
         {
             // Literally just Nearest Hand but without the Hand stuff
             base.OnCommonUpdate();
-            Slot slot = Reference.Evaluate() ?? base.Slot;
-            User user = IgnoreUser.Evaluate();
-            bool flag = IgnoreAFK.Evaluate(def: false);
+            var slot = Reference.Evaluate() ?? Slot;
+            var user = IgnoreUser.Evaluate();
+            var flag = IgnoreAFK.Evaluate(def: false);
             _nearestDistance = float.MaxValue;
             _nearestUser = null;
-            foreach (User allUser in base.World.AllUsers)
+            foreach (var allUser in World.AllUsers)
             {
-                if (allUser == user || (!allUser.IsPresentInWorld && flag))
-                {
-                    continue;
-                }
-                Slot slot2 = allUser.Root?.HeadSlot;
-                if (slot2 != null)
-                {
-                    float3 a = slot2.GlobalPosition;
-                    float3 b = slot.GlobalPosition;
-                    float num = MathX.Distance(in a, in b);
-                    if (num < _nearestDistance)
-                    {
-                        _nearestDistance = num;
-                        _nearestUser = allUser;
-                    }
-                }
+                if (allUser == user || (!allUser.IsPresentInWorld && flag)) continue;
+                var slot2 = allUser.Root?.HeadSlot;
+                if (slot2 == null) continue;
+                var a = slot2.GlobalPosition;
+                var b = slot.GlobalPosition;
+                var num = MathX.Distance(in a, in b);
+                if (!(num < _nearestDistance)) continue;
+                _nearestDistance = num;
+                _nearestUser = allUser;
             }
             MarkChangeDirty();
         }

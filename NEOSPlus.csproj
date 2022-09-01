@@ -113,13 +113,10 @@
     <Compile Include="Logix\Components\FieldRegister.cs" />
     <Compile Include="Logix\Components\AttachComponent.cs" />
     <Compile Include="Logix\Components\GetComponent.cs" />
-    <Compile Include="Logix\Components\GetFieldFromComponent.cs" />
-    <Compile Include="Logix\Components\GetFieldFromSlot.cs" />
-    <Compile Include="Logix\Components\ReadFieldFromComponent.cs" />
-    <Compile Include="Logix\Components\ReadFieldFromSlot.cs" />
-    <Compile Include="Logix\Components\RemoveComponent.cs" />
-    <Compile Include="Logix\Components\WriteFieldFromComponent.cs" />
-    <Compile Include="Logix\Components\WriteFieldFromSlot.cs" />
+    <Compile Include="Logix\Components\GetField.cs" />
+    <Compile Include="Logix\Components\GetSyncMember.cs" />
+    <Compile Include="Logix\Components\DestroyComponent.cs" />
+    <Compile Include="Logix\Components\GetValue.cs" />
     <Compile Include="Logix\Json\JsonAppendToArray.cs" />
     <Compile Include="Logix\Json\JsonCountArrayChildren.cs" />
     <Compile Include="Logix\Json\JsonCountObjectChildren.cs" />

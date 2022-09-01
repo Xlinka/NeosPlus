@@ -7,23 +7,22 @@ using BaseX;
 
 namespace FrooxEngine.LogiX.Components
 {
-    [NodeName("Read Field from Slot")]
+    [NodeName("Get Field")]
     [Category("LogiX/Components")]
     [GenericTypes(GenericTypes.Group.NeosPrimitivesAndEnums, typeof(RefID))]
-    public class ReadFieldFromSlot<T> : LogixOperator<T>
+    public class GetField<T> : LogixOperator<IValue<T>>
     {
-        public readonly Input<Slot> Slot;
-        public readonly Input<string> ComponentName;
+        public readonly Input<Component> Component;
         public readonly Input<string> FieldName;
 
-        public override T Content
+        public override IValue<T> Content
         {
             get
             {
-                var comp = Slot.EvaluateRaw().GetComponent(ComponentName.EvaluateRaw());
+                var comp = Component.EvaluateRaw();
                 if (comp.GetSyncMember(FieldName.EvaluateRaw()) is IValue<T> field)
-                    return field.Value;
-                return default(T);
+                    return field;
+                return null;
             }
         }
     }

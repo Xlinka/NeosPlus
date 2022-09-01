@@ -7,22 +7,22 @@ using BaseX;
 
 namespace FrooxEngine.LogiX.Components
 {
-    [NodeName("Read Field from Component")]
+    [NodeName("Get Sync Member")]
     [Category("LogiX/Components")]
     [GenericTypes(GenericTypes.Group.NeosPrimitivesAndEnums, typeof(RefID))]
-    public class ReadFieldFromComponent<T> : LogixOperator<T>
+    public class GetSyncMember<T> : LogixOperator<IValue<T>>
     {
         public readonly Input<Component> Component;
-        public readonly Input<string> FieldName;
+        public readonly Input<int> Index;
 
-        public override T Content
+        public override IValue<T> Content
         {
             get
             {
-                var comp = Component.Evaluate();
-                if (comp.GetSyncMember(FieldName.EvaluateRaw()) is IValue<T> field)
-                    return field.Value;
-                return default(T);
+                var comp = Component.EvaluateRaw();
+                if (comp.GetSyncMember(Index.EvaluateRaw()) is IValue<T> field)
+                    return field;
+                return null;
             }
         }
     }

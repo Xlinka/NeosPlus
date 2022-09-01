@@ -8,9 +8,9 @@ using FrooxEngine;
 
 namespace FrooxEngine.LogiX.Components
 {
-    [NodeName("Remove Component")]
+    [NodeName("Destroy Component")]
     [Category("LogiX/Components")]
-    public class RemoveComponent : LogixNode
+    public class DestroyComponent : LogixNode
     {
         public readonly Input<Slot> Slot;
         public readonly Input<string> ComponentName;

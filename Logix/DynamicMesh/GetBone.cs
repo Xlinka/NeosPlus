@@ -8,24 +8,22 @@ using FrooxEngine.UIX;
 namespace FrooxEngine.Logix.Math
 {
     [Category(new string[] { "LogiX/Mesh" })]
-    public class GetVertex : LogixOperator<Vertex>
+    public class GetBoneBinding : LogixOperator<BoneBinding>
     {
         public readonly Input<IAssetProvider<Mesh>> Mesh;
         public readonly Input<int> Index;
 
-        public override Vertex Content
+        public override BoneBinding Content
         {
             get
             {
                 var mesh = Mesh.Evaluate();
-                if(mesh?.Asset == null)
+                if(mesh?.Asset?.Data == null)
                 {
-                    return new Vertex();
+                    return new BoneBinding();
                 }
-
-                return mesh.Asset.Data.GetVertex(Index.Evaluate());
+                return mesh.Asset.Data.RawBoneBindings[Index.Evaluate()];
             }
         }
-
     }
 }

@@ -11,69 +11,37 @@ namespace FrooxEngine.LogiX.Operators
     public class UnpackTriangle : LogixNode
     {
         public readonly Input<Triangle> Triangle;
-        public readonly Output<float3> Point0Pos;
-        public readonly Output<float2> Point0UV;
-        public readonly Output<color> Point0Col;
-        public readonly Output<float3> Point0Norm;
-        public readonly Output<float4> Point0Tan;
 
-        public readonly Output<float3> Point1Pos;
-        public readonly Output<float2> Point1UV;
-        public readonly Output<color> Point1Col;
-        public readonly Output<float3> Point1Norm;
-        public readonly Output<float4> Point1Tan;
+        public readonly Output<Vertex> Point0;
+        public readonly Output<int> Point0Index;
 
-        public readonly Output<float3> Point2Pos;
-        public readonly Output<float2> Point2UV;
-        public readonly Output<color> Point2Col;
-        public readonly Output<float3> Point2Norm;
-        public readonly Output<float4> Point2Tan;
+        public readonly Output<Vertex> Point1;
+        public readonly Output<int> Point1Index;
+
+        public readonly Output<Vertex> Point2;
+        public readonly Output<int> Point2Index;
 
         protected override void OnEvaluate()
         {
             var tri = Triangle.Evaluate();
-            Point0Pos.Value = tri.Vertex0.Position;
-            Point1Pos.Value = tri.Vertex1.Position;
-            Point2Pos.Value = tri.Vertex2.Position;
-
-            Point0UV.Value = tri.Vertex0.UV0;//tri.InterpolateUV0(new float3(1, 0, 0));
-            Point1UV.Value = tri.Vertex1.UV0;//tri.InterpolateUV0(new float3(0, 1, 0));
-            Point2UV.Value = tri.Vertex2.UV0;//tri.InterpolateUV0(new float3(0, 0, 1));
-
-            Point0Col.Value = tri.Vertex0.Color;
-            Point1Col.Value = tri.Vertex1.Color;
-            Point2Col.Value = tri.Vertex2.Color;
-
-            Point0Norm.Value = tri.Vertex0.Normal;
-            Point1Norm.Value = tri.Vertex1.Normal;
-            Point2Norm.Value = tri.Vertex2.Normal;
-
-            Point0Tan.Value = tri.Vertex0.Tangent;
-            Point1Tan.Value = tri.Vertex1.Tangent;
-            Point2Tan.Value = tri.Vertex2.Tangent;
-
+            Point0.Value = tri.Vertex0;
+            Point1.Value = tri.Vertex1;
+            Point2.Value = tri.Vertex2;
+            Point0Index.Value = tri.Vertex0Index;
+            Point1Index.Value = tri.Vertex1Index;
+            Point2Index.Value = tri.Vertex2Index;
         }
 
         protected override void NotifyOutputsOfChange()
         {
-            ((IOutputElement)Point0Pos).NotifyChange();
-            ((IOutputElement)Point0UV).NotifyChange();
-            ((IOutputElement)Point0Col).NotifyChange();
-            ((IOutputElement)Point0Norm).NotifyChange();
-            ((IOutputElement)Point0Tan).NotifyChange();
+            ((IOutputElement)Point0).NotifyChange();
+            ((IOutputElement)Point0Index).NotifyChange();
 
+            ((IOutputElement)Point1).NotifyChange();
+            ((IOutputElement)Point1Index).NotifyChange();
 
-            ((IOutputElement)Point1Pos).NotifyChange();
-            ((IOutputElement)Point1UV).NotifyChange();
-            ((IOutputElement)Point1Col).NotifyChange();
-            ((IOutputElement)Point1Norm).NotifyChange();
-            ((IOutputElement)Point1Tan).NotifyChange();
-
-            ((IOutputElement)Point2Pos).NotifyChange();
-            ((IOutputElement)Point2UV).NotifyChange();
-            ((IOutputElement)Point2Col).NotifyChange();
-            ((IOutputElement)Point2Norm).NotifyChange();
-            ((IOutputElement)Point2Tan).NotifyChange();
+            ((IOutputElement)Point2).NotifyChange();
+            ((IOutputElement)Point2Index).NotifyChange();
         }
     }
 }

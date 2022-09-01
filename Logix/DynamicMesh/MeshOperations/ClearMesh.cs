@@ -15,21 +15,30 @@ namespace FrooxEngine
     {
         public readonly Input<DynamicMesh> DynamicMesh;
         public readonly Impulse Cleared;
-   
+        public readonly Impulse Failled;
+
         [ImpulseTarget]
         public void Process()
         {
-            var mesh = DynamicMesh.Evaluate();
-           
-            if (mesh?.Mesh == null )
+            try
             {
+                var mesh = DynamicMesh.Evaluate();
+                if (mesh?.Mesh == null)
+                {
+                    Failled.Trigger();
+                }
+                else
+                {
+                    mesh.Mesh.Clear();
+                    mesh.Mesh.ClearBones();
+                    mesh.Mesh.ClearSubmeshes();
+                }
+                Cleared.Trigger();
             }
-            else
+            catch
             {
-                mesh.Mesh.Clear();
+                Failled.Trigger();
             }
-
-            Cleared.Trigger();
         }
     }
 }

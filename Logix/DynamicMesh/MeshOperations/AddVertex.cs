@@ -6,35 +6,35 @@ using FrooxEngine.LogiX;
 namespace FrooxEngine
 {
     [Category(new string[] { "LogiX/Mesh/Operations" })]
-    public class SetTriangleIndexies : LogixNode
+    public class AddVertex : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;
-        public readonly Input<int> Index;
-        public readonly Input<int> Submesh;
-        public readonly Input<int> Vertex0;
-        public readonly Input<int> Vertex1;
-        public readonly Input<int> Vertex2;
+
+        public readonly Output<Vertex> Vertex;
+        public readonly Input<Vertex> VertexCopy;
 
         public readonly Impulse OK;
         public readonly Impulse Failed;
+
         [ImpulseTarget]
         public void Process()
         {
             try
             {
                 var mesh = DynamicMesh.Evaluate();
-                var index = Index.Evaluate();
-                var sub = Submesh.Evaluate();
-                var v0 = Vertex0.Evaluate();
-                var v1 = Vertex0.Evaluate();
-                var v2 = Vertex0.Evaluate();
                 if (mesh?.Mesh == null)
                 {
                     Failed.Trigger();
                     return;
-
                 }
-                mesh.Mesh.SetTriangle(index, v0, v1, v2, sub);
+                if (VertexCopy.IsConnected)
+                {
+                    Vertex.Value = mesh.Mesh.AddVertex(VertexCopy.Evaluate());
+                }
+                else
+                {
+                    Vertex.Value = mesh.Mesh.AddVertex();
+                }
                 OK.Trigger();
             }
             catch

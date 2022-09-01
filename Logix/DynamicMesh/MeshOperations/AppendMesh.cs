@@ -18,32 +18,45 @@ namespace FrooxEngine
         public readonly Input<float3> Position;
         public readonly Input<floatQ> Rotation;
         public readonly Input<float3> Scale;
-        public readonly Input<bool> Submesh;
-        public readonly Input<int> SubmeshIndex;
+        public readonly Input<int> Submesh;
+        public readonly Input<bool> JustVerts;
 
         public readonly Impulse OK;
         public readonly Impulse Failed;
         [ImpulseTarget]
         public void Process()
         {
-            var mesh = DynamicMesh.Evaluate();
-            var appendmesh = Appended.Evaluate();
-            var pos = Position.Evaluate();
-            var rot = Rotation.Evaluate();
-            var scl = Scale.Evaluate(float3.One);
-            var sub = Submesh.Evaluate(true);
-            var mi = SubmeshIndex.Evaluate();
-            if (mesh?.Mesh == null || appendmesh?.Asset == null)
+            try
+            {
+                var mesh = DynamicMesh.Evaluate();
+                var appendmesh = Appended.Evaluate();
+                var pos = Position.Evaluate();
+                var rot = Rotation.Evaluate();
+                var scl = Scale.Evaluate(float3.One);
+                var sub = Submesh.Evaluate(-1);
+                var justVerts = JustVerts.Evaluate();
+
+                if (mesh?.Mesh == null || appendmesh?.Asset == null)
+                {
+                    Failed.Trigger();
+                    return;
+
+                }
+                var matrix = float4x4.Transform(pos, rot, scl);
+                if (sub < 0)
+                {
+                    mesh.Mesh.Append(appendmesh.Asset.Data, !justVerts, matrix);
+                }
+                else
+                {
+                    mesh.Mesh.Append(appendmesh.Asset.Data, !justVerts, matrix, x => sub);
+                }
+                OK.Trigger();
+            }
+            catch
             {
                 Failed.Trigger();
-                return;
-
             }
-            var matrix = float4x4.Transform(pos, rot, scl);
-            if(sub) mesh.Mesh.Append(appendmesh.Asset.Data, sub, matrix);
-            else mesh.Mesh.Append(appendmesh.Asset.Data, sub, matrix, idk => mi);
-            
-            OK.Trigger();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace FrooxEngine
     {
         public readonly Input<DynamicMesh> DynamicMesh;
         public readonly Impulse OnRefresh;
+
         [ImpulseTarget]
         public void DoRefresh()
         {

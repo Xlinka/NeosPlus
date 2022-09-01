@@ -9,7 +9,6 @@ namespace FrooxEngine.LogiX.Components
 {
     [NodeName("Get Component")]
     [Category("LogiX/Components")]
-    [GenericTypes(GenericTypes.Group.NeosPrimitivesAndEnums, typeof(RefID))]
     public class GetComponent : LogixOperator<Component>
     {
         public readonly Input<Slot> Slot;

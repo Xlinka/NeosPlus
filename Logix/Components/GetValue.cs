@@ -9,7 +9,7 @@ namespace FrooxEngine.LogiX.Components
 {
     [NodeName("Get Value")]
     [Category("LogiX/Components")]
-    [NodeDefaultType(typeof(GetValue<float>))]
+    [GenericTypes(GenericTypes.Group.NeosPrimitivesAndEnums, typeof(RefID))]
     public class GetValue<T> : LogixOperator<T>
     {
         public readonly Input<IValue<T>> Field;
@@ -23,20 +23,6 @@ namespace FrooxEngine.LogiX.Components
                     return field.Value;
                 return default(T);
             }
-        }
-
-        protected override Type FindOverload(NodeTypes connectingTypes)
-        {
-            if (connectingTypes.inputs.TryGetValue("Field", out var value))
-            {
-                Type type = value.EnumerateInterfacesRecursively().FirstOrDefault((Type t) => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IValue<>));
-                if (type != null)
-                {
-                    return typeof(GetValue<>).MakeGenericType(type.GetGenericArguments()[0]);
-                }
-                return null;
-            }
-            return null;
         }
     }
 }

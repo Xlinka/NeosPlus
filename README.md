@@ -61,7 +61,6 @@ Features that have been added so far:
 - Physics/Cloth/ClothCapsuleCollider
 - Physics/Cloth/ClothCollider
 - Physics/Cloth/ClothSphereCollider
-- Physics/Cloth/ClothSphereConnect
 - Add-ons/Wizards/MeshColliderManagementTools
 - Utility/GrabberSimulator
 

@@ -58,8 +58,8 @@ Features that have been added so far:
 - Logix/Users/IsUserInSeatedMode
 
 ## Components
+- Physics/Cloth/Cloth
 - Physics/Cloth/ClothCapsuleCollider
-- Physics/Cloth/ClothCollider
 - Physics/Cloth/ClothSphereCollider
 - Add-ons/Wizards/MeshColliderManagementTools
 - Utility/GrabberSimulator

@@ -10,7 +10,8 @@ namespace FrooxEngine.LogiX.Components
 {
     [NodeName("Write Field from Slot")]
     [Category("LogiX/Components")]
-    public class WriteFieldFromSlot<T> : LogixNode
+	[GenericTypes(GenericTypes.Group.NeosPrimitivesAndEnums, typeof(RefID))]
+	public class WriteFieldFromSlot<T> : LogixNode
     {
         public readonly Input<Slot> Slot;
         public readonly Input<string> ComponentName;
@@ -50,25 +51,5 @@ namespace FrooxEngine.LogiX.Components
 				OnFail.Trigger();
 			}
 		}
-
-		protected override Type FindOverload(NodeTypes connectingTypes)
-		{
-			if (connectingTypes.inputs.TryGetValue("Target", out var value))
-			{
-				Type type = value.EnumerateInterfacesRecursively().FirstOrDefault((Type t) => t.IsGenericType && t.GetGenericTypeDefinition() == typeof(IValue<>));
-				if (type != null)
-				{
-					return typeof(WriteFieldFromSlot<>).MakeGenericType(type.GetGenericArguments()[0]);
-				}
-				return null;
-			}
-			if (connectingTypes.inputs.TryGetValue("Value", out value))
-			{
-				return typeof(WriteFieldFromSlot<>).MakeGenericType(value);
-			}
-			return null;
-		}
-
-		protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();
     }
 }

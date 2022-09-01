@@ -24,7 +24,4 @@ public class FieldRegister<T> : LogixOperator<IValue<T>>, IValue<IValue<T>>, ICh
 			Target.Target = value;
 		}
 	}
-
-	protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();
-
 }

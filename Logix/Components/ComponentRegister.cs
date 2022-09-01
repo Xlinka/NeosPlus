@@ -22,7 +22,4 @@ public class ComponentRegister : LogixOperator<Component>, IValue<Component>, IC
 			Target.Target = value;
 		}
 	}
-
-	protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();
-
 }

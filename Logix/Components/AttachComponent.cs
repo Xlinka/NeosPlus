@@ -33,7 +33,5 @@ namespace FrooxEngine.LogiX.Components
 				OnFail.Trigger();
 			}
 		}
-
-        protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();
     }
 }

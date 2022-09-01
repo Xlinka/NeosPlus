@@ -26,7 +26,5 @@ namespace FrooxEngine.LogiX.Components
                 return default(T);
             }
         }
-
-        protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();
     }
 }

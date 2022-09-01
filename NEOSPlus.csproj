@@ -94,6 +94,9 @@
     <Reference Include="UnityNeos">
       <HintPath>$(NeosPath)Neos_Data/Managed/UnityNeos.dll</HintPath>
     </Reference>
+    <Reference Include="CloudX.Shared.dll">
+      <HintPath>$(NeosPath)Neos_Data/Managed/CloudX.Shared.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Physics\Cloth\ClothCoefficent.cs" />
@@ -167,6 +170,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Materials\TestMaterial.cs" />
     <Compile Include="NeosPlusUtil.cs" />
+    <Compile Include="Shaders\ShaderInjection.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />

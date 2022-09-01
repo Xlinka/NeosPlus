@@ -13,7 +13,6 @@ namespace FrooxEngine.LogiX.Components
     public class ReadFieldFromComponent<T> : LogixOperator<T>
     {
         public readonly Input<Component> Component;
-        public readonly Input<string> ComponentName;
         public readonly Input<string> FieldName;
 
         public override T Content

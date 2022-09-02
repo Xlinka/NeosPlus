@@ -110,7 +110,10 @@
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />
     <Compile Include="Logix\Avatar\NearestUser.cs" />
     <Compile Include="Logix\Collections\CollectionsIterate.cs" />
-    <Compile Include="Logix\Collections\CollectionsRead.cs" />
+    <Compile Include="Logix\Collections\CollectionsGet.cs" />
+    <Compile Include="Logix\Collections\CollectionsAppend.cs" />
+    <Compile Include="Logix\Collections\CollectionsInsert.cs" />
+    <Compile Include="Logix\Collections\CollectionsSet.cs" />
     <Compile Include="Logix\Json\JsonAppendToArray.cs" />
     <Compile Include="Logix\Json\JsonCountArrayChildren.cs" />
     <Compile Include="Logix\Json\JsonCountObjectChildren.cs" />

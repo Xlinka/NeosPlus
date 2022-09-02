@@ -8,19 +8,19 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine.LogiX.Collections
 {
-    [NodeName("Read From Collection")]
+    [NodeName("Get")]
     [Category("LogiX/Collections")]
-    [NodeDefaultType(typeof(CollectionsRead<dummy, IEnumerable<dummy>>))]
-    public class CollectionsRead<T, TU> : LogixOperator<T> where TU : IEnumerable<T>
+    [NodeDefaultType(typeof(CollectionsGet<dummy, IEnumerable<dummy>>))]
+    public class CollectionsGet<T, TU> : LogixOperator<T> where TU : IEnumerable<T>
     {
-        public readonly Input<TU> Input;
+        public readonly Input<TU> Collection;
         public readonly Input<int> Index;
-        protected override string Label => $"Read From {typeof(TU).GetNiceName()}";
+        protected override string Label => $"Get {typeof(T).GetNiceName()} From {typeof(TU).GetNiceName()}";
         public override T Content
         {
             get
             {
-                var enumerable = Input.EvaluateRaw();
+                var enumerable = Collection.EvaluateRaw();
                 var index = Index.EvaluateRaw();
                 if (enumerable == null || index < 0) return default;
                 var array = enumerable.ToArray();
@@ -30,11 +30,11 @@ namespace FrooxEngine.LogiX.Collections
         }
         protected override Type FindOverload(NodeTypes connectingTypes)
         {
-            var input = connectingTypes.inputs["Input"];
+            var input = connectingTypes.inputs["Collection"];
             var enumerableGeneric =
                 input.GetInterfaces().FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>))
                     ?.GetGenericArguments()[0];
-            return typeof(CollectionsRead<,>).MakeGenericType(enumerableGeneric, input);
+            return typeof(CollectionsGet<,>).MakeGenericType(enumerableGeneric, input);
         }
     }
 }

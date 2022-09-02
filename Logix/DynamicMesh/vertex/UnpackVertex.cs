@@ -7,7 +7,7 @@ using FrooxEngine.UIX;
 
 namespace FrooxEngine.LogiX.Operators
 {
-    [Category(new string[] { "LogiX/Mesh" })]
+    [Category(new string[] { "LogiX/Mesh/Vertex" })]
     public class UnpackVertex : LogixNode
     {
         public readonly Input<Vertex> Vertex;

@@ -2,12 +2,13 @@
 using System;
 using FrooxEngine.LogiX;
 using FrooxEngine.UIX;
-
+using System.Threading.Tasks;
+using CodeX; 
 namespace FrooxEngine
 {
-
+    //pain and suffering sponsored by faolan(rad)
     [Category("Assets/Procedural Meshes")]
-    public class DynamicMesh : ProceduralMesh, ICustomInspector
+    public class DynamicMeshEX : ProceduralMesh, ICustomInspector, IAssetRequester
     {
         public readonly Sync<bool> Normals;
         public readonly Sync<bool> Tangents;
@@ -23,6 +24,8 @@ namespace FrooxEngine
         public readonly Sync<bool> BindPoses;
         public readonly Sync<bool> BoneWeights;
 
+        [HideInInspector,NonDrivable]
+        public readonly Sync<string> meshResync;
         protected override void OnAttach()
         {
             Normals.Value = true;
@@ -69,7 +72,7 @@ namespace FrooxEngine
             meshx.HasBoneBindings = BoneWeights;
         }
         public MeshX Mesh => meshx;
-
+        
         protected override void ClearMeshData()
         {
             meshx?.Clear();
@@ -80,6 +83,7 @@ namespace FrooxEngine
             base.BuildInspectorUI(ui);
             ui.Button("Refresh Mesh", OnRefreshMesh);
             ui.Button("Clear Mesh", OnClearMesh);
+            ui.Button("Syncronize Mesh", OnSyncronizeMesh);
         }
 
         [SyncMethod]
@@ -106,6 +110,98 @@ namespace FrooxEngine
         public void RefreshMesh()
         {
             MarkChangeDirty();
+        }
+
+        [SyncMethod]
+        private void OnSyncronizeMesh(IButton button, ButtonEventData eventData)
+        {
+            button.Enabled = false;
+            SyncronizeMesh();
+        }
+        [ImpulseTarget]
+        public void SyncronizeMesh()
+        {
+
+            StartTask(SyncronizeMeshAsync);
+        }
+        protected override void OnCommonUpdate()
+        {
+            base.OnCommonUpdate();
+            if (!string.IsNullOrEmpty(meshResync))
+            {
+                if (!_isprocecing)
+                {
+                    StartTask(MeshReciever);
+                }
+            }
+        }
+        bool _isprocecing;
+        private async Task MeshReciever()
+        {
+            _isprocecing = true;
+            var uri = new Uri(meshResync);
+            if (uri.Scheme == "local")
+            {
+                World.AssetManager.RegisterLocalAsset(uri);
+            }
+            await default(ToBackground);
+            if (IsDisposed) { _isprocecing = false; return; }
+            MeshMetadata metadata = await Engine.AssetManager.RequestMetadata<MeshMetadata>(uri).ConfigureAwait(false);
+            if (IsDisposed) { _isprocecing = false; return; }
+            MeshVariantDescriptor meshvariant = new MeshVariantDescriptor(true);
+            Engine.AssetManager.RequestAsset<Mesh>(uri, meshvariant, this, metadata);
+            _isprocecing = false;
+        }
+        public async Task SyncronizeMeshAsync()
+        {
+            AssetLoader<Mesh> loader = null;
+            if(AssetReferenceCount == 0)
+            {
+                loader = this.ForceLoad();
+            }
+            while(Asset?.Data == null)
+            {
+                await default(NextUpdate);
+            }
+            var bakelock = new object();
+            await Asset.RequestReadLock(bakelock);
+            await default(ToBackground);
+            Uri uri;
+            try
+            {
+                uri = await Engine.LocalDB.SaveAssetAsync(Asset.Data).ConfigureAwait(false);
+            }
+            finally
+            {
+                Asset.ReleaseReadLock(bakelock);
+            }
+            await default(ToWorld);
+            meshResync.Value = uri.ToString();
+            loader?.Destroy();
+        }
+
+        public void AssignAsset(Asset asset)
+        {
+            
+        }
+
+        public void AssetLoadStateUpdated(Asset asset)
+        {
+            if(asset.AssetURL != new Uri(meshResync.Value))
+            {
+                return;
+            }
+            if(asset.LoadState == AssetLoadState.FullyLoaded)
+            {
+                if(asset is Mesh mesh) { loadedmesh(mesh); }
+                meshResync.DirectValue = null;
+            }
+        }
+        private void loadedmesh(Mesh mesh)
+        {
+            ClearMesh();
+            Mesh.Append(mesh.Data);
+            mesh.Unload();
         }
     }
 }

@@ -7,7 +7,7 @@ using FrooxEngine.UIX;
 
 namespace FrooxEngine.LogiX.Operators
 {
-    [Category(new string[] { "LogiX/Mesh" })]
+    [Category(new string[] { "LogiX/Mesh/Bone" })]
     public class UnpackBoneBindings : LogixNode
     {
         public readonly Input<BoneBinding> BoneBind;

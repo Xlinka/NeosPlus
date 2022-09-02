@@ -5,7 +5,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category(new string[] { "LogiX/Mesh/" })]
+    [Category(new string[] { "LogiX/Mesh/Bone" })]
     public class SetBoneBinding : LogixNode
     {
         public readonly Input<BoneBinding> BoneBind;

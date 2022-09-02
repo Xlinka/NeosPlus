@@ -7,7 +7,7 @@ using FrooxEngine.UIX;
 // Rad was here
 namespace FrooxEngine.Logix.Math
 {
-    [Category(new string[] { "LogiX/Mesh" })]
+    [Category(new string[] { "LogiX/Mesh/Vertex" })]
     public class GetVertex : LogixOperator<Vertex>
     {
         public readonly Input<IAssetProvider<Mesh>> Mesh;

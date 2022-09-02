@@ -4,26 +4,25 @@ using FrooxEngine;
 using FrooxEngine.LogiX;
 using FrooxEngine.LogiX.Audio;
 using FrooxEngine.UIX;
-
+// Rad was here
 namespace FrooxEngine.Logix.Math
 {
-    [Category(new string[] { "LogiX/Mesh" })]
-    public class GetVertexPos : LogixOperator<float3>
+    [Category(new string[] { "LogiX/Mesh/Bone" })]
+    public class GetBoneBinding : LogixOperator<BoneBinding>
     {
         public readonly Input<IAssetProvider<Mesh>> Mesh;
         public readonly Input<int> Index;
 
-        public override float3 Content
+        public override BoneBinding Content
         {
             get
             {
                 var mesh = Mesh.Evaluate();
-                if(mesh?.Asset == null)
+                if(mesh?.Asset?.Data == null)
                 {
-                    return float3.Zero;
+                    return new BoneBinding();
                 }
-
-                return mesh.Asset.Data.GetVertex(Index.Evaluate()).Position;
+                return mesh.Asset.Data.RawBoneBindings[Index.Evaluate()];
             }
         }
     }

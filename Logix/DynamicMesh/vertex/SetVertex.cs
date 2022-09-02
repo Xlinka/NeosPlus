@@ -5,7 +5,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category(new string[] { "LogiX/Mesh/" })]
+    [Category(new string[] { "LogiX/Mesh/Vertex" })]
     public class SetVertex : LogixNode
     {
         public readonly Input<Vertex> Vertex;

@@ -7,7 +7,7 @@ using FrooxEngine.UIX;
 
 namespace FrooxEngine.LogiX.Operators
 {
-    [Category(new string[] { "LogiX/Mesh" })]
+    [Category(new string[] { "LogiX/Mesh/Triangle" })]
     public class UnpackTriangle : LogixNode
     {
         public readonly Input<Triangle> Triangle;

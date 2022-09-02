@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FrooxEngine.LogiX.Users
+﻿namespace FrooxEngine.LogiX.Users
 {
-    public class SetScalingEnabled
+    public class SetUserScaling
     {
-        [NodeName("Set User Scaling")]
+        [NodeName("Set is User Scaling")]
         [Category(new string[] { "LogiX/Users" })]
-        public class SetUserScaling : LogixNode
+        public class SetISUserScaling : LogixNode
         {        
             public readonly Input<User> User;
             public readonly Input<bool> Value;

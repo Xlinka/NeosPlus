@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Wizards\ExtendedLightWizard.cs" />
     <Compile Include="Components\Wizards\MeshColliderManagementTools.cs" />
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />
     <Compile Include="Logix\Json\JsonAppendToArray.cs" />

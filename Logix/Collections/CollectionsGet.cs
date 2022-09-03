@@ -5,6 +5,7 @@ using System.Linq;
 using BaseX;
 using FrooxEngine;
 using FrooxEngine.LogiX;
+using NEOSPlus;
 
 namespace FrooxEngine.LogiX.Collections
 {
@@ -28,13 +29,8 @@ namespace FrooxEngine.LogiX.Collections
                 return array[index];
             }
         }
-        protected override Type FindOverload(NodeTypes connectingTypes)
-        {
-            var input = connectingTypes.inputs["Collection"];
-            var enumerableGeneric =
-                input.GetInterfaces().FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>))
-                    ?.GetGenericArguments()[0];
-            return typeof(CollectionsGet<,>).MakeGenericType(enumerableGeneric, input);
-        }
+        protected override Type FindOverload(NodeTypes connectingTypes) =>
+            NodeExtensions.CollectionsOverload(connectingTypes, "Collection", typeof(IEnumerable<>),
+                typeof(CollectionsGet<,>));
     }
 }

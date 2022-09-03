@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using BaseX;
 using FrooxEngine;
 using FrooxEngine.LogiX;
@@ -20,6 +22,15 @@ namespace NEOSPlus
             text = "-";
             tint = color.White;
             uIBuilder2.Button(in text, in tint, minus);
+        }
+        public static Type CollectionsOverload(NodeTypes connectingTypes, string inputName, Type genericTypeDefinition, Type makeType)
+        {
+            var input = connectingTypes.inputs[inputName];
+            if (input == null) return null;
+            var enumerableGeneric =
+                input.GetInterfaces().FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == genericTypeDefinition)
+                    ?.GetGenericArguments()[0];
+            return enumerableGeneric == null ? null : makeType.MakeGenericType(enumerableGeneric, input);
         }
     }
 }

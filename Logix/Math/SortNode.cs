@@ -41,7 +41,7 @@ namespace FrooxEngine.LogiX.Math
                 where input.Key.StartsWith("ValueInputs") &&
                       (typeof(T).GetTypeCastCompatibility(input.Value) == TypeCastCompatibility.Implicit ||
                        ValueInputs.All(i => !i.IsConnected))
-                select typeof(Multiplexer<>).MakeGenericType(input.Value)).FirstOrDefault();
+                select typeof(Sort<>).MakeGenericType(input.Value)).FirstOrDefault();
 
         [SyncMethod]
         private void Add(IButton button, ButtonEventData eventData)

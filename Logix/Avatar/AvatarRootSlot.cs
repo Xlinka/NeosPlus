@@ -4,6 +4,7 @@ using FrooxEngine.LogiX;
 using FrooxEngine.LogiX.Math;
 using BaseX;
 using FrooxEngine.CommonAvatar;
+using System.Collections.Generic;
 
 
 namespace FrooxEngine.LogiX.Avatar
@@ -21,12 +22,11 @@ namespace FrooxEngine.LogiX.Avatar
                 if (user == null)
                     return null;
                 Slot slot = user.Root.Slot;
-                foreach (var item in slot.GetAllChildren())
-                {
-                    if (item.GetComponent<AvatarRoot>() != null)
-                        return item;
-                }
-                return null;
+                List<AvatarRoot> list = new List<AvatarRoot>();
+                slot.GetFirstDirectComponentsInChildren(list);
+                if (list.Count == 0)
+                    return null;
+                return list[0].Slot;
             }
         }
         protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();

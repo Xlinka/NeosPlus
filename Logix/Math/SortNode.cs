@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BaseX;
+using FrooxEngine.LogiX.Operators;
 using FrooxEngine.UIX;
 using NEOSPlus;
 
-//Credit to FroZen https://github.com/Neos-Metaverse/NeosPublic/issues/3703
-//Adds Sort Node
+//https://github.com/Neos-Metaverse/NeosPublic/issues/3703
 namespace FrooxEngine.LogiX.Math
 {
     [NodeName("Sort")]
@@ -34,6 +35,13 @@ namespace FrooxEngine.LogiX.Math
         }
         protected override void OnGenerateVisual(Slot root) => 
             GenerateUI(root).GenerateListButtons(Add, Remove);
+        
+        protected override Type FindOverload(NodeTypes connectingTypes) =>
+            (from input in connectingTypes.inputs
+                where input.Key.StartsWith("ValueInputs") &&
+                      (typeof(T).GetTypeCastCompatibility(input.Value) == TypeCastCompatibility.Implicit ||
+                       ValueInputs.All(i => !i.IsConnected))
+                select typeof(Multiplexer<>).MakeGenericType(input.Value)).FirstOrDefault();
 
         [SyncMethod]
         private void Add(IButton button, ButtonEventData eventData)

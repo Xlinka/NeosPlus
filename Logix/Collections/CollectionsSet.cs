@@ -17,7 +17,7 @@ namespace FrooxEngine.LogiX.Collections
         public readonly Impulse OnFail;
         protected override string Label => $"Set {typeof(T).GetNiceName()} In {typeof(TU).GetNiceName()}";
         [ImpulseTarget]
-        public void Write()
+        public void Set()
         {
             var collection = Collection.Evaluate();
             var index = Index.EvaluateRaw();

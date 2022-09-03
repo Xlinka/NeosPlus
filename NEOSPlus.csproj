@@ -113,6 +113,7 @@
     <Compile Include="Logix\Collections\CollectionsGet.cs" />
     <Compile Include="Logix\Collections\CollectionsAppend.cs" />
     <Compile Include="Logix\Collections\CollectionsInsert.cs" />
+    <Compile Include="Logix\Collections\CollectionsRemove.cs" />
     <Compile Include="Logix\Collections\CollectionsSet.cs" />
     <Compile Include="Logix\Json\JsonAppendToArray.cs" />
     <Compile Include="Logix\Json\JsonCountArrayChildren.cs" />

@@ -42,7 +42,7 @@ namespace FrooxEngine.LogiX.Collections
         {
             var input = connectingTypes.inputs["Collection"];
             var enumerableGeneric =
-                input.GetInterfaces().FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+                input.GetInterfaces().FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IList<>))
                     ?.GetGenericArguments()[0];
             return typeof(CollectionsInsert<,>).MakeGenericType(enumerableGeneric, input);
         }

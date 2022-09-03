@@ -14,7 +14,7 @@ namespace FrooxEngine.LogiX.Assets
     [Category(new string[] { "LogiX/Mesh/Operations" })]
     public class SyncronizeMesh : LogixNode
     {
-        public readonly Input<DynamicMesh> DynamicMesh;
+        public readonly Input<DynamicMeshEX> DynamicMesh;
         public readonly Impulse OnRefresh;
 
         [ImpulseTarget]

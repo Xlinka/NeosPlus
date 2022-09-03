@@ -54,5 +54,10 @@ namespace FrooxEngine.LogiX.Operators
             ((IOutputElement)UV2).NotifyChange();
             ((IOutputElement)UV3).NotifyChange();
         }
+        protected override void OnCommonUpdate()
+        {
+            base.OnCommonUpdate();
+            MarkChangeDirty();
+        }
     }
 }

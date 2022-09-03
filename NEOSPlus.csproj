@@ -161,6 +161,7 @@
     <Compile Include="Logix\String\HammingDistance.cs" />
     <Compile Include="Logix\String\HammingDistanceNonNullable.cs" />
     <Compile Include="Logix\Slots\GetGrandparent.cs" />
+    <Compile Include="Logix\Transform\ValueInequalityDriver.cs" />
     <Compile Include="Logix\Users\IsUserInSeatedMode.cs" />
     <Compile Include="Logix\Playback\IsPaused.cs" />
     <Compile Include="Logix\Playback\IsStopped.cs" />

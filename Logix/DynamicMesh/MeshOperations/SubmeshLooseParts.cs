@@ -25,23 +25,21 @@ namespace FrooxEngine
             {
                 var mesh = DynamicMesh.Evaluate();
                 var sub = Submesh.Evaluate();
-                if (mesh?.Mesh == null && sub > mesh.Mesh.SubmeshCount)
+                if (mesh?.Mesh == null || sub > mesh.Mesh.SubmeshCount)
                 {
                     Failed.Trigger();
                     return;
                 }
                 var m = mesh.Mesh.GetSubmesh(sub);
-                if (!(m is TriangleSubmesh tm))
+                if (m is not TriangleSubmesh tm)
                 {
                     Failed.Trigger();
                     return;
                 }
                 var trySubAsoos = new int[tm.IndicieCount / 3];
                 var current = 0;
-                for (var i = 0; i < tm.IndicieCount / 3; i++)
-                {
+                for (var i = 0; i < tm.IndicieCount / 3; i++) 
                     GetNeighbor(ref trySubAsoos, tm, i, ref current, true);
-                }
                 for (var i = 0; i < current; i++)
                 {
                     var newSubMesh = (TriangleSubmesh)mesh.Mesh.AddSubmesh(SubmeshTopology.Triangles);
@@ -64,13 +62,8 @@ namespace FrooxEngine
         private static void GetNeighbor(ref int[] trySubAccess, TriangleSubmesh m, int index, ref int currentIndex, bool isNSub = false)
         {
             if (trySubAccess[index] != 0)
-            {
                 return;
-            }
-            if (isNSub)
-            {
-                currentIndex++;
-            }
+            if (isNSub) currentIndex++;
             trySubAccess[index] = currentIndex;
             var e = m.GetTriangle(index);
             foreach (var t in m.Mesh.Triangles.Where(x =>

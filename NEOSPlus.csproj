@@ -115,9 +115,10 @@
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />
     <Compile Include="Logix\Avatar\AvatarRootSlot.cs" />
     <Compile Include="Logix\Avatar\NearestUser.cs" />
+    <Compile Include="Logix\DynamicMesh\bone\SetBoneBinding.cs" />
     <Compile Include="Logix\DynamicMesh\bone\AddBone.cs" />
     <Compile Include="Logix\DynamicMesh\bone\GetBone.cs" />
-    <Compile Include="Logix\DynamicMesh\bone\SetBoneBinding.cs" />
+    <Compile Include="Logix\DynamicMesh\bone\PackBoneBinding.cs" />
     <Compile Include="Logix\DynamicMesh\bone\StripEmptyBone.cs" />
     <Compile Include="Logix\DynamicMesh\bone\UnpackBoneBindings.cs" />
     <Compile Include="Logix\DynamicMesh\DynamicMeshInput.cs" />

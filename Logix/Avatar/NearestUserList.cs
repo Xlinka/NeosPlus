@@ -1,5 +1,6 @@
 ﻿using BaseX;
 using FrooxEngine.LogiX;
+using NEOSPlus;
 using System.Collections.Generic;
 namespace FrooxEngine.Logix.Avatar
 {
@@ -61,7 +62,8 @@ namespace FrooxEngine.Logix.Avatar
             }
             MarkChangeDirty();
         }
-
+        protected override void OnGenerateVisual(Slot root) =>
+            GenerateUI(root).GenerateListButtons(Add, Remove);
         protected override void OnEvaluate()
         {
             User.Value = _nearestUser;

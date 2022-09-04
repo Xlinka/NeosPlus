@@ -5,7 +5,7 @@ using FrooxEngine.UIX;
 namespace FrooxEngine
 {
 	[Category("Add-ons/Wizards")]
-	public class MapWizard  : Component, IDeveloperInterface, IComponent, IComponentBase, IDestroyable, IWorker, IWorldElement, IUpdatable, IChangeable, IAudioUpdatable, IInitializable, ILinkable
+	public class MapWizard : Component, IDeveloperInterface, IComponent, IComponentBase, IDestroyable, IWorker, IWorldElement, IUpdatable, IChangeable, IAudioUpdatable, IInitializable, ILinkable
     {
 		public readonly SyncRef<Slot> Root;
 
@@ -18,8 +18,6 @@ namespace FrooxEngine
 		public readonly Sync<bool> ProcessDisabled;
 
 		public readonly Sync<bool> ProcessColor;
-
-		public readonly Sync<float> ExtentRange;
 
 		public readonly Sync<color> Color;
 
@@ -39,8 +37,9 @@ namespace FrooxEngine
 			ProcessDirectionalLights.Value = true;
 			ProcessDisabled.Value = false;
 			ProcessColor.Value = false;
-			ExtentRange.Value = 50f;
 
+			Slot.Name = "Map Wizard";
+			Slot.Tag = "Developer";
 			NeosCanvasPanel neosCanvasPanel = Slot.AttachComponent<NeosCanvasPanel>();
 			neosCanvasPanel.Panel.AddCloseButton();
 			neosCanvasPanel.Panel.Title = this.GetLocalized("Wizard.LightSources.Title");
@@ -82,14 +81,14 @@ namespace FrooxEngine
 			uIBuilder9.Text(in text);
 			_intensityField.Target = ui.FloatField(0f, 8f);
 			UIBuilder uIBuilder10 = ui;
-			text = "Set light intensity".AsLocaleKey();
+			text = "Set light intensity to value".AsLocaleKey();
 			uIBuilder10.Button(in text, ChangeIntensity);
 			text = "-------";
 
 			uIBuilder10.Text(in text);
 			_intensityFieldMultiplicative.Target = ui.FloatField(0f, 8f);
 			UIBuilder uIBuilder11 = ui;
-			text = "Set light intensity multiplicative".AsLocaleKey();
+			text = "Multiply light intensity by value".AsLocaleKey();
 			uIBuilder11.Button(in text, ChangeIntensityMultiplicative);
 			UIBuilder uIBuilder12 = ui;
 			text = "-------";
@@ -98,9 +97,14 @@ namespace FrooxEngine
 			uIBuilder13.Text(in text);
 			_extentField.Target = ui.FloatField(0f, 50f);
 			UIBuilder uIBuilder14 = ui;
-			text = "Set light extent".AsLocaleKey();
+			text = "Set light range to value".AsLocaleKey();
 			uIBuilder14.Button(in text, SetExtent);
 			text = "-------";
+		}
+		protected override void OnStart()
+		{
+			base.OnStart();
+			Slot.GetComponentInChildrenOrParents<Canvas>()?.MarkDeveloper();
 		}
 
 		[SyncMethod]
@@ -117,7 +121,7 @@ namespace FrooxEngine
 		{
 			ForeachLight(delegate (Light l)
 			{
-				l.Intensity.Value *= _intensityField.Target.ParsedValue;
+				l.Intensity.Value *= _intensityFieldMultiplicative.Target.ParsedValue;
 			});
 		}
 
@@ -130,31 +134,31 @@ namespace FrooxEngine
                 {
 					case LightType.Spot:
 						var globalPosSpot = l.Slot.GlobalPosition;
-						var spotHit = Physics.RaycastOne(in globalPosSpot, l.Slot.Down, ExtentRange.Value);
+						var spotHit = Physics.RaycastOne(globalPosSpot, l.Slot.Down, _extentField.Target.ParsedValue);
 						if (spotHit.HasValue)
                         {
-							var clamped = MathX.Clamp(spotHit.Value.Distance, 0, ExtentRange.Value);
+							var clamped = MathX.Clamp(spotHit.Value.Distance, 0, _extentField.Target.ParsedValue);
 							l.Range.Value = clamped;
 							l.Intensity.Value = clamped / 10;
 						}	
 						else
                         {
-							l.Range.Value = ExtentRange.Value;
-							l.Intensity.Value = ExtentRange.Value / 10;
+							l.Range.Value = _extentField.Target.ParsedValue;
+							l.Intensity.Value = _extentField.Target.ParsedValue / 10;
 						}	
 						break;
 					case LightType.Point:
 						var globalPosPoint = l.Slot.GlobalPosition;
-						ICollider pointHit = Physics.SphereBoolSweepOne(in globalPosPoint, float3.Zero, ExtentRange.Value);
+						ICollider pointHit = Physics.SphereBoolSweepOne(globalPosPoint, float3.Zero, _extentField.Target.ParsedValue);
 						if (pointHit == null)
                         {
-							l.Range.Value = ExtentRange.Value;
-							l.Intensity.Value = ExtentRange.Value / 10;
+							l.Range.Value = _extentField.Target.ParsedValue;
+							l.Intensity.Value = _extentField.Target.ParsedValue / 10;
 							return;
 						}
-						for (int i = 0; i < ExtentRange.Value; i++)
+						for (int i = 0; i < _extentField.Target.ParsedValue; i++)
                         {
-							pointHit = Physics.SphereBoolSweepOne(in globalPosPoint, float3.Zero, i);
+							pointHit = Physics.SphereBoolSweepOne(globalPosPoint, float3.Zero, i);
 							if (pointHit != null)
 								break;
 						}

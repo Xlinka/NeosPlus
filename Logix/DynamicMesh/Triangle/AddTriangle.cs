@@ -1,11 +1,8 @@
-﻿using System;
-using BaseX;
-using FrooxEngine;
-using FrooxEngine.LogiX;
+﻿using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category(new string[] { "LogiX/Mesh/Triangle" })]
+    [Category("LogiX/Mesh/Triangle")]
     public class AddTriangle : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;
@@ -13,7 +10,6 @@ namespace FrooxEngine
         public readonly Input<int> Vertex0;
         public readonly Input<int> Vertex1;
         public readonly Input<int> Vertex2;
-
         public readonly Impulse OK;
         public readonly Impulse Failed;
         [ImpulseTarget]
@@ -30,7 +26,6 @@ namespace FrooxEngine
                 {
                     Failed.Trigger();
                     return;
-
                 }
                 mesh.Mesh.AddTriangle(v0, v1, v2, sub);
                 OK.Trigger();

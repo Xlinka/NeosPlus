@@ -5,13 +5,12 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category(new string[] { "LogiX/Mesh/Bone" })]
-    public class AddBone : LogixNode
+    [Category("LogiX/Mesh/Bone")]
+    public class SetBoneBinding : LogixNode
     {
-        public readonly Input<DynamicMesh> DynamicMesh;
-        public readonly Input<string> Name;
-
-
+        public readonly Input<Vertex> Vertex;
+        [OldName("BoneBinging")]
+        public readonly Input<BoneBinding> BoneBinding;
         public readonly Impulse OK;
         public readonly Impulse Failed;
 
@@ -20,18 +19,13 @@ namespace FrooxEngine
         {
             try
             {
-
-                //mesh.Asset.Data.AddBone();
-                //mesh.Asset.Data.RemoveBone()
-                var mesh = DynamicMesh.Evaluate();
-                var name = Name.Evaluate();
-                if (mesh?.Mesh == null)
+                var vert = Vertex.Evaluate();
+                if (!Vertex.IsConnected)
                 {
                     Failed.Trigger();
                     return;
-
                 }
-                mesh.Mesh.AddBone(name);
+                vert.BoneBinding = BoneBinding.Evaluate();
                 OK.Trigger();
             }
             catch

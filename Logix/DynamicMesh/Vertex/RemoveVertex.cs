@@ -1,31 +1,37 @@
-﻿using System;
-using BaseX;
-using FrooxEngine;
-using FrooxEngine.LogiX;
+﻿using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category(new string[] { "LogiX/Mesh/Bone" })]
-    public class StripEmptyBones : LogixNode
+    [Category("LogiX/Mesh/Vertex")]
+    public class RemoveVertex : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;
+
+        
+        public readonly Input<int> Index;
+
         public readonly Impulse OK;
         public readonly Impulse Failed;
-        public readonly Output<int> amount;
+
         [ImpulseTarget]
         public void Process()
         {
             try
             {
                 var mesh = DynamicMesh.Evaluate();
+                var index = Index.Evaluate();
                 if (mesh?.Mesh == null)
                 {
                     Failed.Trigger();
                     return;
-
                 }
-
-                amount.Value = mesh.Mesh.StripEmptyBones();
+                if (mesh?.Mesh.VertexCount <= index)
+                {
+                    Failed.Trigger();
+                    return;
+                }
+                mesh.Mesh.RemoveVertex(index);
+                
                 OK.Trigger();
             }
             catch

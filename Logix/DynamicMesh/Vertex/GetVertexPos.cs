@@ -1,13 +1,9 @@
-﻿using System;
-using BaseX;
-using FrooxEngine;
+﻿using BaseX;
 using FrooxEngine.LogiX;
-using FrooxEngine.LogiX.Audio;
-using FrooxEngine.UIX;
 
 namespace FrooxEngine.Logix.Math
 {
-    [Category(new string[] { "LogiX/Mesh/Vertex" })]
+    [Category("LogiX/Mesh/Vertex")]
     public class GetVertexPos : LogixOperator<float3>
     {
         public readonly Input<IAssetProvider<Mesh>> Mesh;
@@ -18,12 +14,7 @@ namespace FrooxEngine.Logix.Math
             get
             {
                 var mesh = Mesh.Evaluate();
-                if(mesh?.Asset == null)
-                {
-                    return float3.Zero;
-                }
-
-                return mesh.Asset.Data.GetVertex(Index.Evaluate()).Position;
+                return mesh?.Asset == null ? float3.Zero : mesh.Asset.Data.GetVertex(Index.Evaluate()).Position;
             }
         }
     }

@@ -1,13 +1,8 @@
-﻿using System;
-using BaseX;
-using FrooxEngine;
-using FrooxEngine.LogiX;
-using FrooxEngine.LogiX.Audio;
-using FrooxEngine.UIX;
+﻿using BaseX;
 
 namespace FrooxEngine.LogiX.Operators
 {
-    [Category(new string[] { "LogiX/Mesh/Triangle" })]
+    [Category("LogiX/Mesh/Triangle")]
     public class UnpackTriangle : LogixNode
     {
         public readonly Input<Triangle> Triangle;

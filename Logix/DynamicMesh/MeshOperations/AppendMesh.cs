@@ -1,16 +1,12 @@
-﻿using System;
-using BaseX;
-using FrooxEngine;
+﻿using BaseX;
 using FrooxEngine.LogiX;
-using FrooxEngine.LogiX.Audio;
-using FrooxEngine.UIX;
 
 /// credit
 /// faloan
 /// 
 namespace FrooxEngine
 {
-    [Category(new string[] { "LogiX/Mesh/Operations" })]
+    [Category("LogiX/Mesh/Operations")]
     public class AppendMesh : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;
@@ -20,7 +16,6 @@ namespace FrooxEngine
         public readonly Input<float3> Scale;
         public readonly Input<int> Submesh;
         public readonly Input<bool> JustVerts;
-
         public readonly Impulse OK;
         public readonly Impulse Failed;
         [ImpulseTarget]
@@ -29,28 +24,22 @@ namespace FrooxEngine
             try
             {
                 var mesh = DynamicMesh.Evaluate();
-                var appendmesh = Appended.Evaluate();
+                var appendMesh = Appended.Evaluate();
                 var pos = Position.Evaluate();
                 var rot = Rotation.Evaluate();
                 var scl = Scale.Evaluate(float3.One);
                 var sub = Submesh.Evaluate(-1);
                 var justVerts = JustVerts.Evaluate();
-
-                if (mesh?.Mesh == null || appendmesh?.Asset == null)
+                if (mesh?.Mesh == null || appendMesh?.Asset == null)
                 {
                     Failed.Trigger();
                     return;
-
                 }
                 var matrix = float4x4.Transform(pos, rot, scl);
                 if (sub < 0)
-                {
-                    mesh.Mesh.Append(appendmesh.Asset.Data, !justVerts, matrix);
-                }
+                    mesh.Mesh.Append(appendMesh.Asset.Data, !justVerts, matrix);
                 else
-                {
-                    mesh.Mesh.Append(appendmesh.Asset.Data, !justVerts, matrix, x => sub);
-                }
+                    mesh.Mesh.Append(appendMesh.Asset.Data, !justVerts, matrix, x => sub);
                 OK.Trigger();
             }
             catch

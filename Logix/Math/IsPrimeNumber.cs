@@ -14,18 +14,22 @@ namespace FrooxEngine.LogiX.Math
             get
             {
                 var num = input.EvaluateRaw();
-                if (num < 2) return false;
-                else if (num == 2) return true;
-                else if (num % 2 == 0) return false;
-
-                double sqrtNum = MathX.Sqrt(num);
-                for (int i = 3; i <= sqrtNum; i += 2)
+                switch (num)
                 {
-                    if (num % i == 0)
-                    {
+                    case < 2:
                         return false;
+                    case 2:
+                        return true;
+                    default:
+                    {
+                        if (num % 2 == 0) return false;
+                        break;
                     }
                 }
+                double sqrtNum = MathX.Sqrt(num);
+                for (var i = 3; i <= sqrtNum; i += 2)
+                    if (num % i == 0)
+                        return false;
                 return true;
             }
         }

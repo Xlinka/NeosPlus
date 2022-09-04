@@ -1,19 +1,14 @@
-﻿using System;
-using BaseX;
-using FrooxEngine;
-using FrooxEngine.LogiX;
+﻿using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
     [Category(new string[] { "LogiX/Mesh/Triangle" })]
-    public class SetTriangleIndexies : LogixNode
+    public class RemoveTriangles : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;
-        public readonly Input<int> Index;
         public readonly Input<int> Submesh;
-        public readonly Input<int> Vertex0;
-        public readonly Input<int> Vertex1;
-        public readonly Input<int> Vertex2;
+        public readonly Input<int> Index;
+        public readonly Input<int> Count;
 
         public readonly Impulse OK;
         public readonly Impulse Failed;
@@ -23,18 +18,22 @@ namespace FrooxEngine
             try
             {
                 var mesh = DynamicMesh.Evaluate();
-                var index = Index.Evaluate();
-                var sub = Submesh.Evaluate();
-                var v0 = Vertex0.Evaluate();
-                var v1 = Vertex1.Evaluate();
-                var v2 = Vertex2.Evaluate();
+                var sub = Submesh.Evaluate(0);
+                var index = Index.Evaluate(0);
+                var count = Count.Evaluate(1);
                 if (mesh?.Mesh == null)
                 {
                     Failed.Trigger();
                     return;
 
                 }
-                mesh.Mesh.SetTriangle(index, v0, v1, v2, sub);
+                if (mesh?.Mesh.SubmeshCount <= sub)
+                {
+                    Failed.Trigger();
+                    return;
+
+                }
+                mesh.Mesh.RemoveTriangles(index, count, sub);
                 OK.Trigger();
             }
             catch

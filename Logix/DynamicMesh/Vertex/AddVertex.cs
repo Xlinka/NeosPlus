@@ -1,11 +1,9 @@
-﻿using System;
-using BaseX;
-using FrooxEngine;
+﻿using BaseX;
 using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category(new string[] { "LogiX/Mesh/Vertex" })]
+    [Category("LogiX/Mesh/Vertex")]
     public class AddVertex : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;
@@ -27,14 +25,9 @@ namespace FrooxEngine
                     Failed.Trigger();
                     return;
                 }
-                if (VertexCopy.IsConnected)
-                {
-                    Vertex.Value = mesh.Mesh.AddVertex(VertexCopy.Evaluate());
-                }
-                else
-                {
-                    Vertex.Value = mesh.Mesh.AddVertex();
-                }
+                Vertex.Value = VertexCopy.IsConnected
+                    ? mesh.Mesh.AddVertex(VertexCopy.Evaluate())
+                    : mesh.Mesh.AddVertex();
                 OK.Trigger();
             }
             catch

@@ -22,10 +22,10 @@ namespace FrooxEngine
             try
             {
                 var mesh = DynamicMesh.Evaluate();
-                var sub = Submesh.Evaluate();
+                var sub = Submesh.Evaluate(0);
                 var v0 = Vertex0.Evaluate();
-                var v1 = Vertex0.Evaluate();
-                var v2 = Vertex0.Evaluate();
+                var v1 = Vertex1.Evaluate();
+                var v2 = Vertex2.Evaluate();
                 if (mesh?.Mesh == null)
                 {
                     Failed.Trigger();

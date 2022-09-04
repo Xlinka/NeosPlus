@@ -5,24 +5,24 @@ using FrooxEngine.LogiX;
 using FrooxEngine.LogiX.Audio;
 using FrooxEngine.UIX;
 using System.Runtime.CompilerServices;
-
+using System.Threading.Tasks;
 /// credit
 /// faloan
 /// 
 namespace FrooxEngine.LogiX.Assets
 {
     [Category(new string[] { "LogiX/Mesh/Operations" })]
-    public class SyncronizeMesh : LogixNode
+    public class GetMesh : LogixOperator<Mesh>
     {
-        public readonly Input<DynamicMeshEX> DynamicMesh;
-        public readonly Impulse OnRefresh;
+        public readonly Input<Slot> Root;
 
-        [ImpulseTarget]
-        public void Syncronize()
+        public override Mesh Content
         {
-            DynamicMesh.Evaluate()?.SyncronizeMesh();
-            OnRefresh.Trigger();
+            get
+            {
+                return Root.Evaluate().GetComponent<Mesh>();
+            }
         }
-       
+
     }
 }

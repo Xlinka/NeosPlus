@@ -14,7 +14,23 @@ namespace FrooxEngine
         public override Submesh Content => DynamicMesh.Evaluate()?.Asset?.Data?.GetSubmesh(Index.Evaluate());
     }
 
+    [Category(new string[] { "LogiX/Mesh/Operations" })]
+    public class SubmeshMerge : LogixNode
+    {
+        public readonly Input<Submesh> SubmeshFrom;
+        public readonly Input<Submesh> SubmeshTo;
+        public readonly Impulse OK;
 
+        [ImpulseTarget]
+        public void Process()
+        {
+            var a = SubmeshFrom.Evaluate();
+            var b = SubmeshTo.Evaluate();
+            b.Append(a);
+            OK.Trigger();
+        }
+        //public override Mesh Content => Submesh.Evaluate()?.Topology//.Asset?.Data?.GetSubmesh(Index.Evaluate());
+    }
     [Category(new string[] { "LogiX/Mesh/Operations" })]
     public class RemoveSubmesh : LogixNode
     {

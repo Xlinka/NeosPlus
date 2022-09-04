@@ -26,5 +26,10 @@ namespace FrooxEngine.Logix.Math
                 return mesh.Asset.Data.GetTriangle(Index.Evaluate(), Submesh.Evaluate());
             }
         }
+        protected override void OnCommonUpdate()
+        {
+            base.OnCommonUpdate();
+            MarkChangeDirty();
+        }
     }
 }

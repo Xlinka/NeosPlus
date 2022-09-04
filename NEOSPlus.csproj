@@ -99,6 +99,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Assets\DynamicMesh.cs" />
+    <Compile Include="Components\Assets\DynamicMeshExperemental.cs" />
     <Compile Include="Components\Physics\Cloth\ClothCoefficent.cs" />
     <Compile Include="Components\Physics\Cloth\ClothCollider.cs" />
     <Compile Include="Components\Physics\Cloth\UnityBetterComponentConnector.cs" />
@@ -113,7 +115,32 @@
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />
     <Compile Include="Logix\Avatar\AvatarRootSlot.cs" />
     <Compile Include="Logix\Avatar\NearestUser.cs" />
-    <Compile Include="Logix\Input\ParseEnum.cs" />
+    <Compile Include="Logix\DynamicMesh\bone\AddBone.cs" />
+    <Compile Include="Logix\DynamicMesh\bone\GetBone.cs" />
+    <Compile Include="Logix\DynamicMesh\bone\SetBoneBinding.cs" />
+    <Compile Include="Logix\DynamicMesh\bone\StripEmptyBone.cs" />
+    <Compile Include="Logix\DynamicMesh\bone\UnpackBoneBindings.cs" />
+    <Compile Include="Logix\DynamicMesh\DynamicMeshInput.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshInfo.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshInput.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\AppendMesh.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\BakeMesh.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\ClearMesh.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\RefreshMesh.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\SubmeshActions.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\SubmeshLoseParts.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\SyncronizeMesh.cs" />
+    <Compile Include="Logix\DynamicMesh\triangle\RemoveTriangles.cs" />
+    <Compile Include="Logix\DynamicMesh\triangle\GetTriangle.cs" />
+    <Compile Include="Logix\DynamicMesh\triangle\AddTriangle.cs" />
+    <Compile Include="Logix\DynamicMesh\triangle\SetTriangleIndexies.cs" />
+    <Compile Include="Logix\DynamicMesh\triangle\UnpackTriangle.cs" />
+    <Compile Include="Logix\DynamicMesh\vertex\RemoveVertex.cs" />
+    <Compile Include="Logix\DynamicMesh\vertex\AddVertex.cs" />
+    <Compile Include="Logix\DynamicMesh\vertex\GetVertex.cs" />
+    <Compile Include="Logix\DynamicMesh\vertex\GetVertexPos.cs" />
+    <Compile Include="Logix\DynamicMesh\vertex\SetVertex.cs" />
+    <Compile Include="Logix\DynamicMesh\vertex\UnpackVertex.cs" />
     <Compile Include="Logix\Json\JsonAppendToArray.cs" />
     <Compile Include="Logix\Json\JsonCountArrayChildren.cs" />
     <Compile Include="Logix\Json\JsonCountObjectChildren.cs" />

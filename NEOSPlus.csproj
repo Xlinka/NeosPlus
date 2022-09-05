@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Wizards\LODWizard.cs" />
     <Compile Include="Components\Wizards\MapWizard.cs" />
     <Compile Include="Components\Wizards\MeshColliderManagementTools.cs" />
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />

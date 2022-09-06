@@ -24,7 +24,6 @@ namespace FrooxEngine
                     return;
 
                 }
-
                 amount.Value = mesh.Mesh.StripEmptyBones();
                 OK.Trigger();
             }

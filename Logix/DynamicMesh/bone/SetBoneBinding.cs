@@ -9,7 +9,7 @@ namespace FrooxEngine
     public class SetBoneBinding : LogixNode
     {
         public readonly Input<BoneBinding> BoneBind;
-
+        /*
         public readonly Input<int> boneIndex0;
         public readonly Input<int> boneIndex1;
         public readonly Input<int> boneIndex2;
@@ -18,7 +18,11 @@ namespace FrooxEngine
         public readonly Input<float> weight1;
         public readonly Input<float> weight2;
         public readonly Input<float> weight3;
+        */
 
+        public readonly Input<int> VertexIndex;
+        public readonly Input<int> BoneIndex;
+        public readonly Input<float> Weight;
 
         public readonly Impulse OK;
         public readonly Impulse Failed;
@@ -29,6 +33,8 @@ namespace FrooxEngine
             try
             {
                 var bone = BoneBind.Evaluate();
+                bone.SetBinding(VertexIndex.Evaluate(), BoneIndex.Evaluate(), Weight.Evaluate());
+                /*
                 if(boneIndex0.IsConnected){
                     bone.boneIndex0 = boneIndex0.Evaluate();
                 }
@@ -52,7 +58,7 @@ namespace FrooxEngine
                 }
                 if (weight3.IsConnected) { 
                     bone.weight3 = weight3.Evaluate();
-                }
+                }*/
                 OK.Trigger();
             }
             catch

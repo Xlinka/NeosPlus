@@ -7,20 +7,20 @@ using FrooxEngine.UIX;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 /// credit
-/// faloan
+/// art
 /// 
 namespace FrooxEngine.LogiX.Assets
 {
     [Category(new string[] { "LogiX/Mesh/Operations" })]
-    public class GetMesh : LogixOperator<Mesh>
+    public class GetMesh : LogixOperator<IAssetProvider<Mesh>>
     {
         public readonly Input<Slot> Root;
 
-        public override Mesh Content
+        public override IAssetProvider<Mesh> Content
         {
             get
             {
-                return Root.Evaluate().GetComponent<Mesh>();
+                return Root.Evaluate().GetComponent<IAssetProvider<Mesh>>();
             }
         }
 

@@ -5,25 +5,12 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category(new string[] { "LogiX/Mesh/Bone" })]
+    [Category("LogiX/Mesh/Bone")]
     public class SetBoneBinding : LogixNode
     {
-        public readonly Input<BoneBinding> BoneBind;
-        /*
-        public readonly Input<int> boneIndex0;
-        public readonly Input<int> boneIndex1;
-        public readonly Input<int> boneIndex2;
-        public readonly Input<int> boneIndex3;
-        public readonly Input<float> weight0;
-        public readonly Input<float> weight1;
-        public readonly Input<float> weight2;
-        public readonly Input<float> weight3;
-        */
-
-        public readonly Input<int> VertexIndex;
-        public readonly Input<int> BoneIndex;
-        public readonly Input<float> Weight;
-
+        public readonly Input<Vertex> Vertex;
+        [OldName("BoneBinging")]
+        public readonly Input<BoneBinding> BoneBinding;
         public readonly Impulse OK;
         public readonly Impulse Failed;
 
@@ -32,33 +19,13 @@ namespace FrooxEngine
         {
             try
             {
-                var bone = BoneBind.Evaluate();
-                bone.SetBinding(VertexIndex.Evaluate(), BoneIndex.Evaluate(), Weight.Evaluate());
-                /*
-                if(boneIndex0.IsConnected){
-                    bone.boneIndex0 = boneIndex0.Evaluate();
+                var vert = Vertex.Evaluate();
+                if (!Vertex.IsConnected)
+                {
+                    Failed.Trigger();
+                    return;
                 }
-                if(boneIndex1.IsConnected){
-                    bone.boneIndex1 = boneIndex1.Evaluate();
-                }
-                if(boneIndex2.IsConnected){
-                    bone.boneIndex2 = boneIndex2.Evaluate();
-                }
-                if(boneIndex3.IsConnected){
-                    bone.boneIndex3 = boneIndex3.Evaluate();
-                }
-                if(weight0.IsConnected){
-                    bone.weight0 = weight0.Evaluate();
-                }
-                if(weight1.IsConnected){
-                    bone.weight1 = weight1.Evaluate();
-                }
-                if(weight2.IsConnected){
-                    bone.weight2 = weight2.Evaluate();
-                }
-                if (weight3.IsConnected) { 
-                    bone.weight3 = weight3.Evaluate();
-                }*/
+                vert.BoneBinding = BoneBinding.Evaluate();
                 OK.Trigger();
             }
             catch

@@ -1,9 +1,5 @@
-﻿using System;
-using BaseX;
-using FrooxEngine;
+﻿using BaseX;
 using FrooxEngine.LogiX;
-using FrooxEngine.LogiX.Audio;
-using FrooxEngine.UIX;
 
 namespace FrooxEngine.Logix.Math
 {

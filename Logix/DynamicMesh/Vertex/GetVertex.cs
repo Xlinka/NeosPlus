@@ -1,13 +1,10 @@
-﻿using System;
-using BaseX;
-using FrooxEngine;
+﻿using BaseX;
 using FrooxEngine.LogiX;
-using FrooxEngine.LogiX.Audio;
-using FrooxEngine.UIX;
+
 // Rad was here
 namespace FrooxEngine.Logix.Math
 {
-    [Category(new string[] { "LogiX/Mesh/Vertex" })]
+    [Category("LogiX/Mesh/Vertex")]
     public class GetVertex : LogixOperator<Vertex>
     {
         public readonly Input<IAssetProvider<Mesh>> Mesh;
@@ -18,12 +15,7 @@ namespace FrooxEngine.Logix.Math
             get
             {
                 var mesh = Mesh.Evaluate();
-                if(mesh?.Asset == null)
-                {
-                    return new Vertex();
-                }
-
-                return mesh.Asset.Data.GetVertex(Index.Evaluate());
+                return mesh?.Asset == null ? new Vertex() : mesh.Asset.Data.GetVertex(Index.Evaluate());
             }
         }
 

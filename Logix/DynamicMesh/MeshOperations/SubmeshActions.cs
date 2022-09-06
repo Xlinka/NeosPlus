@@ -1,20 +1,17 @@
-﻿using System;
-using BaseX;
-using FrooxEngine;
+﻿using BaseX;
 using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category(new string[] { "LogiX/Mesh/Operations" })]
+    [Category("LogiX/Mesh/Operations")]
     public class GetSubmesh : LogixOperator<Submesh>
     {
         public readonly Input<IAssetProvider<Mesh>> DynamicMesh;
         public readonly Input<int> Index;
-
         public override Submesh Content => DynamicMesh.Evaluate()?.Asset?.Data?.GetSubmesh(Index.Evaluate());
     }
 
-    [Category(new string[] { "LogiX/Mesh/Operations" })]
+    [Category("LogiX/Mesh/Operations")]
     public class SubmeshMerge : LogixNode
     {
         public readonly Input<Submesh> SubmeshFrom;
@@ -29,13 +26,11 @@ namespace FrooxEngine
             b.Append(a);
             OK.Trigger();
         }
-        //public override Mesh Content => Submesh.Evaluate()?.Topology//.Asset?.Data?.GetSubmesh(Index.Evaluate());
     }
-    [Category(new string[] { "LogiX/Mesh/Operations" })]
+    [Category("LogiX/Mesh/Operations")]
     public class RemoveSubmesh : LogixNode
     {
         public readonly Input<Submesh> SubMesh;
-
         public readonly Impulse OK;
         public readonly Impulse Failed;
 
@@ -60,15 +55,13 @@ namespace FrooxEngine
         }
     }
 
-    [Category(new string[] { "LogiX/Mesh/Operations" })]
+    [Category("LogiX/Mesh/Operations")]
     public class AddSubmesh : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;
         public readonly Input<SubmeshTopology> Topology;
-
         public readonly Output<Submesh> Submesh;
         public readonly Output<int> SubMeshIndex;
-
         public readonly Impulse OK;
         public readonly Impulse Failed;
 
@@ -79,7 +72,6 @@ namespace FrooxEngine
             {
                 var mesh = DynamicMesh.Evaluate();
                 var topology = Topology.Evaluate();
-
                 if (mesh?.Mesh == null)
                 {
                     Failed.Trigger();

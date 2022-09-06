@@ -100,7 +100,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Assets\DynamicMesh.cs" />
-    <Compile Include="Components\Assets\DynamicMeshExperemental.cs" />
     <Compile Include="Components\Physics\Cloth\ClothCoefficent.cs" />
     <Compile Include="Components\Physics\Cloth\ClothCollider.cs" />
     <Compile Include="Components\Physics\Cloth\UnityBetterComponentConnector.cs" />
@@ -132,7 +131,6 @@
     <Compile Include="Logix\DynamicMesh\MeshOperations\RefreshMesh.cs" />
     <Compile Include="Logix\DynamicMesh\MeshOperations\SubmeshActions.cs" />
     <Compile Include="Logix\DynamicMesh\MeshOperations\SubmeshLooseParts.cs" />
-    <Compile Include="Logix\DynamicMesh\MeshOperations\SyncronizeMesh.cs" />
     <Compile Include="Logix\DynamicMesh\Triangle\AddTriangle.cs" />
     <Compile Include="Logix\DynamicMesh\Triangle\GetTriangle.cs" />
     <Compile Include="Logix\DynamicMesh\Triangle\RemoveTriangles.cs" />

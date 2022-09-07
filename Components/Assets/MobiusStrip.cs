@@ -1,9 +1,4 @@
 ﻿using BaseX;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FrooxEngine
 {
@@ -13,8 +8,7 @@ namespace FrooxEngine
 
 		public MobiusStrip(MeshX mesh) : base(mesh)
         {
-			var res = planeResolution * planeResolution;
-			mesh.SetVertexCount(res);
+			mesh.SetVertexCount((planeResolution * planeResolution) + planeResolution);
 			float u = 0;
 			float v = -1;
 			float uStepSize = MathX.TAU / planeResolution;
@@ -25,14 +19,13 @@ namespace FrooxEngine
 			while (u <= MathX.PI * 2.0f)
 			{
 				int currY = 0;
-				
 				while (v <= 1)
 				{
-					mesh.SetHasUV(currX + currY, true);
+					// mesh.SetHasUV(currX + currY, true);
 					mesh.SetUV(currX + currY, 0, new float2(currX / (planeResolution - 1), currY / (planeResolution - 1)));
-					float x = (1 + ((v / 2.0f) * MathX.Cos(u / 2.0f))) * MathX.Cos(u);
-					float y = (1 + ((v / 2.0f) * MathX.Cos(u / 2.0f))) * MathX.Sin(u);
-					float z = (v / 2.0f) * MathX.Sin((u) / 2.0f);
+					float x = (1 + (v / 2.0f * MathX.Cos(u / 2.0f))) * MathX.Cos(u);
+					float y = (1 + (v / 2.0f * MathX.Cos(u / 2.0f))) * MathX.Sin(u);
+					float z = v / 2.0f * MathX.Sin(u / 2.0f);
 					float3 position = new float3(x, y, z);
 					mesh.AddVertex(position);
 					v += vStepSize;
@@ -45,7 +38,7 @@ namespace FrooxEngine
 
 			for (int i = 0; i < mesh.VertexCapacity; i++) // Assuming Vertex Capacity is the MAX number we can have, Vertex Count is current num veritces
 			{
-				if (!((i + 1) % (planeResolution) == 0))
+				if (!((i + 1) % planeResolution == 0))
 				{
 					int index1 = i + 1;
 					int index2 = i + planeResolution;
@@ -77,8 +70,7 @@ namespace FrooxEngine
 
 		public MobiusStrip(MeshX mesh, int resolution) : base(mesh)
 		{
-			var res = resolution * resolution;
-			mesh.SetVertexCount(res);
+			mesh.SetVertexCount(resolution * resolution);
 			float u = 0;
 			float v = -1;
 			float uStepSize = MathX.TAU / resolution;
@@ -92,13 +84,12 @@ namespace FrooxEngine
 
 				while (v <= 1)
 				{
-					mesh.SetHasUV(currX + currY, true);
+					// mesh.SetHasUV(currX + currY, true);
 					mesh.SetUV(currX + currY, 0, new float2(currX / (resolution - 1), currY / (resolution - 1)));
-					float x = (1 + ((v / 2.0f) * MathX.Cos(u / 2.0f))) * MathX.Cos(u);
-					float y = (1 + ((v / 2.0f) * MathX.Cos(u / 2.0f))) * MathX.Sin(u);
-					float z = (v / 2.0f) * MathX.Sin((u) / 2.0f);
-					float3 position = new float3(x, y, z);
-					mesh.AddVertex(position);
+					float x = (1 + (v / 2.0f * MathX.Cos(u / 2.0f))) * MathX.Cos(u);
+					float y = (1 + (v / 2.0f * MathX.Cos(u / 2.0f))) * MathX.Sin(u);
+					float z = v / 2.0f * MathX.Sin(u / 2.0f);
+					mesh.AddVertex(new float3(x, y, z));
 					v += vStepSize;
 					currY++;
 				}
@@ -109,7 +100,7 @@ namespace FrooxEngine
 
 			for (int i = 0; i < mesh.VertexCapacity; i++) // Assuming Vertex Capacity is the MAX number we can have, Vertex Count is current num veritces
 			{
-				if (!((i + 1) % (resolution) == 0))
+				if (!((i + 1) % resolution == 0))
 				{
 					int index1 = i + 1;
 					int index2 = i + resolution;

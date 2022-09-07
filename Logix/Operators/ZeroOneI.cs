@@ -11,6 +11,6 @@ namespace FrooxEngine.LogiX.Operators
 	{
 		public readonly Input<bool> Boolean;
 		public override int Content => Boolean.EvaluateRaw() ? 1 : 0;
-		protected override void NotifyOutputsOfChange() => ((IOutputElement) this).NotifyChange();
+		protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();
 	}
 }

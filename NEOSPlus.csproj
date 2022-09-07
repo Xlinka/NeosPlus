@@ -111,6 +111,9 @@
     <Compile Include="Components\Utility\GrabberSimulator.cs" />
     <Compile Include="Components\Wizards\MeshColliderManagementTools.cs" />
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />
+    <Compile Include="Logix\Assets\CreateIAssetProvider.cs" />
+    <Compile Include="Logix\Assets\GetAssetURL.cs" />
+    <Compile Include="Logix\Assets\GetIAssetProvider.cs" />
     <Compile Include="Logix\Avatar\NearestUser.cs" />
     <Compile Include="Logix\Json\JsonAppendToArray.cs" />
     <Compile Include="Logix\Json\JsonCountArrayChildren.cs" />

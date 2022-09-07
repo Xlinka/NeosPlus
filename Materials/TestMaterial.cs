@@ -1,12 +1,12 @@
 using System;
+using BaseX;
 using FrooxEngine;
 using FrooxEngine.LogiX;
 using FrooxEngine.LogiX.Math;
-using BaseX;
 [Category(new string[] { "Assets/Materials/NeosPlus" })]
 public class TestMaterial : SingleShaderMaterialProvider
 {
-    protected override Uri ShaderURL => NeosAssets.Shaders.NeosPBSColorSplatSpecular; //Temp testing using the NeosPBS shader
+	protected override Uri ShaderURL => NeosAssets.Shaders.NeosPBSColorSplatSpecular; //Temp testing using the NeosPBS shader
 	public readonly Sync<float> Scale;
 	public readonly Sync<float3> Offset;
 	[DefaultValue(-1)]
@@ -21,7 +21,7 @@ public class TestMaterial : SingleShaderMaterialProvider
 	}
 	protected override void UpdateKeywords(ShaderKeywords keywords)
 	{
-		
+
 	}
 	protected override void UpdateMaterial(Material material)
 	{

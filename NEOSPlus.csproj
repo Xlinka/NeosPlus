@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <NeosPath>$(MSBuildThisFileDirectory)NeosVR</NeosPath>
+    <NeosPath>$(MSBuildThisFileDirectory)NeosVR\</NeosPath>
     <NeosPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\NeosVR\')">C:\Program Files (x86)\Steam\steamapps\common\NeosVR\</NeosPath>
     <NeosPath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/NeosVR/')">$(HOME)/.steam/steam/steamapps/common/NeosVR/</NeosPath>
     <NeosPath Condition="Exists('/mnt/LocalDisk/SteamLibrary/steamapps/common/NeosVR/')">/mnt/LocalDisk/SteamLibrary/steamapps/common/NeosVR/</NeosPath>
@@ -216,4 +216,8 @@
     <Folder Include="Logix\Physics\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd "$(ProjectDir)"
+powershell -NoProfile -ExecutionPolicy Bypass ./Scripts/PostBuild.ps1 '$(NeosPath)' $(ConfigurationName)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

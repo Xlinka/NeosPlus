@@ -216,4 +216,8 @@
     <Folder Include="Logix\Physics\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd "$(ProjectDir)"
+powershell -NoProfile -ExecutionPolicy Bypass ./Scripts/PostBuild.ps1 '$(NeosPath)' $(ConfigurationName)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

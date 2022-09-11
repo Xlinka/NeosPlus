@@ -5,16 +5,20 @@ namespace FrooxEngine
     [Category(new string[] { "Assets/Procedural Meshes" })]
     public class SierpinskiPyramidMesh : ProceduralMesh
     {
-        [Range(1, 6)]
+        [Range(1, 9)]
 		public readonly Sync<int> Subdivisions;
-		private int _res;
 		private SierpinskiPyramid pyramid;
+		private int _subdivisions;
 
 		protected override void OnAwake()
 		{
 			base.OnAwake();
 			Subdivisions.Value = 1;
-			_res = 1;
+		}
+
+		protected override void PrepareAssetUpdateData()
+		{
+			_subdivisions = Subdivisions.Value;
 		}
 
 		protected override void ClearMeshData()
@@ -25,20 +29,15 @@ namespace FrooxEngine
 		protected override void UpdateMeshData(MeshX meshx)
 		{
 			bool value = false;
-			if (pyramid == null)
+			if (pyramid == null || pyramid.Subdivisions != _subdivisions)
 			{
 				pyramid?.Remove();
-				pyramid = new SierpinskiPyramid(meshx, _res);
+				pyramid = new SierpinskiPyramid(meshx, _subdivisions);
 				value = true;
 			}
+			pyramid.Subdivisions = Subdivisions.Value;
 			pyramid.Update();
 			uploadHint[MeshUploadHint.Flag.Geometry] = value;
-		}
-
-		protected override void PrepareAssetUpdateData()
-		{
-			int a = Subdivisions.Value;
-			_res = a;
 		}
 	}
 }

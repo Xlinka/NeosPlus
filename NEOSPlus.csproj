@@ -103,7 +103,6 @@
     <Compile Include="Components\Assets\MobuisStripMesh.cs" />
     <Compile Include="Components\Assets\SierpinskiPyramid.cs" />
     <Compile Include="Components\Assets\SierpinskiPyramidMesh.cs" />
-    <Compile Include="Components\Assets\STetrahedron.cs" />
     <Compile Include="Components\Physics\Cloth\ClothCoefficent.cs" />
     <Compile Include="Components\Physics\Cloth\ClothCollider.cs" />
     <Compile Include="Components\Physics\Cloth\UnityBetterComponentConnector.cs" />
@@ -181,4 +180,7 @@
     <ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetDir)\$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\NeosVR\Libraries\"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

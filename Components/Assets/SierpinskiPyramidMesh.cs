@@ -2,10 +2,10 @@
 
 namespace FrooxEngine
 {
-    [Category(new string[] { "Assets/Procedural Meshes" })]
-    public class SierpinskiPyramidMesh : ProceduralMesh
-    {
-        [Range(1, 9)]
+	[Category(new string[] { "Assets/Procedural Meshes" })]
+	public class SierpinskiPyramidMesh : ProceduralMesh
+	{
+		[Range(1, 9)]
 		public readonly Sync<int> Subdivisions;
 		private SierpinskiPyramid pyramid;
 		private int _subdivisions;

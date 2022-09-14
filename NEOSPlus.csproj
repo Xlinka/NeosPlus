@@ -115,7 +115,6 @@
     <Compile Include="Components\Wizards\MeshColliderManagementTools.cs" />
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />
     <Compile Include="Logix\Avatar\AvatarRootSlot.cs" />
-    <Compile Include="Logix\Avatar\NearestUser.cs" />
     <Compile Include="Logix\Avatar\NearestUserList.cs" />
     <Compile Include="Logix\DynamicMesh\Bone\AddBone.cs" />
     <Compile Include="Logix\DynamicMesh\Bone\GetBone.cs" />
@@ -205,9 +204,11 @@
     <Compile Include="Logix\Playback\IsPaused.cs" />
     <Compile Include="Logix\Playback\IsStopped.cs" />
     <Compile Include="Logix\Users\SetUserScaling.cs" />
+    <Compile Include="Materials\Effects\Hologram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Materials\TestMaterial.cs" />
     <Compile Include="NeosPlusUtil.cs" />
+    <Compile Include="Shaders\ExecutionHook.cs" />
     <Compile Include="Shaders\ShaderInjection.cs" />
   </ItemGroup>
   <ItemGroup>

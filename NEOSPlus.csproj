@@ -113,6 +113,7 @@
     <Compile Include="Components\Physics\Cloth\ClothSphereConnector.cs" />
     <Compile Include="Components\Utility\GrabberSimulator.cs" />
     <Compile Include="Components\Wizards\MeshColliderManagementTools.cs" />
+    <Compile Include="Components\Wizards\LODWizard.cs" />
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />
     <Compile Include="Logix\Avatar\AvatarRootSlot.cs" />
     <Compile Include="Logix\Avatar\NearestUserList.cs" />

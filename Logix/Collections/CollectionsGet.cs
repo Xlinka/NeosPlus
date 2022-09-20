@@ -17,6 +17,7 @@ namespace FrooxEngine.LogiX.Collections
         public readonly Input<TU> Collection;
         public readonly Input<int> Index;
         protected override string Label => $"Get {typeof(T).GetNiceName()} From {typeof(TU).GetNiceName()}";
+
         public override T Content
         {
             get
@@ -29,6 +30,7 @@ namespace FrooxEngine.LogiX.Collections
                 return array[index];
             }
         }
+
         protected override Type FindOverload(NodeTypes connectingTypes) =>
             NodeExtensions.CollectionsOverload(connectingTypes, "Collection", typeof(IEnumerable<>),
                 typeof(CollectionsGet<,>));

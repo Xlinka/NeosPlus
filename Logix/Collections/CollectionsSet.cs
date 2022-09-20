@@ -17,6 +17,7 @@ namespace FrooxEngine.LogiX.Collections
         public readonly Impulse OnDone;
         public readonly Impulse OnFail;
         protected override string Label => $"Set {typeof(T).GetNiceName()} In {typeof(TU).GetNiceName()}";
+
         [ImpulseTarget]
         public void Set()
         {
@@ -28,6 +29,7 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
+
             try
             {
                 collection[index] = value;
@@ -37,8 +39,10 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
+
             OnDone.Trigger();
         }
+
         protected override Type FindOverload(NodeTypes connectingTypes) =>
             NodeExtensions.CollectionsOverload(connectingTypes, "Collection", typeof(IList<>),
                 typeof(CollectionsSet<,>));

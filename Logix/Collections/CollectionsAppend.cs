@@ -16,6 +16,7 @@ namespace FrooxEngine.LogiX.Collections
         public readonly Impulse OnDone;
         public readonly Impulse OnFail;
         protected override string Label => $"Append {typeof(T).GetNiceName()} To {typeof(TU).GetNiceName()}";
+
         [ImpulseTarget]
         public void Append()
         {
@@ -26,6 +27,7 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
+
             try
             {
                 collection.Add(value);
@@ -35,8 +37,10 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
+
             OnDone.Trigger();
         }
+
         protected override Type FindOverload(NodeTypes connectingTypes) =>
             NodeExtensions.CollectionsOverload(connectingTypes, "Collection", typeof(ICollection<>),
                 typeof(CollectionsAppend<,>));

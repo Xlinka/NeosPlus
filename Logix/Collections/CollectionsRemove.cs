@@ -16,6 +16,7 @@ namespace FrooxEngine.LogiX.Collections
         public readonly Impulse OnDone;
         public readonly Impulse OnFail;
         protected override string Label => $"Remove {typeof(T).GetNiceName()} From {typeof(TU).GetNiceName()}";
+
         [ImpulseTarget]
         public void Remove()
         {
@@ -26,6 +27,7 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
+
             try
             {
                 collection.RemoveAt(index);
@@ -35,8 +37,10 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
+
             OnDone.Trigger();
         }
+
         protected override Type FindOverload(NodeTypes connectingTypes) =>
             NodeExtensions.CollectionsOverload(connectingTypes, "Collection", typeof(IList<>),
                 typeof(CollectionsRemove<,>));

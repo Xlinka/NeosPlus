@@ -1,10 +1,8 @@
 [*]
-indent_style = tab
+indent_style = space
 
-[*.{cs,csx,vb,vbx}]]
-indent_size = tab
-insert_final_newline = true
-charset = utf-8-bom
+[*.{cs,csx,vb,vbx}]
+indent_size = 4
 
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
 indent_size = 2

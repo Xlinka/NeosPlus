@@ -1,23 +1,28 @@
-﻿using FrooxEngine.CommonAvatar;
-
+﻿using System;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using BaseX;
+using FrooxEngine;
+using FrooxEngine.LogiX;
+using FrooxEngine.LogiX.Audio;
+using FrooxEngine.UIX;
+/// credit
+/// art
+/// 
 namespace FrooxEngine.LogiX.Assets
 {
-    [Category("LogiX/Mesh/Operations")]
-    public class GetMesh : LogixOperator<Mesh>
-    {
-        public readonly Input<Slot> Root;
-        public override Mesh Content
-        {
-            get
-            {
-                var slot = Root.Evaluate();
-                var component = slot.GetComponent<Mesh>();
-                if (component == null) return null;
-                var assets = slot.World.AssetsSlot;
-                if (slot.FindParent(i => assets == i) != null || slot.IsAvatarProtected())
-                    return null;
-                return component;
-            }
-        }
-    }
+	[Category(new string[] { "LogiX/Mesh/Operations" })]
+	public class GetMesh : LogixOperator<IAssetProvider<Mesh>>
+	{
+		public readonly Input<Slot> Root;
+
+		public override IAssetProvider<Mesh> Content
+		{
+			get
+			{
+				return Root.Evaluate().GetComponent<IAssetProvider<Mesh>>();
+			}
+		}
+
+	}
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 //placeholder for future FFT Implementation With Math.Net
 namespace NEOSPlus.Components.Audio.FFT
 {
-    internal class FFTSource
-    {
-    }
+	internal class FFTSource
+	{
+	}
 }

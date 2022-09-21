@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using BaseX;
 using FrooxEngine;
@@ -24,7 +25,6 @@ namespace NEOSPlus
             tint = color.White;
             uIBuilder2.Button(in text, in tint, minus);
         }
-
         public static Type CollectionsOverload(NodeTypes connectingTypes, string inputName, Type genericTypeDefinition,
             Type makeType)
         {
@@ -42,7 +42,7 @@ namespace NEOSPlus
             if (input == null) return null;
             if (CollectionsHelperList.HelperMapping.ContainsKey(input.GetGenericTypeDefinition()))
             {
-                var enumerableGeneric = input.GenericTypeArguments[0];
+                var enumerableGeneric = input.GetInterfaces().First(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>)).GenericTypeArguments[0];
                 return enumerableGeneric == null ? null : syncMakeType.MakeGenericType(enumerableGeneric, input);
             }
             else

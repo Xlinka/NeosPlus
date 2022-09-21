@@ -12,6 +12,7 @@ public static class CollectionsHelperList
         {typeof(SyncFieldList<>), typeof(CollectionsHelperSyncFieldList<>)},
         {typeof(SyncAssetList<>), typeof(CollectionsHelperSyncAssetList<>)},
         {typeof(SyncDelegateList<>), typeof(CollectionsHelperSyncDelegateList<>)},
+        {typeof(SyncRelayList<>), typeof(CollectionsHelperSyncRelayList<>)},
     };
 }
 public static class CollectionsHelper<T, TU> where T : ISyncList, IEnumerable<TU>

@@ -24,18 +24,12 @@ public class ValueInequalityDriver<T> : Component
 
     protected override void OnChanges()
     {
-        if (Target.IsLinkValid)
-        {
-            T val = default(T);
-            if (TargetValue.Target != null)
-            {
-                val = TargetValue.Target.Value;
-            }
-
-            bool value = (!UseApproximateComparison.Value || !Coder<T>.SupportsApproximateComparison)
-                ? EqualityComparer<T>.Default.Equals(val, Reference.Value)
-                : Coder<T>.Approximately(val, Reference.Value);
-            Target.Target.Value = !value;
-        }
+        if (!Target.IsLinkValid) return;
+        var val = default(T);
+        if (TargetValue.Target != null) val = TargetValue.Target.Value;
+        var value = (!UseApproximateComparison.Value || !Coder<T>.SupportsApproximateComparison)
+            ? EqualityComparer<T>.Default.Equals(val, Reference.Value)
+            : Coder<T>.Approximately(val, Reference.Value);
+        Target.Target.Value = !value;
     }
 }

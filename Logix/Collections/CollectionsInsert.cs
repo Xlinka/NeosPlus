@@ -29,7 +29,6 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
-
             try
             {
                 collection.Insert(index, value);
@@ -42,9 +41,8 @@ namespace FrooxEngine.LogiX.Collections
 
             OnDone.Trigger();
         }
-
         protected override Type FindOverload(NodeTypes connectingTypes) =>
-            NodeExtensions.CollectionsOverload(connectingTypes, "Collection", typeof(IList<>),
-                typeof(CollectionsInsert<,>));
+            NodeExtensions.CollectionsSyncOverload(connectingTypes, "Collection", typeof(IList<>),
+                typeof(CollectionsInsert<,>), typeof(CollectionsSyncInsert<,>));
     }
 }

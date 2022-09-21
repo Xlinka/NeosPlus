@@ -3,6 +3,7 @@ using System.Linq;
 using BaseX;
 using FrooxEngine;
 using FrooxEngine.LogiX;
+using FrooxEngine.LogiX.Collections;
 using FrooxEngine.UIX;
 
 namespace NEOSPlus
@@ -35,12 +36,23 @@ namespace NEOSPlus
                     ?.GetGenericArguments()[0];
             return enumerableGeneric == null ? null : makeType.MakeGenericType(enumerableGeneric, input);
         }
-        public static Type CollectionsSyncOverload(NodeTypes connectingTypes, string inputName, Type makeType)
+        public static Type CollectionsSyncOverload(NodeTypes connectingTypes, string inputName, Type genericTypeDefinition, Type makeType, Type syncMakeType)
         {
             var input = connectingTypes.inputs[inputName];
-            if (input == null || input.BaseType.GetGenericTypeDefinition() != typeof(SyncElementList<>)) return null;
-            var enumerableGeneric = input.GenericTypeArguments[0];
-            return enumerableGeneric == null ? null : makeType.MakeGenericType(enumerableGeneric, input);
+            if (input == null) return null;
+            if (CollectionsHelperList.HelperMapping.ContainsKey(input.GetGenericTypeDefinition()))
+            {
+                var enumerableGeneric = input.GenericTypeArguments[0];
+                return enumerableGeneric == null ? null : syncMakeType.MakeGenericType(enumerableGeneric, input);
+            }
+            else
+            {
+                var enumerableGeneric =
+                    input.GetInterfaces().FirstOrDefault(i =>
+                            i.IsGenericType && i.GetGenericTypeDefinition() == genericTypeDefinition)
+                        ?.GetGenericArguments()[0];
+                return enumerableGeneric == null ? null : makeType.MakeGenericType(enumerableGeneric, input);
+            }
         }
     }
 }

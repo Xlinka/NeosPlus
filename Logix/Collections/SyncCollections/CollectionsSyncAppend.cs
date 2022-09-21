@@ -7,7 +7,7 @@ using NEOSPlus;
 namespace FrooxEngine.LogiX.Collections
 {
     [NodeName("Sync Append")]
-    [Category("LogiX/Collections")]
+    [Category("LogiX/Collections/Sync")]
     [NodeDefaultType(typeof(CollectionsSyncAppend<dummy, SyncFieldList<dummy>>))]
     public class CollectionsSyncAppend<T, TU> : LogixNode where TU : ISyncList, IEnumerable<T>
     {
@@ -29,17 +29,17 @@ namespace FrooxEngine.LogiX.Collections
             }
             try
             {
-                CollectionHelper<TU, T>.Append(collection, value);
+                CollectionsHelper<TU, T>.Append(collection, value);
             }
             catch
             {
                 OnFail.Trigger();
                 return;
             }
-
             OnDone.Trigger();
         }
         protected override Type FindOverload(NodeTypes connectingTypes) =>
-            NodeExtensions.CollectionsSyncOverload(connectingTypes, "Collection", typeof(CollectionsSyncAppend<,>));
+            NodeExtensions.CollectionsSyncOverload(connectingTypes, "Collection", typeof(ICollection<>),
+                typeof(CollectionsAppend<,>), typeof(CollectionsSyncAppend<,>));
     }
 }

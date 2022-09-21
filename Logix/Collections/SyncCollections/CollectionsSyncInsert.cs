@@ -6,31 +6,32 @@ using NEOSPlus;
 
 namespace FrooxEngine.LogiX.Collections
 {
-    [NodeName("Append")]
+    [NodeName("Insert")]
     [Category("LogiX/Collections")]
-    [NodeDefaultType(typeof(CollectionsAppend<dummy, ICollection<dummy>>))]
-    public class CollectionsAppend<T, TU> : LogixNode where TU : ICollection<T>
+    [NodeDefaultType(typeof(CollectionsSyncInsert<dummy, IList<dummy>>))]
+    public class CollectionsSyncInsert<T, TU> : LogixNode where TU : IList<T>
     {
         public readonly Input<TU> Collection;
+        public readonly Input<int> Index;
         public readonly Input<T> Value;
         public readonly Impulse OnDone;
         public readonly Impulse OnFail;
-        protected override string Label => $"Append {typeof(T).GetNiceName()} To {typeof(TU).GetNiceName()}";
+        protected override string Label => $"Insert {typeof(T).GetNiceName()} To {typeof(TU).GetNiceName()}";
 
         [ImpulseTarget]
-        public void Append()
+        public void Insert()
         {
-            var collection = Collection.EvaluateRaw();
+            var collection = Collection.Evaluate();
+            var index = Index.EvaluateRaw();
             var value = Value.EvaluateRaw();
-            if (collection == null || value == null)
+            if (collection == null || value == null || index < 0 || index > collection.Count)
             {
                 OnFail.Trigger();
                 return;
             }
-
             try
             {
-                collection.Add(value);
+                collection.Insert(index, value);
             }
             catch
             {
@@ -40,9 +41,8 @@ namespace FrooxEngine.LogiX.Collections
 
             OnDone.Trigger();
         }
-
         protected override Type FindOverload(NodeTypes connectingTypes) =>
-            NodeExtensions.CollectionsSyncOverload(connectingTypes, "Collection", typeof(ICollection<>),
-                typeof(CollectionsAppend<,>), typeof(CollectionsSyncAppend<,>));
+            NodeExtensions.CollectionsSyncOverload(connectingTypes, "Collection", typeof(IList<>),
+                typeof(CollectionsInsert<,>), typeof(CollectionsSyncInsert<,>));
     }
 }

@@ -120,8 +120,7 @@
     <Compile Include="Components\Wizards\MapWizard.cs" />
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />
     <Compile Include="Logix\Avatar\AvatarRootSlot.cs" />
-    <Compile Include="Logix\Collections\CollectionHelper.cs" />
-    <Compile Include="Logix\Collections\CollectionsHelperSyncRefList.cs" />
+    <Compile Include="Logix\Collections\CollectionsCount.cs" />
     <Compile Include="Logix\Collections\CollectionsIterate.cs" />
     <Compile Include="Logix\Collections\CollectionsGet.cs" />
     <Compile Include="Logix\Collections\CollectionsAppend.cs" />
@@ -129,7 +128,10 @@
     <Compile Include="Logix\Collections\CollectionsRemove.cs" />
     <Compile Include="Logix\Collections\CollectionsSet.cs" />
     <Compile Include="Logix\Avatar\NearestUserList.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsHelper.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsHelperTypes.cs" />
     <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncAppend.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncInsert.cs" />
     <Compile Include="Logix\DynamicMesh\Bone\AddBone.cs" />
     <Compile Include="Logix\DynamicMesh\Bone\GetBone.cs" />
     <Compile Include="Logix\DynamicMesh\Bone\PackBoneBinding.cs" />

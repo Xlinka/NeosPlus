@@ -27,7 +27,6 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
-
             try
             {
                 collection.RemoveAt(index);
@@ -37,7 +36,6 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
-
             OnDone.Trigger();
         }
 

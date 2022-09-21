@@ -35,5 +35,12 @@ namespace NEOSPlus
                     ?.GetGenericArguments()[0];
             return enumerableGeneric == null ? null : makeType.MakeGenericType(enumerableGeneric, input);
         }
+        public static Type CollectionsSyncOverload(NodeTypes connectingTypes, string inputName, Type makeType)
+        {
+            var input = connectingTypes.inputs[inputName];
+            if (input == null || input.BaseType.GetGenericTypeDefinition() != typeof(SyncElementList<>)) return null;
+            var enumerableGeneric = input.GenericTypeArguments[0];
+            return enumerableGeneric == null ? null : makeType.MakeGenericType(enumerableGeneric, input);
+        }
     }
 }

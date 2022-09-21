@@ -6,44 +6,42 @@ using NEOSPlus;
 
 namespace FrooxEngine.LogiX.Collections
 {
-    [NodeName("Set")]
+    [HiddenNode]
+    [NodeName("SyncRemove")]
     [Category("LogiX/Collections")]
-    [NodeDefaultType(typeof(CollectionsSet<dummy, IList<dummy>>))]
-    public class CollectionsSet<T, TU> : LogixNode where TU : IList<T>
+    [NodeDefaultType(typeof(CollectionsSyncRemove<dummy, SyncFieldList<dummy>>))]
+    public class CollectionsSyncRemove<T, TU> : LogixNode where TU : ISyncList, IEnumerable<T>
     {
         public readonly Input<TU> Collection;
         public readonly Input<int> Index;
-        public readonly Input<T> Value;
         public readonly Impulse OnDone;
         public readonly Impulse OnFail;
-        protected override string Label => $"Set {typeof(T).GetNiceName()} In {typeof(TU).GetNiceName()}";
+        protected override string Label => $"Remove {typeof(T).GetNiceName()} From {typeof(TU).GetNiceName()}";
 
         [ImpulseTarget]
-        public void Set()
+        public void Remove()
         {
             var collection = Collection.Evaluate();
             var index = Index.EvaluateRaw();
-            var value = Value.EvaluateRaw();
-            if (collection == null || value == null || index < 0 || index > collection.Count)
+            if (collection == null || index < 0 || index > collection.Count)
             {
                 OnFail.Trigger();
                 return;
             }
             try
             {
-                collection[index] = value;
+                CollectionsHelper<TU, T>.Remove(collection, index);
             }
             catch
             {
                 OnFail.Trigger();
                 return;
             }
-
             OnDone.Trigger();
         }
-
+        
         protected override Type FindOverload(NodeTypes connectingTypes) =>
             NodeExtensions.CollectionsSyncOverload(connectingTypes, "Collection", typeof(IList<>),
-                typeof(CollectionsSet<,>), typeof(CollectionsSyncSet<,>));
+                typeof(CollectionsRemove<,>), typeof(CollectionsSyncRemove<,>));
     }
 }

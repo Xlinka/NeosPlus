@@ -132,6 +132,8 @@
     <Compile Include="Logix\Collections\SyncCollections\CollectionsHelperTypes.cs" />
     <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncAppend.cs" />
     <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncInsert.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncRemove.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncSet.cs" />
     <Compile Include="Logix\DynamicMesh\Bone\AddBone.cs" />
     <Compile Include="Logix\DynamicMesh\Bone\GetBone.cs" />
     <Compile Include="Logix\DynamicMesh\Bone\PackBoneBinding.cs" />

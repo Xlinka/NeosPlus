@@ -38,9 +38,9 @@ namespace FrooxEngine.LogiX.Collections
             }
             OnDone.Trigger();
         }
-
+        
         protected override Type FindOverload(NodeTypes connectingTypes) =>
-            NodeExtensions.CollectionsOverload(connectingTypes, "Collection", typeof(IList<>),
-                typeof(CollectionsRemove<,>));
+            NodeExtensions.CollectionsSyncOverload(connectingTypes, "Collection", typeof(IList<>),
+                typeof(CollectionsRemove<,>), typeof(CollectionsSyncRemove<,>));
     }
 }

@@ -9,8 +9,8 @@ namespace FrooxEngine.LogiX.Collections
     [HiddenNode]
     [NodeName("SyncInsert")]
     [Category("LogiX/Collections")]
-    [NodeDefaultType(typeof(CollectionsSyncInsert<dummy, IList<dummy>>))]
-    public class CollectionsSyncInsert<T, TU> : LogixNode where TU : IList<T>
+    [NodeDefaultType(typeof(CollectionsSyncInsert<dummy, SyncFieldList<dummy>>))]
+    public class CollectionsSyncInsert<T, TU> : LogixNode where TU : ISyncList, IEnumerable<T>
     {
         public readonly Input<TU> Collection;
         public readonly Input<int> Index;
@@ -32,7 +32,7 @@ namespace FrooxEngine.LogiX.Collections
             }
             try
             {
-                collection.Insert(index, value);
+                CollectionsHelper<TU, T>.Insert(collection, index, value);
             }
             catch
             {

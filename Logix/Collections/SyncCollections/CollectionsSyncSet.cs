@@ -6,10 +6,11 @@ using NEOSPlus;
 
 namespace FrooxEngine.LogiX.Collections
 {
-    [NodeName("Set")]
+    [HiddenNode]
+    [NodeName("SyncSet")]
     [Category("LogiX/Collections")]
-    [NodeDefaultType(typeof(CollectionsSet<dummy, IList<dummy>>))]
-    public class CollectionsSet<T, TU> : LogixNode where TU : IList<T>
+    [NodeDefaultType(typeof(CollectionsSyncSet<dummy, SyncFieldList<dummy>>))]
+    public class CollectionsSyncSet<T, TU> : LogixNode where TU : ISyncList, IEnumerable<T>
     {
         public readonly Input<TU> Collection;
         public readonly Input<int> Index;
@@ -31,14 +32,13 @@ namespace FrooxEngine.LogiX.Collections
             }
             try
             {
-                collection[index] = value;
+                CollectionsHelper<TU, T>.Set(collection, index, value);
             }
             catch
             {
                 OnFail.Trigger();
                 return;
             }
-
             OnDone.Trigger();
         }
 

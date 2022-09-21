@@ -6,8 +6,9 @@ using NEOSPlus;
 
 namespace FrooxEngine.LogiX.Collections
 {
-    [NodeName("Sync Append")]
-    [Category("LogiX/Collections/Sync")]
+    [HiddenNode]
+    [NodeName("SyncAppend")]
+    [Category("LogiX/Collections")]
     [NodeDefaultType(typeof(CollectionsSyncAppend<dummy, SyncFieldList<dummy>>))]
     public class CollectionsSyncAppend<T, TU> : LogixNode where TU : ISyncList, IEnumerable<T>
     {

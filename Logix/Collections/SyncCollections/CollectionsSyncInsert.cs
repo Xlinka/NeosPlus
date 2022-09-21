@@ -6,7 +6,8 @@ using NEOSPlus;
 
 namespace FrooxEngine.LogiX.Collections
 {
-    [NodeName("Insert")]
+    [HiddenNode]
+    [NodeName("SyncInsert")]
     [Category("LogiX/Collections")]
     [NodeDefaultType(typeof(CollectionsSyncInsert<dummy, IList<dummy>>))]
     public class CollectionsSyncInsert<T, TU> : LogixNode where TU : IList<T>

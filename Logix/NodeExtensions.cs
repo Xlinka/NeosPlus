@@ -13,9 +13,8 @@ namespace NEOSPlus
     {
         public static void GenerateListButtons(this UIBuilder ui, ButtonEventHandler plus, ButtonEventHandler minus)
         {
-            var uIBuilder = ui;
-            uIBuilder.Panel();
-            uIBuilder.HorizontalFooter(32f, out var footer, out var _);
+            ui.Panel();
+            ui.HorizontalFooter(32f, out var footer, out _);
             var uIBuilder2 = new UIBuilder(footer);
             uIBuilder2.HorizontalLayout(4f);
             LocaleString text = "+";
@@ -36,13 +35,16 @@ namespace NEOSPlus
                     ?.GetGenericArguments()[0];
             return enumerableGeneric == null ? null : makeType.MakeGenericType(enumerableGeneric, input);
         }
-        public static Type CollectionsSyncOverload(NodeTypes connectingTypes, string inputName, Type genericTypeDefinition, Type makeType, Type syncMakeType)
+        public static Type CollectionsSyncOverload(NodeTypes connectingTypes, string inputName,
+            Type genericTypeDefinition, Type makeType, Type syncMakeType)
         {
             var input = connectingTypes.inputs[inputName];
             if (input == null) return null;
             if (CollectionsHelperList.HelperMapping.ContainsKey(input.GetGenericTypeDefinition()))
             {
-                var enumerableGeneric = input.GetInterfaces().First(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>)).GenericTypeArguments[0];
+                var enumerableGeneric = input.GetInterfaces()
+                    .First(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IEnumerable<>))
+                    .GenericTypeArguments[0];
                 return enumerableGeneric == null ? null : syncMakeType.MakeGenericType(enumerableGeneric, input);
             }
             else

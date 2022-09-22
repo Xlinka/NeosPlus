@@ -22,7 +22,7 @@ public static class CollectionsHelper<T, TU> where T : ISyncList, IEnumerable<TU
     //a custom helper for their operations
     //this implementation is based on Coder<T> but doesn't use cursed IL injection and instead creates the delegates
     //from reflection
-    //a better implementation 
+    //a better implementation on the neos side would have each class inherit from IList<>
     public static Action<T, TU> Append { get; }
     public static Action<T, int, TU> Insert { get; }
     //remove actually doesn't need the helper but the way i've got it set up it's easier to have it here

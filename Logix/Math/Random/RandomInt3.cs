@@ -1,7 +1,7 @@
 ﻿using BaseX;
 using FrooxEngine.LogiX;
 
-namespace FrooxEngine.Logix.Math
+namespace FrooxEngine.LogiX.Math
 {
 	[Category("LogiX/Math/Random")]
 	[NodeName("Random Int3")]

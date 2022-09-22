@@ -162,6 +162,7 @@
     <Compile Include="Logix\DynamicMesh\Vertex\RemoveVertex.cs" />
     <Compile Include="Logix\DynamicMesh\Vertex\SetVertex.cs" />
     <Compile Include="Logix\DynamicMesh\Vertex\UnpackVertex.cs" />
+    <Compile Include="Logix\Input\ParseEnum.cs" />
     <Compile Include="Logix\Json\JsonAppendToArray.cs" />
     <Compile Include="Logix\Json\JsonCountArrayChildren.cs" />
     <Compile Include="Logix\Json\JsonCountObjectChildren.cs" />

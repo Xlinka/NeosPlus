@@ -25,40 +25,25 @@ namespace FrooxEngine.LogiX.Avatar
 
         protected override void OnCommonUpdate()
         {
-            // Literally just Nearest Hand but without the Hand stuff
             base.OnCommonUpdate();
-            Slot slot = Reference.Evaluate() ?? base.Slot;
-            bool flag = IgnoreAFK.Evaluate(def: false);
+            var slot = Reference.Evaluate() ?? Slot;
+            var flag = IgnoreAFK.Evaluate(def: false);
             _nearestDistance = float.MaxValue;
             _nearestUser = null;
-
             var usr = new List<User>();
-            for (int i = 0; i < IgnoreUsers.Count; i++)
+            for (var i = 0; i < IgnoreUsers.Count; i++) usr.Add(IgnoreUsers.GetElement(i).Evaluate());
+            foreach (var allUser in base.World.AllUsers)
             {
-                usr.Add(IgnoreUsers.GetElement(i).Evaluate());
+                if (usr.Exists(e => e == allUser) || (!allUser.IsPresentInWorld && flag)) continue;
+                var slot2 = allUser.Root?.HeadSlot;
+                if (slot2 == null) continue;
+                var a = slot2.GlobalPosition;
+                var b = slot.GlobalPosition;
+                var num = MathX.Distance(in a, in b);
+                if (!(num < _nearestDistance)) continue;
+                _nearestDistance = num;
+                _nearestUser = allUser;
             }
-
-            foreach (User allUser in base.World.AllUsers)
-            {
-                if (usr.Exists(e => e == allUser) || (!allUser.IsPresentInWorld && flag))
-                {
-                    continue;
-                }
-
-                Slot slot2 = allUser.Root?.HeadSlot;
-                if (slot2 != null)
-                {
-                    float3 a = slot2.GlobalPosition;
-                    float3 b = slot.GlobalPosition;
-                    float num = MathX.Distance(in a, in b);
-                    if (num < _nearestDistance)
-                    {
-                        _nearestDistance = num;
-                        _nearestUser = allUser;
-                    }
-                }
-            }
-
             MarkChangeDirty();
         }
 

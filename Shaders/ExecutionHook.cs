@@ -13,6 +13,8 @@ namespace NEOSPlus.Shaders
 		private static Type? __connectorTypes; 
 		#pragma warning restore CS0169
 		
+		// How does this work... I don't have a ducking clue but hey it works :)
+
 		static ExecutionHook()
 		{
 			try

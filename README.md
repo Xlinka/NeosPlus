@@ -42,6 +42,7 @@ Features that have been added so far:
 - Logix/Math/Factorial
 - Logix/Math/SortNode
 - Logix/Math/MinMax
+- Logix/Network/HTTPRequest
 - Logix/Operators/ZeroOneI
 - Logix/Operators/DoubleInput
 - Logix/Playback/IsPaused

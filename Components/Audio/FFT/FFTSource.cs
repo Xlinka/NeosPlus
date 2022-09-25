@@ -8,5 +8,6 @@ namespace NEOSPlus.Components.Audio.FFT
 {
 	internal class FFTSource
 	{
+		// THIS DOES NOT WORK... TOO BAD!
 	}
 }

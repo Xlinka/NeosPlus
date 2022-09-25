@@ -3,10 +3,12 @@ using BaseX;
 using FrooxEngine;
 using FrooxEngine.LogiX;
 using FrooxEngine.LogiX.Math;
+using NEOSPlus.Shaders;
+
 [Category(new string[] { "Assets/Materials/NeosPlus" })]
 public class TestMaterial : SingleShaderMaterialProvider
 {
-	protected override Uri ShaderURL => NeosAssets.Shaders.NeosPBSColorSplatSpecular;
+	protected override Uri ShaderURL => ShaderInjection.NeosPlusTest;
 	[DefaultValue(-1)]
 	public readonly Sync<int> RenderQueue;
 	private static PropertyState _propertyInitializationState;

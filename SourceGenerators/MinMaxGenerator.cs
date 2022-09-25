@@ -41,6 +41,7 @@ namespace SourceGenerators
 			};
 			foreach (var type in types)
 			{
+				// Dark magic
 				var name = type.First().ToString().ToUpper() + type.Substring(1); ;
 				var hidden = type != "float" ? "[HiddenNode]" : "";
 				var gen = $@"//generated

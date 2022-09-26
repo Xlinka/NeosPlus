@@ -18,6 +18,5 @@ namespace FrooxEngine.LogiX.String
 				return input == null ? null : BitConverter.ToString(_md5.ComputeHash(Encoding.UTF8.GetBytes(input))).Replace("-", "");
 			}
 		}
-		protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();
 	}
 }

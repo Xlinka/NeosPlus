@@ -34,6 +34,5 @@ namespace FrooxEngine.LogiX.Math
 			}
 		}
 
-		protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();
 	}
 }

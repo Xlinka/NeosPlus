@@ -25,6 +25,5 @@ namespace FrooxEngine.LogiX.String
 					(str.Length - str.Replace(pattern, "").Length) / pattern.Length;
 			}
 		}
-		protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();
 	}
 }

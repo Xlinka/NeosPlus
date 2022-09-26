@@ -29,6 +29,5 @@ namespace FrooxEngine.LogiX.Avatar
 				return list[0].Slot;
 			}
 		}
-		protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();
 	}
 }

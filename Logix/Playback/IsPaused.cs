@@ -17,6 +17,5 @@ namespace FrooxEngine.LogiX.Playback
 				return !flag && !flag2;
 			}
 		}
-		protected override void NotifyOutputsOfChange() => ((IOutputElement)this).NotifyChange();
 	}
 }

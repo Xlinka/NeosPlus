@@ -154,7 +154,7 @@ namespace FrooxEngine.LogiX.Network
 		//  TOTP : 696969"
 		private Dictionary<string, string> FormatHeaders(string headers)
 		{
-			List<string> rawHeaderList = new List<string>(headers.Split('\n'));
+			List<string> rawHeaderList = new List<string>(headers.Trim().Split('\n'));
 			Dictionary<string, string> result = new Dictionary<string, string>();
 			rawHeaderList.ForEach((header) =>
 			{

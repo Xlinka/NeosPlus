@@ -112,7 +112,11 @@ namespace FrooxEngine.LogiX.Network
 								httpRequest.Headers.Referrer = new Uri(header.Value);
 								break;
 							case "User-Agent":
-								httpRequest.Headers.UserAgent.Add(new ProductInfoHeaderValue(header.Value));
+								List<string> userAgentValues = new List<string>(header.Value.Split(' '));
+								userAgentValues.ForEach(value => { 
+									string[] userAgentParts = value.Split('/');
+									httpRequest.Headers.UserAgent.Add(new ProductInfoHeaderValue(userAgentParts[0], userAgentParts[1]));
+								});
 								break;
 							default:
 								//It should've been this easy for all of them...

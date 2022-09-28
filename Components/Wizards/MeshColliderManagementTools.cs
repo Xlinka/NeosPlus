@@ -98,21 +98,21 @@ namespace MeshColliderManagementTools
         {
             base.OnAttach();
             // Create the UI for the wizard.
-            this.Slot.Name = "MeshCollider Management Wizard";
-            base.Slot.Tag = "Developer";
-            NeosCanvasPanel neosCanvasPanel = base.Slot.AttachComponent<NeosCanvasPanel>();
+            Slot.Name = "MeshCollider Management Wizard";
+            Slot.Tag = "Developer";
+            var neosCanvasPanel = base.Slot.AttachComponent<NeosCanvasPanel>();
             neosCanvasPanel.Panel.AddCloseButton();
             neosCanvasPanel.Panel.AddParentButton();
             neosCanvasPanel.Panel.Title = "MeshCollider Management Wizard";
             neosCanvasPanel.CanvasSize = new float2(800f, 900f);
-            UIBuilder uIBuilder = new UIBuilder(neosCanvasPanel.Canvas);
-            List<RectTransform> rectList = uIBuilder.SplitHorizontally(0.5f, 0.5f);
+            var uIBuilder = new UIBuilder(neosCanvasPanel.Canvas);
+            var rectList = uIBuilder.SplitHorizontally(0.5f, 0.5f);
             // Build left hand side UI - options and buttons.
-            UIBuilder uIBuilder2 = new UIBuilder(rectList[0].Slot);
-            Slot _layoutRoot = uIBuilder2.VerticalLayout(4f, 0f, new Alignment()).Slot;
+            var uIBuilder2 = new UIBuilder(rectList[0].Slot);
+            var layoutRoot = uIBuilder2.VerticalLayout(4f, 0f, new Alignment()).Slot;
             uIBuilder2.FitContent(SizeFit.Disabled, SizeFit.MinSize);
             uIBuilder2.Style.Height = 24f;
-            UIBuilder uIBuilder3 = uIBuilder2;
+            var uIBuilder3 = uIBuilder2;
             // Slot reference to which changes will be applied.
             _text = "Process root slot:";
             uIBuilder3.Text(in _text);
@@ -157,40 +157,40 @@ namespace MeshColliderManagementTools
                 () => uIBuilder3.BooleanMemberEditor(PreserveColliderSettings));
             _text = "Set collision Type:";
             uIBuilder3.Text(in _text);
-            Slot _hideTextSlot = _layoutRoot.GetAllChildren().Last();
+            var hideTextSlot = layoutRoot.GetAllChildren().Last();
             uIBuilder3.EnumMemberEditor(setColliderType);
-            Slot _hideEnumSlot = _layoutRoot.GetAllChildren().Last().Parent.Parent;
+            var hideEnumSlot = layoutRoot.GetAllChildren().Last().Parent.Parent;
             _text = "Collider Mass:";
-            Slot _hideFloatSlot = uIBuilder3
+            var hideFloatSlot = uIBuilder3
                 .HorizontalElementWithLabel(in _text, 0.9f, () => uIBuilder3.PrimitiveMemberEditor(Mass)).Slot.Parent;
             _text = "Set CharacterCollider:";
-            Slot _hideBoolSlot1 = uIBuilder3
+            var hideBoolSlot1 = uIBuilder3
                 .HorizontalElementWithLabel(in _text, 0.9f, () => uIBuilder3.BooleanMemberEditor(SetCharacterCollider))
                 .Slot.Parent;
             _text = "Set IgnoreRaycasts:";
-            Slot _hideBoolSlot2 = uIBuilder3
+            var hideBoolSlot2 = uIBuilder3
                 .HorizontalElementWithLabel(in _text, 0.9f, () => uIBuilder3.BooleanMemberEditor(SetIgnoreRaycasts))
                 .Slot.Parent;
             uIBuilder3.Spacer(24f);
             // Hide some options if preserving existing settings.
-            var _valCopy = _layoutRoot.AttachComponent<ValueCopy<bool>>();
-            var _boolValDriver = _layoutRoot.AttachComponent<BooleanValueDriver<bool>>();
-            var _valMultiDriver = _layoutRoot.AttachComponent<ValueMultiDriver<bool>>();
-            _valCopy.Source.Target = PreserveColliderSettings;
-            _valCopy.Target.Target = _boolValDriver.State;
-            _boolValDriver.TrueValue.Value = false;
-            _boolValDriver.FalseValue.Value = true;
-            _boolValDriver.TargetField.Target = _valMultiDriver.Value;
-            for (int i = 0; i < 5; i++)
+            var valCopy = layoutRoot.AttachComponent<ValueCopy<bool>>();
+            var boolValDriver = layoutRoot.AttachComponent<BooleanValueDriver<bool>>();
+            var valMultiDriver = layoutRoot.AttachComponent<ValueMultiDriver<bool>>();
+            valCopy.Source.Target = PreserveColliderSettings;
+            valCopy.Target.Target = boolValDriver.State;
+            boolValDriver.TrueValue.Value = false;
+            boolValDriver.FalseValue.Value = true;
+            boolValDriver.TargetField.Target = valMultiDriver.Value;
+            for (var i = 0; i < 5; i++)
             {
-                _valMultiDriver.Drives.Add();
+                valMultiDriver.Drives.Add();
             }
 
-            _valMultiDriver.Drives[0].Target = _hideTextSlot.ActiveSelf_Field;
-            _valMultiDriver.Drives[1].Target = _hideEnumSlot.ActiveSelf_Field;
-            _valMultiDriver.Drives[2].Target = _hideBoolSlot1.ActiveSelf_Field;
-            _valMultiDriver.Drives[3].Target = _hideBoolSlot2.ActiveSelf_Field;
-            _valMultiDriver.Drives[4].Target = _hideFloatSlot.ActiveSelf_Field;
+            valMultiDriver.Drives[0].Target = hideTextSlot.ActiveSelf_Field;
+            valMultiDriver.Drives[1].Target = hideEnumSlot.ActiveSelf_Field;
+            valMultiDriver.Drives[2].Target = hideBoolSlot1.ActiveSelf_Field;
+            valMultiDriver.Drives[3].Target = hideBoolSlot2.ActiveSelf_Field;
+            valMultiDriver.Drives[4].Target = hideFloatSlot.ActiveSelf_Field;
             // Buttons for batch actions.
             _text = "List matching MeshColliders";
             uIBuilder3.Button(in _text, PopulateList);
@@ -214,50 +214,46 @@ namespace MeshColliderManagementTools
         protected override void OnStart()
         {
             base.OnStart();
-            base.Slot.GetComponentInChildrenOrParents<Canvas>()?.MarkDeveloper();
+            Slot.GetComponentInChildrenOrParents<Canvas>()?.MarkDeveloper();
         }
 
         private void CreateScrollListElement(MeshCollider mc)
         {
-            Slot _elementRoot = _listBuilder.Next("Element");
-            var _refField = _elementRoot.AttachComponent<ReferenceField<MeshCollider>>();
-            _refField.Reference.Target = mc;
-            UIBuilder _listBuilder2 = new UIBuilder(_elementRoot);
-            _listBuilder2.NestInto(_elementRoot);
-            _listBuilder2.VerticalLayout(4f, 4f);
-            _listBuilder2.HorizontalLayout(10f);
+            var elementRoot = _listBuilder.Next("Element");
+            var refField = elementRoot.AttachComponent<ReferenceField<MeshCollider>>();
+            refField.Reference.Target = mc;
+            var listBuilder2 = new UIBuilder(elementRoot);
+            listBuilder2.NestInto(elementRoot);
+            listBuilder2.VerticalLayout(4f, 4f);
+            listBuilder2.HorizontalLayout(10f);
             _buttonColor = new color(1f, 1f, 1f);
             _text = "Jump To";
-            _listBuilder2.ButtonRef<Slot>(in _text, in _buttonColor, JumpTo, mc.Slot);
+            listBuilder2.ButtonRef<Slot>(in _text, in _buttonColor, JumpTo, mc.Slot);
             _text = "Highlight";
-            _listBuilder2.ButtonRef<Slot>(in _text, in _buttonColor, Highlight, mc.Slot);
+            listBuilder2.ButtonRef<Slot>(in _text, in _buttonColor, Highlight, mc.Slot);
             _text = "Replace";
-            _listBuilder2.ButtonRef<MeshCollider>(in _text, in _buttonColor, Replace, mc);
+            listBuilder2.ButtonRef<MeshCollider>(in _text, in _buttonColor, Replace, mc);
             _text = "Remove";
-            _listBuilder2.ButtonRef<MeshCollider>(in _text, in _buttonColor, Remove, mc);
-            _listBuilder2.NestOut();
-            _listBuilder2.NestOut();
-            _listBuilder2.Current.AttachComponent<RefEditor>().Setup(_refField.Reference);
+            listBuilder2.ButtonRef<MeshCollider>(in _text, in _buttonColor, Remove, mc);
+            listBuilder2.NestOut();
+            listBuilder2.NestOut();
+            listBuilder2.Current.AttachComponent<RefEditor>().Setup(refField.Reference);
         }
 
         private void ForeachMeshCollider(Action<MeshCollider> process)
         {
             if (ProcessRoot.Target != null)
             {
-                foreach (MeshCollider componentsInChild in ProcessRoot.Target.GetComponentsInChildren<MeshCollider>(
-                             delegate(MeshCollider mc)
-                             {
-                                 // Check whether collider should be filtered out.
-                                 return ((!IgnoreInactive.Value || mc.Slot.IsActive)
-                                         && (!IgnoreDisabled || mc.Enabled)
-                                         && (!IgnoreNonPersistent || mc.IsPersistent)
-                                         && (!IgnoreUserHierarchies || mc.Slot.ActiveUser == null)
-                                         && ((useTagMode == UseTagMode.IgnoreTag)
-                                             || (useTagMode == UseTagMode.IncludeOnlyWithTag &&
-                                                 mc.Slot.Tag == tag.Target.TargetString)
-                                             || (useTagMode == UseTagMode.ExcludeAllWithTag &&
-                                                 mc.Slot.Tag != tag.Target.TargetString)));
-                             }))
+                foreach (var componentsInChild in ProcessRoot.Target.GetComponentsInChildren(
+                             (MeshCollider mc) => (!IgnoreInactive.Value || mc.Slot.IsActive)
+                                                  && (!IgnoreDisabled || mc.Enabled)
+                                                  && (!IgnoreNonPersistent || mc.IsPersistent)
+                                                  && (!IgnoreUserHierarchies || mc.Slot.ActiveUser == null)
+                                                  && (useTagMode == UseTagMode.IgnoreTag
+                                                      || (useTagMode == UseTagMode.IncludeOnlyWithTag &&
+                                                          mc.Slot.Tag == tag.Target.TargetString)
+                                                      || (useTagMode == UseTagMode.ExcludeAllWithTag &&
+                                                          mc.Slot.Tag != tag.Target.TargetString))))
                 {
                     process(componentsInChild);
                 }
@@ -267,23 +263,19 @@ namespace MeshColliderManagementTools
 
         private bool CheckReplacementBoundsSetting()
         {
-            return ((replacementColliderComponent == ReplacementColliderComponent.BoxCollider)
-                    || (replacementColliderComponent == ReplacementColliderComponent.SphereCollider)
-                    || (replacementColliderComponent == ReplacementColliderComponent.ConvexHullCollider)
-                    || (((replacementColliderComponent == ReplacementColliderComponent.CapsuleCollider)
-                         || (replacementColliderComponent == ReplacementColliderComponent.CylinderCollider))
-                        && (setupBoundsType.Value != SetupBoundsType.SetupFromLocalBounds)));
+            return replacementColliderComponent == ReplacementColliderComponent.BoxCollider
+                   || replacementColliderComponent == ReplacementColliderComponent.SphereCollider
+                   || replacementColliderComponent == ReplacementColliderComponent.ConvexHullCollider
+                   || ((replacementColliderComponent == ReplacementColliderComponent.CapsuleCollider
+                        || replacementColliderComponent == ReplacementColliderComponent.CylinderCollider)
+                       && setupBoundsType.Value != SetupBoundsType.SetupFromLocalBounds);
         }
 
-        private void Highlight(IButton button, ButtonEventData eventData, Slot s)
-        {
+        private void Highlight(IButton button, ButtonEventData eventData, Slot s) =>
             HighlightHelper.FlashHighlight(s, null, HighlightColor, HighlightDuration);
-        }
 
-        private void JumpTo(IButton button, ButtonEventData eventData, Slot s)
-        {
+        private void JumpTo(IButton button, ButtonEventData eventData, Slot s) =>
             LocalUserRoot.JumpToPoint(s.GlobalPosition);
-        }
 
         private void PopulateList()
         {
@@ -338,9 +330,7 @@ namespace MeshColliderManagementTools
                 ShowResults($"MeshCollider replaced.");
             }
             else
-            {
                 ShowResults($"{replacementColliderComponent.Value} cannot be used with {setupBoundsType.Value}");
-            }
         }
 
         private void RemoveAll(IButton button, ButtonEventData eventData)
@@ -403,9 +393,7 @@ namespace MeshColliderManagementTools
                     $"{_count} matching MeshColliders replaced with {replacementColliderComponent.ToString()}s.");
             }
             else
-            {
                 ShowResults($"{replacementColliderComponent.Value} cannot be used with {setupBoundsType.Value}");
-            }
         }
 
         private void SetupNewCollider(BoxCollider bc, MeshCollider mc)
@@ -421,7 +409,6 @@ namespace MeshColliderManagementTools
                     bc.SetFromLocalBoundsPrecise();
                     break;
             }
-
             if (PreserveColliderSettings)
             {
                 bc.Type.Value = mc.Type.Value;
@@ -505,7 +492,6 @@ namespace MeshColliderManagementTools
                     cylc.SetFromPreciseBounds();
                     break;
             }
-
             if (PreserveColliderSettings)
             {
                 cylc.Type.Value = mc.Type.Value;
@@ -540,9 +526,6 @@ namespace MeshColliderManagementTools
             }
         }
 
-        private void ShowResults(string results)
-        {
-            resultsText.Target.Content.Value = results;
-        }
+        private void ShowResults(string results) => resultsText.Target.Content.Value = results;
     }
 }

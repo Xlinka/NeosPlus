@@ -2,6 +2,7 @@
 using BaseX;
 using FrooxEngine.LogiX;
 using NEOSPlus;
+
 namespace FrooxEngine.LogiX.Avatar
 {
     [NodeName("Nearest User")]
@@ -44,6 +45,7 @@ namespace FrooxEngine.LogiX.Avatar
                 _nearestDistance = num;
                 _nearestUser = allUser;
             }
+
             MarkChangeDirty();
         }
 

@@ -30,6 +30,7 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
+
             try
             {
                 CollectionsHelper<TU, T>.Insert(collection, index, value);
@@ -42,6 +43,7 @@ namespace FrooxEngine.LogiX.Collections
 
             OnDone.Trigger();
         }
+
         protected override Type FindOverload(NodeTypes connectingTypes) =>
             NodeExtensions.CollectionsSyncOverload(connectingTypes, "Collection", typeof(IList<>),
                 typeof(CollectionsInsert<,>), typeof(CollectionsSyncInsert<,>));

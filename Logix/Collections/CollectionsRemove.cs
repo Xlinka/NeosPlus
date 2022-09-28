@@ -27,6 +27,7 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
+
             try
             {
                 collection.RemoveAt(index);
@@ -36,9 +37,10 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
+
             OnDone.Trigger();
         }
-        
+
         protected override Type FindOverload(NodeTypes connectingTypes) =>
             NodeExtensions.CollectionsSyncOverload(connectingTypes, "Collection", typeof(IList<>),
                 typeof(CollectionsRemove<,>), typeof(CollectionsSyncRemove<,>));

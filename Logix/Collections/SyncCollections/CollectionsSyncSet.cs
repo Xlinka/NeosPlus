@@ -30,6 +30,7 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
+
             try
             {
                 CollectionsHelper<TU, T>.Set(collection, index, value);
@@ -39,6 +40,7 @@ namespace FrooxEngine.LogiX.Collections
                 OnFail.Trigger();
                 return;
             }
+
             OnDone.Trigger();
         }
 

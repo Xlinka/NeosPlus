@@ -16,6 +16,7 @@ namespace FrooxEngine.LogiX.Collections
     {
         public readonly Input<TU> Collection;
         protected override string Label => $"Count Collection {typeof(TU).GetNiceName()}";
+
         public override int Content
         {
             get
@@ -24,6 +25,7 @@ namespace FrooxEngine.LogiX.Collections
                 return enumerable == null ? 0 : enumerable.Count();
             }
         }
+
         protected override Type FindOverload(NodeTypes connectingTypes) =>
             NodeExtensions.CollectionsOverload(connectingTypes, "Collection", typeof(IEnumerable<>),
                 typeof(CollectionsCount<,>));

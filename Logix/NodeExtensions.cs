@@ -24,6 +24,7 @@ namespace NEOSPlus
             tint = color.White;
             uIBuilder2.Button(in text, in tint, minus);
         }
+
         public static Type CollectionsOverload(NodeTypes connectingTypes, string inputName, Type genericTypeDefinition,
             Type makeType)
         {
@@ -35,6 +36,7 @@ namespace NEOSPlus
                     ?.GetGenericArguments()[0];
             return enumerableGeneric == null ? null : makeType.MakeGenericType(enumerableGeneric, input);
         }
+
         public static Type CollectionsSyncOverload(NodeTypes connectingTypes, string inputName,
             Type genericTypeDefinition, Type makeType, Type syncMakeType)
         {

@@ -15,6 +15,7 @@ public static class CollectionsHelperList
         {typeof(SyncRelayList<>), typeof(CollectionsHelperSyncRelayList<>)},
     };
 }
+
 public static class CollectionsHelper<T, TU> where T : ISyncList, IEnumerable<TU>
 {
     //HACK: the types that inherit from SyncElementList<> only have IEnumerable<> shared between them all
@@ -24,17 +25,21 @@ public static class CollectionsHelper<T, TU> where T : ISyncList, IEnumerable<TU
     //from reflection
     //a better implementation on the neos side would have each class inherit from IList<>
     public static Action<T, TU> Append { get; }
+
     public static Action<T, int, TU> Insert { get; }
+
     //remove actually doesn't need the helper but the way i've got it set up it's easier to have it here
     public static Action<T, int> Remove { get; }
     public static Action<T, int, TU> Set { get; }
+
     static CollectionsHelper()
     {
         var baseType = typeof(T).GetGenericTypeDefinition();
         if (!CollectionsHelperList.HelperMapping.TryGetValue(baseType, out var type)) return;
         var helperType = type.MakeGenericType(typeof(T).GenericTypeArguments[0]);
         Append = (Action<T, TU>) Delegate.CreateDelegate(typeof(Action<T, TU>), helperType.GetMethod("Append"));
-        Insert = (Action<T, int, TU>) Delegate.CreateDelegate(typeof(Action<T, int, TU>), helperType.GetMethod("Insert"));
+        Insert = (Action<T, int, TU>) Delegate.CreateDelegate(typeof(Action<T, int, TU>),
+            helperType.GetMethod("Insert"));
         Remove = (Action<T, int>) Delegate.CreateDelegate(typeof(Action<T, int>), helperType.GetMethod("Remove"));
         Set = (Action<T, int, TU>) Delegate.CreateDelegate(typeof(Action<T, int, TU>), helperType.GetMethod("Set"));
     }

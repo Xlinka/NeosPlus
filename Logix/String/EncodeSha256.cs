@@ -21,7 +21,5 @@ namespace FrooxEngine.LogiX.String
                     : BitConverter.ToString(_sha.ComputeHash(Encoding.UTF8.GetBytes(input))).Replace("-", "");
             }
         }
-
-        protected override void NotifyOutputsOfChange() => ((IOutputElement) this).NotifyChange();
     }
 }

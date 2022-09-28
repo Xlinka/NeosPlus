@@ -17,7 +17,5 @@ namespace FrooxEngine.LogiX.String
                 return input == null ? null : Convert.ToBase64String(Encoding.UTF8.GetBytes(input));
             }
         }
-
-        protected override void NotifyOutputsOfChange() => ((IOutputElement) this).NotifyChange();
     }
 }

@@ -33,7 +33,5 @@ namespace FrooxEngine.LogiX.Slots
                 return instance;
             }
         }
-
-        protected override void NotifyOutputsOfChange() => ((IOutputElement) this).NotifyChange();
     }
 }

@@ -27,7 +27,5 @@ namespace FrooxEngine.LogiX.String
                 return count;
             }
         }
-
-        protected override void NotifyOutputsOfChange() => ((IOutputElement) this).NotifyChange();
     }
 }

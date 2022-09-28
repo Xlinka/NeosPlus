@@ -186,6 +186,7 @@
     <Compile Include="Logix\Math\Random\RandomInt2.cs" />
     <Compile Include="Logix\Math\Random\RandomInt3.cs" />
     <Compile Include="Logix\Math\Random\RandomInt4.cs" />
+    <Compile Include="Logix\Network\HTTPRequest.cs" />
     <Compile Include="Logix\Slots\CreateEmptySlot.cs" />
     <Compile Include="Logix\Json\JsonAddToObject.cs" />
     <Compile Include="Logix\Json\JsonGetFromObject.cs" />

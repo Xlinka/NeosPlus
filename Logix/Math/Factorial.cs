@@ -18,7 +18,5 @@ namespace FrooxEngine.LogiX.Math
                 return fact;
             }
         }
-
-        protected override void NotifyOutputsOfChange() => ((IOutputElement) this).NotifyChange();
     }
 }

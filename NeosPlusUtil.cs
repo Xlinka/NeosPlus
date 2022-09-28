@@ -10,14 +10,9 @@ namespace FrooxEngine
 
         public static void CleanList(this ISyncList list) // Code from https://github.com/EIA485/NeosBetterLogixWires
         {
-            for (int i = list.Count - 1; i >= 0; i--)
-            {
-                ISyncMember syncMember = list.GetElement(i);
-                if (syncMember == null)
-                {
+            for (var i = list.Count - 1; i >= 0; i--)
+                if (list.GetElement(i) == null)
                     list.RemoveElement(i);
-                }
-            }
         }
     }
 }

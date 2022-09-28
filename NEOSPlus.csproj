@@ -113,6 +113,8 @@
     <Compile Include="Components\Assets\DynamicMesh.cs" />
     <Compile Include="Components\Assets\SierpinskiPyramid.cs" />
     <Compile Include="Components\Assets\SierpinskiPyramidMesh.cs" />
+    <Compile Include="Components\Collections\ReferenceFieldList.cs" />
+    <Compile Include="Components\Collections\ValueFieldList.cs" />
     <Compile Include="Components\Physics\Cloth\ClothCoefficent.cs" />
     <Compile Include="Components\Physics\Cloth\ClothCollider.cs" />
     <Compile Include="Components\Physics\Cloth\UnityBetterComponentConnector.cs" />
@@ -127,6 +129,7 @@
     <Compile Include="Components\Wizards\LODWizard.cs" />
     <Compile Include="Components\Wizards\MapWizard.cs" />
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />
+    <Compile Include="ExecutionHook.cs" />
     <Compile Include="Logix\Avatar\AvatarRootSlot.cs" />
     <Compile Include="Logix\Collections\CollectionsClear.cs" />
     <Compile Include="Logix\Collections\CollectionsCount.cs" />
@@ -238,7 +241,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Materials\TestMaterial.cs" />
     <Compile Include="NeosPlusUtil.cs" />
-    <Compile Include="Shaders\ExecutionHook.cs" />
     <Compile Include="Shaders\ShaderInjection.cs" />
   </ItemGroup>
   <ItemGroup>

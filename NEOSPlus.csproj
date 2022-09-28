@@ -1,246 +1,254 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
-    <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>NEOSPlus</RootNamespace>
-        <AssemblyName>NEOSPlus</AssemblyName>
-        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-        <LangVersion>10</LangVersion>
-        <FileAlignment>512</FileAlignment>
-        <Deterministic>true</Deterministic>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-        <PostBuildEvent>cd "$(ProjectDir)"
-            powershell -NoProfile -ExecutionPolicy Bypass ./Scripts/PostBuild.ps1 '$(NeosPath)' $(ConfigurationName)
-        </PostBuildEvent>
-    </PropertyGroup>
-    <PropertyGroup>
-        <NeosPath>$(MSBuildThisFileDirectory)NeosVR\</NeosPath>
-        <NeosPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\NeosVR\')">C:\Program Files (x86)\Steam\steamapps\common\NeosVR\</NeosPath>
-        <NeosPath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/NeosVR/')">$(HOME)/.steam/steam/steamapps/common/NeosVR/</NeosPath>
-        <NeosPath Condition="Exists('/mnt/LocalDisk/SteamLibrary/steamapps/common/NeosVR/')">/mnt/LocalDisk/SteamLibrary/steamapps/common/NeosVR/</NeosPath>
-        <NeosPath Condition="Exists('C:\Neos\app\')">C:\Neos\app\</NeosPath>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CopyToPlugin|AnyCPU'">
-        <OutputPath>bin\CopyToPlugin\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <Optimize>true</Optimize>
-        <DebugType>pdbonly</DebugType>
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <ErrorReport>prompt</ErrorReport>
-        <PostBuildEvent>copy "$(TargetDir)\$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\NeosVR\Libraries"</PostBuildEvent>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="BaseX">
-            <HintPath>$(NeosPath)Neos_Data/Managed/BaseX.dll</HintPath>
-        </Reference>
-        <Reference Include="CodeX">
-            <HintPath>$(NeosPath)Neos_Data/Managed/CodeX.dll</HintPath>
-        </Reference>
-        <Reference Include="FrooxEngine">
-            <HintPath>$(NeosPath)Neos_Data/Managed/FrooxEngine.dll</HintPath>
-        </Reference>
-        <Reference Include="Newtonsoft.Json">
-            <HintPath>$(NeosPath)Neos_Data/Managed/Newtonsoft.Json.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Text.Json">
-            <HintPath>$(NeosPath)Neos_Data/Managed/System.Text.Json.dll</HintPath>
-        </Reference>
-        <Reference Include="System"/>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.ValueTuple"/>
-        <Reference Include="System.Xml.Linq"/>
-        <Reference Include="System.Data.DataSetExtensions"/>
-        <Reference Include="Microsoft.CSharp"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Net.Http"/>
-        <Reference Include="System.Xml"/>
-        <Reference Include="UnityEngine">
-            <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.AudioModule">
-            <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.AudioModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.ClothModule">
-            <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.ClothModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.CoreModule">
-            <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.ParticleSystemModule">
-            <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.ParticleSystemModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-            <SpecificVersion>False</SpecificVersion>
-            <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.PhysicsModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityNeos">
-            <HintPath>$(NeosPath)Neos_Data/Managed/UnityNeos.dll</HintPath>
-        </Reference>
-        <Reference Include="CloudX.Shared.dll">
-            <HintPath>$(NeosPath)Neos_Data/Managed/CloudX.Shared.dll</HintPath>
-        </Reference>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Components\Assets\DynamicMesh.cs"/>
-        <Compile Include="Components\Assets\SierpinskiPyramid.cs"/>
-        <Compile Include="Components\Assets\SierpinskiPyramidMesh.cs"/>
-        <Compile Include="Components\Physics\Cloth\ClothCoefficent.cs"/>
-        <Compile Include="Components\Physics\Cloth\ClothCollider.cs"/>
-        <Compile Include="Components\Physics\Cloth\UnityBetterComponentConnector.cs"/>
-        <Compile Include="Components\Physics\Cloth\ClothCapsuleCollider.cs"/>
-        <Compile Include="Components\Physics\Cloth\ClothCapsuleConnector.cs"/>
-        <Compile Include="Components\Physics\Cloth\ClothConnector.cs"/>
-        <Compile Include="Components\Physics\Cloth\ClothSimulation.cs"/>
-        <Compile Include="Components\Physics\Cloth\ClothSphereCollider.cs"/>
-        <Compile Include="Components\Physics\Cloth\ClothSphereConnector.cs"/>
-        <Compile Include="Components\Utility\GrabberSimulator.cs"/>
-        <Compile Include="Components\Wizards\MeshColliderManagementTools.cs"/>
-        <Compile Include="Components\Wizards\LODWizard.cs"/>
-        <Compile Include="Components\Wizards\MapWizard.cs"/>
-        <Compile Include="Components\Audio\FFT\FFTSource.cs"/>
-        <Compile Include="Logix\Avatar\AvatarRootSlot.cs"/>
-        <Compile Include="Logix\Collections\CollectionsClear.cs"/>
-        <Compile Include="Logix\Collections\CollectionsCount.cs"/>
-        <Compile Include="Logix\Collections\CollectionsIterate.cs"/>
-        <Compile Include="Logix\Collections\CollectionsGet.cs"/>
-        <Compile Include="Logix\Collections\CollectionsAppend.cs"/>
-        <Compile Include="Logix\Collections\CollectionsInsert.cs"/>
-        <Compile Include="Logix\Collections\CollectionsRemove.cs"/>
-        <Compile Include="Logix\Collections\CollectionsSet.cs"/>
-        <Compile Include="Logix\Avatar\NearestUserList.cs"/>
-        <Compile Include="Logix\Collections\SyncCollections\CollectionsHelper.cs"/>
-        <Compile Include="Logix\Collections\SyncCollections\CollectionsHelperTypes.cs"/>
-        <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncAppend.cs"/>
-        <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncInsert.cs"/>
-        <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncRemove.cs"/>
-        <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncSet.cs"/>
-        <Compile Include="Logix\DynamicMesh\Bone\AddBone.cs"/>
-        <Compile Include="Logix\DynamicMesh\Bone\GetBone.cs"/>
-        <Compile Include="Logix\DynamicMesh\Bone\PackBoneBinding.cs"/>
-        <Compile Include="Logix\DynamicMesh\Bone\SetBoneBinding.cs"/>
-        <Compile Include="Logix\DynamicMesh\Bone\StripEmptyBone.cs"/>
-        <Compile Include="Logix\DynamicMesh\Bone\UnpackBoneBindings.cs"/>
-        <Compile Include="Logix\DynamicMesh\DynamicMeshInput.cs"/>
-        <Compile Include="Logix\DynamicMesh\MeshInfo.cs"/>
-        <Compile Include="Logix\DynamicMesh\MeshInput.cs"/>
-        <Compile Include="Logix\DynamicMesh\MeshOperations\AppendMesh.cs"/>
-        <Compile Include="Logix\DynamicMesh\MeshOperations\BakeMesh.cs"/>
-        <Compile Include="Logix\DynamicMesh\MeshOperations\ClearMesh.cs"/>
-        <Compile Include="Logix\DynamicMesh\MeshOperations\GetMesh.cs"/>
-        <Compile Include="Logix\DynamicMesh\MeshOperations\RefreshMesh.cs"/>
-        <Compile Include="Logix\DynamicMesh\MeshOperations\SubmeshActions.cs"/>
-        <Compile Include="Logix\DynamicMesh\MeshOperations\SubmeshLooseParts.cs"/>
-        <Compile Include="Logix\DynamicMesh\Triangle\AddTriangle.cs"/>
-        <Compile Include="Logix\DynamicMesh\Triangle\GetTriangle.cs"/>
-        <Compile Include="Logix\DynamicMesh\Triangle\RemoveTriangles.cs"/>
-        <Compile Include="Logix\DynamicMesh\Triangle\SetTriangleIndexies.cs"/>
-        <Compile Include="Logix\DynamicMesh\Triangle\UnpackTriangle.cs"/>
-        <Compile Include="Logix\DynamicMesh\Vertex\AddVertex.cs"/>
-        <Compile Include="Logix\DynamicMesh\Vertex\GetVertex.cs"/>
-        <Compile Include="Logix\DynamicMesh\Vertex\GetVertexPos.cs"/>
-        <Compile Include="Logix\DynamicMesh\Vertex\RemoveVertex.cs"/>
-        <Compile Include="Logix\DynamicMesh\Vertex\SetVertex.cs"/>
-        <Compile Include="Logix\DynamicMesh\Vertex\UnpackVertex.cs"/>
-        <Compile Include="Logix\Input\ParseEnum.cs"/>
-        <Compile Include="Logix\Json\JsonAppendToArray.cs"/>
-        <Compile Include="Logix\Json\JsonCountArrayChildren.cs"/>
-        <Compile Include="Logix\Json\JsonCountObjectChildren.cs"/>
-        <Compile Include="Logix\Json\JsonEmpty.cs"/>
-        <Compile Include="Logix\Json\JsonGetFromArray.cs"/>
-        <Compile Include="Logix\Json\JsonInfo.cs"/>
-        <Compile Include="Logix\Json\JsonInsertToArray.cs"/>
-        <Compile Include="Logix\Json\JsonParseStringArray.cs"/>
-        <Compile Include="Logix\Json\JsonRemoveFromArray.cs"/>
-        <Compile Include="Logix\Json\JsonRemoveFromObject.cs"/>
-        <Compile Include="Logix\Locomotion\IsUserInNoClip.cs"/>
-        <Compile Include="Logix\Math\Constants\EpsilonDouble.cs"/>
-        <Compile Include="Logix\Math\Constants\EpsilonFloat.cs"/>
-        <Compile Include="Logix\Math\IsPrimeNumber.cs"/>
-        <Compile Include="Logix\Math\Random\RandomBool2.cs"/>
-        <Compile Include="Logix\Math\Random\RandomBool3.cs"/>
-        <Compile Include="Logix\Math\Random\RandomBool4.cs"/>
-        <Compile Include="Logix\Math\Random\RandomCharacter.cs"/>
-        <Compile Include="Logix\Math\Random\RandomLetter.cs"/>
-        <Compile Include="Logix\Math\Random\RandomDouble.cs"/>
-        <Compile Include="Logix\Math\Random\RandomInt2.cs"/>
-        <Compile Include="Logix\Math\Random\RandomInt3.cs"/>
-        <Compile Include="Logix\Math\Random\RandomInt4.cs"/>
-        <Compile Include="Logix\Network\HTTPRequest.cs"/>
-        <Compile Include="Logix\Slots\CreateEmptySlot.cs"/>
-        <Compile Include="Logix\Json\JsonAddToObject.cs"/>
-        <Compile Include="Logix\Json\JsonGetFromObject.cs"/>
-        <Compile Include="Logix\Json\JsonParseString.cs"/>
-        <Compile Include="Logix\Json\JsonQuickGetFromObject.cs"/>
-        <Compile Include="Logix\Json\JsonToString.cs"/>
-        <Compile Include="Logix\Math\EulersTotientFunction.cs"/>
-        <Compile Include="Logix\Math\Factorial.cs"/>
-        <Compile Include="Logix\Math\Matrix\GaussianElimination_double2x2.cs"/>
-        <Compile Include="Logix\Math\Matrix\GaussianElimination_double3x3.cs"/>
-        <Compile Include="Logix\Math\Matrix\GaussianElimination_double4x4.cs"/>
-        <Compile Include="Logix\Math\Matrix\GaussianElimination_float2x2.cs"/>
-        <Compile Include="Logix\Math\Matrix\GaussianElimination_float3x3.cs"/>
-        <Compile Include="Logix\Math\Matrix\GaussianElimination_float4x4.cs"/>
-        <Compile Include="Logix\Math\Matrix\GaussJordanElimination_double2x2.cs"/>
-        <Compile Include="Logix\Math\Matrix\GaussJordanElimination_double3x3.cs"/>
-        <Compile Include="Logix\Math\Matrix\GaussJordanElimination_double4x4.cs"/>
-        <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float2x2.cs"/>
-        <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float3x3.cs"/>
-        <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float4x4.cs"/>
-        <Compile Include="Logix\Math\Matrix\MatrixClass.cs"/>
-        <Compile Include="Logix\NodeExtensions.cs"/>
-        <Compile Include="Logix\Operators\ZeroOneI.cs"/>
-        <Compile Include="Logix\Math\SortNode.cs"/>
-        <Compile Include="Logix\String\CountSubstring.cs"/>
-        <Compile Include="Logix\String\DecodeBase64.cs"/>
-        <Compile Include="Logix\String\EncodeBase64.cs"/>
-        <Compile Include="Logix\String\EncodeMD5.cs"/>
-        <Compile Include="Logix\String\EncodeSha256.cs"/>
-        <Compile Include="Logix\String\HammingDistance.cs"/>
-        <Compile Include="Logix\String\HammingDistanceNonNullable.cs"/>
-        <Compile Include="Logix\Slots\GetGrandparent.cs"/>
-        <Compile Include="Logix\Users\AllUsers.cs"/>
-        <Compile Include="Logix\Transform\ValueInequalityDriver.cs"/>
-        <Compile Include="Logix\Users\IsUserScaling.cs"/>
-        <Compile Include="Logix\Users\IsUserInSeatedMode.cs"/>
-        <Compile Include="Logix\Playback\IsPaused.cs"/>
-        <Compile Include="Logix\Playback\IsStopped.cs"/>
-        <Compile Include="Logix\Users\SetUserScaling.cs"/>
-        <Compile Include="Materials\Effects\Hologram.cs"/>
-        <Compile Include="Properties\AssemblyInfo.cs"/>
-        <Compile Include="Materials\TestMaterial.cs"/>
-        <Compile Include="NeosPlusUtil.cs"/>
-        <Compile Include="Shaders\ExecutionHook.cs"/>
-        <Compile Include="Shaders\ShaderInjection.cs"/>
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer"/>
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NEOSPlus</RootNamespace>
+    <AssemblyName>NEOSPlus</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>10</LangVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NeosPath>$(MSBuildThisFileDirectory)NeosVR\</NeosPath>
+    <NeosPath Condition="Exists('C:\Program Files (x86)\Steam\steamapps\common\NeosVR\')">C:\Program Files (x86)\Steam\steamapps\common\NeosVR\</NeosPath>
+    <NeosPath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/NeosVR/')">$(HOME)/.steam/steam/steamapps/common/NeosVR/</NeosPath>
+    <NeosPath Condition="Exists('/mnt/LocalDisk/SteamLibrary/steamapps/common/NeosVR/')">/mnt/LocalDisk/SteamLibrary/steamapps/common/NeosVR/</NeosPath>
+    <NeosPath Condition="Exists('C:\Neos\app\')">C:\Neos\app\</NeosPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CopyToPlugin|AnyCPU'">
+    <OutputPath>bin\CopyToPlugin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <PostBuildEvent>copy "$(TargetDir)\$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\NeosVR\Libraries"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AutoPostX|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\AutoPostX\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PostBuildEvent>cd "$(ProjectDir)"
+      powershell -NoProfile -ExecutionPolicy Bypass ./Scripts/PostBuild.ps1 '$(NeosPath)' $(ConfigurationName)
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BaseX">
+      <HintPath>$(NeosPath)Neos_Data/Managed/BaseX.dll</HintPath>
+    </Reference>
+    <Reference Include="CodeX">
+      <HintPath>$(NeosPath)Neos_Data/Managed/CodeX.dll</HintPath>
+    </Reference>
+    <Reference Include="FrooxEngine">
+      <HintPath>$(NeosPath)Neos_Data/Managed/FrooxEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(NeosPath)Neos_Data/Managed/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json">
+      <HintPath>$(NeosPath)Neos_Data/Managed/System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine">
+      <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(NeosPath)Neos_Data/Managed/UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityNeos">
+      <HintPath>$(NeosPath)Neos_Data/Managed/UnityNeos.dll</HintPath>
+    </Reference>
+    <Reference Include="CloudX.Shared.dll">
+      <HintPath>$(NeosPath)Neos_Data/Managed/CloudX.Shared.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\Assets\DynamicMesh.cs" />
+    <Compile Include="Components\Assets\SierpinskiPyramid.cs" />
+    <Compile Include="Components\Assets\SierpinskiPyramidMesh.cs" />
+    <Compile Include="Components\Physics\Cloth\ClothCoefficent.cs" />
+    <Compile Include="Components\Physics\Cloth\ClothCollider.cs" />
+    <Compile Include="Components\Physics\Cloth\UnityBetterComponentConnector.cs" />
+    <Compile Include="Components\Physics\Cloth\ClothCapsuleCollider.cs" />
+    <Compile Include="Components\Physics\Cloth\ClothCapsuleConnector.cs" />
+    <Compile Include="Components\Physics\Cloth\ClothConnector.cs" />
+    <Compile Include="Components\Physics\Cloth\ClothSimulation.cs" />
+    <Compile Include="Components\Physics\Cloth\ClothSphereCollider.cs" />
+    <Compile Include="Components\Physics\Cloth\ClothSphereConnector.cs" />
+    <Compile Include="Components\Utility\GrabberSimulator.cs" />
+    <Compile Include="Components\Wizards\MeshColliderManagementTools.cs" />
+    <Compile Include="Components\Wizards\LODWizard.cs" />
+    <Compile Include="Components\Wizards\MapWizard.cs" />
+    <Compile Include="Components\Audio\FFT\FFTSource.cs" />
+    <Compile Include="Logix\Avatar\AvatarRootSlot.cs" />
+    <Compile Include="Logix\Collections\CollectionsClear.cs" />
+    <Compile Include="Logix\Collections\CollectionsCount.cs" />
+    <Compile Include="Logix\Collections\CollectionsIterate.cs" />
+    <Compile Include="Logix\Collections\CollectionsGet.cs" />
+    <Compile Include="Logix\Collections\CollectionsAppend.cs" />
+    <Compile Include="Logix\Collections\CollectionsInsert.cs" />
+    <Compile Include="Logix\Collections\CollectionsRemove.cs" />
+    <Compile Include="Logix\Collections\CollectionsSet.cs" />
+    <Compile Include="Logix\Avatar\NearestUserList.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsHelper.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsHelperTypes.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncAppend.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncInsert.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncRemove.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncSet.cs" />
+    <Compile Include="Logix\DynamicMesh\Bone\AddBone.cs" />
+    <Compile Include="Logix\DynamicMesh\Bone\GetBone.cs" />
+    <Compile Include="Logix\DynamicMesh\Bone\PackBoneBinding.cs" />
+    <Compile Include="Logix\DynamicMesh\Bone\SetBoneBinding.cs" />
+    <Compile Include="Logix\DynamicMesh\Bone\StripEmptyBone.cs" />
+    <Compile Include="Logix\DynamicMesh\Bone\UnpackBoneBindings.cs" />
+    <Compile Include="Logix\DynamicMesh\DynamicMeshInput.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshInfo.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshInput.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\AppendMesh.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\BakeMesh.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\ClearMesh.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\GetMesh.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\RefreshMesh.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\SubmeshActions.cs" />
+    <Compile Include="Logix\DynamicMesh\MeshOperations\SubmeshLooseParts.cs" />
+    <Compile Include="Logix\DynamicMesh\Triangle\AddTriangle.cs" />
+    <Compile Include="Logix\DynamicMesh\Triangle\GetTriangle.cs" />
+    <Compile Include="Logix\DynamicMesh\Triangle\RemoveTriangles.cs" />
+    <Compile Include="Logix\DynamicMesh\Triangle\SetTriangleIndexies.cs" />
+    <Compile Include="Logix\DynamicMesh\Triangle\UnpackTriangle.cs" />
+    <Compile Include="Logix\DynamicMesh\Vertex\AddVertex.cs" />
+    <Compile Include="Logix\DynamicMesh\Vertex\GetVertex.cs" />
+    <Compile Include="Logix\DynamicMesh\Vertex\GetVertexPos.cs" />
+    <Compile Include="Logix\DynamicMesh\Vertex\RemoveVertex.cs" />
+    <Compile Include="Logix\DynamicMesh\Vertex\SetVertex.cs" />
+    <Compile Include="Logix\DynamicMesh\Vertex\UnpackVertex.cs" />
+    <Compile Include="Logix\Input\ParseEnum.cs" />
+    <Compile Include="Logix\Json\JsonAppendToArray.cs" />
+    <Compile Include="Logix\Json\JsonCountArrayChildren.cs" />
+    <Compile Include="Logix\Json\JsonCountObjectChildren.cs" />
+    <Compile Include="Logix\Json\JsonEmpty.cs" />
+    <Compile Include="Logix\Json\JsonGetFromArray.cs" />
+    <Compile Include="Logix\Json\JsonInfo.cs" />
+    <Compile Include="Logix\Json\JsonInsertToArray.cs" />
+    <Compile Include="Logix\Json\JsonParseStringArray.cs" />
+    <Compile Include="Logix\Json\JsonRemoveFromArray.cs" />
+    <Compile Include="Logix\Json\JsonRemoveFromObject.cs" />
+    <Compile Include="Logix\Locomotion\IsUserInNoClip.cs" />
+    <Compile Include="Logix\Math\Constants\EpsilonDouble.cs" />
+    <Compile Include="Logix\Math\Constants\EpsilonFloat.cs" />
+    <Compile Include="Logix\Math\IsPrimeNumber.cs" />
+    <Compile Include="Logix\Math\Random\RandomBool2.cs" />
+    <Compile Include="Logix\Math\Random\RandomBool3.cs" />
+    <Compile Include="Logix\Math\Random\RandomBool4.cs" />
+    <Compile Include="Logix\Math\Random\RandomCharacter.cs" />
+    <Compile Include="Logix\Math\Random\RandomLetter.cs" />
+    <Compile Include="Logix\Math\Random\RandomDouble.cs" />
+    <Compile Include="Logix\Math\Random\RandomInt2.cs" />
+    <Compile Include="Logix\Math\Random\RandomInt3.cs" />
+    <Compile Include="Logix\Math\Random\RandomInt4.cs" />
+    <Compile Include="Logix\Network\HTTPRequest.cs" />
+    <Compile Include="Logix\Slots\CreateEmptySlot.cs" />
+    <Compile Include="Logix\Json\JsonAddToObject.cs" />
+    <Compile Include="Logix\Json\JsonGetFromObject.cs" />
+    <Compile Include="Logix\Json\JsonParseString.cs" />
+    <Compile Include="Logix\Json\JsonQuickGetFromObject.cs" />
+    <Compile Include="Logix\Json\JsonToString.cs" />
+    <Compile Include="Logix\Math\EulersTotientFunction.cs" />
+    <Compile Include="Logix\Math\Factorial.cs" />
+    <Compile Include="Logix\Math\Matrix\GaussianElimination_double2x2.cs" />
+    <Compile Include="Logix\Math\Matrix\GaussianElimination_double3x3.cs" />
+    <Compile Include="Logix\Math\Matrix\GaussianElimination_double4x4.cs" />
+    <Compile Include="Logix\Math\Matrix\GaussianElimination_float2x2.cs" />
+    <Compile Include="Logix\Math\Matrix\GaussianElimination_float3x3.cs" />
+    <Compile Include="Logix\Math\Matrix\GaussianElimination_float4x4.cs" />
+    <Compile Include="Logix\Math\Matrix\GaussJordanElimination_double2x2.cs" />
+    <Compile Include="Logix\Math\Matrix\GaussJordanElimination_double3x3.cs" />
+    <Compile Include="Logix\Math\Matrix\GaussJordanElimination_double4x4.cs" />
+    <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float2x2.cs" />
+    <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float3x3.cs" />
+    <Compile Include="Logix\Math\Matrix\GaussJordanElimination_float4x4.cs" />
+    <Compile Include="Logix\Math\Matrix\MatrixClass.cs" />
+    <Compile Include="Logix\NodeExtensions.cs" />
+    <Compile Include="Logix\Operators\ZeroOneI.cs" />
+    <Compile Include="Logix\Math\SortNode.cs" />
+    <Compile Include="Logix\String\CountSubstring.cs" />
+    <Compile Include="Logix\String\DecodeBase64.cs" />
+    <Compile Include="Logix\String\EncodeBase64.cs" />
+    <Compile Include="Logix\String\EncodeMD5.cs" />
+    <Compile Include="Logix\String\EncodeSha256.cs" />
+    <Compile Include="Logix\String\HammingDistance.cs" />
+    <Compile Include="Logix\String\HammingDistanceNonNullable.cs" />
+    <Compile Include="Logix\Slots\GetGrandparent.cs" />
+    <Compile Include="Logix\Users\AllUsers.cs" />
+    <Compile Include="Logix\Transform\ValueInequalityDriver.cs" />
+    <Compile Include="Logix\Users\IsUserScaling.cs" />
+    <Compile Include="Logix\Users\IsUserInSeatedMode.cs" />
+    <Compile Include="Logix\Playback\IsPaused.cs" />
+    <Compile Include="Logix\Playback\IsStopped.cs" />
+    <Compile Include="Logix\Users\SetUserScaling.cs" />
+    <Compile Include="Materials\Effects\Hologram.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Materials\TestMaterial.cs" />
+    <Compile Include="NeosPlusUtil.cs" />
+    <Compile Include="Shaders\ExecutionHook.cs" />
+    <Compile Include="Shaders\ShaderInjection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

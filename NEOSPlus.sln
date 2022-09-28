@@ -12,6 +12,7 @@ Global
 		CopyToPlugin|Any CPU = CopyToPlugin|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		AutoPostX|Any CPU = AutoPostX|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.CopyToPlugin|Any CPU.ActiveCfg = CopyToPlugin|Any CPU
@@ -20,12 +21,16 @@ Global
 		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.AutoPostX|Any CPU.ActiveCfg = AutoPostX|Any CPU
+		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.AutoPostX|Any CPU.Build.0 = AutoPostX|Any CPU
 		{88053493-5CC5-41EA-B598-816373CF48FE}.CopyToPlugin|Any CPU.ActiveCfg = CopyToPlugin|Any CPU
 		{88053493-5CC5-41EA-B598-816373CF48FE}.CopyToPlugin|Any CPU.Build.0 = CopyToPlugin|Any CPU
 		{88053493-5CC5-41EA-B598-816373CF48FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88053493-5CC5-41EA-B598-816373CF48FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88053493-5CC5-41EA-B598-816373CF48FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88053493-5CC5-41EA-B598-816373CF48FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88053493-5CC5-41EA-B598-816373CF48FE}.AutoPostX|Any CPU.ActiveCfg = AutoPostX|Any CPU
+		{88053493-5CC5-41EA-B598-816373CF48FE}.AutoPostX|Any CPU.Build.0 = AutoPostX|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -47,6 +47,17 @@
     <ErrorReport>prompt</ErrorReport>
     <PostBuildEvent>copy "$(TargetDir)\$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\NeosVR\Libraries"</PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AutoPostX|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\AutoPostX\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PostBuildEvent>cd "$(ProjectDir)"
+      powershell -NoProfile -ExecutionPolicy Bypass ./Scripts/PostBuild.ps1 '$(NeosPath)' $(ConfigurationName)
+    </PostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BaseX">
       <HintPath>$(NeosPath)Neos_Data/Managed/BaseX.dll</HintPath>
@@ -102,6 +113,8 @@
     <Compile Include="Components\Assets\DynamicMesh.cs" />
     <Compile Include="Components\Assets\SierpinskiPyramid.cs" />
     <Compile Include="Components\Assets\SierpinskiPyramidMesh.cs" />
+    <Compile Include="Components\Collections\ReferenceFieldList.cs" />
+    <Compile Include="Components\Collections\ValueFieldList.cs" />
     <Compile Include="Components\Physics\Cloth\ClothCoefficent.cs" />
     <Compile Include="Components\Physics\Cloth\ClothCollider.cs" />
     <Compile Include="Components\Physics\Cloth\UnityBetterComponentConnector.cs" />
@@ -114,10 +127,25 @@
     <Compile Include="Components\Utility\GrabberSimulator.cs" />
     <Compile Include="Components\Wizards\MeshColliderManagementTools.cs" />
     <Compile Include="Components\Wizards\LODWizard.cs" />
-		<Compile Include="Components\Wizards\MapWizard.cs" />
+    <Compile Include="Components\Wizards\MapWizard.cs" />
     <Compile Include="Components\Audio\FFT\FFTSource.cs" />
+    <Compile Include="ExecutionHook.cs" />
     <Compile Include="Logix\Avatar\AvatarRootSlot.cs" />
+    <Compile Include="Logix\Collections\CollectionsClear.cs" />
+    <Compile Include="Logix\Collections\CollectionsCount.cs" />
+    <Compile Include="Logix\Collections\CollectionsIterate.cs" />
+    <Compile Include="Logix\Collections\CollectionsGet.cs" />
+    <Compile Include="Logix\Collections\CollectionsAppend.cs" />
+    <Compile Include="Logix\Collections\CollectionsInsert.cs" />
+    <Compile Include="Logix\Collections\CollectionsRemove.cs" />
+    <Compile Include="Logix\Collections\CollectionsSet.cs" />
     <Compile Include="Logix\Avatar\NearestUserList.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsHelper.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsHelperTypes.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncAppend.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncInsert.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncRemove.cs" />
+    <Compile Include="Logix\Collections\SyncCollections\CollectionsSyncSet.cs" />
     <Compile Include="Logix\DynamicMesh\Bone\AddBone.cs" />
     <Compile Include="Logix\DynamicMesh\Bone\GetBone.cs" />
     <Compile Include="Logix\DynamicMesh\Bone\PackBoneBinding.cs" />
@@ -145,6 +173,7 @@
     <Compile Include="Logix\DynamicMesh\Vertex\RemoveVertex.cs" />
     <Compile Include="Logix\DynamicMesh\Vertex\SetVertex.cs" />
     <Compile Include="Logix\DynamicMesh\Vertex\UnpackVertex.cs" />
+    <Compile Include="Logix\Input\ParseEnum.cs" />
     <Compile Include="Logix\Json\JsonAppendToArray.cs" />
     <Compile Include="Logix\Json\JsonCountArrayChildren.cs" />
     <Compile Include="Logix\Json\JsonCountObjectChildren.cs" />
@@ -201,6 +230,7 @@
     <Compile Include="Logix\String\HammingDistance.cs" />
     <Compile Include="Logix\String\HammingDistanceNonNullable.cs" />
     <Compile Include="Logix\Slots\GetGrandparent.cs" />
+    <Compile Include="Logix\Users\AllUsers.cs" />
     <Compile Include="Logix\Transform\ValueInequalityDriver.cs" />
     <Compile Include="Logix\Users\IsUserScaling.cs" />
     <Compile Include="Logix\Users\IsUserInSeatedMode.cs" />
@@ -211,19 +241,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Materials\TestMaterial.cs" />
     <Compile Include="NeosPlusUtil.cs" />
-    <Compile Include="Shaders\ExecutionHook.cs" />
     <Compile Include="Shaders\ShaderInjection.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Components\Rendering\" />
-    <Folder Include="Logix\Physics\" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>cd "$(ProjectDir)"
-powershell -NoProfile -ExecutionPolicy Bypass ./Scripts/PostBuild.ps1 '$(NeosPath)' $(ConfigurationName)</PostBuildEvent>
-  </PropertyGroup>
 </Project>

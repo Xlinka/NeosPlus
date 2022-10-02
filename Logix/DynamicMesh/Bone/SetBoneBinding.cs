@@ -9,8 +9,7 @@ namespace FrooxEngine
     public class SetBoneBinding : LogixNode
     {
         public readonly Input<Vertex> Vertex;
-        [OldName("BoneBinging")]
-        public readonly Input<BoneBinding> BoneBinding;
+        [OldName("BoneBinging")] public readonly Input<BoneBinding> BoneBinding;
         public readonly Impulse OK;
         public readonly Impulse Failed;
 
@@ -25,6 +24,7 @@ namespace FrooxEngine
                     Failed.Trigger();
                     return;
                 }
+
                 vert.BoneBinding = BoneBinding.Evaluate();
                 OK.Trigger();
             }

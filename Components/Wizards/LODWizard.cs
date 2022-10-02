@@ -11,28 +11,20 @@ namespace FrooxEngine
         private const string LOD_GROUP_PREFIX = "<LOD_GROUP>";
 
         private const string LOD_1 = "<LOD_1>";
-        [Range(0f, 1f, "0.00")]
-        public readonly Sync<float> ScreenRelativeTransitionHeight_1;
-        [Range(0f, 1f, "0.00")]
-        public readonly Sync<float> FadeTransitionWidth_1;
+        [Range(0f, 1f, "0.00")] public readonly Sync<float> ScreenRelativeTransitionHeight_1;
+        [Range(0f, 1f, "0.00")] public readonly Sync<float> FadeTransitionWidth_1;
 
         private const string LOD_2 = "<LOD_2>";
-        [Range(0f, 1f, "0.00")]
-        public readonly Sync<float> ScreenRelativeTransitionHeight_2;
-        [Range(0f, 1f, "0.00")]
-        public readonly Sync<float> FadeTransitionWidth_2;
+        [Range(0f, 1f, "0.00")] public readonly Sync<float> ScreenRelativeTransitionHeight_2;
+        [Range(0f, 1f, "0.00")] public readonly Sync<float> FadeTransitionWidth_2;
 
         private const string LOD_3 = "<LOD_3>";
-        [Range(0f, 1f, "0.00")]
-        public readonly Sync<float> ScreenRelativeTransitionHeight_3;
-        [Range(0f, 1f, "0.00")]
-        public readonly Sync<float> FadeTransitionWidth_3;
+        [Range(0f, 1f, "0.00")] public readonly Sync<float> ScreenRelativeTransitionHeight_3;
+        [Range(0f, 1f, "0.00")] public readonly Sync<float> FadeTransitionWidth_3;
 
         private const string LOD_4 = "<LOD_4>";
-        [Range(0f, 1f, "0.00")]
-        public readonly Sync<float> ScreenRelativeTransitionHeight_4;
-        [Range(0f, 1f, "0.00")]
-        public readonly Sync<float> FadeTransitionWidth_4;
+        [Range(0f, 1f, "0.00")] public readonly Sync<float> ScreenRelativeTransitionHeight_4;
+        [Range(0f, 1f, "0.00")] public readonly Sync<float> FadeTransitionWidth_4;
 
         public readonly SyncRef<Slot> ProcessRoot;
         public readonly Sync<bool> CrossFade;
@@ -74,28 +66,34 @@ namespace FrooxEngine
 
             UIBuilder uIBuilder5 = ui;
             text = "LOD Group 1 ScreenRelativeTransitionHeight".AsLocaleKey();
-            uIBuilder5.HorizontalElementWithLabel(in text, 0.8f, () => ui.PrimitiveMemberEditor(ScreenRelativeTransitionHeight_1));
+            uIBuilder5.HorizontalElementWithLabel(in text, 0.8f,
+                () => ui.PrimitiveMemberEditor(ScreenRelativeTransitionHeight_1));
             UIBuilder uIBuilder6 = ui;
             text = "LOD Group 1 FadeTransitionWidth".AsLocaleKey();
             uIBuilder6.HorizontalElementWithLabel(in text, 0.8f, () => ui.PrimitiveMemberEditor(FadeTransitionWidth_1));
             UIBuilder uIBuilder7 = ui;
             text = "LOD Group 2 ScreenRelativeTransitionHeight".AsLocaleKey();
-            uIBuilder7.HorizontalElementWithLabel(in text, 0.8f, () => ui.PrimitiveMemberEditor(ScreenRelativeTransitionHeight_2));
+            uIBuilder7.HorizontalElementWithLabel(in text, 0.8f,
+                () => ui.PrimitiveMemberEditor(ScreenRelativeTransitionHeight_2));
             UIBuilder uIBuilder8 = ui;
             text = "LOD Group 2 FadeTransitionWidth".AsLocaleKey();
             uIBuilder8.HorizontalElementWithLabel(in text, 0.8f, () => ui.PrimitiveMemberEditor(FadeTransitionWidth_2));
             UIBuilder uIBuilder9 = ui;
             text = "LOD Group 3 ScreenRelativeTransitionHeight".AsLocaleKey();
-            uIBuilder9.HorizontalElementWithLabel(in text, 0.8f, () => ui.PrimitiveMemberEditor(ScreenRelativeTransitionHeight_3));
+            uIBuilder9.HorizontalElementWithLabel(in text, 0.8f,
+                () => ui.PrimitiveMemberEditor(ScreenRelativeTransitionHeight_3));
             UIBuilder uIBuilder10 = ui;
             text = "LOD Group 3 FadeTransitionWidth".AsLocaleKey();
-            uIBuilder10.HorizontalElementWithLabel(in text, 0.8f, () => ui.PrimitiveMemberEditor(FadeTransitionWidth_3));
+            uIBuilder10.HorizontalElementWithLabel(in text, 0.8f,
+                () => ui.PrimitiveMemberEditor(FadeTransitionWidth_3));
             UIBuilder uIBuilder11 = ui;
             text = "LOD Group 4 ScreenRelativeTransitionHeight".AsLocaleKey();
-            uIBuilder11.HorizontalElementWithLabel(in text, 0.8f, () => ui.PrimitiveMemberEditor(ScreenRelativeTransitionHeight_4));
+            uIBuilder11.HorizontalElementWithLabel(in text, 0.8f,
+                () => ui.PrimitiveMemberEditor(ScreenRelativeTransitionHeight_4));
             UIBuilder uIBuilder12 = ui;
             text = "LOD Group 4 FadeTransitionWidth".AsLocaleKey();
-            uIBuilder12.HorizontalElementWithLabel(in text, 0.8f, () => ui.PrimitiveMemberEditor(FadeTransitionWidth_4));
+            uIBuilder12.HorizontalElementWithLabel(in text, 0.8f,
+                () => ui.PrimitiveMemberEditor(FadeTransitionWidth_4));
 
             UIBuilder uIBuilder13 = ui;
             text = "-------";

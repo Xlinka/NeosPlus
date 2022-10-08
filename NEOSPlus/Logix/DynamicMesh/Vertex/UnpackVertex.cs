@@ -35,7 +35,7 @@ namespace FrooxEngine.LogiX.Operators
             UV3.Value = (mesh.HasUV3s) ? vert.UV3 : default;
             Index.Value = vert.Index;
         }
-
+        //is this needed?
         protected override void NotifyOutputsOfChange()
         {
             ((IOutputElement) Position).NotifyChange();

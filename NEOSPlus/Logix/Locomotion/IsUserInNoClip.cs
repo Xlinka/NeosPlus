@@ -8,15 +8,10 @@ namespace FrooxEngine.LogiX.Locomotion
     {
         public readonly Input<User> User;
 
-        public override bool Content
-        {
-            get
-            {
-                return User.EvaluateRaw()?.Root?.GetRegisteredComponent<LocomotionController>()?.ActiveModule
-                           .GetType() ==
-                       typeof(NoclipLocomotion);
-            }
-        }
+        public override bool Content =>
+            User.EvaluateRaw()?.Root?.GetRegisteredComponent<LocomotionController>()?.ActiveModule
+                .GetType() ==
+            typeof(NoclipLocomotion);
 
         protected override void OnCommonUpdate()
         {

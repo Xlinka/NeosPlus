@@ -25,7 +25,6 @@ namespace FrooxEngine.LogiX.Math
                         break;
                     }
                 }
-
                 double sqrtNum = MathX.Sqrt(num);
                 for (var i = 3; i <= sqrtNum; i += 2)
                     if (num % i == 0)

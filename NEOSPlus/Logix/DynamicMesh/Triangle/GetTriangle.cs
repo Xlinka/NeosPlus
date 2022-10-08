@@ -15,12 +15,9 @@ namespace FrooxEngine.Logix.Math
             get
             {
                 var mesh = Mesh.Evaluate();
-                if (mesh?.Asset == null)
-                {
-                    return new Triangle();
-                }
-
-                return mesh.Asset.Data.GetTriangle(Index.Evaluate(), Submesh.Evaluate());
+                return mesh?.Asset == null
+                    ? new Triangle()
+                    : mesh.Asset.Data.GetTriangle(Index.Evaluate(), Submesh.Evaluate());
             }
         }
 

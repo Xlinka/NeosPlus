@@ -38,15 +38,9 @@ namespace FrooxEngine
         protected override void OnChanges()
         {
             base.OnChanges();
-            if (Mesh.Target?.GetType() != typeof(DynamicMesh))
-            {
-                Mesh.Target = null;
-            }
-
+            if (Mesh.Target?.GetType() != typeof(DynamicMesh)) Mesh.Target = null;
             if (_text.Target != null)
-            {
                 _text.Target.Content.Value = "Dynamic Mesh:\n" + (Content?.Slot.Name ?? "<i>null</i>");
-            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace FrooxEngine.LogiX.Assets
             get
             {
                 var slot = Root.Evaluate();
-                var component = slot.GetComponent<IAssetProvider<Mesh>>();
+                var component = slot?.GetComponent<IAssetProvider<Mesh>>();
                 if (component == null) return null;
                 var assets = slot.World.AssetsSlot;
                 if (slot.FindParent(i => assets == i) != null || slot.IsAvatarProtected())

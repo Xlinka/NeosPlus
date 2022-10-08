@@ -21,7 +21,6 @@ namespace FrooxEngine.LogiX.Math
                 while (inputCopy % p == 0) inputCopy /= p;
                 result -= result / p;
             }
-
             if (inputCopy > 1) result -= result / inputCopy;
             Output.Value = result;
         }

@@ -252,5 +252,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Holo.shader" />
+    <None Include="Shaders\HologramV2.shader" />
+    <None Include="Shaders\NeosPlusTest.shader" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BaseX;
 using CloudX.Shared;
 using FrooxEngine;
 
@@ -11,10 +10,10 @@ namespace NEOSPlus.Shaders
     internal class ShaderInjection
     {
         // Any shader marked with archived are still technically usable but I don't want a orb for them as they are most likely obselete in some or another
-        public static readonly Uri Hologram_Archived = new Uri("neosdb:///d9e1620cc027cb009f4a994fe0e30136ed5dacd975c0f2fb562af55457b0a190.neoshader");
-        public static readonly Uri NeosPlusTest = new Uri("neosdb:///032da78c8a65dd71ca33cd8ed4ad7222682057b59f7afb3bbe582a42fdc0bbc9.neoshader");
-        public static readonly Uri HologramV2 = new Uri("neosdb:///55cbadb64068521f187d408bed05542af1365d4c056b2570b4cc0d6105657902.neoshader");
-        public static readonly Uri MToon = new Uri("neosdb:///f9db0509b5413ae1449ca912aedb660aac028d29415c74a7767daf4fafa4c764.neoshader");
+        public static readonly Uri Hologram_Archived = new("neosdb:///d9e1620cc027cb009f4a994fe0e30136ed5dacd975c0f2fb562af55457b0a190.neoshader");
+        public static readonly Uri NeosPlusTest = new("neosdb:///032da78c8a65dd71ca33cd8ed4ad7222682057b59f7afb3bbe582a42fdc0bbc9.neoshader");
+        public static readonly Uri HologramV2 = new("neosdb:///55cbadb64068521f187d408bed05542af1365d4c056b2570b4cc0d6105657902.neoshader");
+        public static readonly Uri MToon = new("neosdb:///f9db0509b5413ae1449ca912aedb660aac028d29415c74a7767daf4fafa4c764.neoshader");
 
 
         private static readonly List<Uri> Shaders = new()

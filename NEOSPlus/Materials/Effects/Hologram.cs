@@ -26,17 +26,17 @@ public class Hologram : SingleShaderMaterialProvider
 	private static PropertyState _propertyInitializationState;
 
 	// Main
-	private static MaterialProperty _MainTexture = new MaterialProperty("_MainTexture");
-	private static MaterialProperty _MainColor = new MaterialProperty("_MainColor");
-	private static MaterialProperty _EmissionTexture = new MaterialProperty("_EmissionTexture");
-	private static MaterialProperty _EmissionColor = new MaterialProperty("_EmissionColor");
+	private static MaterialProperty _MainTexture = new("_MainTexture");
+	private static MaterialProperty _MainColor = new("_MainColor");
+	private static MaterialProperty _EmissionTexture = new("_EmissionTexture");
+	private static MaterialProperty _EmissionColor = new("_EmissionColor");
 	// Repeating ramp
-	private static MaterialProperty _RampTexture = new MaterialProperty("_RampTexture");
-	private static MaterialProperty _Scale = new MaterialProperty("_Scale");
-	private static MaterialProperty _ScrollSpeed = new MaterialProperty("_ScrollSpeed");
+	private static MaterialProperty _RampTexture = new("_RampTexture");
+	private static MaterialProperty _Scale = new("_Scale");
+	private static MaterialProperty _ScrollSpeed = new("_ScrollSpeed");
 	// Fresnel
-	private static MaterialProperty _FresnelColor = new MaterialProperty("_FresnelColor");
-	private static MaterialProperty _FresnelExponent = new MaterialProperty("_FresnelExponent");
+	private static MaterialProperty _FresnelColor = new("_FresnelColor");
+	private static MaterialProperty _FresnelExponent = new("_FresnelExponent");
 
 	public override PropertyState PropertyInitializationState
 	{
@@ -74,7 +74,7 @@ public class Hologram : SingleShaderMaterialProvider
 		FresnelColor.Value = new color(1f);
 		FresnelExponent.Value = 1;
 
-		RampTexture.Target = base.World.GetSharedComponentOrCreate("HoloV2_DefaultRampTexture", delegate (StaticTexture2D tex)
+		RampTexture.Target = World.GetSharedComponentOrCreate("HoloV2_DefaultRampTexture", delegate (StaticTexture2D tex)
 		{
 			tex.URL.Value = new Uri("neosdb:///e8d0be4b3d5f364eee47461fa10213fc2152b47c6ccc8a07099250f9ea945549.png");
 			tex.Uncompressed.Value = false;

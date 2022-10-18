@@ -14,10 +14,11 @@ namespace NEOSPlus.Shaders
         public static readonly Uri NeosPlusTest = new("neosdb:///032da78c8a65dd71ca33cd8ed4ad7222682057b59f7afb3bbe582a42fdc0bbc9.neoshader");
         public static readonly Uri HologramV2 = new("neosdb:///55cbadb64068521f187d408bed05542af1365d4c056b2570b4cc0d6105657902.neoshader");
         public static readonly Uri MToon = new("neosdb:///f9db0509b5413ae1449ca912aedb660aac028d29415c74a7767daf4fafa4c764.neoshader");
-
+        public static readonly Uri ParallaxOcclusion = new("neosdb:///2e5115ddecc06523c91da9111dfb05f4972fa79330af68214f1fd26752c67a53.neoshader");
 
         private static readonly List<Uri> Shaders = new()
         {
+            ParallaxOcclusion,
             Hologram_Archived,
             NeosPlusTest,
             HologramV2,

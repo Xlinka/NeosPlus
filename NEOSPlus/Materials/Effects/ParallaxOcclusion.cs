@@ -10,6 +10,7 @@ public class ParallaxOcclusion : SingleShaderMaterialProvider
 
     public readonly Sync<color> Color;
     public readonly AssetRef<ITexture2D> MainTex;
+    public readonly Sync<float> TextureScale;
     public readonly AssetRef<ITexture2D> NormalMap;
     [Range(0f, 1f, "0.00")]
     public readonly Sync<float> NormalScale;
@@ -27,6 +28,7 @@ public class ParallaxOcclusion : SingleShaderMaterialProvider
 
     private static MaterialProperty _Color = new MaterialProperty("_Color");
     private static MaterialProperty _MainTex = new MaterialProperty("_MainTex");
+    private static MaterialProperty _TextureScale = new MaterialProperty("_TextureScale");
     private static MaterialProperty _NormalMap = new MaterialProperty("_BumpMap");
     private static MaterialProperty _NormalScale = new MaterialProperty("_BumpScale");
     private static MaterialProperty _ParallaxMap = new MaterialProperty("_ParallaxMap");
@@ -49,6 +51,7 @@ public class ParallaxOcclusion : SingleShaderMaterialProvider
     {
         material.UpdateColor(_Color, Color);
         material.UpdateTexture(_MainTex, MainTex);
+        material.UpdateFloat(_TextureScale, TextureScale);
         material.UpdateTexture(_NormalMap, NormalMap);
         material.UpdateFloat(_NormalScale, NormalScale);
         material.UpdateTexture(_ParallaxMap, ParallaxMap);

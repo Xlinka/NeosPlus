@@ -57,11 +57,11 @@ namespace NEOSPlus.Materials
         public readonly Sync<float> UvAnimRotation;
 
         private static MaterialProperty _Cutoff = new("_Cutoff");
-        private static MaterialProperty _Color= new("_Color");
+        private static MaterialProperty _Color = new("_Color");
         private static MaterialProperty _ShadeColor= new("_ShadeColor");
         private static MaterialProperty _MainTex = new("_MainTex");
         private static MaterialProperty _ShadeTexture = new("_ShadeTexture");
-        private static MaterialProperty _BumpScale= new("_BumpScale");
+        private static MaterialProperty _BumpScale = new("_BumpScale");
         private static MaterialProperty _BumpMap = new("_BumpMap");
         private static MaterialProperty _ReceiveShadowRate = new("_ReceiveShadowRate");
         private static MaterialProperty _ReceiveShadowTexture = new("_ReceiveShadowTexture");
@@ -71,7 +71,7 @@ namespace NEOSPlus.Materials
         private static MaterialProperty _ShadeToony = new("_ShadeToony");
         private static MaterialProperty _LightColorAttenuation = new("_LightColorAttenuation");
         private static MaterialProperty _IndirectLightIntensity = new("_IndirectLightIntensity");
-        private static MaterialProperty _RimColor= new("_RimColor");
+        private static MaterialProperty _RimColor = new("_RimColor");
         private static MaterialProperty _RimTexture = new("_RimTexture");
         private static MaterialProperty _RimLightingMix = new("_RimLightingMix");
         private static MaterialProperty _RimFresnelPower = new("_RimFresnelPower");
@@ -82,23 +82,34 @@ namespace NEOSPlus.Materials
         private static MaterialProperty _OutlineWidthTexture = new("_OutlineWidthTexture");
         private static MaterialProperty _OutlineWidth = new("_OutlineWidth");
         private static MaterialProperty _OutlineScaledMaxDistance = new("_OutlineScaledMaxDistance");
-        private static MaterialProperty _OutlineColor= new("_OutlineColor");
+        private static MaterialProperty _OutlineColor = new("_OutlineColor");
         private static MaterialProperty _OutlineLightingMix = new("_OutlineLightingMix");
         private static MaterialProperty _UvAnimMaskTexture = new("_UvAnimMaskTexture");
-        private static MaterialProperty _UvAnimScrollX= new("_UvAnimScrollX");
-        private static MaterialProperty _UvAnimScrollY= new("_UvAnimScrollY");
+        private static MaterialProperty _UvAnimScrollX = new("_UvAnimScrollX");
+        private static MaterialProperty _UvAnimScrollY = new("_UvAnimScrollY");
         private static MaterialProperty _UvAnimRotation = new("_UvAnimRotation");
 
+        [HideInInspector]
         public readonly Sync<float> MToonVersion;
+        [HideInInspector]
         public readonly Sync<float> DebugMode;
+        [HideInInspector]
         public readonly Sync<float> BlendMode;
+        [HideInInspector]
         public readonly Sync<float> OutlineWidthMode;
+        [HideInInspector]
         public readonly Sync<float> OutlineColorMode;
+        [HideInInspector]
         public readonly Sync<float> CullMode;
+        [HideInInspector]
         public readonly Sync<float> OutlineCullMode;
+        [HideInInspector]
         public readonly Sync<float> SrcBlend;
+        [HideInInspector]
         public readonly Sync<float> DstBlend;
+        [HideInInspector]
         public readonly Sync<float> ZWrite;
+        [HideInInspector]
         public readonly Sync<float> AlphaToMask;
         private static MaterialProperty _MToonVersion = new("_MToonVersion");
         private static MaterialProperty _DebugMode = new("_DebugMode");
@@ -110,7 +121,7 @@ namespace NEOSPlus.Materials
         private static MaterialProperty _SrcBlend = new("_SrcBlend");
         private static MaterialProperty _DstBlend = new("_DstBlend");
         private static MaterialProperty _ZWrite = new("_ZWrite");
-        private static MaterialProperty _AlphaToMask  = new("_AlphaToMask");
+        private static MaterialProperty _AlphaToMask = new("_AlphaToMask");
 
         [DefaultValue(-1)]
         public readonly Sync<int> RenderQueue;

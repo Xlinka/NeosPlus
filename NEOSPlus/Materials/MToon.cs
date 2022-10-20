@@ -10,69 +10,83 @@ namespace NEOSPlus.Materials
     {
         protected override Uri ShaderURL => ShaderInjection.MToon;
 
+        [Range(0f, 1f, "0.00")]
         public readonly Sync<float> Cutoff;
-        [Range(0f, 1f)] private static MaterialProperty _Cutoff = new("_Cutoff");
         public readonly Sync<color> Color;
-        private static MaterialProperty _Color= new("_Color");
         public readonly Sync<color> ShadeColor;
-        private static MaterialProperty _ShadeColor= new("_ShadeColor");
         public readonly AssetRef<ITexture2D> MainTex;
-        private static MaterialProperty _MainTex = new("_MainTex");
         public readonly AssetRef<ITexture2D> ShadeTexture;
-        private static MaterialProperty _ShadeTexture = new("_ShadeTexture");
         public readonly Sync<float> BumpScale;
-        private static MaterialProperty _BumpScale= new("_BumpScale");
         public readonly AssetRef<ITexture2D> BumpMap;
-        private static MaterialProperty _BumpMap = new("_BumpMap");
+        [Range(0f, 1f, "0.00")] 
         public readonly Sync<float> ReceiveShadowRate;
-        [Range(0f, 1f)] private static MaterialProperty _ReceiveShadowRate = new("_ReceiveShadowRate");
         public readonly AssetRef<ITexture2D> ReceiveShadowTexture;
-        private static MaterialProperty _ReceiveShadowTexture = new("_ReceiveShadowTexture");
+        [Range(0f, 1f, "0.00")]
         public readonly Sync<float> ShadingGradeRate;
-        [Range(0f, 1f)] private static MaterialProperty _ShadingGradeRate = new("_ShadingGradeRate");
         public readonly AssetRef<ITexture2D> ShadingGradeTexture;
-        private static MaterialProperty _ShadingGradeTexture = new("_ShadingGradeTexture");
+        [Range(-1f, 1f, "0.00")]
         public readonly Sync<float> ShadeShift;
-        [Range(-1f, 1f)] private static MaterialProperty _ShadeShift = new("_ShadeShift");
+        [Range(0f, 1f, "0.00")]
         public readonly Sync<float> ShadeToony;
-        [Range(0f, 1f)] private static MaterialProperty _ShadeToony = new("_ShadeToony");
+        [Range(0f, 1f, "0.00")]
         public readonly Sync<float> LightColorAttenuation;
-        [Range(0f, 1f)] private static MaterialProperty _LightColorAttenuation = new("_LightColorAttenuation");
+        [Range(0f, 1f, "0.00")]
         public readonly Sync<float> IndirectLightIntensity;
-        [Range(0f, 1f)] private static MaterialProperty _IndirectLightIntensity = new("_IndirectLightIntensity");
         public readonly Sync<color> RimColor;
-        private static MaterialProperty _RimColor= new("_RimColor");
         public readonly AssetRef<ITexture2D> RimTexture;
-        private static MaterialProperty _RimTexture = new("_RimTexture");
+        [Range(0f, 1f, "0.00")]
         public readonly Sync<float> RimLightingMix;
-        [Range(0f, 1f)] private static MaterialProperty _RimLightingMix = new("_RimLightingMix");
+        [Range(0f, 100f, "0.00")]
         public readonly Sync<float> RimFresnelPower;
-        [Range(0f, 100f)] private static MaterialProperty _RimFresnelPower = new("_RimFresnelPower");
+        [Range(0f, 1f, "0.00")]
         public readonly Sync<float> RimLift;
-        [Range(0f, 1f)] private static MaterialProperty _RimLift = new("_RimLift");
         public readonly AssetRef<ITexture2D> SphereAdd;
-        private static MaterialProperty _SphereAdd = new("_SphereAdd");
         public readonly Sync<color> EmissionColor;
-        private static MaterialProperty _EmissionColor = new("_EmissionColor");
         public readonly AssetRef<ITexture2D> EmissionMap;
-        private static MaterialProperty _EmissionMap = new("_EmissionMap");
         public readonly AssetRef<ITexture2D> OutlineWidthTexture;
-        private static MaterialProperty _OutlineWidthTexture = new("_OutlineWidthTexture");
+        [Range(0.01f, 1f, "0.00")]
         public readonly Sync<float> OutlineWidth;
-        [Range(0.01f, 1f)] private static MaterialProperty _OutlineWidth = new("_OutlineWidth");
+        [Range(0f, 10f, "0.00")]
         public readonly Sync<float> OutlineScaledMaxDistance;
-        [Range(0f, 10f)] private static MaterialProperty _OutlineScaledMaxDistance = new("_OutlineScaledMaxDistance");
         public readonly Sync<color> OutlineColor;
-        private static MaterialProperty _OutlineColor= new("_OutlineColor");
+        [Range(0f, 1f, "0.00")]
         public readonly Sync<float> OutlineLightingMix;
-        [Range(0f, 1f)] private static MaterialProperty _OutlineLightingMix = new("_OutlineLightingMix");
         public readonly AssetRef<ITexture2D> UvAnimMaskTexture;
-        private static MaterialProperty _UvAnimMaskTexture = new("_UvAnimMaskTexture");
         public readonly Sync<float> UvAnimScrollX;
-        private static MaterialProperty _UvAnimScrollX= new("_UvAnimScrollX");
         public readonly Sync<float> UvAnimScrollY;
-        private static MaterialProperty _UvAnimScrollY= new("_UvAnimScrollY");
         public readonly Sync<float> UvAnimRotation;
+
+        private static MaterialProperty _Cutoff = new("_Cutoff");
+        private static MaterialProperty _Color= new("_Color");
+        private static MaterialProperty _ShadeColor= new("_ShadeColor");
+        private static MaterialProperty _MainTex = new("_MainTex");
+        private static MaterialProperty _ShadeTexture = new("_ShadeTexture");
+        private static MaterialProperty _BumpScale= new("_BumpScale");
+        private static MaterialProperty _BumpMap = new("_BumpMap");
+        private static MaterialProperty _ReceiveShadowRate = new("_ReceiveShadowRate");
+        private static MaterialProperty _ReceiveShadowTexture = new("_ReceiveShadowTexture");
+        private static MaterialProperty _ShadingGradeRate = new("_ShadingGradeRate");
+        private static MaterialProperty _ShadingGradeTexture = new("_ShadingGradeTexture");
+        private static MaterialProperty _ShadeShift = new("_ShadeShift");
+        private static MaterialProperty _ShadeToony = new("_ShadeToony");
+        private static MaterialProperty _LightColorAttenuation = new("_LightColorAttenuation");
+        private static MaterialProperty _IndirectLightIntensity = new("_IndirectLightIntensity");
+        private static MaterialProperty _RimColor= new("_RimColor");
+        private static MaterialProperty _RimTexture = new("_RimTexture");
+        private static MaterialProperty _RimLightingMix = new("_RimLightingMix");
+        private static MaterialProperty _RimFresnelPower = new("_RimFresnelPower");
+        private static MaterialProperty _RimLift = new("_RimLift");
+        private static MaterialProperty _SphereAdd = new("_SphereAdd");
+        private static MaterialProperty _EmissionColor = new("_EmissionColor");
+        private static MaterialProperty _EmissionMap = new("_EmissionMap");
+        private static MaterialProperty _OutlineWidthTexture = new("_OutlineWidthTexture");
+        private static MaterialProperty _OutlineWidth = new("_OutlineWidth");
+        private static MaterialProperty _OutlineScaledMaxDistance = new("_OutlineScaledMaxDistance");
+        private static MaterialProperty _OutlineColor= new("_OutlineColor");
+        private static MaterialProperty _OutlineLightingMix = new("_OutlineLightingMix");
+        private static MaterialProperty _UvAnimMaskTexture = new("_UvAnimMaskTexture");
+        private static MaterialProperty _UvAnimScrollX= new("_UvAnimScrollX");
+        private static MaterialProperty _UvAnimScrollY= new("_UvAnimScrollY");
         private static MaterialProperty _UvAnimRotation = new("_UvAnimRotation");
 
         public readonly Sync<float> MToonVersion;

@@ -8,35 +8,29 @@ public class Hologram : SingleShaderMaterialProvider
 {
 	protected override Uri ShaderURL => ShaderInjection.HologramV2;
 
-	// Main
 	public readonly AssetRef<ITexture2D> MainTexture;
 	public readonly Sync<color> MainColor;
 	public readonly AssetRef<ITexture2D> EmissionTexture;
 	public readonly Sync<color> EmissionColor;
-	// Repeating ramp
 	public readonly AssetRef<ITexture2D> RampTexture;
 	public readonly Sync<float> Scale;
 	public readonly Sync<float> ScrollSpeed;
-	// Fresnel
 	public readonly Sync<color> FresnelColor;
-	public readonly Sync<float> FresnelExponent;
-
+    [Range(0f, 5f, "0.00")]
+    public readonly Sync<float> FresnelExponent;
 	[DefaultValue(-1)]
 	public readonly Sync<int> RenderQueue;
 	private static PropertyState _propertyInitializationState;
 
-	// Main
 	private static MaterialProperty _MainTexture = new("_MainTexture");
 	private static MaterialProperty _MainColor = new("_MainColor");
 	private static MaterialProperty _EmissionTexture = new("_EmissionTexture");
 	private static MaterialProperty _EmissionColor = new("_EmissionColor");
-	// Repeating ramp
 	private static MaterialProperty _RampTexture = new("_RampTexture");
 	private static MaterialProperty _Scale = new("_Scale");
 	private static MaterialProperty _ScrollSpeed = new("_ScrollSpeed");
-	// Fresnel
 	private static MaterialProperty _FresnelColor = new("_FresnelColor");
-	private static MaterialProperty _FresnelExponent = new("_FresnelExponent");
+    private static MaterialProperty _FresnelExponent = new("_FresnelExponent");
 
 	public override PropertyState PropertyInitializationState
 	{
@@ -45,16 +39,13 @@ public class Hologram : SingleShaderMaterialProvider
 	}
 	protected override void UpdateMaterial(Material material)
 	{
-		// Main
 		material.UpdateTexture(_MainTexture, MainTexture);
 		material.UpdateColor(_MainColor, MainColor);
 		material.UpdateTexture(_EmissionTexture, EmissionTexture);
 		material.UpdateColor(_EmissionColor, EmissionColor);
-		// Repeating ramp
 		material.UpdateTexture(_RampTexture, RampTexture);
 		material.UpdateFloat(_Scale, Scale);
 		material.UpdateFloat(_ScrollSpeed, ScrollSpeed);
-		// Fresnel
 		material.UpdateColor(_FresnelColor, FresnelColor);
 		material.UpdateFloat(_FresnelExponent, FresnelExponent);
 

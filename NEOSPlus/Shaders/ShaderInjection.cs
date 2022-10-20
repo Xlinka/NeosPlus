@@ -14,15 +14,15 @@ namespace NEOSPlus.Shaders
         public static readonly Uri NeosPlusTest = new("neosdb:///032da78c8a65dd71ca33cd8ed4ad7222682057b59f7afb3bbe582a42fdc0bbc9.neoshader");
         public static readonly Uri HologramV2 = new("neosdb:///55cbadb64068521f187d408bed05542af1365d4c056b2570b4cc0d6105657902.neoshader");
         public static readonly Uri MToon = new("neosdb:///f9db0509b5413ae1449ca912aedb660aac028d29415c74a7767daf4fafa4c764.neoshader");
-        public static readonly Uri ParallaxOcclusion = new("neosdb:///2e5115ddecc06523c91da9111dfb05f4972fa79330af68214f1fd26752c67a53.neoshader");
+        public static readonly Uri ParallaxOcclusion = new("neosdb:///2539719620e32ca7d0cadd510c8ee088500cb76fc9cb46bb03d5aa586303e451.neoshader");
 
         private static readonly List<Uri> Shaders = new()
         {
-            ParallaxOcclusion,
             Hologram_Archived,
             NeosPlusTest,
             HologramV2,
-            MToon
+            MToon,
+            ParallaxOcclusion
         };
 
         private static async Task RegisterShader(Uri uri)
@@ -36,6 +36,7 @@ namespace NEOSPlus.Shaders
         // New note I think xLinka and I both clocked in a min of 13 hours each trying to get it to work but again thankfully we got it working -Panda
         // More hours are being poured into the bloody thing working cause they are hit or miss
         // So it turns out asset servers are realy fiddly to work with
+        // More about the servers, I've had lows of 5 minutes upon uploading to have stuff work then up to multiple days to work :)
 
         public static void AppendShaders() => Task.WaitAll(Shaders.Select(shader => RegisterShader(shader)).ToArray());
     }

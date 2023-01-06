@@ -81,7 +81,7 @@ public class YoutubeSearch : LogixNode
                 StatusCode.Value = response.StatusCode;
                 OnResponse.Trigger();
             }
-            catch (HttpRequestException)
+            catch
             {
                 Content.Value = null;
                 OnError.Trigger();

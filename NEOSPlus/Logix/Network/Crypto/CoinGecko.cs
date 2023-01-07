@@ -3,7 +3,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace FrooxEngine.LogiX.Network
+namespace FrooxEngine.LogiX.Network.Crypto
 {
     public enum Currency
     {

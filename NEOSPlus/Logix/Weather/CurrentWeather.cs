@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
@@ -12,6 +13,7 @@ public class CurrentWeather : LogixNode
     public readonly Input<float> Latitude;
     public readonly Input<float> Longitude;
     public readonly Input<WeatherUnits> Units;
+    public readonly Input<string> APIKeyOverride;
         
     public readonly Output<DateTime> CurrentTime; //current time of position
     public readonly Output<DateTime> SunriseTime; //sunrise time of position
@@ -33,7 +35,6 @@ public class CurrentWeather : LogixNode
     public readonly Impulse OnRetrivedWeather;
     public readonly Impulse OnError;
     
-    //TODO: this api key is blocked, i presume this is the one chatgpt uses
     private const string APIKey = "bd5e378503939ddaee76f12ad7a97608";
     public enum WeatherUnits
     {
@@ -48,7 +49,10 @@ public class CurrentWeather : LogixNode
         var lat = Latitude.Evaluate();
         var lon = Longitude.Evaluate();
         var unit = Units.Evaluate();
-        var url = new Uri($"https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=minutely,hourly,daily,alerts&units={unit.ToString().ToLower()}&appid={APIKey}");
+        var key = APIKeyOverride.Evaluate();
+        if (string.IsNullOrWhiteSpace(key)) key = APIKey;
+        key = Regex.Replace(key, "^[a-z0-9]*$", "",RegexOptions.Compiled);
+        var url = new Uri($"https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude=minutely,hourly,daily,alerts&units={unit.ToString().ToLower()}&appid={key}");
             
         OnSent.Trigger();
             

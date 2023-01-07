@@ -34,8 +34,8 @@ public class YoutubeSearch : LogixNode
     private async Task RunRequest()
     {
         var key = APIKeyOverride.Evaluate();
-        if (string.IsNullOrWhiteSpace(key)) key = YoutubeAPIKey;
-        var max = MathX.Clamp(MaxResults.Evaluate(), 1, 50);
+        key = string.IsNullOrWhiteSpace(key) ? YoutubeAPIKey : Regex.Replace(key, @"[^a-zA-Z0-9-_]", "",RegexOptions.Compiled);
+        var max = MathX.Clamp(MaxResults.Evaluate(5), 1, 50);
         var q = Query.Evaluate();
         var outputType = OutputType.Evaluate();
         if (!string.IsNullOrWhiteSpace(q))

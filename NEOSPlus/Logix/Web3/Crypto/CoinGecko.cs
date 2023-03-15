@@ -3,9 +3,9 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace FrooxEngine.LogiX.Network.Crypto
+namespace FrooxEngine.LogiX.Web3
 {
-    public enum Currency
+    public enum Currencyinput
     {
         USD,
         EUR,
@@ -16,12 +16,12 @@ namespace FrooxEngine.LogiX.Network.Crypto
     }
 
     [NodeName("Coingecko")]
-    [Category("LogiX/Network/Crypto")]
+    [Category("LogiX/Web3/Crypto")]
     public class Coingecko : LogixNode
     {
         private const string priceEndpoint = "https://api.coingecko.com/api/v3/simple/price?ids={0}&vs_currencies={1}";
         public readonly Input<string> CryptocurrencyName;
-        public readonly Input<Currency> Currency;
+        public readonly Input<Currencyinput> Currency;
         public readonly Output<string> Price;
         public readonly Impulse OnSent;
         public readonly Impulse OnResponse;

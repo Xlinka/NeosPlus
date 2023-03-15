@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using BaseX;
+using FrooxEngine;
+using FrooxEngine.LogiX;
 using FrooxEngine.LogiX.Operators;
 using FrooxEngine.UIX;
 using NEOSPlus;
 
 //https://github.com/Neos-Metaverse/NeosPublic/issues/3703
-namespace FrooxEngine.LogiX.Math
+namespace FrooxEngine.Logix.Math.Sorting
 {
     [NodeName("Sort")]
     [Category("LogiX/Math")]
@@ -41,10 +43,10 @@ namespace FrooxEngine.LogiX.Math
 
         protected override Type FindOverload(NodeTypes connectingTypes) =>
             (from input in connectingTypes.inputs
-                where input.Key.StartsWith("ValueInputs") &&
-                      (typeof(T).GetTypeCastCompatibility(input.Value) == TypeCastCompatibility.Implicit ||
-                       ValueInputs.All(i => !i.IsConnected))
-                select typeof(Sort<>).MakeGenericType(input.Value)).FirstOrDefault();
+             where input.Key.StartsWith("ValueInputs") &&
+                   (typeof(T).GetTypeCastCompatibility(input.Value) == TypeCastCompatibility.Implicit ||
+                    ValueInputs.All(i => !i.IsConnected))
+             select typeof(Sort<>).MakeGenericType(input.Value)).FirstOrDefault();
 
         [SyncMethod]
         private void Add(IButton button, ButtonEventData eventData)

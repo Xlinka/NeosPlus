@@ -8,6 +8,12 @@ namespace FrooxEngine
     {
         public int Subdivisions;
 
+        private static readonly int[] cubeTriangles = new int[]
+        {
+            0, 2, 1, 0, 3, 2, 2, 3, 6, 6, 3, 7, 0, 7, 3, 0, 4, 7,
+            6, 5, 2, 5, 1, 2, 1, 5, 0, 5, 4, 0, 4, 5, 7, 5, 6, 7,
+        };
+
         public MengerSponge(MeshX mesh, int subdivisions) : base(mesh)
         {
             Subdivisions = subdivisions;
@@ -56,12 +62,6 @@ namespace FrooxEngine
                 center + new float3(halfSize, halfSize, -halfSize),
                 center + new float3(halfSize, halfSize, halfSize),
                 center + new float3(-halfSize, halfSize, halfSize),
-            };
-
-            var cubeTriangles = new int[]
-            {
-                0, 2, 1, 0, 3, 2, 2, 3, 6, 6, 3, 7, 0, 7, 3, 0, 4, 7,
-                6, 5, 2, 5, 1, 2, 1, 5, 0, 5, 4, 0, 4, 5, 7, 5, 6, 7,
             };
 
             for (int i = 0; i < cubeTriangles.Length; i += 3)

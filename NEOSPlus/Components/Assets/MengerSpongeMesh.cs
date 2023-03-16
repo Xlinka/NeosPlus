@@ -35,6 +35,7 @@ namespace FrooxEngine
                             if (x == 0 && y == 0 || x == 0 && z == 0 || y == 0 && z == 0)
                                 continue;
 
+
                             float3 newCenter = center + new float3(x * newSize, y * newSize, z * newSize);
                             GenerateSponge(mesh, newLevel, newCenter, newSize);
                         }
@@ -57,12 +58,20 @@ namespace FrooxEngine
                 center + new float3(halfSize, halfSize, halfSize),
                 center + new float3(-halfSize, halfSize, halfSize),
             };
-
+            //fixed array
             var cubeTriangles = new int[]
             {
-                0, 2, 1, 0, 3, 2, 2, 3, 6, 6, 3, 7, 0, 7, 3, 0, 4, 7,
-                6, 5, 2, 5, 1, 2, 1, 5, 0, 5, 4, 0, 4, 5, 7, 5, 6, 7,
+                0, 1, 2, 0, 2, 3, 2, 1, 6, 6, 1, 5, 0, 4, 5, 0, 5, 1,
+                6, 7, 3, 6, 3, 2, 7, 6, 5, 7, 5, 4, 4, 0, 3, 4, 3, 7,
             };
+
+            //leaving this here due to it can cause funky generation 
+
+            //var cubeTriangles = new int[]
+            //{
+            //    0, 2, 1, 0, 3, 2, 2, 3, 6, 6, 3, 7, 0, 7, 3, 0, 4, 7,
+            //    6, 5, 2, 5, 1, 2, 1, 5, 0, 5, 4, 0, 4, 5, 7, 5, 6, 7,
+            //};
 
             for (int i = 0; i < cubeTriangles.Length; i += 3)
             {

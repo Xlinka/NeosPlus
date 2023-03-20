@@ -96,12 +96,4 @@ public class ArtNetReceiver : Component
             udpClient.Close();
         }
     }
-
-    private void OnArtNetPacketReceived(ArtNetReceiver sender, byte[] data)
-    {
-        if (sender == this)
-        {
-            PacketReceived?.Invoke(this, data);
-        }
-    }
 }

@@ -16,7 +16,6 @@ public class ArtNetReceiver : Component
 
     private Uri _currentURL;
     private UdpClient _udpClient;
-    private ArtNetReceiver _artNetReceiver;
 
     public event Action<ArtNetReceiver> Connected;
     public event Action<ArtNetReceiver> Closed;
@@ -31,30 +30,29 @@ public class ArtNetReceiver : Component
 
     protected override void OnChanges()
     {
-        Uri uri = (base.Enabled ? URL.Value : null);
-        if (HandlingUser.Target != base.LocalUser)
+        Uri uri = (Enabled ? URL.Value : null);
+        if (HandlingUser.Target != LocalUser)
         {
             uri = null;
         }
-        if (!(uri != _currentURL))
+        if (uri != _currentURL)
         {
-            return;
-        }
-        _currentURL = uri;
-        CloseCurrent();
-        IsConnected.Value = false;
-        if (_currentURL != null)
-        {
-            StartTask(async delegate
+            _currentURL = uri;
+            CloseCurrent();
+            IsConnected.Value = false;
+            if (_currentURL != null)
             {
-                await ConnectTo(_currentURL);
-            });
+                StartTask(async () =>
+                {
+                    await ConnectTo(_currentURL);
+                });
+            }
         }
     }
 
     private async Task ConnectTo(Uri target)
     {
-        if (await base.Engine.Security.RequestAccessPermission(target.Host, target.Port, AccessReason.Value ?? "Art-Net Receiver") == HostAccessPermission.Allowed && !(target != _currentURL) && !IsRemoved)
+        if (await Engine.Security.RequestAccessPermission(target.Host, target.Port, AccessReason.Value ?? "Art-Net Receiver") == HostAccessPermission.Allowed && target == _currentURL && !IsRemoved)
         {
             _udpClient = new UdpClient(target.Port);
             IsConnected.Value = true;
@@ -83,9 +81,9 @@ public class ArtNetReceiver : Component
 
     private void CloseCurrent()
     {
-        UdpClient udpClient = _udpClient;
-        if (udpClient != null)
+        if (_udpClient != null)
         {
+            UdpClient udpClient = _udpClient;
             _udpClient = null;
             try
             {
@@ -93,7 +91,7 @@ public class ArtNetReceiver : Component
             }
             catch (Exception ex)
             {
-                UniLog.Error("Exception in running Closed event on ArtNetReceiver:\n" + ex);
+                UniLog.Error($"Exception in running Closed event on ArtNetReceiver:\n{ex}");
             }
             udpClient.Close();
         }
@@ -101,7 +99,7 @@ public class ArtNetReceiver : Component
 
     private void OnArtNetPacketReceived(ArtNetReceiver sender, byte[] data)
     {
-        if (sender == _artNetReceiver)
+        if (sender == this)
         {
             PacketReceived?.Invoke(this, data);
         }

@@ -16,6 +16,7 @@ public class ArtNetReceiver : Component
 
     private Uri _currentURL;
     private UdpClient _udpClient;
+    private ArtNetReceiver _artNetReceiver;
 
     public event Action<ArtNetReceiver> Connected;
     public event Action<ArtNetReceiver> Closed;
@@ -95,6 +96,14 @@ public class ArtNetReceiver : Component
                 UniLog.Error("Exception in running Closed event on ArtNetReceiver:\n" + ex);
             }
             udpClient.Close();
+        }
+    }
+
+    private void OnArtNetPacketReceived(ArtNetReceiver sender, byte[] data)
+    {
+        if (sender == _artNetReceiver)
+        {
+            PacketReceived?.Invoke(this, data);
         }
     }
 }

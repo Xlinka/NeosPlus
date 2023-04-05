@@ -31,31 +31,29 @@ namespace NEOSPlus.Logix.Web3.NFT
         public readonly Impulse OnResponse;
 
         [ImpulseTarget]
-        public void Request()
-        {
-            StartTask(RunRequest);
-        }
+        public void Request() => StartTask(RunRequest);
 
         private async Task RunRequest()
         {
-            Uri url = new Uri(string.Format(OpenSeaAPIEndpoint, ContractAddress.EvaluateRaw(), TokenId.EvaluateRaw()));
-            if (url == null || url.Scheme != "http" && url.Scheme != "https")
+            var url = new Uri(string.Format(OpenSeaAPIEndpoint, ContractAddress.EvaluateRaw(), TokenId.EvaluateRaw()));
+
+            if (url.Scheme != Uri.UriSchemeHttp && url.Scheme != Uri.UriSchemeHttps)
             {
                 OnError.Trigger();
                 return;
             }
 
+            using var request = new HttpRequestMessage(HttpMethod.Get, url);
+            var apiKey = APIKey.EvaluateRaw();
+
+            if (!string.IsNullOrEmpty(apiKey))
+            {
+                request.Headers.Add("X-API-KEY", apiKey);
+            }
+
             try
             {
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, url);
-                string apiKey = APIKey.EvaluateRaw();
-
-                if (!string.IsNullOrEmpty(apiKey))
-                {
-                    request.Headers.Add("X-API-KEY", apiKey);
-                }
-
-                HttpResponseMessage response = await Engine.Cloud.SafeHttpClient.SendAsync(request);
+                using var response = await Engine.Cloud.SafeHttpClient.SendAsync(request);
                 StatusCode.Value = response.StatusCode;
                 OnResponse.Trigger();
 
@@ -78,11 +76,8 @@ namespace NEOSPlus.Logix.Web3.NFT
                 {
                     OnFail.Trigger();
                 }
-
-                ((IDisposable)response)?.Dispose();
-                ((IDisposable)request)?.Dispose();
             }
-            catch (HttpRequestException ex)
+            catch (HttpRequestException)
             {
                 OnError.Trigger();
             }

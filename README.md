@@ -14,8 +14,13 @@ Important: This is a plugin, not a mod! Installation is different between the tw
 
 When you next start Neos, Neos Plus should also be loaded and work. Check your logs for details.
 
+More details can be found in our [wiki](https://github.com/Xlinka/NeosPlus/wiki/Installation).
+
 ## Installer
 Alternatively you can use this installer: https://github.com/Xlinka/NeosPlusLauncher
+
+## Features
+A list of features can be found in the [wiki](https://github.com/Xlinka/NeosPlus/wiki/LogiX-Nodes).
  
 # 설치방법
 중요: 네오스 플러스는 모드가 아닌 플러그인 입니다. 이 두가지는 서로 설치 방법이 다름을 인지하여 주세요.

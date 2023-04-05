@@ -5,11 +5,17 @@ NeosPlus is a NeosVR plugin that adds extra Logix nodes and features. The goal b
 https://discord.gg/9QAaMtXwke
 # Patreon
 https://www.patreon.com/NeosPlus
+
 # Installation
 Important: This is a plugin, not a mod! Installation is different between the two.  
-To install this, download `NEOSPlus.dll` from the Releases tab and place it in the `Libraries` folder in your Neos directory.  
-Next, make Neos load it by using the `-LoadAssembly` launch argument.  
-When you next start Neos, Neos Plus should also be loaded and work.
+
+- download `NEOSPlus.dll` from the Releases tab and place it in the `Libraries` folder in your Neos directory.  
+- make Neos load it by using the `-LoadAssembly` launch argument.
+
+When you next start Neos, Neos Plus should also be loaded and work. Check your logs for details.
+
+## Installer
+Alternatively you can use this installer: https://github.com/Xlinka/NeosPlusLauncher
  
 # 설치방법
 중요: 네오스 플러스는 모드가 아닌 플러그인 입니다. 이 두가지는 서로 설치 방법이 다름을 인지하여 주세요.

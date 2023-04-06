@@ -15,9 +15,11 @@ namespace NEOSPlus.Shaders
         public static readonly Uri HologramV2 = new("neosdb:///55cbadb64068521f187d408bed05542af1365d4c056b2570b4cc0d6105657902.neoshader");
         public static readonly Uri MToon = new("neosdb:///f9db0509b5413ae1449ca912aedb660aac028d29415c74a7767daf4fafa4c764.neoshader");
         public static readonly Uri ParallaxOcclusion = new("neosdb:///2539719620e32ca7d0cadd510c8ee088500cb76fc9cb46bb03d5aa586303e451.neoshader");
+        public static readonly Uri UnlitDisplacement = new("");//add when compiled. - xlinka
 
         private static readonly List<Uri> Shaders = new()
         {
+            UnlitDisplacement,
             Hologram_Archived,
             NeosPlusTest,
             HologramV2,

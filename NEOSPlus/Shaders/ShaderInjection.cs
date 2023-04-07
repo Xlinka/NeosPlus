@@ -19,6 +19,7 @@ namespace NEOSPlus.Shaders
 
         private static readonly List<Uri> Shaders = new()
         {
+            UnlitDisplacement,
             Hologram_Archived,
             NeosPlusTest,
             HologramV2,

@@ -8,7 +8,11 @@ namespace NEOSPlus
 {
     internal class NeosPlusAssets
     {
-        public static Uri NeosplusGridSkybox { get; } = new Uri("neosdb:///3db0299a0f5f1d948ad94142ceecc0e5d64b2da9e0e85575d1676271f67a64ec.png");
+        public static Uri NeosplusGridSkybox { get; } = new Uri("neosdb:///3db0299a0f5f1d948ad94142ceecc0e5d64b2da9e0e85575d1676271f67a64ec.png"); //placeholder
+
+        //NeosPlusGridspace
         public static Uri NeosplusGridFloor { get; } = new Uri("neosdb:///3db0299a0f5f1d948ad94142ceecc0e5d64b2da9e0e85575d1676271f67a64ec.png");
+        public static Uri NeosplusGridParralax { get; } = new Uri("neosdb:///3db0299a0f5f1d948ad94142ceecc0e5d64b2da9e0e85575d1676271f67a64ec.png");
+
     }
 }

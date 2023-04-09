@@ -99,7 +99,7 @@ Shader "Neitri/Wireframe Overlay V2"
 
                 float3 worldNormal = normalize(cross(worldPos2 - worldPos1, worldPos3 - worldPos1));
 
-                return float4(worldNormal, 1.0f);
+                return float4(worldNormal, 0.0f);
             }
 
                 ENDCG

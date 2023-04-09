@@ -10,7 +10,6 @@ namespace NEOSPlus
 {
     class NeosplusGridSpace
     {
-        // GridSpace World Preset
         [WorldPreset("NeosPlusGrid", 0)]
         public static void GridSpace(World w)
         {
@@ -30,8 +29,8 @@ namespace NEOSPlus
             light.LightType.Value = LightType.Directional;
             light.Intensity.Value = 0.8f;
             light.Color.Value = new color(1f, 1f, 0.98f);
-            light.ShadowType.Value = ShadowType.Hard; //less heavy than soft lighting
-            light.ShadowMapResolution.Value = 1024; //who needs 8k light sources
+            light.ShadowType.Value = ShadowType.Hard; // less heavy than soft lighting.
+            light.ShadowMapResolution.Value = 1024; // who the hell needs high resolution shadows. 
 
             // Set up skybox
             Projection360Material skyboxMaterial = w.AddSlot("Skybox").AttachSkybox<Projection360Material>();
@@ -45,14 +44,23 @@ namespace NEOSPlus
             Sync<float3> groundSize = groundCollider.Size;
             groundSize.Value = float2.One.xy_ * 1000f;
             groundCollider.SetCharacterCollider();
-            AttachedModel<GridMesh, PBS_Metallic> groundModel = groundSlot.AttachMesh<GridMesh, PBS_Metallic>();
+            AttachedModel<GridMesh, ParallaxOcclusion> groundModel = groundSlot.AttachMesh<GridMesh, ParallaxOcclusion>();
+
+            //grid texture for floor
             StaticTexture2D gridTexture = groundSlot.AttachTexture(NeosPlusAssets.NeosplusGridFloor);
             gridTexture.FilterMode.Value = TextureFilterMode.Anisotropic;
-            groundModel.material.AlbedoTexture.Target = gridTexture;
+            groundModel.material.MainTex.Target = gridTexture;
+
+            //parralax occlusion map
+            StaticTexture2D ParralaxMap = groundSlot.AttachTexture(NeosPlusAssets.NeosplusGridParralax);
+            ParralaxMap.FilterMode.Value = TextureFilterMode.Anisotropic;
+            groundModel.material.ParallaxMap.Target = ParralaxMap;
+
+
             groundSlot.GlobalRotation = floatQ.LookRotation(float3.Down, float3.Forward);
             Sync<float2> meshSize = groundModel.mesh.Size;
             meshSize.Value = float2.One * 1000f;
-            groundModel.material.TextureScale.Value = float2.One * 1000f;
+            groundModel.material.TextureScale.Value = 1000f;
 
             // Set up spawn area
             Slot spawnAreaSlot = w.AddSlot("SpawnArea");

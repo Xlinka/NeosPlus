@@ -16,7 +16,7 @@
     <NeosPath Condition="Exists('C:\Neos\app\')">C:\Neos\app\</NeosPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CopyToPlugin|AnyCPU'">
-    <PostBuildEvent>copy "$(TargetDir)\$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\NeosVR\Libraries"</PostBuildEvent>
+  <PostBuildEvent>copy "$(TargetPath)" "$(NeosPath)\Libraries"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AutoPostX|AnyCPU' ">
     <PostBuildEvent>cd "$(ProjectDir)"

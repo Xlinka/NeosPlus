@@ -1,8 +1,5 @@
 using System;
-using BaseX;
 using FrooxEngine;
-using FrooxEngine.LogiX;
-using FrooxEngine.LogiX.Math;
 using NEOSPlus.Shaders;
 
 [Category(new string[] {"Assets/Materials/NeosPlus"})]

@@ -7,9 +7,4 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.*" />
     </ItemGroup>
-    <ItemGroup>
-      <Reference Include="FrooxEngine">
-        <HintPath>C:\Program Files (x86)\Steam\steamapps\common\NeosVR\Neos_Data\Managed\FrooxEngine.dll</HintPath>
-      </Reference>
-    </ItemGroup>
 </Project>

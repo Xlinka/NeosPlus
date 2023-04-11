@@ -1,25 +1,16 @@
 ﻿using System.Text;
 
-namespace SourceGenerators.ShaderGen;
+namespace ShaderGenerators;
 
 internal class SingleShaderMaterialGenerator
 {
-    private static readonly string[] Namespaces = new string[]
-    {
-        "System",
-        "BaseX",
-        "FrooxEngine",
-        "NEOSPlus.Shaders"
-    };
 
-    private const string ShaderInputPath = @"shaders"; // TODO Use me!
-    private const string ShaderOutputPath = @"parsedShaders";
 
     public static void Main(string[] args)
     {
         Console.WriteLine("Starting...");
 
-        string path = args.Length == 0 ? ShaderOutputPath : args[0];
+        string path = args.Length == 0 ? ShaderUitls.ShaderOutputPath : args[0];
         Directory.CreateDirectory(ShaderOutputPath);
 
         Console.WriteLine($"Got {Path.GetFullPath(path)} as target directory.");
@@ -37,19 +28,37 @@ internal class SingleShaderMaterialGenerator
                 continue;
             }
 
-            ParseShader(file);
+            GenerateMaterialClass(file);
             counter++;
         }
 
         Console.WriteLine($"Parsed {counter} files");
     }
 
-    private static void ParseShader(string path)
+    private static void GenerateMaterialClass(string path)
     {
         var parsedShader = UnityShaderParser.Parse(path);
-
         StringBuilder builder = new StringBuilder();
 
+        ExtractMaterialHeader(ref parsedShader, ref builder);
+        ExtractSyncMembers(ref parsedShader, ref builder);
+        ExtractMaterialProperties(ref parsedShader, ref builder);
+        ExtractUpdateMaterial(ref parsedShader, ref builder);
+        ExtractMaterialFooter(ref parsedShader, ref builder);
+
+        GenerateAttachClass(ref parsedShader, ref builder);
+    }
+
+    private static void ExtractMaterialFooter(ref UnityShaderParser.ShaderInfo parsedShader, ref StringBuilder builder)
+    {
+        builder.AppendLine("    protected override void UpdateKeywords(ShaderKeywords keywords) { }");
+        builder.AppendLine("}");
+        Console.WriteLine($"Parsed {parsedShader.Name}, saving as {parsedShader.Name}Material.cs and {parsedShader.Name}Attach.cs");
+        File.WriteAllText(Path.Combine(ShaderOutputPath, $"{parsedShader.Name}Material.cs"), builder.ToString());
+    }
+
+    private static void ExtractMaterialHeader(ref UnityShaderParser.ShaderInfo parsedShader, ref StringBuilder builder)
+    {
         foreach (var @namespace in Namespaces)
         {
             builder.AppendLine($"using {@namespace};");
@@ -57,14 +66,16 @@ internal class SingleShaderMaterialGenerator
 
         builder.AppendLine();
         builder.AppendLine($"[Category(new string[] {{ \"Assets/Materials/NeosPlus/{parsedShader.Name}\"}})]");
-        builder.AppendLine($"public class {parsedShader.Name}Material : SingleShaderMaterialProvider");
+        builder.AppendLine($"public partial class {parsedShader.Name}Material : SingleShaderMaterialProvider");
         builder.AppendLine("{");
         builder.AppendLine("    protected override Uri ShaderURL => ShaderInjection.UnlitDisplacement;");
+    }
 
-        // Define Sync Members
+    private static void ExtractSyncMembers(ref UnityShaderParser.ShaderInfo parsedShader, ref StringBuilder builder)
+    {
         foreach (var item in parsedShader.Properties)
         {
-            if (item.DefaultValue is not null && 
+            if (item.DefaultValue is not null &&
                 item.Type != "2D" &&
                 item.Type != "Color")
             {
@@ -75,7 +86,7 @@ internal class SingleShaderMaterialGenerator
             {
                 builder.AppendLine($"    [Range({item.Range.Min}, {item.Range.Max})]");
             }
-            
+
             // Unity to Neos types
             var lowerName = item.PropertyName.TrimStart('_');
             switch (item.Type)
@@ -95,15 +106,10 @@ internal class SingleShaderMaterialGenerator
             }
         }
         builder.AppendLine();
+    }
 
-        // Define Material Properties
-        foreach (var item in parsedShader.Properties)
-        {
-            builder.AppendLine($"    private static MaterialProperty {item.PropertyName} = new MaterialProperty(\"{item.PropertyName}\");");
-        }
-        builder.AppendLine();
-
-        // Define UpdateMaterial
+    private static void ExtractUpdateMaterial(ref UnityShaderParser.ShaderInfo parsedShader, ref StringBuilder builder)
+    {
         builder.AppendLine("    protected override void UpdateMaterial(Material material)");
         builder.AppendLine("    {");
         foreach (var item in parsedShader.Properties)
@@ -112,11 +118,36 @@ internal class SingleShaderMaterialGenerator
         }
         builder.AppendLine("    }");
         builder.AppendLine();
+    }
 
-        builder.AppendLine("    protected override void UpdateKeywords(ShaderKeywords keywords) { }");
+    private static void ExtractMaterialProperties(ref UnityShaderParser.ShaderInfo parsedShader, ref StringBuilder builder)
+    {
+        foreach (var item in parsedShader.Properties)
+        {
+            builder.AppendLine($"    private static MaterialProperty {item.PropertyName} = new MaterialProperty(\"{item.PropertyName}\");");
+        }
+        builder.AppendLine();
+    }
+
+    private static void GenerateAttachClass(ref UnityShaderParser.ShaderInfo parsedShader, ref StringBuilder builder)
+    {
+        builder.Clear();
+        foreach (var @namespace in Namespaces)
+        {
+            builder.AppendLine($"using {@namespace};");
+        }
+
+        builder.AppendLine();
+        builder.AppendLine($"[Category(new string[] {{ \"Assets/Materials/NeosPlus/{parsedShader.Name}\"}})]");
+        builder.AppendLine($"public partial class {parsedShader.Name}Material : SingleShaderMaterialProvider");
+        builder.AppendLine("{");
+        builder.AppendLine("    protected override void OnAttach()");
+        builder.AppendLine("    {");
+        builder.AppendLine("        base.OnAttach();");
+        builder.AppendLine("    }");
         builder.AppendLine("}");
 
-        Console.WriteLine($"Parsed {parsedShader.Name}, saving as {parsedShader.Name}Material.cs");
-        File.WriteAllText(Path.Combine(ShaderOutputPath, $"{parsedShader.Name}Material.cs"), builder.ToString());
+        File.WriteAllText(Path.Combine(ShaderOutputPath, $"{parsedShader.Name}Attach.cs"), builder.ToString());
+        builder.Clear();
     }
 }

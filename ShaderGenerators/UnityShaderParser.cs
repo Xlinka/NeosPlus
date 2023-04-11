@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace SourceGenerators.ShaderGen;
+namespace ShaderGenerators;
 
 internal static class UnityShaderParser
 {

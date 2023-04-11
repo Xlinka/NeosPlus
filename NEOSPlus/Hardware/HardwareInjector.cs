@@ -13,7 +13,7 @@ namespace NEOSPlus.Hardware
     {
         private static readonly List<Type> HardwareClasses = new()
         {
-            //typeof(PicoNeo4Controller),
+            //typeof(XboxOneController),
         };
 
         private static async Task RegisterHardwareClass(Type hardwareClass)

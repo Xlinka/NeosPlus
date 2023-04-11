@@ -2,8 +2,8 @@
 using BaseX;
 using FrooxEngine;
 using NEOSPlus.Shaders;
-
-[Category(new string[] { "Assets/Materials/NeosPlus/Effects" })]
+//Someone Else Can figure this out
+//[Category(new string[] { "Assets/Materials/NeosPlus/Effects" })]    
 public class WireFrame : SingleShaderMaterialProvider
 {
     protected override Uri ShaderURL => ShaderInjection.WireFrame;
@@ -28,10 +28,10 @@ public class WireFrame : SingleShaderMaterialProvider
         material.UpdateColor(_WireframeColor, Color);
         material.UpdateColor(_BackgroundColor, Color2);
 
-        if (!RenderQueue.GetWasChangedAndClear()) return;
-        var renderQueue = RenderQueue.Value;
-        if ((int)RenderQueue == -1) renderQueue = 2000;
-        material.SetRenderQueue(renderQueue);
+       if (!RenderQueue.GetWasChangedAndClear()) return;
+       var renderQueue = RenderQueue.Value;
+       if ((int)RenderQueue == -1) renderQueue = 2000;
+       material.SetRenderQueue(renderQueue);
     }
     protected override void UpdateKeywords(ShaderKeywords keywords) { }
     protected override void OnAttach()

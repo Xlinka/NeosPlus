@@ -17,7 +17,7 @@ namespace NEOSPlus.Shaders
         public static readonly Uri ParallaxOcclusion = new("neosdb:///2539719620e32ca7d0cadd510c8ee088500cb76fc9cb46bb03d5aa586303e451.neoshader");
         public static readonly Uri UnlitDisplacement = new("neosdb:///96648419238f3085bfb854cd5f0368af9f8ce0698fac791d7ff54089b9c17189.neoshader");
         public static readonly Uri WireFrame = new("neosdb:///567cd063abe5120ab0a7bbc50b26023a38d9139c5e6d59d14435ab8526c20c59.neoshader");//Redundant has issues commented out for now
-        public static readonly Uri NiceFlame = new("neosdb:///567cd063abe5120ab0a7bbc50b26023a38d9139c5e6d59d14435ab8526c20c59.neoshader");
+        public static readonly Uri NiceFlame = new("neosdb:///5f330ab079ff320d9c05acb04bac703eb80cb708b9bf56b1e1bd77568782dc40.neoshader");
 
         private static readonly List<Uri> Shaders = new()
         {

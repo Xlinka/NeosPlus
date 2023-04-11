@@ -11,7 +11,7 @@ internal class SingleShaderMaterialGenerator
         Console.WriteLine("Starting...");
 
         string path = args.Length == 0 ? ShaderUitls.ShaderOutputPath : args[0];
-        Directory.CreateDirectory(ShaderOutputPath);
+        Directory.CreateDirectory(ShaderUitls.ShaderOutputPath);
 
         Console.WriteLine($"Got {Path.GetFullPath(path)} as target directory.");
 
@@ -54,12 +54,12 @@ internal class SingleShaderMaterialGenerator
         builder.AppendLine("    protected override void UpdateKeywords(ShaderKeywords keywords) { }");
         builder.AppendLine("}");
         Console.WriteLine($"Parsed {parsedShader.Name}, saving as {parsedShader.Name}Material.cs and {parsedShader.Name}Attach.cs");
-        File.WriteAllText(Path.Combine(ShaderOutputPath, $"{parsedShader.Name}Material.cs"), builder.ToString());
+        File.WriteAllText(Path.Combine(ShaderUitls.ShaderOutputPath, $"{parsedShader.Name}Material.cs"), builder.ToString());
     }
 
     private static void ExtractMaterialHeader(ref UnityShaderParser.ShaderInfo parsedShader, ref StringBuilder builder)
     {
-        foreach (var @namespace in Namespaces)
+        foreach (var @namespace in ShaderUitls.Namespaces)
         {
             builder.AppendLine($"using {@namespace};");
         }
@@ -132,7 +132,7 @@ internal class SingleShaderMaterialGenerator
     private static void GenerateAttachClass(ref UnityShaderParser.ShaderInfo parsedShader, ref StringBuilder builder)
     {
         builder.Clear();
-        foreach (var @namespace in Namespaces)
+        foreach (var @namespace in ShaderUitls.Namespaces)
         {
             builder.AppendLine($"using {@namespace};");
         }
@@ -147,7 +147,7 @@ internal class SingleShaderMaterialGenerator
         builder.AppendLine("    }");
         builder.AppendLine("}");
 
-        File.WriteAllText(Path.Combine(ShaderOutputPath, $"{parsedShader.Name}Attach.cs"), builder.ToString());
+        File.WriteAllText(Path.Combine(ShaderUitls.ShaderOutputPath, $"{parsedShader.Name}Attach.cs"), builder.ToString());
         builder.Clear();
     }
 }

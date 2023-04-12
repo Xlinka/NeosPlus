@@ -11,37 +11,37 @@ public class FlameMaterial : SingleShaderMaterialProvider
 
     public readonly AssetRef<ITexture2D> FlameNoise;
     public readonly AssetRef<ITexture2D> FlameWave;
-    [Range(0f, 1f, "0")]
+    [Range(0f, 1f, "0.00")]
     public readonly Sync<float> FlameHeight;
-    [Range(0.01f, 1f, "0")]
+    [Range(0.01f, 1f, "0.00")]
     public readonly Sync<float> FlameTransparent;
-    [Range(0f, 1f, "0")]
+    [Range(0f, 1f, "0.00")]
     public readonly Sync<float> FlameYMask;
-    [Range(0f, 1f, "0")]
+    [Range(0f, 1f, "0.00")]
     public readonly Sync<float> FlameSpeed;
-    [Range(0f, 1f, "0")]
+    [Range(-1f, 1f, "0.00")]
     public readonly Sync<float> MoveV;
-    [Range(0f, 1f, "0")]
+    [Range(-1f, 1f, "0.00")]
     public readonly Sync<float> MoveU;
-    [Range(2f, 50f, "0")]
+    [Range(2f, 50f, "0.00")]
     public readonly Sync<float> EdgeLength;
-    [Range(0f, 1f, "0")]
+    [Range(0f, 1f, "0.00")]
     public readonly Sync<float> TessPhongStrength;
-    [Range(0f, 5f, "0")]
+    [Range(0f, 5f, "0.00")]
     public readonly Sync<float> RimFlameScale;
-    [Range(0f, 1f, "0")]
+    [Range(0f, 0.3f, "0.00")]
     public readonly Sync<float> RimFlameIntensity;
-    [Range(0f, 1f, "0")]
+    [Range(0f, 0.2f, "0.00")]
     public readonly Sync<float> RimFlameBias;
 
     public readonly Sync<color> FlameColor;
 
     public readonly Sync<color> FlameColorSecond;
-    [Range(0.1f, 2f, "0")]
+    [Range(0.1f, 2f, "0.00")]
     public readonly Sync<float> FlameContrast;
-    [Range(0f, 100f, "0")]
+    [Range(0f, 100f, "0.00")]
     public readonly Sync<float> BlinkContrastSpeed;
-    [Range(1f, 10f, "0")]
+    [Range(1f, 10f, "0.00")]
     public readonly Sync<float> BlinkContrastStrength;
 
     public readonly AssetRef<ITexture2D> TextureFlame;
@@ -51,20 +51,20 @@ public class FlameMaterial : SingleShaderMaterialProvider
     public readonly Sync<color> ColorTextureFlame;
 
     public readonly AssetRef<ITexture2D> DistortionMap;
-    [Range(0f, 1f, "0")]
+    [Range(0f, 1f, "0.00")]
     public readonly Sync<float> TextureFlameDistortion;
     public readonly Sync<float4> TextureFlameSpeed;
     public readonly Sync<int> RainbowFlame;
     public readonly Sync<int> XYRotatRainbowFlame;
-    [Range(0f, 10f, "0")]
+    [Range(0f, 10f, "0.00")]
     public readonly Sync<float> RainbowFlameSpeed;
-    [Range(0f, 10f, "0")]
+    [Range(0f, 10f, "0.00")]
     public readonly Sync<float> RainbowFlameScale;
     public readonly Sync<int> Noise;
     // all the int fields need to be a bool but idk how they keywords thing works.
-    [Range(0f, 2f, "0")]
+    [Range(0f, 2f, "0.00")]
     public readonly Sync<float> NoiseFlameIntensity;
-    [Range(0f, 10f, "0")]
+    [Range(0f, 10f, "0.00")]
     public readonly Sync<float> NoiseFlameSpeed;
     public readonly AssetRef<ITexture2D> Texcoord;
     [DefaultValue(1)]
@@ -118,7 +118,44 @@ public class FlameMaterial : SingleShaderMaterialProvider
     protected override void OnAttach()
     {
         base.OnAttach();
-        //add default values when i wakeup - xlinka
+        FlameHeight.Value = 0.069f;
+        FlameTransparent.Value = 0.484f;
+        FlameYMask.Value = 0.975f;
+        FlameSpeed.Value = 0.24f;
+        MoveV.Value = -1f;
+        MoveU.Value = 1f;
+        EdgeLength.Value = 1f;
+        TessPhongStrength.Value = 0.001f;
+        RimFlameScale.Value = 2.86f;
+        RimFlameIntensity.Value = 0.3f;
+        RimFlameBias.Value = 0.2f;
+        FlameColor.Value = new color(1f);
+        FlameColorSecond.Value = new color(1f);
+        FlameContrast.Value = 1.3f;
+        BlinkContrastSpeed.Value = 33f;
+        BlinkContrastStrength.Value = 1.23f;
+
+        FlameNoise.Target = World.GetSharedComponentOrCreate("FlameNoise", delegate (StaticTexture2D tex)
+        {
+            tex.URL.Value = new Uri("neosdb:///140c55bd97c21b9b22008d7054b492333fec67fbfc1a1b266e5b0209b647eed4.png");
+            tex.Uncompressed.Value = false;
+        }, 1);
+        FlameWave.Target = World.GetSharedComponentOrCreate("FlameWave", delegate (StaticTexture2D tex)
+        {
+            tex.URL.Value = new Uri("neosdb:///783c233492f3dd00b80f8013c8d64d84a25eef27412a1f400249daee9c79cd63.tga");
+            tex.Uncompressed.Value = false;
+        }, 1);
+        TextureFlame.Target = World.GetSharedComponentOrCreate("TextureFlame", delegate (StaticTexture2D tex)
+        {
+            tex.URL.Value = new Uri("neosdb:///0c646cd6c6287748df29e578522625785550586c11e59a58de9da5e1c18b78d5.png");
+            tex.Uncompressed.Value = false;
+        }, 1);
+        DistortionMap.Target = World.GetSharedComponentOrCreate("DistortionMap", delegate (StaticTexture2D tex)
+        {
+            tex.URL.Value = new Uri("neosdb:///140c55bd97c21b9b22008d7054b492333fec67fbfc1a1b266e5b0209b647eed4.png");
+            tex.Uncompressed.Value = false;
+        }, 1);
+
     }
 
     protected override void UpdateMaterial(Material material)
@@ -165,7 +202,7 @@ public class FlameMaterial : SingleShaderMaterialProvider
 
         if (!RenderQueue.GetWasChangedAndClear()) return;
         var renderQueue = RenderQueue.Value;
-        if ((int)RenderQueue == -1) renderQueue = 2800;
+        if ((int)RenderQueue == -1) renderQueue = 3100;
         material.SetRenderQueue(renderQueue);
     }
 

@@ -82,6 +82,9 @@ public class CrystalMaterial : SingleShaderMaterialProvider
         ChromaticAberration.Value = 0f;
         LightCompletion.Value = 1;
         Cutoff.Value = 0.5f;
+        BaseColor.Value = new color(1f);
+        SurfaceColor.Value = new color(1f);
+
     }
 
     protected override void UpdateMaterial(Material material)

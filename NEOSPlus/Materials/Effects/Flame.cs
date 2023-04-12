@@ -11,36 +11,63 @@ public class FlameMaterial : SingleShaderMaterialProvider
 
     public readonly AssetRef<ITexture2D> FlameNoise;
     public readonly AssetRef<ITexture2D> FlameWave;
+    [Range(0f, 1f, "0")]
     public readonly Sync<float> FlameHeight;
+    [Range(0.01f, 1f, "0")]
     public readonly Sync<float> FlameTransparent;
+    [Range(0f, 1f, "0")]
     public readonly Sync<float> FlameYMask;
+    [Range(0f, 1f, "0")]
     public readonly Sync<float> FlameSpeed;
+    [Range(0f, 1f, "0")]
     public readonly Sync<float> MoveV;
+    [Range(0f, 1f, "0")]
     public readonly Sync<float> MoveU;
+    [Range(2f, 50f, "0")]
     public readonly Sync<float> EdgeLength;
+    [Range(0f, 1f, "0")]
     public readonly Sync<float> TessPhongStrength;
+    [Range(0f, 5f, "0")]
     public readonly Sync<float> RimFlameScale;
+    [Range(0f, 1f, "0")]
     public readonly Sync<float> RimFlameIntensity;
+    [Range(0f, 1f, "0")]
     public readonly Sync<float> RimFlameBias;
+
     public readonly Sync<color> FlameColor;
+
     public readonly Sync<color> FlameColorSecond;
+    [Range(0.1f, 2f, "0")]
     public readonly Sync<float> FlameContrast;
+    [Range(0f, 100f, "0")]
     public readonly Sync<float> BlinkContrastSpeed;
+    [Range(1f, 10f, "0")]
     public readonly Sync<float> BlinkContrastStrength;
+
     public readonly AssetRef<ITexture2D> TextureFlame;
+
     public readonly Sync<int> GrayScaleTextureFlame;
+
     public readonly Sync<color> ColorTextureFlame;
+
     public readonly AssetRef<ITexture2D> DistortionMap;
+    [Range(0f, 1f, "0")]
     public readonly Sync<float> TextureFlameDistortion;
     public readonly Sync<float4> TextureFlameSpeed;
     public readonly Sync<int> RainbowFlame;
     public readonly Sync<int> XYRotatRainbowFlame;
+    [Range(0f, 10f, "0")]
     public readonly Sync<float> RainbowFlameSpeed;
+    [Range(0f, 10f, "0")]
     public readonly Sync<float> RainbowFlameScale;
     public readonly Sync<int> Noise;
+    // all the int fields need to be a bool but idk how they keywords thing works.
+    [Range(0f, 2f, "0")]
     public readonly Sync<float> NoiseFlameIntensity;
+    [Range(0f, 10f, "0")]
     public readonly Sync<float> NoiseFlameSpeed;
     public readonly AssetRef<ITexture2D> Texcoord;
+    [DefaultValue(1)]
     public readonly Sync<int> Dirty;
 
 
@@ -91,6 +118,7 @@ public class FlameMaterial : SingleShaderMaterialProvider
     protected override void OnAttach()
     {
         base.OnAttach();
+        //add default values when i wakeup - xlinka
     }
 
     protected override void UpdateMaterial(Material material)
@@ -121,7 +149,7 @@ public class FlameMaterial : SingleShaderMaterialProvider
         material.UpdateFloat4(_TextureFlameSpeedProp, TextureFlameSpeed);
         material.UpdateInt(_RainbowFlameProp, RainbowFlame);
         material.UpdateInt(_XYRotatRainbowFlameProp, XYRotatRainbowFlame);
-        material.UpdateFloat(_RainbowFlameProp, RainbowFlameSpeed);
+        material.UpdateFloat(_RainbowFlameSpeedProp, RainbowFlameSpeed);
         material.UpdateFloat(_RainbowFlameScaleProp, RainbowFlameScale);
         material.UpdateInt(_NoiseProp, Noise);
         material.UpdateFloat(_NoiseFlameIntensityProp, NoiseFlameIntensity);
@@ -137,11 +165,13 @@ public class FlameMaterial : SingleShaderMaterialProvider
 
         if (!RenderQueue.GetWasChangedAndClear()) return;
         var renderQueue = RenderQueue.Value;
-        if ((int)RenderQueue == -1) renderQueue = 2600;
+        if ((int)RenderQueue == -1) renderQueue = 2800;
         material.SetRenderQueue(renderQueue);
     }
 
     protected override void UpdateKeywords(ShaderKeywords keywords)
     { }
+
 }
+
        

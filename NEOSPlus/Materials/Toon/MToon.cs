@@ -3,9 +3,9 @@ using BaseX;
 using FrooxEngine;
 using NEOSPlus.Shaders;
 
-namespace NEOSPlus.Materials
+namespace NEOSPlus.Materials.Toon
 {
-    [Category("Assets/Materials/NeosPlus")]
+    [Category(new string[] { "Assets/Materials/NeosPlus/Toon" })]
     public class MToon : SingleShaderMaterialProvider
     {
         protected override Uri ShaderURL => ShaderInjection.MToon;
@@ -18,7 +18,7 @@ namespace NEOSPlus.Materials
         public readonly AssetRef<ITexture2D> ShadeTexture;
         public readonly Sync<float> BumpScale;
         public readonly AssetRef<ITexture2D> BumpMap;
-        [Range(0f, 1f, "0.00")] 
+        [Range(0f, 1f, "0.00")]
         public readonly Sync<float> ReceiveShadowRate;
         public readonly AssetRef<ITexture2D> ReceiveShadowTexture;
         [Range(0f, 1f, "0.00")]
@@ -58,7 +58,7 @@ namespace NEOSPlus.Materials
 
         private static MaterialProperty _Cutoff = new("_Cutoff");
         private static MaterialProperty _Color = new("_Color");
-        private static MaterialProperty _ShadeColor= new("_ShadeColor");
+        private static MaterialProperty _ShadeColor = new("_ShadeColor");
         private static MaterialProperty _MainTex = new("_MainTex");
         private static MaterialProperty _ShadeTexture = new("_ShadeTexture");
         private static MaterialProperty _BumpScale = new("_BumpScale");
@@ -207,9 +207,9 @@ namespace NEOSPlus.Materials
             OutlineScaledMaxDistance.Value = 1f;
             Color.Value = new color(1);
             ShadeColor.Value = new color(0.97f, 0.81f, 0.86f, 1);
-            RimColor.Value = new color(0,0,0,0);
-            EmissionColor.Value = new color(0,0,0,1);
-            OutlineColor.Value = new color(0,0,0,1);
+            RimColor.Value = new color(0, 0, 0, 0);
+            EmissionColor.Value = new color(0, 0, 0, 1);
+            OutlineColor.Value = new color(0, 0, 0, 1);
             BumpScale.Value = 1;
             UvAnimScrollX.Value = 0;
             UvAnimScrollY.Value = 0;

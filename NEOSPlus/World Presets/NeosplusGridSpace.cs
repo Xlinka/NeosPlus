@@ -66,7 +66,7 @@ namespace NEOSPlus
             groundSlot.GlobalRotation = floatQ.LookRotation(float3.Down, float3.Forward);
             Sync<float2> meshSize = groundModel.mesh.Size;
             meshSize.Value = float2.One * 1000f;
-            groundModel.material.TextureScale.Value = 1000f;
+            groundModel.material.TextureScale.Value = 700f;
 
             // Set up spawn area
             Slot spawnAreaSlot = w.AddSlot("SpawnArea");

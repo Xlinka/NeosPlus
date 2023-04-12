@@ -2,7 +2,7 @@
 using BaseX;
 using FrooxEngine;
 using NEOSPlus.Shaders;
-
+//from https://booth.pm/ja/items/1148311 MIT License
 [Category(new string[] { "Assets/Materials/NeosPlus/Effects" })]
 public class CrystalMaterial : SingleShaderMaterialProvider
 {

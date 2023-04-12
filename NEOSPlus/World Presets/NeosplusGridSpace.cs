@@ -50,11 +50,17 @@ namespace NEOSPlus
             StaticTexture2D gridTexture = groundSlot.AttachTexture(NeosPlusAssets.NeosplusGridFloor);
             gridTexture.FilterMode.Value = TextureFilterMode.Anisotropic;
             groundModel.material.MainTex.Target = gridTexture;
+            groundModel.material.Metallic.Value = 0.2f;
+            groundModel.material.Glossiness.Value = 0.8f;
+            groundModel.material.Parallax.Value = 0.11f;
+            groundModel.material.ParallaxMinSamples.Value = 20f;
+            groundModel.material.ParallaxMaxSamples.Value = 30f;
 
             //parralax occlusion map
             StaticTexture2D ParralaxMap = groundSlot.AttachTexture(NeosPlusAssets.NeosplusGridParralax);
             ParralaxMap.FilterMode.Value = TextureFilterMode.Anisotropic;
             groundModel.material.ParallaxMap.Target = ParralaxMap;
+           
 
 
             groundSlot.GlobalRotation = floatQ.LookRotation(float3.Down, float3.Forward);

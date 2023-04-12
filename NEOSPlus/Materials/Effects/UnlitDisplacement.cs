@@ -4,7 +4,7 @@ using FrooxEngine;
 using NEOSPlus.Shaders;
 
 [Category(new string[] { "Assets/Materials/NeosPlus/Effects" })]
-public class DisplacementMaterial : SingleShaderMaterialProvider
+public class UnlitDisplacementMaterial : SingleShaderMaterialProvider
 {
     protected override Uri ShaderURL => ShaderInjection.UnlitDisplacement;
 

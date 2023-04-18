@@ -13,26 +13,31 @@ namespace FrooxEngine.LogiX.Utility
 
     [Category("LogiX/Utility")]
     [NodeName("Write to Log")]
-    public class WriteToLog<T> : LogixNode
+    public class WriteToLog : LogixNode
     {
-        public readonly Input<T> Value;
+        public readonly Input<string> Value;
         public readonly Input<LogSeverity> Severity;
         public readonly Input<string> Tag;
+        public readonly Input<User> HandlingUser;
 
         [ImpulseTarget]
         public void Write()
         {
-            switch (Severity.Evaluate())
+            User user = HandlingUser.Evaluate(base.LocalUser);
+            if (user != null)
             {
-                case LogSeverity.Log:
-                    UniLog.Log(Tag.EvaluateRaw() + Value.EvaluateRaw()?.ToString());
-                    break;
-                case LogSeverity.Warning:
-                    UniLog.Warning(Tag.EvaluateRaw() + Value.EvaluateRaw()?.ToString());
-                    break;
-                case LogSeverity.Error:
-                    UniLog.Error(Tag.EvaluateRaw() + Value.EvaluateRaw()?.ToString());
-                    break;
+                switch (Severity.Evaluate())
+                {
+                    case LogSeverity.Log:
+                        UniLog.Log(Tag.EvaluateRaw() + Value.EvaluateRaw()?.ToString());
+                        break;
+                    case LogSeverity.Warning:
+                        UniLog.Warning(Tag.EvaluateRaw() + Value.EvaluateRaw()?.ToString());
+                        break;
+                    case LogSeverity.Error:
+                        UniLog.Error(Tag.EvaluateRaw() + Value.EvaluateRaw()?.ToString());
+                        break;
+                }
             }
         }
     }

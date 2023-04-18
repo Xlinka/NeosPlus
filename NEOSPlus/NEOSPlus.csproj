@@ -66,6 +66,12 @@
     <Reference Include="CloudX.Shared.dll">
       <HintPath>$(NeosPath)Neos_Data/Managed/CloudX.Shared.dll</HintPath>
     </Reference>
+    <Reference Include="BepuPhysics.dll">
+      <HintPath>$(NeosPath)Neos_Data/Managed/BepuPhysics.dll</HintPath>
+    </Reference>
+    <Reference Include="BepuUtilities.dll">
+      <HintPath>$(NeosPath)Neos_Data/Managed/BepuUtilities.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />

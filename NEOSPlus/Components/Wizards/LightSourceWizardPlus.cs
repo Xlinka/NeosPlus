@@ -28,7 +28,7 @@ using FrooxEngine.Undo;
 
 namespace LightSourcesWizardPlus
 {
-    [Category("Wizards")]
+    [Category("Add-ons/Wizards")]
     public class LightSourcesWizardPlus :
       Component,
       IDeveloperInterface

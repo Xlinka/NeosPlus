@@ -62,7 +62,7 @@ namespace LightSourcesWizardPlus
             NeosCanvasPanel neosCanvasPanel = Slot.AttachComponent<NeosCanvasPanel>();
             neosCanvasPanel.Panel.AddCloseButton();
             neosCanvasPanel.Panel.AddParentButton();
-            neosCanvasPanel.Panel.Title = GetLocalized("Wizard.LightSources.Title");
+            neosCanvasPanel.Panel.Title = this.GetLocalized("Wizard.LightSources.Title");
             neosCanvasPanel.CanvasSize = new float2(500f, 1100f);
             neosCanvasPanel.PhysicalHeight = 0.5f;
 

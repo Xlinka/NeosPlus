@@ -221,7 +221,7 @@ namespace LightSourcesWizardPlus
         private void Enable(IButton button, ButtonEventData eventData) => ForeachLight((Action<Light>)(l => { l.EnabledField.CreateUndoPoint(); l.Enabled = true; }));
 
         /// <summary>
-        /// Easily loop oiver all lights selected and apply a process to them
+        /// Easily loop over all lights selected and apply a process to them
         /// </summary>
         /// <param name="process">What to do with each light</param>
         private void ForeachLight(Action<Light> process)

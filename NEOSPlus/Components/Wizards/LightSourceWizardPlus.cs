@@ -41,19 +41,19 @@ namespace LightSourcesWizardPlus
         public readonly Sync<ShadowType> TargetShadowType;
         public readonly Sync<bool> FilterColors;
         public readonly Sync<color> Color;
-        protected readonly SyncRef<TextField> _tag;
-        protected readonly SyncRef<FloatTextEditorParser> _intensityField;
-        protected readonly SyncRef<FloatTextEditorParser> _rangeField;
-        protected readonly SyncRef<FloatTextEditorParser> _spotAngleField;
-        protected readonly SyncRef<FloatTextEditorParser> _maxColorVariance;
+        private readonly SyncRef<TextField> _tag;
+        private readonly SyncRef<FloatTextEditorParser> _intensityField;
+        private readonly SyncRef<FloatTextEditorParser> _rangeField;
+        private readonly SyncRef<FloatTextEditorParser> _spotAngleField;
+        private readonly SyncRef<FloatTextEditorParser> _maxColorVariance;
 
         protected override void OnAwake()
         {
             base.OnAwake();
-            this.ProcessPointLights.Value = true;
-            this.ProcessSpotLights.Value = true;
-            this.ProcessDirectionalLights.Value = true;
-            this.ProcessDisabled.Value = false;
+            ProcessPointLights.Value = true;
+            ProcessSpotLights.Value = true;
+            ProcessDirectionalLights.Value = true;
+            ProcessDisabled.Value = false;
         }
 
         protected override void OnAttach()
@@ -86,22 +86,22 @@ namespace LightSourcesWizardPlus
 
             //Edit Point Lights
             UIBuilder uiBuilder3 = ui;
-            Func<BooleanMemberEditor> elementBuilder1 = (Func<BooleanMemberEditor>)(() => ui.BooleanMemberEditor((IField)this.ProcessPointLights));
+            Func<BooleanMemberEditor> elementBuilder1 = (Func<BooleanMemberEditor>)(() => ui.BooleanMemberEditor((IField)ProcessPointLights));
             uiBuilder3.HorizontalElementWithLabel<BooleanMemberEditor>("Point Lights", 0.8f, elementBuilder1);
 
             //Edit Spot Lights
             UIBuilder uiBuilder4 = ui;
-            Func<BooleanMemberEditor> elementBuilder2 = (Func<BooleanMemberEditor>)(() => ui.BooleanMemberEditor((IField)this.ProcessSpotLights));
+            Func<BooleanMemberEditor> elementBuilder2 = (Func<BooleanMemberEditor>)(() => ui.BooleanMemberEditor((IField)ProcessSpotLights));
             uiBuilder4.HorizontalElementWithLabel<BooleanMemberEditor>("Spot Lights", 0.8f, elementBuilder2);
 
             //Edit Directional Lights
             UIBuilder uiBuilder5 = ui;
-            Func<BooleanMemberEditor> elementBuilder3 = (Func<BooleanMemberEditor>)(() => ui.BooleanMemberEditor((IField)this.ProcessDirectionalLights));
+            Func<BooleanMemberEditor> elementBuilder3 = (Func<BooleanMemberEditor>)(() => ui.BooleanMemberEditor((IField)ProcessDirectionalLights));
             uiBuilder5.HorizontalElementWithLabel<BooleanMemberEditor>("Directional Lights", 0.8f, elementBuilder3);
 
             //Edit Disabled Lights
             UIBuilder uiBuilder6 = ui;
-            Func<BooleanMemberEditor> elementBuilder4 = (Func<BooleanMemberEditor>)(() => ui.BooleanMemberEditor((IField)this.ProcessDisabled));
+            Func<BooleanMemberEditor> elementBuilder4 = (Func<BooleanMemberEditor>)(() => ui.BooleanMemberEditor((IField)ProcessDisabled));
             uiBuilder6.HorizontalElementWithLabel<BooleanMemberEditor>("Disabled Lights", 0.8f, elementBuilder4);
 
             //Only edit lights with Tag
@@ -113,12 +113,12 @@ namespace LightSourcesWizardPlus
 
             //Only edit Lights with Color
             UIBuilder uiBuilder21 = ui;
-            Func<BooleanMemberEditor> elementBuilder7 = (Func<BooleanMemberEditor>)(() => ui.BooleanMemberEditor((IField)this.FilterColors));
+            Func<BooleanMemberEditor> elementBuilder7 = (Func<BooleanMemberEditor>)(() => ui.BooleanMemberEditor((IField)FilterColors));
             uiBuilder21.HorizontalElementWithLabel<BooleanMemberEditor>("Filter Colors", 0.8f, elementBuilder7);
 
             //Color Filter
             UIBuilder uibuilder20 = ui;
-            Func<ColorMemberEditor> elementBuilder6 = (Func<ColorMemberEditor>)(() => ui.ColorMemberEditor((IField)this.Color));
+            Func<ColorMemberEditor> elementBuilder6 = (Func<ColorMemberEditor>)(() => ui.ColorMemberEditor((IField)Color));
             uibuilder20.HorizontalElementWithLabel<ColorMemberEditor>("Color Filter", 0.3f, elementBuilder6);
             ui.NestOut();
             ui.NestOut();
@@ -126,52 +126,52 @@ namespace LightSourcesWizardPlus
 
             //Color Variance
             ui.Text("Max variance:");
-            this._maxColorVariance.Target = ui.FloatField(0.0f, 1f, int.MaxValue);
+            _maxColorVariance.Target = ui.FloatField(0.0f, 1f, int.MaxValue);
 
             UIBuilder uiBuilder8 = ui;
             uiBuilder8.Text("-------");
 
             //Set Shadow
-            ui.EnumMemberEditor((IField)this.TargetShadowType);
+            ui.EnumMemberEditor((IField)TargetShadowType);
             UIBuilder uiBuilder9 = ui;
-            ButtonEventHandler action1 = new ButtonEventHandler(this.SetShadowType);
+            ButtonEventHandler action1 = new ButtonEventHandler(SetShadowType);
             uiBuilder9.Button("Set Shadow Type", action1);
 
             UIBuilder uiBuilder10 = ui;
             uiBuilder10.Text("-------");
 
             //Multiply Intensity
-            this._intensityField.Target = ui.FloatField(0.0f, float.PositiveInfinity, int.MaxValue);
+            _intensityField.Target = ui.FloatField(0.0f, float.PositiveInfinity, int.MaxValue);
             UIBuilder uiBuilder11 = ui;
-            ButtonEventHandler action2 = new ButtonEventHandler(this.MultiplyIntensity);
+            ButtonEventHandler action2 = new ButtonEventHandler(MultiplyIntensity);
             uiBuilder11.Button("Multiply Intensity", action2);
 
             //Set Intensity
             UIBuilder uiBuilder18 = ui;
-            ButtonEventHandler action7 = new ButtonEventHandler(this.SetIntensity);
+            ButtonEventHandler action7 = new ButtonEventHandler(SetIntensity);
             uiBuilder18.Button("Set Intensity", action7);
 
             UIBuilder uiBuilder12 = ui;
             uiBuilder12.Text("-------");
 
             //Multiply Range
-            this._rangeField.Target = ui.FloatField(0.0f, float.PositiveInfinity, int.MaxValue);
+            _rangeField.Target = ui.FloatField(0.0f, float.PositiveInfinity, int.MaxValue);
             UIBuilder uiBuilder13 = ui;
-            ButtonEventHandler action3 = new ButtonEventHandler(this.MultiplyRange);
+            ButtonEventHandler action3 = new ButtonEventHandler(MultiplyRange);
             uiBuilder13.Button("Multiply Range", action3);
 
             //Set Range
             UIBuilder uiBuilder19 = ui;
-            ButtonEventHandler action8 = new ButtonEventHandler(this.SetRange);
+            ButtonEventHandler action8 = new ButtonEventHandler(SetRange);
             uiBuilder19.Button("Set Range", action8);
 
             UIBuilder uiBuilder22 = ui;
             uiBuilder22.Text("-------");
 
             //Set Spot Angle
-            this._spotAngleField.Target = ui.FloatField(0.0f, 180.0f, int.MaxValue);
+            _spotAngleField.Target = ui.FloatField(0.0f, 180.0f, int.MaxValue);
             UIBuilder uiBuilder23 = ui;
-            ButtonEventHandler action9 = new ButtonEventHandler(this.SetSpotAngle);
+            ButtonEventHandler action9 = new ButtonEventHandler(SetSpotAngle);
             uiBuilder23.Button("Set Spot Angle", action9);
 
             UIBuilder uiBuilder14 = ui;
@@ -179,46 +179,46 @@ namespace LightSourcesWizardPlus
 
             //Enable Lights
             UIBuilder uiBuilder15 = ui;
-            ButtonEventHandler action4 = new ButtonEventHandler(this.Enable);
+            ButtonEventHandler action4 = new ButtonEventHandler(Enable);
             uiBuilder15.Button("Enable Lights", action4);
 
             //Disable Lights
             UIBuilder uiBuilder16 = ui;
-            ButtonEventHandler action5 = new ButtonEventHandler(this.Disable);
+            ButtonEventHandler action5 = new ButtonEventHandler(Disable);
             uiBuilder16.Button("Disable Lights", action5);
 
             //Remove Lights
             UIBuilder uiBuilder17 = ui;
-            ButtonEventHandler action6 = new ButtonEventHandler(this.Remove);
+            ButtonEventHandler action6 = new ButtonEventHandler(Remove);
             uiBuilder17.Button("Delete Lights", action6);
         }
 
         [SyncMethod]
-        private void SetShadowType(IButton button, ButtonEventData eventData) => this.ForeachLight((Action<Light>)(l => { l.ShadowType.CreateUndoPoint(); l.ShadowType.Value = (ShadowType)this.TargetShadowType; }));
+        private void SetShadowType(IButton button, ButtonEventData eventData) => ForeachLight((Action<Light>)(l => { l.ShadowType.CreateUndoPoint(); l.ShadowType.Value = (ShadowType)TargetShadowType; }));
 
         [SyncMethod]
-        private void MultiplyIntensity(IButton button, ButtonEventData eventData) => this.ForeachLight((Action<Light>)(l => { l.Intensity.CreateUndoPoint(); l.Intensity.Value *= (float)this._intensityField.Target.ParsedValue; }));
+        private void MultiplyIntensity(IButton button, ButtonEventData eventData) => ForeachLight((Action<Light>)(l => { l.Intensity.CreateUndoPoint(); l.Intensity.Value *= (float)_intensityField.Target.ParsedValue; }));
 
         [SyncMethod]
-        private void SetIntensity(IButton button, ButtonEventData eventData) => this.ForeachLight((Action<Light>)(l => { l.Intensity.CreateUndoPoint(); l.Intensity.Value = (float)this._intensityField.Target.ParsedValue; }));
+        private void SetIntensity(IButton button, ButtonEventData eventData) => ForeachLight((Action<Light>)(l => { l.Intensity.CreateUndoPoint(); l.Intensity.Value = (float)_intensityField.Target.ParsedValue; }));
 
         [SyncMethod]
-        private void MultiplyRange(IButton button, ButtonEventData eventData) => this.ForeachLight((Action<Light>)(l => { l.Range.CreateUndoPoint(); l.Range.Value *= (float)this._rangeField.Target.ParsedValue; }));
+        private void MultiplyRange(IButton button, ButtonEventData eventData) => ForeachLight((Action<Light>)(l => { l.Range.CreateUndoPoint(); l.Range.Value *= (float)_rangeField.Target.ParsedValue; }));
 
         [SyncMethod]
-        private void SetRange(IButton button, ButtonEventData eventData) => this.ForeachLight((Action<Light>)(l => { l.Range.CreateUndoPoint(); l.Range.Value = (float)this._rangeField.Target.ParsedValue; }));
+        private void SetRange(IButton button, ButtonEventData eventData) => ForeachLight((Action<Light>)(l => { l.Range.CreateUndoPoint(); l.Range.Value = (float)_rangeField.Target.ParsedValue; }));
 
         [SyncMethod]
-        private void SetSpotAngle(IButton button, ButtonEventData eventData) => this.ForeachLight((Action<Light>)(l => { l.SpotAngle.CreateUndoPoint(); l.SpotAngle.Value = (float)this._spotAngleField.Target.ParsedValue; }));
+        private void SetSpotAngle(IButton button, ButtonEventData eventData) => ForeachLight((Action<Light>)(l => { l.SpotAngle.CreateUndoPoint(); l.SpotAngle.Value = (float)_spotAngleField.Target.ParsedValue; }));
 
         [SyncMethod]
-        private void Remove(IButton button, ButtonEventData eventData) => this.ForeachLight((Action<Light>)(l => l.UndoableDestroy()));
+        private void Remove(IButton button, ButtonEventData eventData) => ForeachLight((Action<Light>)(l => l.UndoableDestroy()));
 
         [SyncMethod]
-        private void Disable(IButton button, ButtonEventData eventData) => this.ForeachLight((Action<Light>)(l => { l.EnabledField.CreateUndoPoint(); l.Enabled = false; }));
+        private void Disable(IButton button, ButtonEventData eventData) => ForeachLight((Action<Light>)(l => { l.EnabledField.CreateUndoPoint(); l.Enabled = false; }));
 
         [SyncMethod]
-        private void Enable(IButton button, ButtonEventData eventData) => this.ForeachLight((Action<Light>)(l => { l.EnabledField.CreateUndoPoint(); l.Enabled = true; }));
+        private void Enable(IButton button, ButtonEventData eventData) => ForeachLight((Action<Light>)(l => { l.EnabledField.CreateUndoPoint(); l.Enabled = true; }));
 
         /// <summary>
         /// Easily loop oiver all lights selected and apply a process to them
@@ -226,22 +226,22 @@ namespace LightSourcesWizardPlus
         /// <param name="process">What to do with each light</param>
         private void ForeachLight(Action<Light> process)
         {
-            string tag = this._tag.Target.TargetString;
-            color Col = this.Color.Value;
+            string tag = _tag.Target.TargetString;
+            color Col = Color.Value;
             World.BeginUndoBatch("Modify lights");
-            foreach (Light componentsInChild in (this.Root.Target ?? this.World.RootSlot).GetComponentsInChildren<Light>((Predicate<Light>)(l =>
+            foreach (Light componentsInChild in (Root.Target ?? World.RootSlot).GetComponentsInChildren<Light>((Predicate<Light>)(l =>
             {
-                if (!this.ProcessDisabled.Value && (!l.Enabled || !l.Slot.IsActive) || !string.IsNullOrEmpty(tag) && l.Slot.Tag != tag || this.FilterColors && !ColorEquals(l.Color.Value, Col, _maxColorVariance.Target.ParsedValue))
+                if (!ProcessDisabled.Value && (!l.Enabled || !l.Slot.IsActive) || !string.IsNullOrEmpty(tag) && l.Slot.Tag != tag || FilterColors && !ColorEquals(l.Color.Value, Col, _maxColorVariance.Target.ParsedValue))
                     return false;
 
                 switch (l.LightType.Value)
                 {
                     case LightType.Point:
-                        return this.ProcessPointLights.Value;
+                        return ProcessPointLights.Value;
                     case LightType.Directional:
-                        return this.ProcessDirectionalLights.Value;
+                        return ProcessDirectionalLights.Value;
                     case LightType.Spot:
-                        return this.ProcessSpotLights.Value;
+                        return ProcessSpotLights.Value;
                     default:
                         return false;
                 }

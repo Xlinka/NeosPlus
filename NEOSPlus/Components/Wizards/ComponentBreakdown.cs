@@ -32,15 +32,15 @@ namespace ComponentBreakdown
         Component
     {
         public readonly SyncRef<Slot> Root;
-        protected readonly SyncRef<Slot> _listRoot;
-        protected UIBuilder listGenerator;
+        private readonly SyncRef<Slot> _listRoot;
+        private UIBuilder listGenerator;
 
         protected override void OnAttach()
         {
             base.OnAttach();
 
             //initialize the panel
-            NeosCanvasPanel neosCanvasPanel = this.Slot.AttachComponent<NeosCanvasPanel>();
+            NeosCanvasPanel neosCanvasPanel = Slot.AttachComponent<NeosCanvasPanel>();
             neosCanvasPanel.Panel.AddCloseButton();
             neosCanvasPanel.Panel.Title = "Component Breakdown";
             neosCanvasPanel.CanvasSize = new float2(600f, 1200f);
@@ -54,13 +54,13 @@ namespace ComponentBreakdown
             //slot selector
             builder.Text("Root: ");
             builder.Next("Root");
-            builder.Current.AttachComponent<RefEditor>().Setup((ISyncRef)this.Root);
+            builder.Current.AttachComponent<RefEditor>().Setup((ISyncRef)Root);
 
             //spacer
             builder.Text("------------");
 
             //button to generate the list
-            ButtonEventHandler generateAction = new ButtonEventHandler(this.GenerateList);
+            ButtonEventHandler generateAction = new ButtonEventHandler(GenerateList);
             builder.Button("Generate", generateAction);
 
             //setup scrollable list of all components

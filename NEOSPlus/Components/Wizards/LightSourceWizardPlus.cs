@@ -59,10 +59,10 @@ namespace LightSourcesWizardPlus
         protected override void OnAttach()
         {
             base.OnAttach();
-            NeosCanvasPanel neosCanvasPanel = this.Slot.AttachComponent<NeosCanvasPanel>();
+            NeosCanvasPanel neosCanvasPanel = Slot.AttachComponent<NeosCanvasPanel>();
             neosCanvasPanel.Panel.AddCloseButton();
             neosCanvasPanel.Panel.AddParentButton();
-            neosCanvasPanel.Panel.Title = this.GetLocalized("Wizard.LightSources.Title");
+            neosCanvasPanel.Panel.Title = GetLocalized("Wizard.LightSources.Title");
             neosCanvasPanel.CanvasSize = new float2(500f, 1100f);
             neosCanvasPanel.PhysicalHeight = 0.5f;
 
@@ -82,7 +82,7 @@ namespace LightSourcesWizardPlus
             Alignment? alignment2 = new Alignment?();
             uiBuilder2.Text("Process Root", alignment: alignment2);
             ui.Next("Root");
-            ui.Current.AttachComponent<RefEditor>().Setup((ISyncRef)this.Root);
+            ui.Current.AttachComponent<RefEditor>().Setup((ISyncRef)Root);
 
             //Edit Point Lights
             UIBuilder uiBuilder3 = ui;
@@ -105,7 +105,7 @@ namespace LightSourcesWizardPlus
             uiBuilder6.HorizontalElementWithLabel<BooleanMemberEditor>("Disabled Lights", 0.8f, elementBuilder4);
 
             //Only edit lights with Tag
-            SyncRef<TextField> tag = this._tag;
+            SyncRef<TextField> tag = _tag;
             UIBuilder uiBuilder7 = ui;
             Func<TextField> elementBuilder5 = (Func<TextField>)(() => ui.TextField());
             TextField textField = uiBuilder7.HorizontalElementWithLabel<TextField>("Tag filter", 0.8f, elementBuilder5);

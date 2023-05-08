@@ -13,7 +13,7 @@ public enum HashFunction
     SHA512
 }
 
-[Category("Security")]
+[Category("LogiX/String")]
 [NodeName("HMAC")]
 public class HMACNode : LogixNode
 {

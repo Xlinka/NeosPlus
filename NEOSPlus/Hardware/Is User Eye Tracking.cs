@@ -1,8 +1,8 @@
 ﻿using FrooxEngine;
 using FrooxEngine.LogiX;
 using FrooxEngine.UIX;
-
-[Category("LogiX/Hardware")]
+//this is experimental not tested using a normal user.
+[Category("LogiX/Users")]
 [NodeName("IsUserEyeTracking")]
 public class IsUserEyeTracking : LogixNode
 {

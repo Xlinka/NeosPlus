@@ -5,25 +5,23 @@ using FrooxEngine.LogiX;
 using System.Linq;
 using System.Collections.Generic;
 
-[Category("LogiX/Users")]
+[Category("LogiX/Imput Devices")]
 [NodeName("GetTrackerBatteryLevel")]
 public class GetTrackerBatteryLevel : LogixNode
 {
     public readonly Input<User> User;
-    public readonly Input<int> TrackerIndex;
+    public readonly Input<BodyNode> TrackerIndex;
     public readonly Output<float> BatteryLevel;
 
     protected override void OnEvaluate()
     {
         User user = User.Evaluate();
-        int trackerIndex = TrackerIndex.Evaluate();
-
         if (user != null)
         {
-            List<ViveTracker> trackers = user.InputInterface.GetDevices<ViveTracker>().ToList();
-            if (trackerIndex >= 0 && trackerIndex < trackers.Count)
+            var trackerIndex = TrackerIndex.Evaluate();
+            ViveTracker tracker = user.InputInterface.GetDevices<ViveTracker>().Find((t) => t.CorrespondingBodyNode == trackerIndex);
+            if (tracker != null)
             {
-                ViveTracker tracker = trackers[trackerIndex];
                 BatteryLevel.Value = tracker.BatteryLevel.Value;
                 return;
             }

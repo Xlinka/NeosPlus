@@ -6,8 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using NEOSPlus.Logix.Input_Devices;
 
-[Category("LogiX/Imput Devices")]
-[NodeName("GetTrackerBatteryLevel")]
+[Category("LogiX/Input Devices")]
 public class ViveTrackerByBodyNode : TrackerBatteryBase
 {
     public readonly Input<BodyNode> BodyNode;

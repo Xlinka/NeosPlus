@@ -8,6 +8,7 @@ using FrooxEngine.LogiX;
 
 namespace NEOSPlus.Logix.Input_Devices
 {
+    [Category("LogiX/Input Devices")]
     public class ViveTrackerByIndex : TrackerBatteryBase
     {
         public readonly Input<int> TrackerIndex;
@@ -17,7 +18,7 @@ namespace NEOSPlus.Logix.Input_Devices
             var idx = TrackerIndex.Evaluate();
             if (idx < 0) return null;
             var trackers = InputInterface.GetDevices<ViveTracker>();
-            if (idx > trackers.Count) return null;
+            if (idx >= trackers.Count) return null;
             return trackers[idx];
         }
     }

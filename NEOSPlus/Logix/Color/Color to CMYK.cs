@@ -18,9 +18,9 @@ public class ColorToCMYK : LogixNode
     {
         color c = Color.Evaluate();
 
-        float rPrime = c.r / 255f;
-        float gPrime = c.g / 255f;
-        float bPrime = c.b / 255f;
+        float rPrime = c.r;
+        float gPrime = c.g;
+        float bPrime = c.b;
 
         float k = 1 - Math.Max(rPrime, Math.Max(gPrime, bPrime));
 

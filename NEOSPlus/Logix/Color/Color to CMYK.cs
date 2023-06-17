@@ -1,10 +1,9 @@
 ﻿using System;
-using BaseX;
 using FrooxEngine;
 using FrooxEngine.LogiX;
-using FrooxEngine.LogiX.Color;
+using BaseX;
 
-[Category(new string[] { "LogiX/Color" })]
+[Category("LogiX/Color")]
 [NodeName("Color To CMYK")]
 public class ColorToCMYK : LogixNode
 {
@@ -18,15 +17,15 @@ public class ColorToCMYK : LogixNode
     {
         color c = Color.Evaluate();
 
-        float rPrime = c.r;
-        float gPrime = c.g;
-        float bPrime = c.b;
+        float rPrime = c.r * 255f;
+        float gPrime = c.g * 255f;
+        float bPrime = c.b * 255f;
 
-        float k = 1 - Math.Max(rPrime, Math.Max(gPrime, bPrime));
+        float k = 1 - Math.Max(rPrime, Math.Max(gPrime, bPrime)) / 255f;
 
-        float cPrime = (1 - rPrime - k) / (1 - k);
-        float mPrime = (1 - gPrime - k) / (1 - k);
-        float yPrime = (1 - bPrime - k) / (1 - k);
+        float cPrime = (1 - rPrime / 255f - k) / (1 - k);
+        float mPrime = (1 - gPrime / 255f - k) / (1 - k);
+        float yPrime = (1 - bPrime / 255f - k) / (1 - k);
 
         C.Value = (float)Math.Round(cPrime * 100f);
         M.Value = (float)Math.Round(mPrime * 100f);

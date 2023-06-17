@@ -9,7 +9,7 @@ using FrooxEngine.LogiX;
 namespace NEOSPlus.Logix.Input_Devices
 {
     // TODO: check in multiplayer to make sure this all syncs correctly.
-
+    // Update 6/17/2023 It Works
     public abstract class TrackerBatteryBase : LogixNode
     {
         public readonly Input<User> User;

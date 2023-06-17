@@ -11,9 +11,5 @@ public class ViveTrackerByBodyNode : TrackerBatteryBase
 {
     public readonly Input<BodyNode> BodyNode;
 
-    internal override ViveTracker GetViveTracker()
-    {
-        var bodyNode = BodyNode.Evaluate();
-        return InputInterface.GetDevices<ViveTracker>().Find((t) => t.CorrespondingBodyNode == bodyNode);
-    }
+    internal override ViveTracker GetViveTracker() => InputInterface.GetDevices<ViveTracker>().Find((t) => t.CorrespondingBodyNode == BodyNode.Evaluate());
 }

@@ -1,6 +1,5 @@
 ﻿using FrooxEngine;
 using FrooxEngine.LogiX;
-using FrooxEngine.UIX;
 
 [Category("LogiX/Users")]
 [NodeName("IsUserEyeTracking")]
@@ -20,7 +19,7 @@ public class IsUserEyeTracking : LogixNode
     protected override void OnEvaluate()
     {
         User user = User.Evaluate();
-        if (user != null)
+        if (user != null && eyeTrackingStreamManager != null)
         {
             EyeSide side = Side.Evaluate(); // Get the EyeSide value from the input
             bool eyeTracking = eyeTrackingStreamManager.GetIsTracking(side);

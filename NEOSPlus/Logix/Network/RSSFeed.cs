@@ -10,7 +10,7 @@ using System.Xml;
 namespace LogiX.Network
 {
     [Category("LogiX/Network")]
-    [NodeName("RSSFeed")]
+    [NodeName("RSS Feed")]
     public class RSSFeedNode : LogixNode
     {
         public readonly Input<Uri> FeedURL;

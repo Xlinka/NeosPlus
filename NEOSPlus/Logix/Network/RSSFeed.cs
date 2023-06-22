@@ -7,7 +7,7 @@ using FrooxEngine.LogiX;
 using BaseX;
 using System.Xml;
 
-namespace LogiX.Network
+namespace FrooxEngine.LogiX.Network
 {
     [Category("LogiX/Network")]
     [NodeName("RSS Feed")]

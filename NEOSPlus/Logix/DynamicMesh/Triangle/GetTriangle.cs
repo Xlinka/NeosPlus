@@ -1,7 +1,7 @@
 ﻿using BaseX;
 using FrooxEngine.LogiX;
 
-namespace FrooxEngine.Logix.Math
+namespace FrooxEngine.LogiX.Math
 {
     [Category(new string[] {"LogiX/Mesh/Triangle"})]
     public class GetTriangle : LogixOperator<Triangle>

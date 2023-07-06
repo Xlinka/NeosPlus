@@ -202,7 +202,7 @@ public class FlameMaterial : SingleShaderMaterialProvider
 
         if (!RenderQueue.GetWasChangedAndClear()) return;
         var renderQueue = RenderQueue.Value;
-        if ((int)RenderQueue == -1) renderQueue = 3100;
+        if ((int)RenderQueue == -1) renderQueue = 2800;
         material.SetRenderQueue(renderQueue);
     }
 

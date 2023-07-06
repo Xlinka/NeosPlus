@@ -4,7 +4,8 @@ using FrooxEngine;
 using FrooxEngine.LogiX;
 using System.Linq;
 using System.Collections.Generic;
-namespace FrooxEngine.Logix.Input_Devices
+
+namespace NEOSPlus.Logix.Input_Devices;
 
 [Category("LogiX/Input Devices")]
 public class ViveTrackerByBodyNode : TrackerBatteryBase

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FrooxEngine;
 using FrooxEngine.LogiX;
 
-namespace FrooxEngine.Logix.Input_Devices
+namespace NEOSPlus.Logix.Input_Devices
 {
     [Category("LogiX/Input Devices")]
     public class ViveTrackerByIndex : TrackerBatteryBase

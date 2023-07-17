@@ -89,27 +89,17 @@ namespace NEOSPlus.Materials.Toon
         private static MaterialProperty _UvAnimScrollY = new("_UvAnimScrollY");
         private static MaterialProperty _UvAnimRotation = new("_UvAnimRotation");
 
-        [HideInInspector]
+
         public readonly Sync<float> MToonVersion;
-        [HideInInspector]
         public readonly Sync<float> DebugMode;
-        [HideInInspector]
         public readonly Sync<float> BlendMode;
-        [HideInInspector]
         public readonly Sync<float> OutlineWidthMode;
-        [HideInInspector]
         public readonly Sync<float> OutlineColorMode;
-        [HideInInspector]
         public readonly Sync<float> CullMode;
-        [HideInInspector]
         public readonly Sync<float> OutlineCullMode;
-        [HideInInspector]
         public readonly Sync<float> SrcBlend;
-        [HideInInspector]
         public readonly Sync<float> DstBlend;
-        [HideInInspector]
         public readonly Sync<float> ZWrite;
-        [HideInInspector]
         public readonly Sync<float> AlphaToMask;
         private static MaterialProperty _MToonVersion = new("_MToonVersion");
         private static MaterialProperty _DebugMode = new("_DebugMode");
@@ -216,16 +206,16 @@ namespace NEOSPlus.Materials.Toon
             UvAnimRotation.Value = 0;
 
             MToonVersion.Value = 38;
-            DebugMode.Value = 0;
-            BlendMode.Value = 0;
-            OutlineWidthMode.Value = 0;
-            OutlineColorMode.Value = 0;
-            CullMode.Value = 2;
-            OutlineCullMode.Value = 1;
-            SrcBlend.Value = 1;
-            DstBlend.Value = 0;
-            ZWrite.Value = 1;
-            AlphaToMask.Value = 0;
+            DebugMode.Value = 0.0f;
+            BlendMode.Value = 0.0f;
+            OutlineWidthMode.Value = 0.0f;
+            OutlineColorMode.Value = 0.0f;
+            CullMode.Value = 2.0f;
+            OutlineCullMode.Value = 1.0f;
+            SrcBlend.Value = 1.0f;
+            DstBlend.Value = 0.0f;
+            ZWrite.Value = 1.0f;
+            AlphaToMask.Value = 0.0f;
         }
     }
 }

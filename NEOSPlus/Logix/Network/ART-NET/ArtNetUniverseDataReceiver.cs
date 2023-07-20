@@ -21,26 +21,30 @@ public class ArtNetUniverseDataReceiver : ArtNetReceiverBaseNode
 
     private void OnArtNetPacketReceived(ArtNetReceiver receiver, byte[] data)
     {
-        int receivedUniverseID = -1;
-        bool validPacket = false;
+        UniLog.Log("Packet received. Data length: " + data.Length);
 
         if (IsValidArtNetPacket(data))
         {
-            receivedUniverseID = ParseUniverseID(data);
-            validPacket = receivedUniverseID == UniverseID.Evaluate();
+            UniLog.Log("Data is a valid Art-Net packet");
+
+            int receivedUniverseID = ParseUniverseID(data);
+            UniLog.Log("Parsed Universe ID: " + receivedUniverseID);
+
+            if (receivedUniverseID == UniverseID.Evaluate())
+            {
+                RunSynchronously(delegate
+                {
+                    byte[] dmxData = ExtractDMXData(data);
+                    Data.Value = dmxData;
+                    Received.Trigger();
+                    Data.Value = null;
+                });
+            }
         }
         else if (IsValidDMXPacket(data))
         {
-            receivedUniverseID = UniverseID.Evaluate();
-            validPacket = true;
-        }
-        else
-        {
-            UniLog.Log("Received data is not a valid Art-Net or DMX packet.");
-        }
+            UniLog.Log("Data is a valid DMX packet");
 
-        if (validPacket)
-        {
             RunSynchronously(delegate
             {
                 byte[] dmxData = ExtractDMXData(data);
@@ -48,6 +52,10 @@ public class ArtNetUniverseDataReceiver : ArtNetReceiverBaseNode
                 Received.Trigger();
                 Data.Value = null;
             });
+        }
+        else
+        {
+            UniLog.Log("Received data is not a valid Art-Net or DMX packet.");
         }
     }
 
@@ -63,20 +71,33 @@ public class ArtNetUniverseDataReceiver : ArtNetReceiverBaseNode
 
     private int ParseUniverseID(byte[] data)
     {
+        // According to the Art-Net protocol, the Universe ID is stored as a 16-bit integer (2 bytes) with the Low Byte at offset 14 and High Byte at offset 15.
         int universeIDOffsetLowByte = 14;
         int universeIDOffsetHighByte = 15;
 
         int universeID = (data[universeIDOffsetHighByte] << 8) | data[universeIDOffsetLowByte];
+
+        // Additional logging details
+        byte subuni = data[14];
+        string subnet = Convert.ToString(subuni >> 4);
+        string universe = Convert.ToString(subuni & 0x0F);
+
+        UniLog.Log("Subnet: " + subnet);
+        UniLog.Log("Universe: " + universe);
+
         return universeID;
     }
 
     private byte[] ExtractDMXData(byte[] data)
     {
         int dmxDataOffset = 18;
-        int dmxDataLength = data.Length - dmxDataOffset;
+        int dmxDataLength = 512; // fixed size of DMX data
 
         byte[] dmxData = new byte[dmxDataLength];
         Array.Copy(data, dmxDataOffset, dmxData, 0, dmxDataLength);
+
+        string dmx = BitConverter.ToString(dmxData);
+        UniLog.Log("DMX Data: " + dmx);
 
         return dmxData;
     }

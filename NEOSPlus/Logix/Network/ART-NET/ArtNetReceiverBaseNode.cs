@@ -1,7 +1,6 @@
 ﻿using FrooxEngine;
 using FrooxEngine.LogiX;
 
-[Category(new string[] { "LogiX/Network/ART-NET" })]
 public abstract class ArtNetReceiverBaseNode : LogixNode
 {
     public readonly Input<ArtNetReceiver> Receiver;

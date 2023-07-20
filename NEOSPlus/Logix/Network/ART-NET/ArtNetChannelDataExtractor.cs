@@ -2,6 +2,9 @@
 using FrooxEngine.LogiX;
 using System;
 
+
+[Category(new string[] { "LogiX/Network/ART-NET" })]
+
 public class ArtNetChannelDataExtractor : LogixNode
 {
     public readonly Input<byte[]> Data;

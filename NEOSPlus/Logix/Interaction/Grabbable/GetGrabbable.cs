@@ -24,8 +24,6 @@ namespace FrooxEngine.LogiX.Slots
                     return null;
 
                 var grabbable = instance.GetComponent<Grabbable>();
-                if (grabbable == null)
-                    return null;
 
                 return grabbable;
             }

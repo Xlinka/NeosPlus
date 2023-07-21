@@ -1,10 +1,7 @@
 ﻿using FrooxEngine;
 using FrooxEngine.LogiX;
-using System;
 
-
-[Category(new string[] { "LogiX/Network/ART-NET" })]
-
+[Category("LogiX/Network/ART-NET")]
 public class ArtNetChannelDataExtractor : LogixNode
 {
     public readonly Input<byte[]> Data;
@@ -12,10 +9,11 @@ public class ArtNetChannelDataExtractor : LogixNode
     public readonly Input<int> StartIndex;
     public readonly Output<byte> Output;
 
-    protected override void OnChanges()
-    {
-        base.OnChanges();
+    public readonly Impulse OnEvaluationComplete;
 
+    [ImpulseTarget]
+    public void EvaluateData()
+    {
         byte[] data = Data.Evaluate();
         int channel = Channel.Evaluate();
         int startIndex = StartIndex.Evaluate();
@@ -28,5 +26,8 @@ public class ArtNetChannelDataExtractor : LogixNode
         {
             Output.Value = 0;
         }
+
+        // Triggering output impulse when data evaluation is complete
+        OnEvaluationComplete.Trigger();
     }
 }

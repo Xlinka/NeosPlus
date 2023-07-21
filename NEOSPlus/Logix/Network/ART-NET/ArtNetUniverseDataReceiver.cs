@@ -3,6 +3,8 @@ using FrooxEngine.LogiX;
 using System;
 using BaseX;
 
+[Category(new string[] { "LogiX/Network/ART-NET" })]
+
 public class ArtNetUniverseDataReceiver : ArtNetReceiverBaseNode
 {
     public readonly Input<int> UniverseID;
@@ -21,14 +23,14 @@ public class ArtNetUniverseDataReceiver : ArtNetReceiverBaseNode
 
     private void OnArtNetPacketReceived(ArtNetReceiver receiver, byte[] data)
     {
-        UniLog.Log("Packet received. Data length: " + data.Length);
+       // UniLog.Log("Packet received. Data length: " + data.Length);
 
         if (IsValidArtNetPacket(data))
         {
-            UniLog.Log("Data is a valid Art-Net packet");
+           // UniLog.Log("Data is a valid Art-Net packet");
 
             int receivedUniverseID = ParseUniverseID(data);
-            UniLog.Log("Parsed Universe ID: " + receivedUniverseID);
+           // UniLog.Log("Parsed Universe ID: " + receivedUniverseID);
 
             if (receivedUniverseID == UniverseID.Evaluate())
             {
@@ -37,7 +39,6 @@ public class ArtNetUniverseDataReceiver : ArtNetReceiverBaseNode
                     byte[] dmxData = ExtractDMXData(data);
                     Data.Value = dmxData;
                     Received.Trigger();
-                    Data.Value = null;
                 });
             }
         }
@@ -50,7 +51,6 @@ public class ArtNetUniverseDataReceiver : ArtNetReceiverBaseNode
                 byte[] dmxData = ExtractDMXData(data);
                 Data.Value = dmxData;
                 Received.Trigger();
-                Data.Value = null;
             });
         }
         else
@@ -82,8 +82,8 @@ public class ArtNetUniverseDataReceiver : ArtNetReceiverBaseNode
         string subnet = Convert.ToString(subuni >> 4);
         string universe = Convert.ToString(subuni & 0x0F);
 
-        UniLog.Log("Subnet: " + subnet);
-        UniLog.Log("Universe: " + universe);
+        //UniLog.Log("Subnet: " + subnet);
+        //UniLog.Log("Universe: " + universe);
 
         return universeID;
     }

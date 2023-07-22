@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FrooxEngine;
 using FrooxEngine.LogiX;
 
-namespace FrooxEngine.LogiX.Slots
+namespace FrooxEngine.LogiX.Interaction
 {
     [Category("LogiX/Interaction/Grabbable")]
     [NodeName("Get Grabbable")]

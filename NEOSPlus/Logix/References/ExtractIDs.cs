@@ -3,7 +3,7 @@
 namespace FrooxEngine.LogiX.References
 {
     [Category(new string[] { "LogiX/References" })]
-    [NodeName("ExtractIDs")]
+    [NodeName("Extract IDs")]
     public class ExtractIDs : LogixNode
     {
         public readonly Input<RefID> RefID;

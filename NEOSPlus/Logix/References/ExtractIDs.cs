@@ -1,29 +1,28 @@
 ﻿using BaseX;
+using FrooxEngine;
+using FrooxEngine.LogiX;
 
-namespace FrooxEngine.LogiX.References
+[Category("LogiX/References")]
+[NodeName("Extract IDs")]
+public class ExtractIDs : LogixNode
 {
-    [Category(new string[] { "LogiX/References" })]
-    [NodeName("Extract IDs")]
-    public class ExtractIDs : LogixNode
-    {
-        public readonly Input<RefID> RefID;
+	public readonly Input<RefID> RefID;
+	public readonly Output<ulong> Position;
+	public readonly Output<byte> User;
 
-        public readonly Output<ulong> Position;
-
-        public readonly Output<byte> User;
-
-        protected override void OnEvaluate()
-        {
-            RefID refId = RefID.EvaluateRaw();
-            if (refId == null)
-            {
-                Position.Value = 0;
-                User.Value = 0;
-                return;
-            }
-            refId.ExtractIDs(out var position, out var user);
-            Position.Value = position;
-            User.Value = user;
-        }
-    }
+	protected override void OnEvaluate()
+	{
+		RefID refId = RefID.Evaluate();
+		if (refId != null)
+		{
+			refId.ExtractIDs(out ulong position, out byte user);
+			Position.Value = position;
+			User.Value = user;
+		}
+		else
+		{
+			Position.Value = 0;
+			User.Value = 0;
+		}
+	}
 }

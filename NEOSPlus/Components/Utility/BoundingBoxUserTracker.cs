@@ -7,6 +7,8 @@ namespace FrooxEngine
 	[Category("Utility")]
 	public class BoundingBoxUserTracker : Component
 	{
+		public readonly Sync<UserRoot.UserNode> PositionSource;
+
 		public readonly RawOutput<bool> IsLocalUserInside;
 
 		public readonly RawOutput<bool> IsAnyUserInside;
@@ -14,8 +16,6 @@ namespace FrooxEngine
 		public readonly RawOutput<int> NumberOfUsersInside;
 
 		protected readonly SyncBag<UserRef> _usersInside;
-
-		private List<User> usersInWorld = new List<User>();
 
 		protected override void OnChanges()
 		{
@@ -31,27 +31,28 @@ namespace FrooxEngine
 			_usersInside.RemoveAll((UserRef u) => u.Target == user);
 		}
 
+		protected override void OnAwake()
+		{
+			base.OnAwake();
+			PositionSource.Value = UserRoot.UserNode.Root;
+		}
+
 		protected override void OnCommonUpdate()
 		{
 			base.OnCommonUpdate();
-			usersInWorld.Clear();
-			this.World.GetUsers(usersInWorld);
 			BoundingBox b = this.Slot.ComputeBoundingBox();
-			foreach (User user in usersInWorld)
+			if (MathX.IsBetween(this.LocalUser.Root.GetGlobalPosition(PositionSource.Value), b.min, b.max))
 			{
-				if (MathX.IsBetween(user.Root.Slot.GlobalPosition, b.min, b.max))
+				if (!_usersInside.Any((KeyValuePair<RefID, UserRef> u) => u.Value.Target == this.LocalUser))
 				{
-					if (!_usersInside.Any((KeyValuePair<RefID, UserRef> u) => u.Value.Target == user))
-					{
-						_usersInside.Add().Target = user;
-					}
+					_usersInside.Add().Target = this.LocalUser;
 				}
-				else
+			}
+			else
+			{
+				if (_usersInside.Any((KeyValuePair<RefID, UserRef> u) => u.Value.Target == this.LocalUser))
 				{
-					if (_usersInside.Any((KeyValuePair<RefID, UserRef> u) => u.Value.Target == user))
-					{
-						_usersInside.RemoveAll((UserRef u) => u.Target == user);
-					}
+					_usersInside.RemoveAll((UserRef u) => u.Target == this.LocalUser);
 				}
 			}
 		}

@@ -26,6 +26,11 @@ namespace FrooxEngine
 			IsLocalUserInside.Value = _usersInside.Any((KeyValuePair<RefID, UserRef> u) => u.Value.Target == this.LocalUser);
 		}
 
+		public override void OnUserLeft(User user)
+		{
+			_usersInside.RemoveAll((UserRef u) => u.Target == user);
+		}
+
 		protected override void OnCommonUpdate()
 		{
 			base.OnCommonUpdate();

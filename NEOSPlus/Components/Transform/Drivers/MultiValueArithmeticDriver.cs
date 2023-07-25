@@ -1,10 +1,13 @@
 ﻿using System.Linq;
+using BaseX;
 using FrooxEngine;
 
 [Category(new string[] { "Transform/Drivers" })]
 [GenericTypes(GenericTypes.Group.Primitives)]
 public class MultiValueArithmeticDriver<T> : Component
 {
+    public static bool IsValidGenericType => Coder<T>.SupportsAddSub;
+
     public enum ArithmeticMode
     {
         Addition,
@@ -25,8 +28,13 @@ public class MultiValueArithmeticDriver<T> : Component
         {
             return;
         }
+        if (Values.Count == 0)
+        {
+            return;
+        }
         if (Values.Contains(Target.Target))
         {
+            // don't let the component drive itself, don't want a feedback loop
             Target.ReleaseLink();
             return;
         }

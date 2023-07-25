@@ -3,7 +3,7 @@ using BaseX;
 using FrooxEngine;
 
 [Category(new string[] { "Transform/Drivers" })]
-[GenericTypes(GenericTypes.Group.Primitives)]
+[GenericTypes(GenericTypes.Group.NeosPrimitives)]
 public class MultiValueArithmeticDriver<T> : Component
 {
     public static bool IsValidGenericType => Coder<T>.SupportsAddSub;

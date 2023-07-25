@@ -29,6 +29,9 @@
     <Reference Include="BaseX">
       <HintPath>$(NeosPath)Neos_Data/Managed/BaseX.dll</HintPath>
     </Reference>
+    <Reference Include="Buttplug">
+      <HintPath>..\External Libraries\Buttplug.dll</HintPath>
+    </Reference>
     <Reference Include="CodeX">
       <HintPath>$(NeosPath)Neos_Data/Managed/CodeX.dll</HintPath>
     </Reference>

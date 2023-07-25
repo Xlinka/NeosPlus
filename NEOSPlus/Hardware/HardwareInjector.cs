@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BaseX;
-using CloudX.Shared;
 using FrooxEngine;
 
 
@@ -13,7 +12,7 @@ namespace NEOSPlus.Hardware
     {
         private static readonly List<Type> HardwareClasses = new()
         {
-            //typeof(XboxOneController),
+            typeof(ButtplugIntegration),
         };
 
         private static async Task RegisterHardwareClass(Type hardwareClass)

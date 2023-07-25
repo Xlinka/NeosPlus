@@ -44,25 +44,25 @@ public class MultiValueArithmeticDriver<T> : Component
             case ArithmeticMode.Addition:
                 foreach (Sync<T> sync in Values.Skip(1))
                 {
-                    value += (dynamic)sync.Value;
+                    value = Coder<T>.Add(value, sync.Value);
                 }
                 break;
             case ArithmeticMode.Subtraction:
                 foreach (Sync<T> sync in Values.Skip(1))
                 {
-                    value -= (dynamic)sync.Value;
+                    value = Coder<T>.Sub(value, sync.Value);
                 }
                 break;
             case ArithmeticMode.Multiplication:
                 foreach (Sync<T> sync in Values.Skip(1))
                 {
-                    value *= (dynamic)sync.Value;
+                    value = Coder<T>.Mul(value, sync.Value);
                 }
                 break;
             case ArithmeticMode.Division:
                 foreach (Sync<T> sync in Values.Skip(1))
                 {
-                    value /= (dynamic)sync.Value;
+                    value = Coder<T>.Div(value, sync.Value);
                 }
                 break;
         }

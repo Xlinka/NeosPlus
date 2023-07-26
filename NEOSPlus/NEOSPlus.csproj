@@ -15,7 +15,7 @@
     <NeosPath Condition="Exists('/mnt/LocalDisk/SteamLibrary/steamapps/common/NeosVR/')">/mnt/LocalDisk/SteamLibrary/steamapps/common/NeosVR/</NeosPath>
     <NeosPath Condition="Exists('C:\Neos\app\')">C:\Neos\app\</NeosPath>
     <NeosPath Condition="Exists('E:\Neos\app\')">E:\Neos\app\</NeosPath>
-	<NeosPath Condition="Exists('E:\Neos\app\')">G:\Neos\app\</NeosPath>
+	<NeosPath Condition="Exists('G:\Neos\app\')">G:\Neos\app\</NeosPath>
     <NeosPath Condition="Exists('E:\SteamLibrary/steamapps/common/NeosVR/')">E:\SteamLibrary/steamapps/common/NeosVR/</NeosPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CopyToPlugin|AnyCPU'">

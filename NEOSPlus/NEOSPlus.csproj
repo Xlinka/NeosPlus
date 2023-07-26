@@ -14,12 +14,15 @@
     <NeosPath Condition="Exists('$(HOME)/.steam/steam/steamapps/common/NeosVR/')">$(HOME)/.steam/steam/steamapps/common/NeosVR/</NeosPath>
     <NeosPath Condition="Exists('/mnt/LocalDisk/SteamLibrary/steamapps/common/NeosVR/')">/mnt/LocalDisk/SteamLibrary/steamapps/common/NeosVR/</NeosPath>
     <NeosPath Condition="Exists('C:\Neos\app\')">C:\Neos\app\</NeosPath>
+    <NeosPath Condition="Exists('E:\Neos\app\')">E:\Neos\app\</NeosPath>
+    <NeosPath Condition="Exists('E:\SteamLibrary/steamapps/common/NeosVR/')">E:\SteamLibrary/steamapps/common/NeosVR/</NeosPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CopyToPlugin|AnyCPU'">
-    <PostBuildEvent>copy "$(TargetDir)\$(TargetFileName)" "$(NeosPath)/Libraries"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "$(NeosPath)\Libraries"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AutoPostX|AnyCPU' ">
-    <PostBuildEvent>cd "$(ProjectDir)"
+    <PostBuildEvent>
+      cd "$(ProjectDir)"
       powershell -NoProfile -ExecutionPolicy Bypass ./Scripts/PostBuild.ps1 '$(NeosPath)' $(ConfigurationName)
     </PostBuildEvent>
   </PropertyGroup>
@@ -65,6 +68,12 @@
     </Reference>
     <Reference Include="CloudX.Shared.dll">
       <HintPath>$(NeosPath)Neos_Data/Managed/CloudX.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="BepuPhysics.dll">
+      <HintPath>$(NeosPath)Neos_Data/Managed/BepuPhysics.dll</HintPath>
+    </Reference>
+    <Reference Include="BepuUtilities.dll">
+      <HintPath>$(NeosPath)Neos_Data/Managed/BepuUtilities.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -5,7 +5,7 @@ using FrooxEngine.UIX;
 namespace FrooxEngine
 {
     [Category("Add-ons/Wizards")]
-    public class MapWizard : Component, IDeveloperInterface, IComponent, IComponentBase, IDestroyable, IWorker,
+    public class LightSourceWizard : Component, IDeveloperInterface, IComponent, IComponentBase, IDestroyable, IWorker,
         IWorldElement, IUpdatable, IChangeable, IAudioUpdatable, IInitializable, ILinkable
     {
         public readonly SyncRef<Slot> Root;
@@ -39,7 +39,7 @@ namespace FrooxEngine
             ProcessDisabled.Value = false;
             ProcessColor.Value = false;
 
-            Slot.Name = "Map Wizard";
+            Slot.Name = "Light Source Wizard";
             Slot.Tag = "Developer";
             NeosCanvasPanel neosCanvasPanel = Slot.AttachComponent<NeosCanvasPanel>();
             neosCanvasPanel.Panel.AddCloseButton();

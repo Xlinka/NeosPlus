@@ -2,7 +2,7 @@
 using FrooxEngine.LogiX;
 
 // Rad was here
-namespace FrooxEngine.Logix.Math
+namespace FrooxEngine.LogiX.Math
 {
     [Category("LogiX/Mesh/Vertex")]
     public class GetVertex : LogixOperator<Vertex>

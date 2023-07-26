@@ -25,18 +25,18 @@ namespace FrooxEngine.LogiX.Network
         public readonly Output<string> responseBody;
         public readonly Output<HttpStatusCode> statusCode;
 
+        private static readonly HttpClient client = new HttpClient();
+
         [ImpulseTarget]
         public void SendRequest() => StartTask(new Func<Task>(this.RunRequest));
 
         private async Task RunRequest()
         {
-            // A bunch of value parsing and making sure things don't error out if a user doesn't put an input in to the node.
             Uri rawRequestUri = requestUri.Evaluate();
             string rawRequestMethodType = requestType.Evaluate().ToString() ?? "GET";
             string rawRequestHeaders = requestHeaders.Evaluate();
             string rawRequestBody = requestBody.Evaluate() ?? "";
 
-            // Making sure that the Uri has to have 'http://' or 'https://' at the start.
             if (rawRequestUri == null || (rawRequestUri.Scheme != "http" && rawRequestUri.Scheme != "https"))
             {
                 responseBody.Value = "Error in Uri.";
@@ -44,7 +44,6 @@ namespace FrooxEngine.LogiX.Network
                 return;
             }
 
-            //Requesting Access to remote uri
             if (await Engine.Security.RequestAccessPermission(rawRequestUri.Host, rawRequestUri.Port, null) !=
                 HostAccessPermission.Allowed)
             {
@@ -53,15 +52,10 @@ namespace FrooxEngine.LogiX.Network
                 return;
             }
 
-            //Setting up HTTP request (the dumb OOP way...)
             HttpMethod httpMethod = new HttpMethod(rawRequestMethodType);
             HttpRequestMessage httpRequest = new HttpRequestMessage(httpMethod, rawRequestUri);
             string contentType = null;
-            //Didn't exactly know where to put this trigger. This seems like the best spot.
             onSent.Trigger();
-            //This was supposed to be easy... Just split up the headers string, and add them to the headers. But noooo... Microsoft in their infinite wisdom
-            //wanted to split up headers in to "restricted" headers which can only be added via their respective properties,
-            //and also wanted to differentiate between "request headers" and "content headers".
             try
             {
                 if (!string.IsNullOrWhiteSpace(rawRequestHeaders))
@@ -71,7 +65,6 @@ namespace FrooxEngine.LogiX.Network
                     {
                         switch (header.Key)
                         {
-                            //fuck Content-Type specifically, as the property didn't even work... I needed to put it in the request AFTERWARDS (ln 124)
                             case "Content-Type":
                                 contentType = header.Value;
                                 break;
@@ -122,7 +115,6 @@ namespace FrooxEngine.LogiX.Network
                                 });
                                 break;
                             default:
-                                //It should've been this easy for all of them...
                                 httpRequest.Headers.Add(header.Key, header.Value);
                                 break;
                         }
@@ -134,8 +126,8 @@ namespace FrooxEngine.LogiX.Network
                     httpRequest.Content = new System.Net.Http.StringContent(rawRequestBody, Encoding.UTF8, contentType);
                 }
 
-                HttpResponseMessage responseMessage = await Engine.Cloud.SafeHttpClient.SendAsync(httpRequest);
-                responseBody.Value = responseMessage.Content.ReadAsStringAsync().Result;
+                HttpResponseMessage responseMessage = await client.SendAsync(httpRequest);
+                responseBody.Value = await responseMessage.Content.ReadAsStringAsync();
                 responseHeaders.Value = StringifyHeaders(responseMessage.Headers);
                 statusCode.Value = responseMessage.StatusCode;
                 onResponse.Trigger();
@@ -147,43 +139,33 @@ namespace FrooxEngine.LogiX.Network
                 onError.Trigger();
             }
 
-            //Is this necessary?
             httpRequest = null;
             httpMethod = null;
         }
 
-        //Helper function to format the "one big long string of headers" to "a list of key-value pairs of headers".
-        //Will likely change this to collecions once support is added in NeosPlus.
-        //Example valid input string for headers:
-        //  "Authroization: bingus
-        //  Content-Type:application/json
-        //  TOTP : 696969"
         private Dictionary<string, string> FormatHeaders(string headers)
         {
             List<string> rawHeaderList = new List<string>(headers.Trim().Split('\n'));
             Dictionary<string, string> result = new Dictionary<string, string>();
             rawHeaderList.ForEach((header) =>
             {
-                string[] splitHeader = header.Split(new[] {':'}, 2);
-
+                string[] splitHeader = header.Split(new[] { ':' }, 2);
                 result.Add(splitHeader[0].Trim(), splitHeader[1].Trim());
             });
             return result;
         }
 
-        //Helper function to allow Neos to output a new-line separated string of response headers. Will look very similar to example above.
-        private string StringifyHeaders(HttpHeaders responseHeaders)
+        private string StringifyHeaders(HttpHeaders headers)
         {
-            string result = "";
-            responseHeaders.ToList().ForEach((header) =>
+            StringBuilder sb = new StringBuilder();
+            headers.ToList().ForEach((header) =>
             {
-                result += header.Key + ": " + string.Join(",", header.Value.ToArray());
-                if (!responseHeaders.Last().Equals(header))
-                {
-                    result += "\n";
-                }
+                sb.Append(header.Key);
+                sb.Append(": ");
+                sb.Append(string.Join(" ", header.Value));
+                sb.Append("\n");
             });
-            return result;
+            return sb.ToString();
         }
 
         private bool RequestContainsBody(RequestType requestType)

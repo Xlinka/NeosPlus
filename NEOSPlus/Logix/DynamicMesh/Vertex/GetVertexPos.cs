@@ -1,7 +1,7 @@
 ﻿using BaseX;
 using FrooxEngine.LogiX;
 
-namespace FrooxEngine.Logix.Math
+namespace FrooxEngine.LogiX.Math
 {
     [Category("LogiX/Mesh/Vertex")]
     public class GetVertexPos : LogixOperator<float3>

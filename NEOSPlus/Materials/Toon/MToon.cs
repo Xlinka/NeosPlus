@@ -3,9 +3,9 @@ using BaseX;
 using FrooxEngine;
 using NEOSPlus.Shaders;
 
-namespace NEOSPlus.Materials
+namespace NEOSPlus.Materials.Toon
 {
-    [Category("Assets/Materials/NeosPlus")]
+    [Category(new string[] { "Assets/Materials/NeosPlus/Toon" })]
     public class MToon : SingleShaderMaterialProvider
     {
         protected override Uri ShaderURL => ShaderInjection.MToon;
@@ -18,7 +18,7 @@ namespace NEOSPlus.Materials
         public readonly AssetRef<ITexture2D> ShadeTexture;
         public readonly Sync<float> BumpScale;
         public readonly AssetRef<ITexture2D> BumpMap;
-        [Range(0f, 1f, "0.00")] 
+        [Range(0f, 1f, "0.00")]
         public readonly Sync<float> ReceiveShadowRate;
         public readonly AssetRef<ITexture2D> ReceiveShadowTexture;
         [Range(0f, 1f, "0.00")]
@@ -58,7 +58,7 @@ namespace NEOSPlus.Materials
 
         private static MaterialProperty _Cutoff = new("_Cutoff");
         private static MaterialProperty _Color = new("_Color");
-        private static MaterialProperty _ShadeColor= new("_ShadeColor");
+        private static MaterialProperty _ShadeColor = new("_ShadeColor");
         private static MaterialProperty _MainTex = new("_MainTex");
         private static MaterialProperty _ShadeTexture = new("_ShadeTexture");
         private static MaterialProperty _BumpScale = new("_BumpScale");
@@ -89,27 +89,17 @@ namespace NEOSPlus.Materials
         private static MaterialProperty _UvAnimScrollY = new("_UvAnimScrollY");
         private static MaterialProperty _UvAnimRotation = new("_UvAnimRotation");
 
-        [HideInInspector]
+
         public readonly Sync<float> MToonVersion;
-        [HideInInspector]
         public readonly Sync<float> DebugMode;
-        [HideInInspector]
         public readonly Sync<float> BlendMode;
-        [HideInInspector]
         public readonly Sync<float> OutlineWidthMode;
-        [HideInInspector]
         public readonly Sync<float> OutlineColorMode;
-        [HideInInspector]
         public readonly Sync<float> CullMode;
-        [HideInInspector]
         public readonly Sync<float> OutlineCullMode;
-        [HideInInspector]
         public readonly Sync<float> SrcBlend;
-        [HideInInspector]
         public readonly Sync<float> DstBlend;
-        [HideInInspector]
         public readonly Sync<float> ZWrite;
-        [HideInInspector]
         public readonly Sync<float> AlphaToMask;
         private static MaterialProperty _MToonVersion = new("_MToonVersion");
         private static MaterialProperty _DebugMode = new("_DebugMode");
@@ -207,25 +197,25 @@ namespace NEOSPlus.Materials
             OutlineScaledMaxDistance.Value = 1f;
             Color.Value = new color(1);
             ShadeColor.Value = new color(0.97f, 0.81f, 0.86f, 1);
-            RimColor.Value = new color(0,0,0,0);
-            EmissionColor.Value = new color(0,0,0,1);
-            OutlineColor.Value = new color(0,0,0,1);
+            RimColor.Value = new color(0, 0, 0, 0);
+            EmissionColor.Value = new color(0, 0, 0, 1);
+            OutlineColor.Value = new color(0, 0, 0, 1);
             BumpScale.Value = 1;
             UvAnimScrollX.Value = 0;
             UvAnimScrollY.Value = 0;
             UvAnimRotation.Value = 0;
 
             MToonVersion.Value = 38;
-            DebugMode.Value = 0;
-            BlendMode.Value = 0;
-            OutlineWidthMode.Value = 0;
-            OutlineColorMode.Value = 0;
-            CullMode.Value = 2;
-            OutlineCullMode.Value = 1;
-            SrcBlend.Value = 1;
-            DstBlend.Value = 0;
-            ZWrite.Value = 1;
-            AlphaToMask.Value = 0;
+            DebugMode.Value = 0.0f;
+            BlendMode.Value = 0.0f;
+            OutlineWidthMode.Value = 0.0f;
+            OutlineColorMode.Value = 0.0f;
+            CullMode.Value = 2.0f;
+            OutlineCullMode.Value = 1.0f;
+            SrcBlend.Value = 1.0f;
+            DstBlend.Value = 0.0f;
+            ZWrite.Value = 1.0f;
+            AlphaToMask.Value = 0.0f;
         }
     }
 }

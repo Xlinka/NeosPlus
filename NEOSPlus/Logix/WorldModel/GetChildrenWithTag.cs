@@ -6,23 +6,23 @@ using System.Collections.Generic;
 [NodeName("Get Children With Tag")]
 public class GetChildrenWithTag : LogixNode
 {
-    public readonly Input<Slot> Instance;
+	public readonly Input<Slot> Instance;
 
-    public readonly Input<string> Tag;
+	public readonly Input<string> Tag;
 
-    public readonly Output<List<Slot>> FoundChildren;
+	public readonly Output<List<Slot>> FoundChildren;
 
-    protected override void OnEvaluate()
-    {
-        Slot slot = Instance.Evaluate();
-        if (slot != null)
-        {
-            string tag = Tag.Evaluate();
-            FoundChildren.Value = slot.GetChildrenWithTag(tag);
-        }
-        else
-        {
-            FoundChildren.Value = null;
-        }
-    }
+	protected override void OnEvaluate()
+	{
+		Slot slot = Instance.Evaluate();
+		string tag = Tag.Evaluate();
+		if (slot != null && tag != null)
+		{
+			FoundChildren.Value = slot.GetChildrenWithTag(tag);
+		}
+		else
+		{
+			FoundChildren.Value = null;
+		}
+	}
 }

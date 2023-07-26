@@ -3,34 +3,34 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NEOSPlus", "NEOSPlus\NEOSPlus.csproj", "{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NEOSPlus", "NEOSPlus\NEOSPlus.csproj", "{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SourceGenerators", "SourceGenerators\SourceGenerators.csproj", "{88053493-5CC5-41EA-B598-816373CF48FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		AutoPostX|Any CPU = AutoPostX|Any CPU
 		CopyToPlugin|Any CPU = CopyToPlugin|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-		AutoPostX|Any CPU = AutoPostX|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.CopyToPlugin|Any CPU.ActiveCfg = CopyToPlugin|Any CPU
-		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.CopyToPlugin|Any CPU.Build.0 = CopyToPlugin|Any CPU
+		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.AutoPostX|Any CPU.ActiveCfg = AutoPostX|Any CPU
+		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.AutoPostX|Any CPU.Build.0 = AutoPostX|Any CPU
+		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.CopyToPlugin|Any CPU.ActiveCfg = Debug|Any CPU
+		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.CopyToPlugin|Any CPU.Build.0 = Debug|Any CPU
 		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.AutoPostX|Any CPU.ActiveCfg = AutoPostX|Any CPU
-		{08A94620-ECB7-41FD-8C9C-C11F2EBFC776}.AutoPostX|Any CPU.Build.0 = AutoPostX|Any CPU
+		{88053493-5CC5-41EA-B598-816373CF48FE}.AutoPostX|Any CPU.ActiveCfg = AutoPostX|Any CPU
+		{88053493-5CC5-41EA-B598-816373CF48FE}.AutoPostX|Any CPU.Build.0 = AutoPostX|Any CPU
 		{88053493-5CC5-41EA-B598-816373CF48FE}.CopyToPlugin|Any CPU.ActiveCfg = CopyToPlugin|Any CPU
 		{88053493-5CC5-41EA-B598-816373CF48FE}.CopyToPlugin|Any CPU.Build.0 = CopyToPlugin|Any CPU
 		{88053493-5CC5-41EA-B598-816373CF48FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88053493-5CC5-41EA-B598-816373CF48FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88053493-5CC5-41EA-B598-816373CF48FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88053493-5CC5-41EA-B598-816373CF48FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88053493-5CC5-41EA-B598-816373CF48FE}.AutoPostX|Any CPU.ActiveCfg = AutoPostX|Any CPU
-		{88053493-5CC5-41EA-B598-816373CF48FE}.AutoPostX|Any CPU.Build.0 = AutoPostX|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,10 +18,11 @@
     <NeosPath Condition="Exists('E:\SteamLibrary/steamapps/common/NeosVR/')">E:\SteamLibrary/steamapps/common/NeosVR/</NeosPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CopyToPlugin|AnyCPU'">
-  <PostBuildEvent>copy "$(TargetPath)" "$(NeosPath)\Libraries"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "$(NeosPath)\Libraries"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AutoPostX|AnyCPU' ">
-    <PostBuildEvent>cd "$(ProjectDir)"
+    <PostBuildEvent>
+      cd "$(ProjectDir)"
       powershell -NoProfile -ExecutionPolicy Bypass ./Scripts/PostBuild.ps1 '$(NeosPath)' $(ConfigurationName)
     </PostBuildEvent>
   </PropertyGroup>

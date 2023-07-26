@@ -19,7 +19,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CopyToPlugin|AnyCPU'">
     <PostBuildEvent>copy "$(TargetPath)" "$(NeosPath)\Libraries"</PostBuildEvent>
-  <PostBuildEvent>copy "$(TargetPath)" "$(NeosPath)\Libraries"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AutoPostX|AnyCPU' ">
     <PostBuildEvent>

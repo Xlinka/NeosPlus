@@ -52,6 +52,11 @@ public class ArtNetReceiver : Component
 
     private async Task ConnectTo(Uri target)
     {
+        if (target.Scheme != "artnet")
+        {
+            throw new ArgumentException("Invalid URL scheme. Expected 'artnet://'.");
+        }
+
         if (await Engine.Security.RequestAccessPermission(target.Host, target.Port, AccessReason.Value ?? "Art-Net Receiver") == HostAccessPermission.Allowed && target == _currentURL && !IsRemoved)
         {
             _udpClient = new UdpClient(target.Port);

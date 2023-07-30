@@ -80,6 +80,6 @@ namespace NEOSPlus.Logix.NSFW
         Stop,
         Rotate,
         Linear,
-        // Add other commands based on Buttplug.io pecification
+        // Add other commands based on Buttplug.io specification
     }
 }

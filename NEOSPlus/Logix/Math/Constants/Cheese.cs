@@ -8,6 +8,6 @@ namespace FrooxEngine.LogiX.Math
     public class Cheese : LogixOperator<string>
     {
         public override string Content => "Cheese";
-        public override color NodeBackground => color.Yellow;
+        public override color NodeBackground => color.FromHexCode("#FBDB65");
     }
 }

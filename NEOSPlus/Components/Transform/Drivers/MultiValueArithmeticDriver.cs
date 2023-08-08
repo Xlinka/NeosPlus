@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using BaseX;
-using FrooxEngine;
+
+namespace FrooxEngine;
 
 [Category(new string[] { "Transform/Drivers" })]
 [GenericTypes(GenericTypes.Group.NeosPrimitives)]
@@ -24,11 +25,7 @@ public class MultiValueArithmeticDriver<T> : Component
 
     protected override void OnChanges()
     {
-        if (!Target.IsLinkValid)
-        {
-            return;
-        }
-        if (Values.Count == 0)
+        if (!Target.IsLinkValid || Values.Count == 0)
         {
             return;
         }

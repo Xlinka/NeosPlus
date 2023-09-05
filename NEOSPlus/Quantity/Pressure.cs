@@ -48,8 +48,8 @@ namespace NEOSPlus.Quantity
         {
             return new IUnit[]
             {
-                Pascal,
-			    Atmosphere, //do i need si data on these?
+                SI<Data>.Pascal,
+			    SI<Data>.Atmosphere, //do i need si data on these?
             };
         }
 

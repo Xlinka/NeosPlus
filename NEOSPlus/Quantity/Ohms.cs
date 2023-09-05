@@ -46,7 +46,7 @@ namespace NEOSPlus.Quantity
         {
             return new IUnit[]
             {
-                Ohm
+               SI<Data>.Ohm
             };
         }
 

@@ -1,5 +1,4 @@
 using QuantityX;
-using System;
 
 namespace NEOSPlus.Quantity
 {
@@ -10,6 +9,10 @@ namespace NEOSPlus.Quantity
         // Define pressure units
         public static readonly Unit<Data> Pascal = new UnitSI<Data>(1, "Pa", "pascal");
         public static readonly Unit<Data> Atmosphere = new Unit<Data>(101325, "atm", "atmosphere");
+        public static readonly Unit<Data> Bar = new UnitSI<Data>(100000, "bar", "bar");
+        public static readonly Unit<Data> Millibar = new UnitSI<Data>(100, "mbar", "millibar");
+        public static readonly Unit<Data> Microbar = new UnitSI<Data>(0.1, "µbar", "microbar");
+        public static readonly Unit<Data> Nanobar = new UnitSI<Data>(0.0001, "nbar", "nanobar");
 
         double IQuantity.BaseValue => BaseValue;
 
@@ -36,12 +39,12 @@ namespace NEOSPlus.Quantity
 
         public string[] GetShortBaseNames()
         {
-            return new string[] { "Pa", "atm" };
+            return new string[] { "Pa", "atm", "bar", "mbar", "µbar", "nbar" };
         }
 
         public string[] GetLongBaseNames()
         {
-            return new string[] { "pascals", "atmospheres" };
+            return new string[] { "pascals", "atmospheres", "bars", "millibars", "microbars", "nanobars" };
         }
 
         public IUnit[] GetCommonSIUnits()
@@ -49,39 +52,43 @@ namespace NEOSPlus.Quantity
             return new IUnit[]
             {
                 SI<Data>.Pascal,
-			    SI<Data>.Atmosphere, //do i need si data on these?
+                SI<Data>.Atmosphere,
+                SI<Data>.Bar,
+                SI<Data>.Millibar,
+                SI<Data>.Microbar,
+                SI<Data>.Nanobar,
             };
         }
 
-       
-	public IUnit[] GetExludedSIUnits()
-	{
-		return new IUnit[]
-		{
-            SI<Data>.Lumen  
-			SI<Data>.Deca,
-			SI<Data>.Hecto,
-            SI<Data>.Milli,
-            SI<Data>.Centi,
-            SI<Data>.Deci,
-            SI<Data>.Yocto,
-            SI<Data>.Zepto,
-            SI<Data>.Atto,
-            SI<Data>.Femto,
-            SI<Data>.Pico,
-            SI<Data>.Nano,
-            SI<Data>.Micro,
-            SI<Data>.Yotta,
-            SI<Data>.Zetta,
-            SI<Data>.Exa,
-            SI<Data>.Peta,
-            SI<Data>.Tera,
-            SI<Data>.Giga,
-            SI<Data>.Mega,
-			SI<Data>.Kilo,
-			Byte,
-		};
-	}
+        public IUnit[] GetExcludedSIUnits()
+        {
+            return new IUnit[]
+            {
+                SI<Data>.Lumen,
+                SI<Data>.Deca,
+                SI<Data>.Hecto,
+                SI<Data>.Milli,
+                SI<Data>.Centi,
+                SI<Data>.Deci,
+                SI<Data>.Yocto,
+                SI<Data>.Zepto,
+                SI<Data>.Atto,
+                SI<Data>.Femto,
+                SI<Data>.Pico,
+                SI<Data>.Nano,
+                SI<Data>.Micro,
+                SI<Data>.Yotta,
+                SI<Data>.Zetta,
+                SI<Data>.Exa,
+                SI<Data>.Peta,
+                SI<Data>.Tera,
+                SI<Data>.Giga,
+                SI<Data>.Mega,
+                SI<Data>.Kilo,
+                Byte,
+            };
+        }
+
         public Data New(double baseVal)
         {
             return new Data(baseVal);

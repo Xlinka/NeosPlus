@@ -9,6 +9,7 @@ on:
 env:
   SOLUTION_FILE_PATH: NEOSPlus.sln
   BUILD_CONFIGURATION: Release
+  NEOS_PATH: ${{ github.workspace }}/NeosVR
 
 jobs:
   build:
@@ -29,10 +30,12 @@ jobs:
         $web = [System.Net.WebClient]::new()
         $web.DownloadFile("https://www.7-zip.org/a/7zr.exe","$PWD\7zr.exe")
         $cvstring = $web.DownloadString('https://cloudxstorage.blob.core.windows.net/install/Pro/Public')
-        Write-Host "CVString is $cvstring"  # Debugging line
         $web.DownloadFile("https://assets.neos.com/install/Pro/Data/$cvstring.7z","$env:TEMP\neosupdate.7z") 
         .\7zr.exe x -y "$env:TEMP\neosupdate.7z" *
         Remove-Item "$env:TEMP\neosupdate.7z"
+    - name: Update .csproj to set NeosPath
+      run: |
+        (Get-Content -path ${{env.SOLUTION_FILE_PATH}} -Raw) -replace '<NeosPath>.*?</NeosPath>', "<NeosPath>${{ env.NEOS_PATH }}/</NeosPath>" | Set-Content -Path ${{env.SOLUTION_FILE_PATH}}
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}

@@ -8,11 +8,10 @@ namespace NEOSPlus.Quantity
 
         // Define pressure units
         public static readonly Unit<Data> Pascal = new UnitSI<Data>(1, "Pa", "pascal");
-        public static readonly Unit<Data> Atmosphere = new Unit<Data>(101325, "atm", "atmosphere");
-        public static readonly Unit<Data> Bar = new UnitSI<Data>(100000, "bar", "bar");
-        public static readonly Unit<Data> Millibar = new UnitSI<Data>(100, "mbar", "millibar");
-        public static readonly Unit<Data> Microbar = new UnitSI<Data>(0.1, "µbar", "microbar");
-        public static readonly Unit<Data> Nanobar = new UnitSI<Data>(0.0001, "nbar", "nanobar");
+        public static readonly Unit<Data> Hectopascal = new UnitSI<Data>(100, "hPa", "hectopascal");
+        public static readonly Unit<Data> Kilopascal = new UnitSI<Data>(1000, "kPa", "kilopascal");
+        public static readonly Unit<Data> Megapascal = new UnitSI<Data>(1000000, "MPa", "megapascal");
+        public static readonly Unit<Data> Gigapascal = new UnitSI<Data>(1000000000, "GPa", "gigapascal");
 
         double IQuantity.BaseValue => BaseValue;
 
@@ -39,12 +38,12 @@ namespace NEOSPlus.Quantity
 
         public string[] GetShortBaseNames()
         {
-            return new string[] { "Pa", "atm", "bar", "mbar", "µbar", "nbar" };
+            return new string[] { "Pa", "hPa", "kPa", "MPa", "GPa" };
         }
 
         public string[] GetLongBaseNames()
         {
-            return new string[] { "pascals", "atmospheres", "bars", "millibars", "microbars", "nanobars" };
+            return new string[] { "pascals", "hectopascals", "kilopascals", "megapascals", "gigapascals" };
         }
 
         public IUnit[] GetCommonSIUnits()
@@ -52,11 +51,10 @@ namespace NEOSPlus.Quantity
             return new IUnit[]
             {
                 SI<Data>.Pascal,
-                SI<Data>.Atmosphere,
-                SI<Data>.Bar,
-                SI<Data>.Millibar,
-                SI<Data>.Microbar,
-                SI<Data>.Nanobar,
+                SI<Data>.Hectopascal,
+                SI<Data>.Kilopascal,
+                SI<Data>.Megapascal,
+                SI<Data>.Gigapascal,
             };
         }
 
@@ -65,10 +63,11 @@ namespace NEOSPlus.Quantity
             return new IUnit[]
             {
                 SI<Data>.Lumen,
+                SI<Bar>.Bar,
+                SI<Bar>.Millibar,
+                SI<Bar>.Microbar,
+                SI<Bar>.Nanobar,
                 SI<Data>.Deca,
-                SI<Data>.Hecto,
-                SI<Data>.Milli,
-                SI<Data>.Centi,
                 SI<Data>.Deci,
                 SI<Data>.Yocto,
                 SI<Data>.Zepto,
@@ -82,10 +81,7 @@ namespace NEOSPlus.Quantity
                 SI<Data>.Exa,
                 SI<Data>.Peta,
                 SI<Data>.Tera,
-                SI<Data>.Giga,
                 SI<Data>.Mega,
-                SI<Data>.Kilo,
-                Byte,
             };
         }
 

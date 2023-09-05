@@ -1,166 +1,168 @@
 using System;
 using QuantityX;
-
-public readonly struct Data : IQuantitySI<Data>, IQuantitySI, IQuantity<Data>, IQuantity, IComparable<Data>, IEquatable<Data>
+namespace NEOSPlus.Quantity
 {
-	public readonly double BaseValue;
-
-	public static readonly Unit<Data> Byte = new UnitSI<Data>(0, "", "");
-
-	double IQuantity.BaseValue => BaseValue;
-
-	public double SIPower => 1.0;
-
-	public Unit<Data> DefaultUnit => Byte;
-
-	public Data(double baseValue = 0.0)
+	public readonly struct Data : IQuantitySI<Data>, IQuantitySI, IQuantity<Data>, IQuantity, IComparable<Data>, IEquatable<Data>
 	{
-		this = default(Data);
-		BaseValue = baseValue;
-	}
+		public readonly double BaseValue;
 
-	public bool Equals(Data other)
-	{
-		return BaseValue == other.BaseValue;
-	}
+		public static readonly Unit<Data> Byte = new UnitSI<Data>(0, "", "");
 
-	public int CompareTo(Data other)
-	{
-		return BaseValue.CompareTo(other.BaseValue);
-	}
+		double IQuantity.BaseValue => BaseValue;
 
-	public string[] GetShortBaseNames()
-	{
-		return new string[] { "B" };
-	}
+		public double SIPower => 1.0;
 
-	public string[] GetLongBaseNames()
-	{
-		return new string[] { "bytes", "byte" };
-	}
+		public Unit<Data> DefaultUnit => Byte;
 
-	public IUnit[] GetCommonSIUnits()
-	{
-		return new IUnit[]
+		public Data(double baseValue = 0.0)
 		{
-            SI<Data>.Yotta,
-            SI<Data>.Zetta,
-            SI<Data>.Exa,
-            SI<Data>.Peta,
-            SI<Data>.Tera,
-            SI<Data>.Giga,
-            SI<Data>.Mega,
-			SI<Data>.Kilo,
-			Byte,
-		};
-	}
+			this = default(Data);
+			BaseValue = baseValue;
+		}
 
-	public IUnit[] GetExludedSIUnits()
-	{
-		return new IUnit[]
+		public bool Equals(Data other)
 		{
-			SI<Data>.Deca,
-			SI<Data>.Hecto,
-            SI<Data>.Milli,
-            SI<Data>.Centi,
-            SI<Data>.Deci,
-            SI<Data>.Yocto,
-            SI<Data>.Zepto,
-            SI<Data>.Atto,
-            SI<Data>.Femto,
-            SI<Data>.Pico,
-            SI<Data>.Nano,
-            SI<Data>.Micro,
-		};
-	}
+			return BaseValue == other.BaseValue;
+		}
 
-	public Data New(double baseVal)
-	{
-		return new Data(baseVal);
-	}
+		public int CompareTo(Data other)
+		{
+			return BaseValue.CompareTo(other.BaseValue);
+		}
 
-	public Data Add(Data q)
-	{
-		return new Data(BaseValue + q.BaseValue);
-	}
+		public string[] GetShortBaseNames()
+		{
+			return new string[] { "B" };
+		}
 
-	public Data Subtract(Data q)
-	{
-		return new Data(BaseValue - q.BaseValue);
-	}
+		public string[] GetLongBaseNames()
+		{
+			return new string[] { "bytes", "byte" };
+		}
 
-	public Data Multiply(double n)
-	{
-		return new Data(BaseValue * n);
-	}
+		public IUnit[] GetCommonSIUnits()
+		{
+			return new IUnit[]
+			{
+				SI<Data>.Yotta,
+				SI<Data>.Zetta,
+				SI<Data>.Exa,
+				SI<Data>.Peta,
+				SI<Data>.Tera,
+				SI<Data>.Giga,
+				SI<Data>.Mega,
+				SI<Data>.Kilo,
+				Byte,
+			};
+		}
 
-	public Data Multiply(Data a, Ratio r)
-	{
-		return a * r.BaseValue;
-	}
+		public IUnit[] GetExludedSIUnits()
+		{
+			return new IUnit[]
+			{
+				SI<Data>.Deca,
+				SI<Data>.Hecto,
+				SI<Data>.Milli,
+				SI<Data>.Centi,
+				SI<Data>.Deci,
+				SI<Data>.Yocto,
+				SI<Data>.Zepto,
+				SI<Data>.Atto,
+				SI<Data>.Femto,
+				SI<Data>.Pico,
+				SI<Data>.Nano,
+				SI<Data>.Micro,
+			};
+		}
 
-	public Data Multiply(Ratio r, Data a)
-	{
-		return a * r.BaseValue;
-	}
+		public Data New(double baseVal)
+		{
+			return new Data(baseVal);
+		}
 
-	public Data Divide(double n)
-	{
-		return new Data(BaseValue / n);
-	}
+		public Data Add(Data q)
+		{
+			return new Data(BaseValue + q.BaseValue);
+		}
 
-	public Ratio Divide(Data q)
-	{
-		return new Ratio(BaseValue / q.BaseValue);
-	}
+		public Data Subtract(Data q)
+		{
+			return new Data(BaseValue - q.BaseValue);
+		}
 
-	public static Data Parse(string str, Unit<Data> defaultUnit = null)
-	{
-		return Unit<Data>.Parse(str, defaultUnit);
-	}
+		public Data Multiply(double n)
+		{
+			return new Data(BaseValue * n);
+		}
 
-	public static bool TryParse(string str, out Data q, Unit<Data> defaultUnit = null)
-	{
-		return Unit<Data>.TryParse(str, out q, defaultUnit);
-	}
+		public Data Multiply(Data a, Ratio r)
+		{
+			return a * r.BaseValue;
+		}
 
-	public static Data operator +(Data a, Data b)
-	{
-		return a.Add(b);
-	}
+		public Data Multiply(Ratio r, Data a)
+		{
+			return a * r.BaseValue;
+		}
 
-	public static Data operator -(Data a, Data b)
-	{
-		return a.Subtract(b);
-	}
+		public Data Divide(double n)
+		{
+			return new Data(BaseValue / n);
+		}
 
-	public static Data operator *(Data a, double n)
-	{
-		return a.Multiply(n);
-	}
+		public Ratio Divide(Data q)
+		{
+			return new Ratio(BaseValue / q.BaseValue);
+		}
 
-	public static Data operator /(Data a, double n)
-	{
-		return a.Divide(n);
-	}
+		public static Data Parse(string str, Unit<Data> defaultUnit = null)
+		{
+			return Unit<Data>.Parse(str, defaultUnit);
+		}
 
-	public static Ratio operator /(Data a, Data b)
-	{
-		return a.Divide(b);
-	}
+		public static bool TryParse(string str, out Data q, Unit<Data> defaultUnit = null)
+		{
+			return Unit<Data>.TryParse(str, out q, defaultUnit);
+		}
 
-	public static Data operator -(Data a)
-	{
-		return a.Multiply(-1.0);
-	}
+		public static Data operator +(Data a, Data b)
+		{
+			return a.Add(b);
+		}
 
-	public static Velocity operator /(Data l, Time t)
-	{
-		return Velocity.MetersPerSecond * (l.BaseValue / t.BaseValue);
-	}
+		public static Data operator -(Data a, Data b)
+		{
+			return a.Subtract(b);
+		}
 
-	public override string ToString()
-	{
-		return this.FormatAuto();
+		public static Data operator *(Data a, double n)
+		{
+			return a.Multiply(n);
+		}
+
+		public static Data operator /(Data a, double n)
+		{
+			return a.Divide(n);
+		}
+
+		public static Ratio operator /(Data a, Data b)
+		{
+			return a.Divide(b);
+		}
+
+		public static Data operator -(Data a)
+		{
+			return a.Multiply(-1.0);
+		}
+
+		public static Velocity operator /(Data l, Time t)
+		{
+			return Velocity.MetersPerSecond * (l.BaseValue / t.BaseValue);
+		}
+
+		public override string ToString()
+		{
+			return this.FormatAuto();
+		}
 	}
 }

@@ -23,10 +23,6 @@ internal static class QuantityInjector
 
     internal static void UpdateQuantityCache()
     {
-        // This line is required to call the static constructor of QuantityX, which will create the arrays we are modifying below.
-        //_ = QuantityX.QuantityX.Culture; 
-        
-        //var Culture = CultureInfo.InvariantCulture;
         var unitCache = 
             typeof(QuantityX.QuantityX).GetField("unitCache", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null) as Dictionary<Type, List<IUnit>>;
         var unitNameCache =

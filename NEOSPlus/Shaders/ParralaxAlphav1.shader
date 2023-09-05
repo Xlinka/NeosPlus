@@ -14,22 +14,19 @@ Shader "Custom/ParallaxOcclusionAlphaCutout" {
         _AlphaCutoff("Alpha Cutoff", Range(0,1)) = 0.5
     }
     SubShader{
-        Tags { "RenderType" = "Opaque" }
+        Tags { "RenderType" = "TransparentCutout" }
         LOD 200
-
         CGPROGRAM
-        #pragma surface surf Lambert
-
+        #pragma surface surf Standard fullforwardshadows vertex:vert
+        #pragma target 3.0
         sampler2D _MainTex;
         sampler2D _BumpMap;
         sampler2D _ParallaxMap;
-
         struct Input {
             float2 texcoord;
             float3 eye;
             float sampleRatio;
         };
-
         half _Glossiness;
         half _Metallic;
         half _BumpScale;
@@ -134,15 +131,11 @@ Shader "Custom/ParallaxOcclusionAlphaCutout" {
             OUT.texcoord = IN.texcoord;
         }
 
-        void surf(Input IN, inout SurfaceOutput o) {
-            float2 offset = parallax_offset(_Parallax, IN.eye, IN.sampleRatio, IN.texcoord * _TextureScale,
-            _ParallaxMap, _ParallaxMinSamples, _ParallaxMaxSamples);
+         void surf(Input IN, inout SurfaceOutputStandard o) {
+            float2 offset = parallax_offset(_Parallax, IN.eye, IN.sampleRatio, IN.texcoord * _TextureScale, _ParallaxMap, _ParallaxMinSamples, _ParallaxMaxSamples);
             float2 uv = IN.texcoord * _TextureScale + offset;
             fixed4 c = tex2D(_MainTex, uv) * _Color;
-
-            // Apply alpha cutoff
             clip(c.a - _AlphaCutoff);
-
             o.Albedo = c.rgb;
             o.Normal = UnpackScaleNormal(tex2D(_BumpMap, uv), _BumpScale);
             o.Metallic = _Metallic;

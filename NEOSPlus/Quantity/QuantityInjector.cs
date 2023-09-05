@@ -18,11 +18,21 @@ namespace NEOSPlus.Quantity
             var quantities =
                 typeof(FrooxEngine.GenericTypes).GetField("quantities", BindingFlags.Static | BindingFlags.NonPublic);
 
-            // Append the 'Data' type to the existing array of types
-            var newArray = (quantities.GetValue(null) as Type[]).Append(typeof(Data)).ToArray();
+            // Get all types in the 'NEOSPlus.Quantity' namespace that are value types
+            var quantityTypes = typeof(QuantityInjector).Assembly.GetTypes()
+                .Where(type => type.Namespace == "NEOSPlus.Quantity" && type.IsValueType);
+
+            // Append all quantity types to the existing array of types
+            var newArray = (quantities.GetValue(null) as Type[]).Concat(quantityTypes).ToArray();
 
             // Set the modified array back to the 'quantities' field
             quantities.SetValue(null, newArray);
+
+            // Log the injected types
+            foreach (var type in quantityTypes)
+            {
+                Unilog.Log($"Injected quantity type: {type.FullName}");
+            }
 
             // Update the quantity cache
             UpdateQuantityCache();

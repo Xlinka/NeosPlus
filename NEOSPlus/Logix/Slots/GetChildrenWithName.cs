@@ -3,6 +3,8 @@ using FrooxEngine.LogiX;
 using FrooxEngine.LogiX.WorldModel;
 using System.Collections.Generic;
 
+namespace FrooxEngine.LogiX.Slots;
+
 [Category("LogiX/Slots")]
 [NodeName("Get Children With Name")]
 public class GetChildrenWithName : LogixNode

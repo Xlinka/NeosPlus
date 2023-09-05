@@ -2,6 +2,8 @@
 using FrooxEngine.LogiX;
 using System.Collections.Generic;
 
+namespace FrooxEngine.LogiX.Slots;
+
 [Category("LogiX/Slots")]
 [NodeName("Get Children With Tag")]
 public class GetChildrenWithTag : LogixNode

@@ -1,4 +1,5 @@
 using QuantityX;
+using System;
 
 namespace NEOSPlus.Quantity
 {
@@ -47,8 +48,8 @@ namespace NEOSPlus.Quantity
         {
             return new IUnit[]
             {
-                SI<Data>.Pascal,
-			    SI<Data>.Atmosphere,
+                Pascal,
+			    Atmosphere, //do i need si data on these?
             };
         }
 

@@ -1,5 +1,6 @@
 using System;
 using QuantityX;
+
 namespace NEOSPlus.Quantity
 {
 	public readonly struct Data : IQuantitySI<Data>, IQuantitySI, IQuantity<Data>, IQuantity, IComparable<Data>, IEquatable<Data>

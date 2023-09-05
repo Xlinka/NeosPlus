@@ -58,6 +58,7 @@ namespace NEOSPlus.Quantity
 	{
 		return new IUnit[]
 		{
+            SI<Data>.Lumen  
 			SI<Data>.Deca,
 			SI<Data>.Hecto,
             SI<Data>.Milli,

@@ -1,4 +1,5 @@
 using QuantityX;
+using System;
 
 namespace NEOSPlus.Quantity
 {
@@ -46,7 +47,7 @@ namespace NEOSPlus.Quantity
         {
             return new IUnit[]
             {
-                Lumen  // Include lumens as a common unit for luminous flux
+                SI<Data>.Lumen  
             };
         }
 

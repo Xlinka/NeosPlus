@@ -54,6 +54,7 @@ namespace NEOSPlus.Quantity
         {
             return new IUnit[]
             {
+                SI<Data>.Lumen  
                 SI<Data>.Pascal,
 			    SI<Data>.Atmosphere,
                 SI<Data>.Deca,

@@ -61,6 +61,7 @@ namespace NEOSPlus.Quantity
 		{
 			return new IUnit[]
 			{
+				SI<Data>.Lumen  
 				SI<Data>.Deca,
 				SI<Data>.Hecto,
 				SI<Data>.Milli,
@@ -155,11 +156,13 @@ namespace NEOSPlus.Quantity
 		{
 			return a.Multiply(-1.0);
 		}
+		
 
-		public static Velocity operator /(Data l, Time t)
-		{
-			return Velocity.MetersPerSecond * (l.BaseValue / t.BaseValue);
-		}
+		// Data go NYOOOM
+		//public static Velocity operator /(Data l, Time t)
+		//{
+		//	return Velocity.MetersPerSecond * (l.BaseValue / t.BaseValue);
+		//}
 
 		public override string ToString()
 		{

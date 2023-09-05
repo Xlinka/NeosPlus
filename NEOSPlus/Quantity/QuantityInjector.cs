@@ -6,86 +6,126 @@ using System.Reflection;
 using BaseX;
 using FrooxEngine;
 using QuantityX;
-
-namespace NEOSPlus.Quantity;
-
-internal static class QuantityInjector
+//comments added by xlinka for my sanity so i could figure out what the hell is going on.
+namespace NEOSPlus.Quantity
 {
-    internal static void Inject()
+    internal static class QuantityInjector
     {
-        var quantities =
-            typeof(FrooxEngine.GenericTypes).GetField("quantities", BindingFlags.Static | BindingFlags.NonPublic);
-        var newArray = (quantities.GetValue(null) as Type[]).Append(typeof(Data)).ToArray();
-        quantities.SetValue(null, newArray);
-        
-        UpdateQuantityCache();
-    }
-
-    internal static void UpdateQuantityCache()
-    {
-        var unitCache = 
-            typeof(QuantityX.QuantityX).GetField("unitCache", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null) as Dictionary<Type, List<IUnit>>;
-        var unitNameCache =
-            typeof(QuantityX.QuantityX).GetField("unitNameCache", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null) as Dictionary<Type, Dictionary<string, IUnit>>;
-        Type[] types = typeof(QuantityInjector).Assembly.GetTypes();
-        
-        foreach (Type type in types)
+        // Injects the 'Data' type into the quantities array and updates the quantity cache
+        internal static void Inject()
         {
-            if (!typeof(IQuantity).IsAssignableFrom(type) || !type.IsValueType)
+            // Get the 'quantities' field using reflection from 'FrooxEngine.GenericTypes'
+            var quantities =
+                typeof(FrooxEngine.GenericTypes).GetField("quantities", BindingFlags.Static | BindingFlags.NonPublic);
+
+            // Append the 'Data' type to the existing array of types
+            var newArray = (quantities.GetValue(null) as Type[]).Append(typeof(Data)).ToArray();
+
+            // Set the modified array back to the 'quantities' field
+            quantities.SetValue(null, newArray);
+
+            // Update the quantity cache
+            UpdateQuantityCache();
+        }
+
+        // Updates the quantity cache with information about new quantity types
+        internal static void UpdateQuantityCache()
+        {
+            // Get the 'unitCache' and 'unitNameCache' fields using reflection from 'QuantityX.QuantityX'
+            var unitCache =
+                typeof(QuantityX.QuantityX).GetField("unitCache", BindingFlags.Static | BindingFlags.NonPublic)
+                    .GetValue(null) as Dictionary<Type, List<IUnit>>;
+
+            var unitNameCache =
+                typeof(QuantityX.QuantityX).GetField("unitNameCache", BindingFlags.Static | BindingFlags.NonPublic)
+                    .GetValue(null) as Dictionary<Type, Dictionary<string, IUnit>>;
+
+            // Get all types in the assembly containing the 'QuantityInjector' class
+            Type[] types = typeof(QuantityInjector).Assembly.GetTypes();
+
+            foreach (Type type in types)
             {
-                continue;
-            }
-            IQuantity quantity = (IQuantity)Activator.CreateInstance(type);
-            List<IUnit> list = new List<IUnit>();
-            unitCache.Add(type, list);
-            bool flag = false;
-            Type[] interfaces = type.GetInterfaces();
-            foreach (Type type2 in interfaces)
-            {
-                if (type2.IsGenericType && type2.GetGenericTypeDefinition() == typeof(IQuantitySI<>))
+                // Check if the type is assignable to 'IQuantity' and is a value type
+                if (!typeof(IQuantity).IsAssignableFrom(type) || !type.IsValueType)
                 {
-                    flag = true;
-                    break;
+                    continue;
                 }
-            }
-            BindingFlags bindingAttr = BindingFlags.Static | BindingFlags.Public;
-            List<FieldInfo[]> list2 = new List<FieldInfo[]> { type.GetFields(bindingAttr) };
-            if (flag)
-            {
-                IQuantitySI quantitySI = (IQuantitySI)quantity;
-                IUnit[] commonSIUnits = quantitySI.GetCommonSIUnits();
-                foreach (IUnit unit in commonSIUnits)
+
+                // Create an instance of the quantity type
+                IQuantity quantity = (IQuantity)Activator.CreateInstance(type);
+
+                // Create a list to store associated units
+                List<IUnit> unitList = new List<IUnit>();
+                unitCache.Add(type, unitList);
+
+                bool isQuantitySI = false;
+
+                // Get interfaces implemented by the quantity type
+                Type[] interfaces = type.GetInterfaces();
+
+                // Check if the quantity type implements a generic interface of 'IQuantitySI'
+                foreach (Type interfaceType in interfaces)
                 {
-                    UnitGroup.Common.RegisterUnit(unit);
-                    UnitGroup.CommonMetric.RegisterUnit(unit);
-                }
-                commonSIUnits = quantitySI.GetExludedSIUnits();
-                foreach (IUnit unit2 in commonSIUnits)
-                {
-                    UnitGroup.Metric.RemoveUnit(unit2);
-                }
-                Type type3 = typeof(SI<>).MakeGenericType(type);
-                list2.Add(type3.GetFields(bindingAttr));
-            }
-            foreach (FieldInfo[] item in list2)
-            {
-                foreach (FieldInfo fieldInfo in item)
-                {
-                    if (typeof(IUnit).IsAssignableFrom(fieldInfo.FieldType))
+                    if (interfaceType.IsGenericType && interfaceType.GetGenericTypeDefinition() == typeof(IQuantitySI<>))
                     {
-                        var unit = (IUnit)fieldInfo.GetValue(null);
-                        list.Add(unit);
+                        isQuantitySI = true;
+                        break;
                     }
                 }
-            }
-            list.Sort();
-            Dictionary<string, IUnit> dictionary = new Dictionary<string, IUnit>();
-            unitNameCache.Add(type, dictionary);
-            foreach (IUnit item2 in list)
-            {
-                foreach (string unitName in item2.GetUnitNames())
+
+                BindingFlags bindingAttr = BindingFlags.Static | BindingFlags.Public;
+
+                // Create a list to store fields
+                List<FieldInfo[]> fieldLists = new List<FieldInfo[]> { type.GetFields(bindingAttr) };
+
+                if (isQuantitySI)
                 {
-                    dictionary.Add(unitName.Trim(), item2);
+                    // If it's a quantitySI, add common SI units
+                    IQuantitySI quantitySI = (IQuantitySI)quantity;
+                    IUnit[] commonSIUnits = quantitySI.GetCommonSIUnits();
+
+                    foreach (IUnit unit in commonSIUnits)
+                    {
+                        UnitGroup.Common.RegisterUnit(unit);
+                        UnitGroup.CommonMetric.RegisterUnit(unit);
+                    }
+
+                    // Exclude specific SI units
+                    commonSIUnits = quantitySI.GetExludedSIUnits();
+                    foreach (IUnit unit2 in commonSIUnits)
+                    {
+                        UnitGroup.Metric.RemoveUnit(unit2);
+                    }
+
+                    Type siType = typeof(SI<>).MakeGenericType(type);
+                    fieldLists.Add(siType.GetFields(bindingAttr));
+                }
+
+                foreach (FieldInfo[] fields in fieldLists)
+                {
+                    foreach (FieldInfo fieldInfo in fields)
+                    {
+                        if (typeof(IUnit).IsAssignableFrom(fieldInfo.FieldType))
+                        {
+                            // Get the unit and add it to the unit list
+                            var unit = (IUnit)fieldInfo.GetValue(null);
+                            unitList.Add(unit);
+                        }
+                    }
+                }
+
+                unitList.Sort();
+
+                // Create a dictionary to store unit names
+                Dictionary<string, IUnit> unitNameDictionary = new Dictionary<string, IUnit>();
+                unitNameCache.Add(type, unitNameDictionary);
+
+                foreach (IUnit unitItem in unitList)
+                {
+                    foreach (string unitName in unitItem.GetUnitNames())
+                    {
+                        unitNameDictionary.Add(unitName.Trim(), unitItem);
+                    }
                 }
             }
         }

@@ -1,4 +1,3 @@
-// QuantityX.Distance
 using System;
 using QuantityX;
 

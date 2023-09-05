@@ -69,6 +69,15 @@ namespace NEOSPlus.Quantity
             SI<Data>.Pico,
             SI<Data>.Nano,
             SI<Data>.Micro,
+            SI<Data>.Yotta,
+            SI<Data>.Zetta,
+            SI<Data>.Exa,
+            SI<Data>.Peta,
+            SI<Data>.Tera,
+            SI<Data>.Giga,
+            SI<Data>.Mega,
+			SI<Data>.Kilo,
+			Byte,
 		};
 	}
         public Data New(double baseVal)

@@ -1,166 +1,148 @@
+﻿using System;
 using QuantityX;
 
 namespace NEOSPlus.Quantity
 {
-    public readonly struct Data : IQuantitySI<Data>, IQuantitySI, IQuantity<Data>, IQuantity, IComparable<Data>, IEquatable<Data>
+    public readonly struct Pressure : IQuantitySI<Pressure>, IQuantitySI, IQuantity<Pressure>, IQuantity, IComparable<Pressure>, IEquatable<Pressure>
     {
         public readonly double BaseValue;
 
-        // Define pressure units
-        public static readonly Unit<Data> Pascal = new UnitSI<Data>(1, "Pa", "pascal");
-        public static readonly Unit<Data> Hectopascal = new UnitSI<Data>(100, "hPa", "hectopascal");
-        public static readonly Unit<Data> Kilopascal = new UnitSI<Data>(1000, "kPa", "kilopascal");
-        public static readonly Unit<Data> Megapascal = new UnitSI<Data>(1000000, "MPa", "megapascal");
-        public static readonly Unit<Data> Gigapascal = new UnitSI<Data>(1000000000, "GPa", "gigapascal");
+        public static readonly Unit<Pressure> Pascal = new UnitSI<Pressure>(0, "", "");
+        public static readonly Unit<Pressure> Bar = new Unit<Pressure>(1e5, new UnitGroup[1] { UnitGroup.Common }, new string[1] { "bar" }, new string[1] { "bar" });
 
         double IQuantity.BaseValue => BaseValue;
 
         public double SIPower => 1.0;
 
-        // Default unit for pressure
-        public Unit<Data> DefaultUnit => Pascal;
+        public Unit<Pressure> DefaultUnit => Pascal;
 
-        public Data(double baseValue = 0.0)
+        public Pressure(double baseValue = 0.0)
         {
-            this = default(Data);
+            this = default(Pressure);
             BaseValue = baseValue;
         }
 
-        public bool Equals(Data other)
+        public bool Equals(Pressure other)
         {
             return BaseValue == other.BaseValue;
         }
 
-        public int CompareTo(Data other)
+        public int CompareTo(Pressure other)
         {
             return BaseValue.CompareTo(other.BaseValue);
         }
 
         public string[] GetShortBaseNames()
         {
-            return new string[] { "Pa", "hPa", "kPa", "MPa", "GPa" };
+            return new string[] { "Pa" };
         }
 
         public string[] GetLongBaseNames()
         {
-            return new string[] { "pascals", "hectopascals", "kilopascals", "megapascals", "gigapascals" };
+            return new string[] { "pascals", "pascal" };
         }
 
         public IUnit[] GetCommonSIUnits()
         {
             return new IUnit[]
             {
-                SI<Data>.Pascal,
-                SI<Data>.Hectopascal,
-                SI<Data>.Kilopascal,
-                SI<Data>.Megapascal,
-                SI<Data>.Gigapascal,
+                SI<Pressure>.Kilo,
+                SI<Pressure>.Mega,
+                SI<Pressure>.Giga,
+                Bar
             };
         }
 
-        public IUnit[] GetExcludedSIUnits()
+        public IUnit[] GetExludedSIUnits()
         {
             return new IUnit[]
             {
-                SI<Data>.Lumen,
-                SI<Bar>.Bar,
-                SI<Bar>.Millibar,
-                SI<Bar>.Microbar,
-                SI<Bar>.Nanobar,
-                SI<Data>.Deca,
-                SI<Data>.Deci,
-                SI<Data>.Yocto,
-                SI<Data>.Zepto,
-                SI<Data>.Atto,
-                SI<Data>.Femto,
-                SI<Data>.Pico,
-                SI<Data>.Nano,
-                SI<Data>.Micro,
-                SI<Data>.Yotta,
-                SI<Data>.Zetta,
-                SI<Data>.Exa,
-                SI<Data>.Peta,
-                SI<Data>.Tera,
-                SI<Data>.Mega,
+                SI<Pressure>.Yotta,
+                SI<Pressure>.Zetta,
+                SI<Pressure>.Exa,
+                SI<Pressure>.Peta,
+                SI<Pressure>.Tera,
+                SI<Pressure>.Deca,
+                SI<Pressure>.Hecto,
+                SI<Pressure>.Centi,
+                SI<Pressure>.Deci,
+                SI<Pressure>.Milli,
+                SI<Pressure>.Micro,
+                SI<Pressure>.Nano,
+                SI<Pressure>.Pico,
+                SI<Pressure>.Femto,
+                SI<Pressure>.Atto,
+                SI<Pressure>.Zepto,
+                SI<Pressure>.Yocto
             };
         }
 
-        public Data New(double baseVal)
+        public Pressure New(double baseVal)
         {
-            return new Data(baseVal);
+            return new Pressure(baseVal);
         }
 
-        public Data Add(Data q)
+        public Pressure Add(Pressure q)
         {
-            return new Data(BaseValue + q.BaseValue);
+            return new Pressure(BaseValue + q.BaseValue);
         }
 
-        public Data Subtract(Data q)
+        public Pressure Subtract(Pressure q)
         {
-            return new Data(BaseValue - q.BaseValue);
+            return new Pressure(BaseValue - q.BaseValue);
         }
 
-        public Data Multiply(double n)
+        public Pressure Multiply(double n)
         {
-            return new Data(BaseValue * n);
+            return new Pressure(BaseValue * n);
         }
 
-        public Data Multiply(Data a, Ratio r)
+        public Pressure Divide(double n)
         {
-            return a * r.BaseValue;
+            return new Pressure(BaseValue / n);
         }
 
-        public Data Multiply(Ratio r, Data a)
-        {
-            return a * r.BaseValue;
-        }
-
-        public Data Divide(double n)
-        {
-            return new Data(BaseValue / n);
-        }
-
-        public Ratio Divide(Data q)
+        public Ratio Divide(Pressure q)
         {
             return new Ratio(BaseValue / q.BaseValue);
         }
 
-        public static Data Parse(string str, Unit<Data> defaultUnit = null)
+        public static Pressure Parse(string str, Unit<Pressure> defaultUnit = null)
         {
-            return Unit<Data>.Parse(str, defaultUnit);
+            return Unit<Pressure>.Parse(str, defaultUnit);
         }
 
-        public static bool TryParse(string str, out Data q, Unit<Data> defaultUnit = null)
+        public static bool TryParse(string str, out Pressure q, Unit<Pressure> defaultUnit = null)
         {
-            return Unit<Data>.TryParse(str, out q, defaultUnit);
+            return Unit<Pressure>.TryParse(str, out q, defaultUnit);
         }
 
-        public static Data operator +(Data a, Data b)
+        public static Pressure operator +(Pressure a, Pressure b)
         {
             return a.Add(b);
         }
 
-        public static Data operator -(Data a, Data b)
+        public static Pressure operator -(Pressure a, Pressure b)
         {
             return a.Subtract(b);
         }
 
-        public static Data operator *(Data a, double n)
+        public static Pressure operator *(Pressure a, double n)
         {
             return a.Multiply(n);
         }
 
-        public static Data operator /(Data a, double n)
+        public static Pressure operator /(Pressure a, double n)
         {
             return a.Divide(n);
         }
 
-        public static Ratio operator /(Data a, Data b)
+        public static Ratio operator /(Pressure a, Pressure b)
         {
             return a.Divide(b);
         }
 
-        public static Data operator -(Data a)
+        public static Pressure operator -(Pressure a)
         {
             return a.Multiply(-1.0);
         }

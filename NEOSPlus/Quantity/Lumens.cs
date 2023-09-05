@@ -1,5 +1,5 @@
+﻿using System;
 using QuantityX;
-using System;
 
 namespace NEOSPlus.Quantity
 {
@@ -7,14 +7,12 @@ namespace NEOSPlus.Quantity
     {
         public readonly double BaseValue;
 
-        // Define luminous flux unit (lumen)
-        public static readonly Unit<LuminousFlux> Lumen = new UnitSI<LuminousFlux>(1, "lm", "lumen");
+        public static readonly Unit<LuminousFlux> Lumen = new UnitSI<LuminousFlux>(0, "", "");
 
         double IQuantity.BaseValue => BaseValue;
 
         public double SIPower => 1.0;
 
-        // Default unit for luminous flux
         public Unit<LuminousFlux> DefaultUnit => Lumen;
 
         public LuminousFlux(double baseValue = 0.0)
@@ -35,49 +33,50 @@ namespace NEOSPlus.Quantity
 
         public string[] GetShortBaseNames()
         {
-            return new string[] { "lm", "lumen" };
+            return new string[] { "lm" };
         }
 
         public string[] GetLongBaseNames()
         {
-            return new string[] { "lumens" };
+            return new string[] { "lumens", "lumen" };
         }
 
         public IUnit[] GetCommonSIUnits()
         {
             return new IUnit[]
             {
-                SI<Data>.Lumen  
+                SI<LuminousFlux>.Mega,
+                SI<LuminousFlux>.Kilo,
+                Lumen,
+                SI<LuminousFlux>.Milli,
+                SI<LuminousFlux>.Micro
             };
         }
 
-        public IUnit[] GetExcludedSIUnits()
+
+        public IUnit[] GetExludedSIUnits()
         {
             return new IUnit[]
             {
-                SI<Data>.Deca,
-                SI<Data>.Hecto,
-                SI<Data>.Milli,
-                SI<Data>.Centi,
-                SI<Data>.Deci,
-                SI<Data>.Yocto,
-                SI<Data>.Zepto,
-                SI<Data>.Atto,
-                SI<Data>.Femto,
-                SI<Data>.Pico,
-                SI<Data>.Nano,
-                SI<Data>.Micro,
-                SI<Data>.Yotta,
-                SI<Data>.Zetta,
-                SI<Data>.Exa,
-                SI<Data>.Peta,
-                SI<Data>.Tera,
-                SI<Data>.Giga,
-                SI<Data>.Mega,
-                SI<Data>.Kilo,
-			    Byte,
+                SI<LuminousFlux>.Yotta,
+                SI<LuminousFlux>.Zetta,
+                SI<LuminousFlux>.Exa,
+                SI<LuminousFlux>.Peta,
+                SI<LuminousFlux>.Tera,
+                SI<LuminousFlux>.Giga,
+                SI<LuminousFlux>.Deca,
+                SI<LuminousFlux>.Hecto,
+                SI<LuminousFlux>.Centi,
+                SI<LuminousFlux>.Deci,
+                SI<LuminousFlux>.Nano,
+                SI<LuminousFlux>.Pico,
+                SI<LuminousFlux>.Femto,
+                SI<LuminousFlux>.Atto,
+                SI<LuminousFlux>.Zepto,
+                SI<LuminousFlux>.Yocto
             };
         }
+
 
         public LuminousFlux New(double baseVal)
         {
@@ -97,16 +96,6 @@ namespace NEOSPlus.Quantity
         public LuminousFlux Multiply(double n)
         {
             return new LuminousFlux(BaseValue * n);
-        }
-
-        public LuminousFlux Multiply(LuminousFlux a, Ratio r)
-        {
-            return a * r.BaseValue;
-        }
-
-        public LuminousFlux Multiply(Ratio r, LuminousFlux a)
-        {
-            return a * r.BaseValue;
         }
 
         public LuminousFlux Divide(double n)

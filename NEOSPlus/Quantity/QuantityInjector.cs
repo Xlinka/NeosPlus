@@ -31,7 +31,7 @@ namespace NEOSPlus.Quantity
             // Log the injected types
             foreach (var type in quantityTypes)
             {
-                Unilog.Log($"Injected quantity type: {type.FullName}");
+                UniLog.Log($"Injected quantity type: {type.FullName}");
             }
 
             // Update the quantity cache

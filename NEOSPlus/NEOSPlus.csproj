@@ -29,6 +29,9 @@
     <Reference Include="BaseX">
       <HintPath>$(NeosPath)Neos_Data/Managed/BaseX.dll</HintPath>
     </Reference>
+    <Reference Include="QuantityX">
+      <HintPath>$(NeosPath)Neos_Data/Managed/QuantityX.dll</HintPath>
+    </Reference>
     <Reference Include="CodeX">
       <HintPath>$(NeosPath)Neos_Data/Managed/CodeX.dll</HintPath>
     </Reference>

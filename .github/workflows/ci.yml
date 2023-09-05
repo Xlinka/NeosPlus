@@ -9,9 +9,9 @@ on:
 env:
   SOLUTION_FILE_PATH: NEOSPlus.sln
   BUILD_CONFIGURATION: Release
+
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
@@ -32,8 +32,12 @@ jobs:
         $web.DownloadFile("https://assets.neos.com/install/Pro/Data/$cvstring.7z","$env:TEMP\neosupdate.7z") 
         .\7zr.exe x -y "$env:TEMP\neosupdate.7z" *
         Remove-Item "$env:TEMP\neosupdate.7z"
+    - name: Extract DLLs
+      shell: pwsh
+      run: |
+        cd NeosVR/Neos_Data/Managed
+        $dll_file_name = "$cvstring_YTDLP.7z"
+        .\7zr.exe x -y "$dll_file_name" -o"${{env.GITHUB_WORKSPACE}}/Path/To/Extract/To"
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}

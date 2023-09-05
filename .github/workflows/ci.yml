@@ -29,16 +29,10 @@ jobs:
         $web = [System.Net.WebClient]::new()
         $web.DownloadFile("https://www.7-zip.org/a/7zr.exe","$PWD\7zr.exe")
         $cvstring = $web.DownloadString('https://cloudxstorage.blob.core.windows.net/install/Pro/Public')
-        $web.DownloadFile("https://assets.neos.com/install/Pro/Data/$cvstring","$env:TEMP\neosupdate.7z") 
+        Write-Host "CVString is $cvstring"  # Debugging line
+        $web.DownloadFile("https://assets.neos.com/install/Pro/Data/$cvstring.7z","$env:TEMP\neosupdate.7z") 
         .\7zr.exe x -y "$env:TEMP\neosupdate.7z" *
         Remove-Item "$env:TEMP\neosupdate.7z"
-    - name: Extract DLLs
-      shell: pwsh
-      run: |
-        $dll_file_name = $cvstring  # Directly use cvstring as the DLL file name
-        $sevenZipPath = Join-Path $env:GITHUB_WORKSPACE "NeosVR\7zr.exe"
-        $extractToPath = Join-Path $env:GITHUB_WORKSPACE "NeosVR\Neos_Data\Managed"
-        & $sevenZipPath x -y "$dll_file_name" -o"$extractToPath"
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}

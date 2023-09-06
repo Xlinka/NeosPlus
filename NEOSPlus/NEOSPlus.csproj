@@ -7,7 +7,7 @@
     <LangVersion>10</LangVersion>
     <Copyright>Copyright ©  2022</Copyright>
     <Product>NEOSPlus</Product>
-    <!-- SET THIS BOOL TO TRUE TO COPY TO PLUGINS V -->
+    <!-- SET THIS BOOL TO TRUE TO COPY TO PLUGINS       V -->
     <CopyToPlugins Condition="'$(CopyToPlugins)'==''">false</CopyToPlugins>
   </PropertyGroup>
   <PropertyGroup>

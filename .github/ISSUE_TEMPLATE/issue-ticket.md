@@ -1,5 +1,5 @@
 ---
-name: Issue Ticket
+name: Bug Report
 about: Create a report to help us improve
 title: ''
 labels: Bug
@@ -44,3 +44,7 @@ assignees: ''
 📎 **Attachments (if any)**
 
 [Attach any relevant files or additional information here.]
+
+🚀 **NeosPlus Version**
+
+[Specify the version of NeosPlus where you encountered this bug.]

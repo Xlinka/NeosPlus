@@ -40,6 +40,7 @@ public class NiloToon : SingleShaderMaterialProvider
     public readonly AssetRef<ITexture2D> _OutlineZOffsetMaskTex;
     public readonly Sync<float> _OutlineZOffsetMaskRemapStart;
     public readonly Sync<float> _OutlineZOffsetMaskRemapEnd;
+
     [DefaultValue(-1)]
     public readonly Sync<int> RenderQueue;
     private static PropertyState _propertyInitializationState;
@@ -120,7 +121,7 @@ public class NiloToon : SingleShaderMaterialProvider
         
         if (!RenderQueue.GetWasChangedAndClear()) return;
         var renderQueue = RenderQueue.Value;
-        if (RenderQueue.Value == -1) renderQueue = 2000;
+        if (RenderQueue.Value == -1) renderQueue = 2300;
         material.SetRenderQueue(renderQueue);
     }
 

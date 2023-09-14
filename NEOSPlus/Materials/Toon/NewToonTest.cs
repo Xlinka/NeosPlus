@@ -6,7 +6,7 @@ using FrooxEngine;
 [Category(new string[] { "Assets/Materials/NeosPlus/Toon" })]
 public class NiloToon : SingleShaderMaterialProvider
 {
-    protected override Uri ShaderURL => ShaderInjection.NiloToonFork
+    protected override Uri ShaderURL => ShaderInjection.NiloToonFork;
 
     public readonly Sync<float> _IsFace;
     public readonly AssetRef<ITexture2D> _BaseMap;

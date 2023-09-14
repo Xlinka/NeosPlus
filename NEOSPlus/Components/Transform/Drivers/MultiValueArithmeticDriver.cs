@@ -3,7 +3,7 @@ using BaseX;
 
 namespace FrooxEngine;
 
-[Category(new string[] { "Transform/Drivers" })]
+[Category(new string[] { "NeosPlus/Transform/Drivers" })]
 [GenericTypes(GenericTypes.Group.NeosPrimitives)]
 public class MultiValueArithmeticDriver<T> : Component
 {

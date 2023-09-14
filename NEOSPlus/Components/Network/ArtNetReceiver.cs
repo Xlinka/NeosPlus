@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using BaseX;
 using FrooxEngine;
 
-[Category("Network")]
+[Category("NeosPlus/Network")]
 public class ArtNetReceiver : Component
 {
     public readonly Sync<Uri> URL;

@@ -2,7 +2,7 @@
 
 namespace FrooxEngine
 {
-    [Category(new string[] { "Assets/Procedural Meshes" })]
+    [Category(new string[] { "NeosPlus/Assets/Procedural Meshes" })]
     public class MengerSpongeMesh : ProceduralMesh
     {
         [Range(1, 4)] public readonly Sync<int> Subdivisions;

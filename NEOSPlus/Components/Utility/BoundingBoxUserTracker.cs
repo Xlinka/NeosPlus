@@ -4,7 +4,7 @@ using BaseX;
 
 namespace FrooxEngine
 {
-	[Category("Utility")]
+	[Category("NeosPlus/Utility")]
 	public class BoundingBoxUserTracker : Component
 	{
 		public readonly Sync<UserRoot.UserNode> PositionSource;

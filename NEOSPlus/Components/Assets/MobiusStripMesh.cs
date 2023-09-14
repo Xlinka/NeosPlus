@@ -2,7 +2,7 @@
 
 namespace FrooxEngine
 {
-    [Category(new string[] { "Assets/Procedural Meshes" })]
+    [Category(new string[] { "NeosPlus/Assets/Procedural Meshes" })]
     public class MobiusStripMesh : ProceduralMesh
     {
         [Range(3, 50)] public readonly Sync<int> Sides;

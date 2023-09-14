@@ -3,7 +3,7 @@ using FrooxEngine;
 using NEOSPlus.Shaders;
 
 [Category(new string[] { "Assets/Materials/NeosPlus/Effects" })]
-public class ParallaxMaterialOrb : SingleShaderMaterialProvider
+public class ParallaxOcclusion  : SingleShaderMaterialProvider
 {
     protected override Uri ShaderURL => new Uri("Custom/ParallaxOcclusionAlpha"); //new url so i can archive the old one.
 

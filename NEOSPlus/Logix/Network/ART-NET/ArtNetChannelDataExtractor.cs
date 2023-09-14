@@ -1,7 +1,7 @@
 ﻿using FrooxEngine;
 using FrooxEngine.LogiX;
 
-[Category("LogiX/Network/ART-NET")]
+[Category("LogiX/NeosPlus/Network/ART-NET")]
 public class ArtNetChannelDataExtractor : LogixNode
 {
     public readonly Input<byte[]> Data;

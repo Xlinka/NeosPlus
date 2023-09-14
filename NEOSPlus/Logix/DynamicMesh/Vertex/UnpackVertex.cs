@@ -2,7 +2,7 @@
 
 namespace FrooxEngine.LogiX.Operators
 {
-    [Category("LogiX/Mesh/Vertex")]
+    [Category("LogiX/NeosPlus/Mesh/Vertex")]
     public class UnpackVertex : LogixNode
     {
         public readonly Input<Vertex> Vertex;

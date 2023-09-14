@@ -4,7 +4,7 @@ using BaseX;
 namespace FrooxEngine.LogiX.Math;
 
 [NodeName("Kinetic Friction Calculation")]
-[Category(new string[] { "LogiX/Math/Physics" })]
+[Category(new string[] { "LogiX/NeosPlus/Math/Physics" })]
 internal class KineticFrictionNode : LogixNode
 {
     public readonly Input<float3> NormalForce; // Assuming it's a 3D force, change as needed

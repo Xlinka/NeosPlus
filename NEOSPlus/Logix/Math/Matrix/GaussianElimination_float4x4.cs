@@ -8,7 +8,7 @@ namespace FrooxEngine.LogiX.Math
     [HiddenNode] // Hide overload from node browser
     [NodeName("Reduced Echelon Form")]
     [NodeOverload("Reduced-Echelon-Form")]
-    [Category(new string[] {"LogiX/Math/Matrix"})]
+    [Category(new string[] {"LogiX/NeosPlus/Math/Matrix"})]
     public sealed class GaussianElimination_float4x4 : LogixOperator<float4>
     {
         public readonly Input<float4x4> LinearEquationMatrix;

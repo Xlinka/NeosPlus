@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace FrooxEngine.LogiX.Network
 {
-    [Category("LogiX/Network")]
+    [Category("LogiX/NeosPlus/Network")]
     [NodeName("Get Stock Price")]
     public class GetStockPriceNode : LogixNode
     {

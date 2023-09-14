@@ -2,7 +2,7 @@
 using FrooxEngine;
 using FrooxEngine.LogiX;
 
-[Category("LogiX/Math/Random")]
+[Category("LogiX/NeosPlus/Math/Random")]
 [NodeName("Random Euler Angles")]
 public class RandomEulerAngles : LogixNode
 {

@@ -4,7 +4,7 @@
 
 namespace FrooxEngine.LogiX.Assets
 {
-    [Category("LogiX/Mesh/Operations")]
+    [Category("LogiX/NeosPlus/Mesh/Operations")]
     public class BakeMesh : LogixNode
     {
         public readonly Input<ProceduralMesh> Mesh;

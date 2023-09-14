@@ -8,7 +8,7 @@ using FrooxEngine.LogiX;
 
 namespace NEOSPlus.Logix.Input_Devices
 {
-    [Category("LogiX/Input Devices")]
+    [Category("LogiX/NeosPlus/Input Devices")]
     public class ViveTrackerByIndex : TrackerBatteryBase
     {
         public readonly Input<int> TrackerIndex;

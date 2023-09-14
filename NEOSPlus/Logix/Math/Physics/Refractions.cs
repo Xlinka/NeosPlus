@@ -4,7 +4,7 @@ using BaseX;
 namespace FrooxEngine.LogiX.Math;
 
 [NodeName("Refraction Calculation")]
-[Category(new string[] { "LogiX/Math/Physics" })]
+[Category(new string[] { "LogiX/NeosPlus/Math/Physics" })]
 internal class RefractionNode : LogixNode
 {
     public readonly Input<float> RefractiveIndex1;  // Refractive index of medium 1

@@ -3,7 +3,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine.LogiX.Math
 {
-    [Category("LogiX/Math/Random")]
+    [Category("LogiX/NeosPlus/Math/Random")]
     [NodeName("Random Int4")]
     public class RandomInt4 : LogixNode
     {

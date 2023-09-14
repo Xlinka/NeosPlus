@@ -8,7 +8,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine.LogiX.Slots
 {
-    [Category("LogiX/Slots")]
+    [Category("LogiX/NeosPlus/Slots")]
     [NodeName("Get Grandparent")]
     public class GetGrandparent : LogixOperator<Slot>
     {

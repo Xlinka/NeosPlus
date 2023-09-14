@@ -3,7 +3,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine.LogiX.String
 {
-    [Category("LogiX/String")]
+    [Category("LogiX/NeosPlus/String")]
     [NodeName("Hamming Distance")]
     public class HammingDistance : LogixOperator<int?>
     {

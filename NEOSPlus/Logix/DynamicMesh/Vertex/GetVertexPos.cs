@@ -3,7 +3,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine.LogiX.Math
 {
-    [Category("LogiX/Mesh/Vertex")]
+    [Category("LogiX/NeosPlus/Mesh/Vertex")]
     public class GetVertexPos : LogixOperator<float3>
     {
         public readonly Input<IAssetProvider<Mesh>> Mesh;

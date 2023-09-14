@@ -7,7 +7,7 @@ using NEOSPlus;
 namespace FrooxEngine.LogiX.Collections
 {
     [NodeName("Remove")]
-    [Category("LogiX/Collections")]
+    [Category("LogiX/NeosPlus/Collections")]
     [NodeDefaultType(typeof(CollectionsRemove<dummy, IList<dummy>>))]
     public class CollectionsRemove<T, TU> : LogixNode where TU : IList<T>
     {

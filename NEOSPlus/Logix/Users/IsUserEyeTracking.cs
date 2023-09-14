@@ -1,7 +1,7 @@
 ﻿using FrooxEngine;
 using FrooxEngine.LogiX;
 
-[Category("LogiX/Users")]
+[Category("LogiX/NeosPlus/Users")]
 [NodeName("IsUserEyeTracking")]
 public class IsUserEyeTracking : LogixNode
 {

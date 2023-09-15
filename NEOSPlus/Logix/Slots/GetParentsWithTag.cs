@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace FrooxEngine.LogiX.Slots;
 
-[Category("LogiX/Slots")]
+[Category("LogiX/NeosPlus/Slots")]
 [NodeName("Get Parents With Tag")]
 public class GetParentsWithTag : LogixNode
 {
@@ -32,7 +32,7 @@ public class GetParentsWithTag : LogixNode
     {
         Slot slot = Instance.Evaluate();
         string tag = Tag.Evaluate();
-        if (slot != null && tag != null)
+        if (slot != null && tag != null && slot.Parent != null)
         {
             List<Slot> list = new List<Slot>();
             InternalGetParentsWithTag(slot.Parent, list, tag);

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace FrooxEngine.LogiX.Slots;
 
-[Category("LogiX/Slots")]
+[Category("LogiX/NeosPlus/Slots")]
 [NodeName("Get Children With Name")]
 public class GetChildrenWithName : LogixNode
 {

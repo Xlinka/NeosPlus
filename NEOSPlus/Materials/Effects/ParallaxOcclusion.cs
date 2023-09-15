@@ -1,12 +1,11 @@
-﻿using System;
-using BaseX;
+﻿using BaseX;
 using FrooxEngine;
 using NEOSPlus.Shaders;
 
 [Category(new string[] { "Assets/Materials/NeosPlus/Effects" })]
-public class ParallaxOcclusion : SingleShaderMaterialProvider
+public class ParallaxOcclusion  : SingleShaderMaterialProvider
 {
-    protected override Uri ShaderURL => ShaderInjection.ParallaxOcclusion;
+    protected override Uri ShaderURL => new Uri("Custom/ParallaxOcclusionAlpha"); //new url so i can archive the old one.
 
     public readonly Sync<color> Color;
     public readonly AssetRef<ITexture2D> MainTex;
@@ -25,6 +24,8 @@ public class ParallaxOcclusion : SingleShaderMaterialProvider
     public readonly Sync<float> ParallaxMinSamples;
     [Range(2f, 100f, "0")]
     public readonly Sync<float> ParallaxMaxSamples;
+    [Range(0f, 1f, "0.00")] // New Alpha Cutoff property
+    public readonly Sync<float> AlphaCutoff;
 
     private static MaterialProperty _Color = new MaterialProperty("_Color");
     private static MaterialProperty _MainTex = new MaterialProperty("_MainTex");
@@ -37,6 +38,7 @@ public class ParallaxOcclusion : SingleShaderMaterialProvider
     private static MaterialProperty _Metallic = new MaterialProperty("_Metallic");
     private static MaterialProperty _ParallaxMinSamples = new MaterialProperty("_ParallaxMinSamples");
     private static MaterialProperty _ParallaxMaxSamples = new MaterialProperty("_ParallaxMaxSamples");
+    private static MaterialProperty _AlphaCutoff = new MaterialProperty("_AlphaCutoff"); // New Alpha Cutoff property
 
     [DefaultValue(-1)]
     public readonly Sync<int> RenderQueue;
@@ -60,6 +62,7 @@ public class ParallaxOcclusion : SingleShaderMaterialProvider
         material.UpdateFloat(_Metallic, Metallic);
         material.UpdateFloat(_ParallaxMinSamples, ParallaxMinSamples);
         material.UpdateFloat(_ParallaxMaxSamples, ParallaxMaxSamples);
+        material.UpdateFloat(_AlphaCutoff, AlphaCutoff); // Update Alpha Cutoff
 
         if (!RenderQueue.GetWasChangedAndClear()) return;
         var renderQueue = RenderQueue.Value;
@@ -77,5 +80,6 @@ public class ParallaxOcclusion : SingleShaderMaterialProvider
         Metallic.Value = 0;
         ParallaxMinSamples.Value = 4;
         ParallaxMaxSamples.Value = 20;
+        AlphaCutoff.Value = 0.5f; // Default Alpha Cutoff
     }
 }

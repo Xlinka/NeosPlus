@@ -2,7 +2,7 @@ using BaseX;
 
 namespace FrooxEngine;
 
-[Category("Data")]
+[Category("NeosPlus/Data")]
 public class ReferenceFieldList<T> : Component where T : class, IWorldElement
 {
     public readonly SyncRefList<T> Value;

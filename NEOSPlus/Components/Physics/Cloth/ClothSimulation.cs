@@ -6,7 +6,7 @@ using FrooxEngine.UIX;
 
 namespace FrooxEngine
 {
-    [Category(new string[] {"Physics/Cloth"})]
+    [Category(new string[] {"NeosPlus/Physics/Cloth"})]
     public class Cloth : MeshRenderer // Need to extend MeshRenderer to avoid Unity attaching its own
     {
         [HideInInspector] // Needed to sync the reset across all users

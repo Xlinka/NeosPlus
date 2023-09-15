@@ -7,7 +7,7 @@ using NEOSPlus;
 namespace FrooxEngine.LogiX.Collections
 {
     [NodeName("Clear")]
-    [Category("LogiX/Collections")]
+    [Category("LogiX/NeosPlus/Collections")]
     [NodeDefaultType(typeof(CollectionsClear<Sync<dummy>, SyncFieldList<dummy>>))]
     public class CollectionsClear<T, TU> : LogixNode where TU : SyncElementList<T> where T : class, ISyncMember, new()
     {

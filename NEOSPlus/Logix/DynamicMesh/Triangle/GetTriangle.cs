@@ -3,7 +3,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine.LogiX.Math
 {
-    [Category(new string[] {"LogiX/Mesh/Triangle"})]
+    [Category(new string[] {"LogiX/NeosPlus/Mesh/Triangle"})]
     public class GetTriangle : LogixOperator<Triangle>
     {
         public readonly Input<IAssetProvider<Mesh>> Mesh;

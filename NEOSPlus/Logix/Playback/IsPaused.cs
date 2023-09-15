@@ -2,7 +2,7 @@ using BaseX;
 
 namespace FrooxEngine.LogiX.Playback
 {
-    [Category("LogiX/Playback")]
+    [Category("LogiX/NeosPlus/Playback")]
     [NodeName("IsPaused")]
     public class IsPaused : LogixOperator<bool>
     {

@@ -3,7 +3,7 @@
 namespace FrooxEngine.LogiX.Locomotion
 {
     [NodeName("Is User in NoClip")]
-    [Category(new string[] {"LogiX/Locomotion"})]
+    [Category(new string[] {"LogiX/NeosPlus/Locomotion"})]
     public class IsUserInNoClip : LogixOperator<bool>
     {
         public readonly Input<User> User;

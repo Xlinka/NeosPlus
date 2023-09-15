@@ -1,6 +1,6 @@
 ﻿namespace FrooxEngine.LogiX.Interaction
 {
-	[Category("LogiX/Interaction/Grabbable")]
+	[Category("LogiX/NeosPlus/Interaction/Grabbable")]
 	[NodeName("Find Grabbable")]
 	public class FindGrabbableFromSlot : LogixNode
 	{

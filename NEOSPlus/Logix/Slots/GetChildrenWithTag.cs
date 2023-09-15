@@ -2,7 +2,7 @@
 using FrooxEngine.LogiX;
 using System.Collections.Generic;
 
-[Category("LogiX/Slots")]
+[Category("LogiX/NeosPlus/Slots")]
 [NodeName("Get Children With Tag")]
 public class GetChildrenWithTag : LogixNode
 {

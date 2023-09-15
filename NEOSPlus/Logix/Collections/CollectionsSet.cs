@@ -7,7 +7,7 @@ using NEOSPlus;
 namespace FrooxEngine.LogiX.Collections
 {
     [NodeName("Set")]
-    [Category("LogiX/Collections")]
+    [Category("LogiX/NeosPlus/Collections")]
     [NodeDefaultType(typeof(CollectionsSet<dummy, IList<dummy>>))]
     public class CollectionsSet<T, TU> : LogixNode where TU : IList<T>
     {

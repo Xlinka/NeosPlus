@@ -5,7 +5,7 @@ using FrooxEngine.UIX;
 
 namespace FrooxEngine
 {
-    [Category("Assets/Procedural Meshes")]
+    [Category("NeosPlus/Assets/Procedural Meshes")]
     public class DynamicMesh : ProceduralMesh, ICustomInspector
     {
         public readonly Sync<bool> Normals;

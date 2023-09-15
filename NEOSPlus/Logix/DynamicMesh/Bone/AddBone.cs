@@ -2,7 +2,7 @@
 
 namespace FrooxEngine
 {
-    [Category("LogiX/Mesh/Bone")]
+    [Category("LogiX/NeosPlus/Mesh/Bone")]
     public class AddBone : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;

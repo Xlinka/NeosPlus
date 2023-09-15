@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace NEOSPlus.Logix.Input_Devices;
 
-[Category("LogiX/Input Devices")]
+[Category("LogiX/NeosPlus/Input Devices")]
 public class ViveTrackerByBodyNode : TrackerBatteryBase
 {
     public readonly Input<BodyNode> BodyNode;

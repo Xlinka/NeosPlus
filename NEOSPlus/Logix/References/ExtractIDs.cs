@@ -2,7 +2,7 @@
 using FrooxEngine;
 using FrooxEngine.LogiX;
 
-[Category("LogiX/References")]
+[Category("LogiX/NeosPlus/References")]
 [NodeName("Extract IDs")]
 public class ExtractIDs : LogixNode
 {

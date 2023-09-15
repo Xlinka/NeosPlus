@@ -3,7 +3,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category("LogiX/Mesh/Operations")]
+    [Category("LogiX/NeosPlus/Mesh/Operations")]
     public class GetSubmesh : LogixOperator<Submesh>
     {
         public readonly Input<IAssetProvider<Mesh>> DynamicMesh;
@@ -11,7 +11,7 @@ namespace FrooxEngine
         public override Submesh Content => DynamicMesh.Evaluate()?.Asset?.Data?.GetSubmesh(Index.Evaluate());
     }
 
-    [Category("LogiX/Mesh/Operations")]
+    [Category("LogiX/NeosPlus/Mesh/Operations")]
     public class SubmeshMerge : LogixNode
     {
         public readonly Input<Submesh> SubmeshFrom;
@@ -28,7 +28,7 @@ namespace FrooxEngine
         }
     }
 
-    [Category("LogiX/Mesh/Operations")]
+    [Category("LogiX/NeosPlus/Mesh/Operations")]
     public class RemoveSubmesh : LogixNode
     {
         public readonly Input<Submesh> SubMesh;
@@ -57,7 +57,7 @@ namespace FrooxEngine
         }
     }
 
-    [Category("LogiX/Mesh/Operations")]
+    [Category("LogiX/NeosPlus/Mesh/Operations")]
     public class AddSubmesh : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;

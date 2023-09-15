@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 namespace FrooxEngine.LogiX.Json;
 
 [NodeName("Get From Object")]
-[Category("LogiX/Json")]
+[Category("LogiX/NeosPlus/Json")]
 [GenericTypes(typeof(byte), typeof(sbyte), typeof(short), typeof(ushort), typeof(int), typeof(uint), typeof(long),
     typeof(ulong), typeof(float), typeof(double), typeof(string), typeof(Uri), typeof(JToken), typeof(JObject),
     typeof(JArray))]

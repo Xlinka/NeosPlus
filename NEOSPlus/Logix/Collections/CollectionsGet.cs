@@ -10,7 +10,7 @@ using NEOSPlus;
 namespace FrooxEngine.LogiX.Collections
 {
     [NodeName("Get")]
-    [Category("LogiX/Collections")]
+    [Category("LogiX/NeosPlus/Collections")]
     [NodeDefaultType(typeof(CollectionsGet<dummy, IEnumerable<dummy>>))]
     public class CollectionsGet<T, TU> : LogixOperator<T> where TU : IEnumerable<T>
     {

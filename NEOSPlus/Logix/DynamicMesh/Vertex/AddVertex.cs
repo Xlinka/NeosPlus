@@ -3,7 +3,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category("LogiX/Mesh/Vertex")]
+    [Category("LogiX/NeosPlus/Mesh/Vertex")]
     public class AddVertex : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;

@@ -4,7 +4,7 @@ using BaseX;
 namespace FrooxEngine.LogiX.Math;
 
 [NodeName("Drag Calculation")]
-[Category(new string[] { "LogiX/Math/Physics" })]
+[Category(new string[] { "LogiX/NeosPlus/Math/Physics" })]
 internal class DragNode : LogixNode
 {
     public readonly Input<float> FluidDensity;        // rho

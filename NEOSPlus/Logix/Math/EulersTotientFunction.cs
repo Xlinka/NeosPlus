@@ -5,7 +5,7 @@ using FrooxEngine.LogiX;
 namespace FrooxEngine.LogiX.Math
 {
     [NodeName("Euler's Totient Function")]
-    [Category("LogiX/Operators")]
+    [Category("LogiX/NeosPlus/Operators")]
     public class EulersTotientFunction : LogixNode
     {
         public readonly Input<int> Input;

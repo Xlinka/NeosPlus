@@ -6,7 +6,7 @@ using FrooxEngine.LogiX;
 /// 
 namespace FrooxEngine
 {
-    [Category("LogiX/Mesh/Operations")]
+    [Category("LogiX/NeosPlus/Mesh/Operations")]
     public class AppendMesh : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;

@@ -2,7 +2,7 @@
 
 namespace FrooxEngine.LogiX.Math
 {
-    [Category("LogiX/Math/Constants")]
+    [Category("LogiX/NeosPlus/Math/Constants")]
     [NodeName("Epsilon Float")]
     public class EpsilonFloat : LogixOperator<float>
     {

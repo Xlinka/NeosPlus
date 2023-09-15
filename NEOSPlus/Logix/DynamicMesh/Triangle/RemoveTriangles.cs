@@ -2,7 +2,7 @@
 
 namespace FrooxEngine
 {
-    [Category(new string[] {"LogiX/Mesh/Triangle"})]
+    [Category(new string[] {"LogiX/NeosPlus/Mesh/Triangle"})]
     public class RemoveTriangles : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;

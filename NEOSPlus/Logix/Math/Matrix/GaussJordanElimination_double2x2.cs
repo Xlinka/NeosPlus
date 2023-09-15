@@ -7,7 +7,7 @@ namespace FrooxEngine.LogiX.Math
 {
     [NodeName("Reduced Row Echelon Form")]
     [NodeOverload("Reduced-Row-Echelon-Form")]
-    [Category(new string[] {"LogiX/Math/Matrix"})]
+    [Category(new string[] {"LogiX/NeosPlus/Math/Matrix"})]
 
     // GaussJordanElimination
     public sealed class GaussJordanElimination_d2x2 : LogixOperator<double2>

@@ -2,7 +2,7 @@ using BaseX;
 
 namespace FrooxEngine;
 
-[Category("Data")]
+[Category("NeosPlus/Data")]
 [GenericTypes(GenericTypes.Group.NeosPrimitives)]
 public class ValueFieldList<T> : Component
 {

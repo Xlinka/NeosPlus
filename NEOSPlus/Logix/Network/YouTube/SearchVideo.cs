@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace FrooxEngine.LogiX.Network
 {
-    [Category("LogiX/Network/YouTube")]
+    [Category("LogiX/NeosPlus/Network/YouTube")]
     [NodeName("Search YouTube Videos")]
     public class SearchVideosNode : LogixNode
     {

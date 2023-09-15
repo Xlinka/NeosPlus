@@ -3,7 +3,7 @@
 namespace FrooxEngine.LogiX.Math
 {
     [NodeName("Factorial")]
-    [Category("LogiX/Math")]
+    [Category("LogiX/NeosPlus/Math")]
     public class Factorial : LogixOperator<int>
     {
         public readonly Input<int> Input;

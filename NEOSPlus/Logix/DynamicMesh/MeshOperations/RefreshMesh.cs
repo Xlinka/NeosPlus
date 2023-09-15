@@ -5,7 +5,7 @@
 /// 
 namespace FrooxEngine
 {
-    [Category("LogiX/Mesh/Operations")]
+    [Category("LogiX/NeosPlus/Mesh/Operations")]
     public class RefreshMesh : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;

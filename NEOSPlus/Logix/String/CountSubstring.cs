@@ -8,7 +8,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine.LogiX.String
 {
-    [Category("LogiX/String")]
+    [Category("LogiX/NeosPlus/String")]
     [NodeName("Count Substring")]
     public class CountSubstring : LogixOperator<int>
     {

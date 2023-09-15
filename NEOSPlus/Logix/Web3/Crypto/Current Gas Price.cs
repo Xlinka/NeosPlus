@@ -10,7 +10,7 @@ namespace FrooxEngine.LogiX.Web3
     /// <summary>
     /// was going to use the netherium library but i didnt want to add more external dependencies to this plugin. - xlinka
     /// </summary>
-    [Category("LogiX/Web3/Crypto")]
+    [Category("LogiX/NeosPlus/Web3/Crypto")]
     [NodeName("Current Gas Price")]
     public class GasPriceNode : LogixNode
     {

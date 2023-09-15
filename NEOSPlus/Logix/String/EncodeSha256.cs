@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FrooxEngine.LogiX.String
 {
-    [Category("LogiX/String")]
+    [Category("LogiX/NeosPlus/String")]
     [NodeName("Encode Sha256")]
     public class EncodeSha256 : LogixOperator<string>
     {

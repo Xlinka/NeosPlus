@@ -2,7 +2,7 @@
 
 namespace FrooxEngine.LogiX.Math
 {
-    [Category("LogiX/Math/Random")]
+    [Category("LogiX/NeosPlus/Math/Random")]
     [NodeName("Random Character")]
     public class RandomCharacter : LogixNode
     {

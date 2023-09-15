@@ -4,7 +4,7 @@ using FrooxEngine.UIX;
 
 namespace FrooxEngine
 {
-    [Category("Add-ons/Wizards")]
+    [Category("NeosPlus/Wizards")]
     public class LightSourceWizard : Component, IDeveloperInterface, IComponent, IComponentBase, IDestroyable, IWorker,
         IWorldElement, IUpdatable, IChangeable, IAudioUpdatable, IInitializable, ILinkable
     {

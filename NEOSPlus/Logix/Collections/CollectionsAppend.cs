@@ -7,7 +7,7 @@ using NEOSPlus;
 namespace FrooxEngine.LogiX.Collections
 {
     [NodeName("Append")]
-    [Category("LogiX/Collections")]
+    [Category("LogiX/NeosPlus/Collections")]
     [NodeDefaultType(typeof(CollectionsAppend<dummy, ICollection<dummy>>))]
     public class CollectionsAppend<T, TU> : LogixNode where TU : ICollection<T>
     {

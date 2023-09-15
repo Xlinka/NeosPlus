@@ -5,6 +5,7 @@ using BaseX;
 using FrooxEngine;
 using FrooxEngine.LogiX.Data;
 using NEOSPlus.Hardware;
+using NEOSPlus.Quantity;
 using NEOSPlus.Shaders;
 
 namespace NEOSPlus
@@ -25,6 +26,7 @@ namespace NEOSPlus
                 {
                     ShaderInjection.AppendShaders();
                     HardwareInjector.InitializeHardwareClasses();
+                    QuantityInjector.Inject();
                     //AttributeInjector.Inject();
                 };
             }

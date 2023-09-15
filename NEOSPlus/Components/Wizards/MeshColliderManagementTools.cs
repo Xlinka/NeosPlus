@@ -54,7 +54,7 @@ namespace MeshColliderManagementTools
     }
 
     // Wizard which allows batch or individual deletion or replacement of MeshColliders.
-    [Category("Add-ons/Wizards")]
+    [Category("NeosPlus/Wizards")]
     public class MeshColliderManagementWizard : Component
     {
         public readonly Sync<bool> IgnoreInactive;

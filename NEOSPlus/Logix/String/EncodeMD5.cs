@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FrooxEngine.LogiX.String
 {
-    [Category("LogiX/String")]
+    [Category("LogiX/NeosPlus/String")]
     [NodeName("Encode MD5")]
     public class EncodeMD5 : LogixOperator<string>
     {

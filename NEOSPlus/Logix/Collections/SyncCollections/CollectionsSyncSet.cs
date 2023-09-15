@@ -8,7 +8,7 @@ namespace FrooxEngine.LogiX.Collections
 {
     [HiddenNode]
     [NodeName("SyncSet")]
-    [Category("LogiX/Collections")]
+    [Category("LogiX/NeosPlus/Collections")]
     [NodeDefaultType(typeof(CollectionsSyncSet<dummy, SyncFieldList<dummy>>))]
     public class CollectionsSyncSet<T, TU> : LogixNode where TU : ISyncList, IEnumerable<T>
     {

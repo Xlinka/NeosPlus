@@ -2,7 +2,7 @@
 
 namespace FrooxEngine
 {
-    [Category("LogiX/Mesh/Triangle")]
+    [Category("LogiX/NeosPlus/Mesh/Triangle")]
     public class AddTriangle : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;

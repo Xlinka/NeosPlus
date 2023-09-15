@@ -4,7 +4,7 @@ using FrooxEngine.LogiX;
 // Rad was here
 namespace FrooxEngine.LogiX.Math
 {
-    [Category("LogiX/Mesh/Bone")]
+    [Category("LogiX/NeosPlus/Mesh/Bone")]
     public class GetBoneBinding : LogixOperator<BoneBinding>
     {
         public readonly Input<IAssetProvider<Mesh>> Mesh;

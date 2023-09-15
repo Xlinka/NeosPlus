@@ -7,6 +7,8 @@
     <LangVersion>10</LangVersion>
     <Copyright>Copyright ©  2022</Copyright>
     <Product>NEOSPlus</Product>
+    <!-- SET THIS BOOL TO TRUE TO COPY TO PLUGINS       V -->
+    <CopyToPlugins Condition="'$(CopyToPlugins)'==''">false</CopyToPlugins>
   </PropertyGroup>
   <PropertyGroup>
     <NeosPath>$(MSBuildThisFileDirectory)NeosVR\</NeosPath>
@@ -18,9 +20,6 @@
 	<NeosPath Condition="Exists('G:\Neos\app\')">G:\Neos\app\</NeosPath>
     <NeosPath Condition="Exists('E:\SteamLibrary/steamapps/common/NeosVR/')">E:\SteamLibrary/steamapps/common/NeosVR/</NeosPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CopyToPlugin|AnyCPU'">
-  <PostBuildEvent>copy "$(TargetPath)" "$(NeosPath)\Libraries"</PostBuildEvent>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AutoPostX|AnyCPU' ">
     <PostBuildEvent>cd "$(ProjectDir)"
       powershell -NoProfile -ExecutionPolicy Bypass ./Scripts/PostBuild.ps1 '$(NeosPath)' $(ConfigurationName)
@@ -29,6 +28,9 @@
   <ItemGroup>
     <Reference Include="BaseX">
       <HintPath>$(NeosPath)Neos_Data/Managed/BaseX.dll</HintPath>
+    </Reference>
+    <Reference Include="QuantityX">
+      <HintPath>$(NeosPath)Neos_Data/Managed/QuantityX.dll</HintPath>
     </Reference>
     <Reference Include="CodeX">
       <HintPath>$(NeosPath)Neos_Data/Managed/CodeX.dll</HintPath>
@@ -80,4 +82,8 @@
     <ProjectReference Include="..\SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3"> </PackageReference>
   </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(CopyToPlugins)'=='true'">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(NeosPath)Libraries" />
+    <Message Text="Copied $(TargetFileName) to $(NeosPath)Libraries" Importance="high" />
+  </Target>
 </Project>

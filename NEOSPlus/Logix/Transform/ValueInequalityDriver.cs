@@ -2,7 +2,7 @@
 using BaseX;
 using FrooxEngine;
 
-[Category(new string[] {"Transform/Drivers"})]
+[Category(new string[] {"Transform/NeosPlus/Drivers"})]
 [GenericTypes(GenericTypes.Group.NeosPrimitives)]
 public class ValueInequalityDriver<T> : Component
 {

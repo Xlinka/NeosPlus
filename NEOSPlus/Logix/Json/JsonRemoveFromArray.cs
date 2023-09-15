@@ -5,7 +5,7 @@ using Newtonsoft.Json.Linq;
 namespace FrooxEngine.LogiX.Json;
 
 [NodeName("Remove From Array")]
-[Category("LogiX/Json")]
+[Category("LogiX/NeosPlus/Json")]
 public class JsonRemoveFromArray : LogixOperator<JArray>
 {
     public readonly Input<JArray> Array;

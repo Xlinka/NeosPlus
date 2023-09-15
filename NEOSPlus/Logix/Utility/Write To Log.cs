@@ -11,7 +11,7 @@ namespace FrooxEngine.LogiX.Utility
         Error
     }
 
-    [Category("LogiX/Utility")]
+    [Category("LogiX/NeosPlus/Utility")]
     [NodeName("Write to Log")]
     public class WriteToLog : LogixNode
     {

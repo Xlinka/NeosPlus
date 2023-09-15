@@ -8,7 +8,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine.Logix.Input_Devices
 {
-    [Category("LogiX/Input Devices")]
+    [Category("LogiX/NeosPlus/Input Devices")]
     public class ViveTrackerCount : LogixNode
     {
         public readonly Input<User> User;

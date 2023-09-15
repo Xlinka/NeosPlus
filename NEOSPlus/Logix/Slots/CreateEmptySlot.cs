@@ -2,7 +2,7 @@
 
 namespace FrooxEngine.LogiX.Slots
 {
-    [Category("LogiX/Slots")]
+    [Category("LogiX/NeosPlus/Slots")]
     [NodeName("Create Empty Slot")]
     public class CreateEmptySlot : LogixNode
     {

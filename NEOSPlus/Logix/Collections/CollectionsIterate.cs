@@ -7,7 +7,7 @@ using NEOSPlus;
 namespace FrooxEngine.LogiX.Collections
 {
     [NodeName("Foreach")]
-    [Category("LogiX/Collections")]
+    [Category("LogiX/NeosPlus/Collections")]
     [NodeDefaultType(typeof(CollectionsIterate<dummy, IEnumerable<dummy>>))]
     public class CollectionsIterate<T, TU> : LogixNode where TU : IEnumerable<T>
     {

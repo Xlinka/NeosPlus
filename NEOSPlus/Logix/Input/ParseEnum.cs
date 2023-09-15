@@ -3,7 +3,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category("LogiX/Input")]
+    [Category("LogiX/NeosPlus/Input")]
     [GenericTypes(GenericTypes.Group.CommonEnums)]
     public class ParseEnum<E> : LogixOperator<E> where E : struct, Enum, IConvertible
     {

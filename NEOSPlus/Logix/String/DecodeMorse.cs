@@ -4,7 +4,7 @@ using NEOSPlus;
 
 namespace FrooxEngine.LogiX.String;
 
-[Category("LogiX/String")]
+[Category("LogiX/NeosPlus/String")]
 [NodeName("Decode Morse")]
 public class DecodeMorse : LogixOperator<string>
 {

@@ -2,7 +2,7 @@
 using FrooxEngine;
 using FrooxEngine.LogiX;
 
-[Category(new string[] { "LogiX/Network/ART-NET" })]
+[Category(new string[] { "LogiX/NeosPlus/Network/ART-NET" })]
 public class ArtNetReceiverConnect : LogixNode
 {
     public readonly Input<ArtNetReceiver> Receiver;

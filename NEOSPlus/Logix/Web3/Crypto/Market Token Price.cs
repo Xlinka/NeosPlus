@@ -14,7 +14,7 @@ namespace FrooxEngine.LogiX.Web3
     }
 
     [NodeName("Market Token Price")]
-    [Category("LogiX/Web3/Crypto")]
+    [Category("LogiX/NeosPlus/Web3/Crypto")]
     public class TokenPrice : LogixNode
     {
         private const string graphApiUrlV2 = "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2";

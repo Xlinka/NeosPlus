@@ -5,7 +5,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category("LogiX/Mesh/Bone")]
+    [Category("LogiX/NeosPlus/Mesh/Bone")]
     public class PackBoneBinding : LogixOperator<BoneBinding>
     {
         public readonly Input<BoneBinding> CopyBoneBind;

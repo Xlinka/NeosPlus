@@ -16,7 +16,7 @@ namespace FrooxEngine.LogiX.Web3
     }
 
     [NodeName("Coingecko")]
-    [Category("LogiX/Web3/Crypto")]
+    [Category("LogiX/NeosPlus/Web3/Crypto")]
     public class Coingecko : LogixNode
     {
         private const string priceEndpoint = "https://api.coingecko.com/api/v3/simple/price?ids={0}&vs_currencies={1}";

@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 namespace FrooxEngine.LogiX.Json;
 
 [NodeName("To String")]
-[Category("LogiX/Json")]
+[Category("LogiX/NeosPlus/Json")]
 [GenericTypes(typeof(JToken), typeof(JObject), typeof(JArray))]
 [OldTypeSpecialization("FrooxEngine.LogiX.Json.ToJSONString", typeof(JObject))]
 public class JsonToString<T> : LogixOperator<string>

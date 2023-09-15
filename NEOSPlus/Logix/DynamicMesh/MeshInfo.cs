@@ -7,7 +7,7 @@ using FrooxEngine.UIX;
 
 namespace FrooxEngine
 {
-    [Category(new string[] {"LogiX/Mesh"})]
+    [Category(new string[] {"LogiX/NeosPlus/Mesh"})]
     public class MeshInfo : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;

@@ -3,7 +3,7 @@ using System.Text;
 
 namespace FrooxEngine.LogiX.String
 {
-    [Category("LogiX/String")]
+    [Category("LogiX/NeosPlus/String")]
     [NodeName("Decode Base64")]
     public class DecodeBase64 : LogixOperator<string>
     {

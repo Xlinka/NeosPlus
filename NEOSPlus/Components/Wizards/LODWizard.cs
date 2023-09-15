@@ -5,7 +5,7 @@ using static FrooxEngine.LODGroup;
 
 namespace FrooxEngine
 {
-    [Category("Add-ons/Wizards")]
+    [Category("NeosPlus/Wizards")]
     public class LODWizard : Component
     {
         private const string LOD_GROUP_PREFIX = "<LOD_GROUP>";
@@ -36,7 +36,7 @@ namespace FrooxEngine
             CrossFade.Value = false;
             AnimateCrossFading.Value = false;
 
-            Slot.Name = "Map Wizard";
+            Slot.Name = "LOD Wizard";
             Slot.Tag = "Developer";
             NeosCanvasPanel neosCanvasPanel = Slot.AttachComponent<NeosCanvasPanel>();
             neosCanvasPanel.Panel.AddCloseButton();

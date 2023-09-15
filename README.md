@@ -62,6 +62,127 @@ You can also use the Neos Plus Launcher for installation. Download it here: http
 ## Features
 A list of features can be found in the [wiki](https://github.com/Xlinka/NeosPlus/wiki/LogiX-Nodes).
  
+## Contributors
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Xlinka">
+        <img src="https://github.com/Xlinka.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      Xlinka
+    </td>
+    <td align="center">
+      <a href="https://github.com/Frozenreflex">
+        <img src="https://github.com/Frozenreflex.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      Frozenreflex
+    </td>
+    <td align="center">
+      <a href="https://github.com/dfgHiatus">
+        <img src="https://github.com/dfgHiatus.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      dfgHiatus
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Nytra">
+        <img src="https://github.com/Nytra.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      Nytra
+    </td>
+    <td align="center">
+      <a href="https://github.com/LeCloutPanda">
+        <img src="https://github.com/LeCloutPanda.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      LeCloutPanda
+    </td>
+    <td align="center">
+      <a href="https://github.com/jeanahelver">
+        <img src="https://github.com/jeanahelver.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      jeanahelver
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/art0007i">
+        <img src="https://github.com/art0007i.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      art0007i
+    </td>
+    <td align="center">
+      <a href="https://github.com/Zandario">
+        <img src="https://github.com/Zandario.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      Zandario
+    </td>
+    <td align="center">
+      <a href="https://github.com/DoubleStyx">
+        <img src="https://github.com/DoubleStyx.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      DoubleStyx
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/ty802">
+        <img src="https://github.com/ty802.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      ty802
+    </td>
+    <td align="center">
+      <a href="https://github.com/Lexevolution">
+        <img src="https://github.com/Lexevolution.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      Lexevolution
+    </td>
+    <td align="center">
+      <a href="https://github.com/Psychpsyo">
+        <img src="https://github.com/Psychpsyo.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      Psychpsyo
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/sirkitree">
+        <img src="https://github.com/sirkitree.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      sirkitree
+    </td>
+    <td align="center">
+      <a href="https://github.com/JackTheFoxOtter">
+        <img src="https://github.com/JackTheFoxOtter.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      JackTheFoxOtter
+    </td>
+    <td align="center">
+      <a href="https://github.com/rassi0429">
+        <img src="https://github.com/rassi0429.png" width="50" height="50" alt="GitHub Icon" />
+      </a>
+      <br />
+      rassi0429
+    </td>
+  </tr>
+</table>
+
+
 # 설치방법
 중요: 네오스 플러스는 모드가 아닌 플러그인 입니다. 이 두가지는 서로 설치 방법이 다름을 인지하여 주세요.
 먼저 Releases 탭에서 NEOSPlus.dll 파일을 다운로드 받아 네오스가 설치된 경로아래에 있는 Libraries 폴더에 넣어주세요.

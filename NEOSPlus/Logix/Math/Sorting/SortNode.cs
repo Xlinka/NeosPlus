@@ -12,7 +12,7 @@ using NEOSPlus;
 namespace FrooxEngine.Logix.Math.Sorting
 {
     [NodeName("Sort")]
-    [Category("LogiX/Math")]
+    [Category("LogiX/NeosPlus/Math")]
     [NodeDefaultType(typeof(Sort<float>))]
     public class Sort<T> : LogixNode where T : IComparable
     {

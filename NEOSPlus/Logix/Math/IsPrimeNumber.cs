@@ -3,7 +3,7 @@
 namespace FrooxEngine.LogiX.Math
 {
     [NodeName("IsPrimeNumber")]
-    [Category("LogiX/Math")]
+    [Category("LogiX/NeosPlus/Math")]
     public class IsPrimeNumber : LogixOperator<bool>
     {
         public readonly Input<int> input;

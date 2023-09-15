@@ -1,6 +1,6 @@
 ﻿namespace FrooxEngine.LogiX.Users
 {
-    [Category(new string[] {"LogiX/Users"})]
+    [Category(new string[] {"LogiX/NeosPlus/Users"})]
     [NodeName("Set User Scaling")]
     public class SetUserScaling : LogixNode
     {

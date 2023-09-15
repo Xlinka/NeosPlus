@@ -2,7 +2,7 @@
 
 namespace FrooxEngine.LogiX.Operators
 {
-    [Category("LogiX/Mesh/Bone")]
+    [Category("LogiX/NeosPlus/Mesh/Bone")]
     public class UnpackBoneBindings : LogixNode
     {
         public readonly Input<BoneBinding> BoneBind;

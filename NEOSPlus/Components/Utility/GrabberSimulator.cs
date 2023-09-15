@@ -10,7 +10,7 @@ using FrooxEngine.UIX;
 
 namespace FrooxEngine
 {
-    [Category("Utility")]
+    [Category("NeosPlus/Utility")]
     class GrabberSimulator : Component, ICustomInspector //, ILocomotionReference
     {
         public readonly SyncRef<Grabber> Grabber;

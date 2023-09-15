@@ -5,7 +5,7 @@
 /// 
 namespace FrooxEngine.LogiX.Assets
 {
-    [Category("LogiX/Mesh/Operations")]
+    [Category("LogiX/NeosPlus/Mesh/Operations")]
     public class GetMesh : LogixOperator<IAssetProvider<Mesh>>
     {
         public readonly Input<Slot> Root;

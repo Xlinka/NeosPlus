@@ -3,7 +3,7 @@ using FrooxEngine.LogiX;
 using System;
 using BaseX;
 
-[Category(new string[] { "LogiX/Network/ART-NET" })]
+[Category(new string[] { "LogiX/NeosPlus/Network/ART-NET" })]
 
 public class ArtNetUniverseDataReceiver : ArtNetReceiverBaseNode
 {

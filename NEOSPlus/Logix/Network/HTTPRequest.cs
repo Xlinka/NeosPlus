@@ -10,7 +10,7 @@ using BaseX;
 
 namespace FrooxEngine.LogiX.Network
 {
-    [Category("LogiX/Network")]
+    [Category("LogiX/NeosPlus/Network")]
     [NodeName("HTTP Request")]
     public class HTTPRequest : LogixNode
     {

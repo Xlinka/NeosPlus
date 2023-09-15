@@ -27,7 +27,7 @@ using FrooxEngine.UIX;
 
 namespace ComponentBreakdown
 {
-    [Category("Add-ons/Wizards")]
+    [Category("NeosPlus/Wizards")]
     public class ComponentBreakdown :
         Component
     {

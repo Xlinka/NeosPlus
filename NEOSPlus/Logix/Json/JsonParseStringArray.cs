@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 namespace FrooxEngine.LogiX.Json;
 
 [NodeName("Parse Array From String")]
-[Category("LogiX/Json")]
+[Category("LogiX/NeosPlus/Json")]
 [OldTypeName("FrooxEngine.LogiX.Json.ParseJSONStringArray")]
 public class JsonParseStringArray : LogixOperator<JArray>
 {

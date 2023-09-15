@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 namespace FrooxEngine.LogiX.Json;
 
 [NodeName("Count Object Children")]
-[Category("LogiX/Json")]
+[Category("LogiX/NeosPlus/Json")]
 [OldTypeName("FrooxEngine.LogiX.Json.JSONCountChildren")]
 public class JsonCountObjectChildren : LogixOperator<int>
 {

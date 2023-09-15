@@ -2,7 +2,7 @@
 
 namespace FrooxEngine.LogiX.Users
 {
-    [Category("LogiX/Users")]
+    [Category("LogiX/NeosPlus/Users")]
     [NodeName("Is User In Seated Mode")]
     public class IsUserInSeatedMode : LogixOperator<bool>
     {

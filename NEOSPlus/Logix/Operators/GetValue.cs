@@ -11,7 +11,7 @@ namespace FrooxEngine.LogiX.Operators
     /// By JackTheFoxOtter
     /// </remarks>
     /// <typeparam name="T"></typeparam>
-    [Category("LogiX/Operators")]
+    [Category("LogiX/NeosPlus/Operators")]
     [NodeName("Get Value")]
     public class GetValue<T> : LogixOperator<T>
     {

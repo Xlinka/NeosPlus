@@ -5,7 +5,7 @@ using FrooxEngine.LogiX;
 
 namespace FrooxEngine
 {
-    [Category(new string[] {"LogiX/Mesh/Bone"})]
+    [Category(new string[] {"LogiX/NeosPlus/Mesh/Bone"})]
     public class StripEmptyBones : LogixNode
     {
         public readonly Input<DynamicMesh> DynamicMesh;

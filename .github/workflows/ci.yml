@@ -9,9 +9,9 @@ on:
 env:
   SOLUTION_FILE_PATH: NEOSPlus.sln
   BUILD_CONFIGURATION: Release
+
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
@@ -21,11 +21,12 @@ jobs:
     - name: Restore Nuget
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: nuget restore ${{env.SOLUTION_FILE_PATH}}
-    - name: Download Neos
+    - name: Download and Extract Neos
       shell: pwsh
       run: |
-        New-Item -Type Directory NeosVR
-        cd NeosVR
+        $neosInstallPath = "C:\Neos\app"
+        New-Item -Type Directory -Path $neosInstallPath -Force
+        cd $neosInstallPath
         $web = [System.Net.WebClient]::new()
         $web.DownloadFile("https://www.7-zip.org/a/7zr.exe","$PWD\7zr.exe")
         $cvstring = $web.DownloadString('https://cloudxstorage.blob.core.windows.net/install/Pro/Public')
@@ -34,6 +35,4 @@ jobs:
         Remove-Item "$env:TEMP\neosupdate.7z"
     - name: Build
       working-directory: ${{env.GITHUB_WORKSPACE}}
-      # Add additional options to the MSBuild command line here (like platform or verbosity level).
-      # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}

@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace FrooxEngine.LogiX.Network
 {
-    [Category("LogiX/Network")]
+    [Category("LogiX/NeosPlus/Network")]
     [NodeName("RSS Feed")]
     public class RSSFeedNode : LogixNode
     {
